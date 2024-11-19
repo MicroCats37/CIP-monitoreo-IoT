@@ -51,7 +51,6 @@ export const subscribeSotano = (id: string) => {
     subscribeToTopic(topic, (message) => {
       const blockStates = decodeBinaryToStates(convertHexToBinary(message.data));
       setSubsData(topic, blockStates);
-      console.log(blockStates)
     });
   }
 };

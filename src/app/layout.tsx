@@ -7,6 +7,7 @@ import { AppSidebar } from "@/components/SidebarComponent/SidebarComponent";
 import "./globals.css";
 import { useState } from "react";
 import ProviderQuery from "@/QueryProvider";
+import { Toaster } from "sonner";
 
 
 /*
@@ -22,13 +23,17 @@ export default function RootLayout({
  
   return (
     <html lang="en">
+      {false && <head>
+        <script src="https://unpkg.com/react-scan/dist/auto.global.js" async></script>
+      </head>}
       <body>
       <ProviderQuery>
       <SidebarProvider>
       <AppSidebar />
-      <div className="w-full h-full flex-1 flex">
-        <SidebarTrigger/>
+      <div className="w-full h-full flex max-w-full">
+        <SidebarTrigger className="fixed"/>
         <main className="w-full h-full flex">
+          <Toaster position="top-right" />
           {children}
         </main>
       </div>

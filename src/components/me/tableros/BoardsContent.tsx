@@ -6,6 +6,7 @@ import { getBoardData } from '@/utils/callsApi/apiCalls';
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect } from 'react'
 import { toast, Toaster } from 'sonner';
+import BoardCard from '../BoardCard/BoardCard';
 
 export default function BoardsContent() {
 
@@ -43,20 +44,14 @@ export default function BoardsContent() {
       if (isLoading) return <div>Cargando...</div>;
       if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (
-    <div className='flex relative'>
-        <Toaster position="top-right" />
+    <div className='w-full flex relative'>
+       
 
         {BoardsData?
-            (<div >
-                
-                {
-                BoardsData.map((pump:BoardType,index:number)=>(
-                        <div className="" key={index}>
-                          {pump.potencia}:{pump.value}
-                        </div>   
-                ))
-                }        
-            </div>):(<div>Error</div>)
+            (<div className='w-full'>
+                <BoardCard data={BoardsData}></BoardCard>   
+            </div>)
+            :(<div>Error</div>)
         }
         
     </div>

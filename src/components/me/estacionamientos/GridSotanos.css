@@ -2,7 +2,6 @@
     display: grid; 
     grid-template-columns: repeat(74, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    
 }
 
 .car{

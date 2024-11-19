@@ -38,3 +38,29 @@ export const decodeBinaryToStates = (binary: string): string[] => {
 
   return statesArray;
 };
+
+export type Estado = "libre" | "dañado" | "ocupado" | "reservado"; // Definimos los estados posibles
+
+// Función para contar los estados en el array
+export function contarEstados(estados: Estado[]): { state: Estado, count: number }[] {
+    // Verificamos si 'estados' es un arreglo válido
+    if (!Array.isArray(estados)) {
+      throw new Error("El argumento debe ser un arreglo de estados.");
+    }
+  
+    // Si el arreglo está vacío, devolvemos un arreglo vacío
+    if (estados.length === 0) {
+      return [];
+    }
+  
+    const conteo = estados.reduce<{ [key in Estado]: number }>((acc, estado) => {
+      acc[estado] = (acc[estado] || 0) + 1;
+      return acc;
+    }, { libre: 0, dañado: 0, ocupado: 0, reservado: 0 }); // Inicializamos con 0
+  
+    // Convertimos el resultado a un array de objetos con `estado` y `count`
+    return Object.keys(conteo).map((estado) => ({
+      state: estado as Estado,
+      count: conteo[estado as Estado],
+    }));
+  }

@@ -1,4 +1,5 @@
 'use client'
+import PumpCard from "@/components/me/PumpCard/PumpCard";
 import { subscribeWaterPump, TOPICS, unsubscribeWaterPump } from "@/mqtt/topics/BombasSubscriptions";
 import { useMqttStore } from "@/store/mqttStore";
 import { WaterPumpType } from "@/types";
@@ -42,19 +43,12 @@ export default function WaterPumpContent({ id }: { id: string }) {
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (
-    <div className='flex relative'>
-        <Toaster position="top-right" />
+    <div className='w-full flex relative'>
+       
 
         {WaterPumpData?
-            (<div >
-                
-                {
-                WaterPumpData.map((pump:WaterPumpType,index:number)=>(
-                        <div className="" key={index}>
-                          {pump.bomba}:{pump.estado? ("activado"):("desactivado")}
-                        </div>   
-                ))
-                }        
+            (<div className='w-full flex'>
+                <PumpCard data={WaterPumpData}></PumpCard>       
             </div>):(<div>Error</div>)
         }
         
