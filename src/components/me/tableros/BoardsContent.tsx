@@ -1,5 +1,5 @@
 'use client'
-import { subscribeBoards, unsubscribeBoards } from '@/mqtt/topics/TablerosSubscriptions';
+
 import { useMqttStore } from '@/store/mqttStore';
 import { BoardType } from '@/types';
 import { getBoardData } from '@/utils/callsApi/apiCalls';
@@ -7,15 +7,11 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useEffect } from 'react'
 import { toast, Toaster } from 'sonner';
 import BoardCard from '../BoardCard/BoardCard';
+import { useBoardSubscription } from '@/mqtt/topics/TablerosSubscriptions';
 
 export default function BoardsContent() {
 
-    useEffect(() => {
-        subscribeBoards();
-        return () => {
-          unsubscribeBoards();
-        };
-      }, []);
+      useBoardSubscription();
     
       const setSubsData = useMqttStore((state) => state.setSubsData)
       const { data, error, isLoading } = useQuery<BoardType[], Error>({

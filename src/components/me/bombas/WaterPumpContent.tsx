@@ -1,6 +1,6 @@
 'use client'
 import PumpCard from "@/components/me/PumpCard/PumpCard";
-import { subscribeWaterPump, TOPICS, unsubscribeWaterPump } from "@/mqtt/topics/BombasSubscriptions";
+import {  TOPICS,  useWaterPumpSubscription } from "@/mqtt/topics/BombasSubscriptions";
 import { useMqttStore } from "@/store/mqttStore";
 import { WaterPumpType } from "@/types";
 import {  getWaterPumpData } from "@/utils/callsApi/apiCalls";
@@ -10,13 +10,7 @@ import { toast, Toaster } from "sonner";
 
 export default function WaterPumpContent({ id }: { id: string }) {
   const sentId=id.replaceAll('-', '')
-  useEffect(() => {
-    subscribeWaterPump(sentId);
-    return () => {
-      unsubscribeWaterPump(sentId);
-    };
-  }, []);
-
+  useWaterPumpSubscription(sentId);
   const setSubsData = useMqttStore((state) => state.setSubsData)
   const { data, error, isLoading } = useQuery<WaterPumpType[], Error>({
     queryKey: ['getWaterPumpData', id], queryFn: () =>

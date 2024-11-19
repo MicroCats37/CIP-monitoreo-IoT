@@ -1,4 +1,4 @@
-import { getOccupiedParkingSotano } from '@/influxDB/querys/EstacionamientoQuerys';
+import { getSotanoEstado } from '@/influxDB/querys/EstacionamientoQuerys';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 
@@ -11,7 +11,7 @@ const { id } = req.query;
     return;
   }
   try {
-    const data = await getOccupiedParkingSotano(id as string);
+    const data = await getSotanoEstado(id as string);
     res.status(200).json(data);
   } catch (error) {
     console.error('Error al obtener datos de sotano:', error);

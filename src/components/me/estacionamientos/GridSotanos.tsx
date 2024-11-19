@@ -3,28 +3,23 @@ import React, { useEffect } from 'react'
 import './GridSotanos.css'
 import '@/components/me/estacionamientos/estacionamientos.css'
 import CartState from './CarState'
-import { subscribeSotano, TOPICS, unsubscribeSotano } from '@/mqtt/topics/parkingSubscriptions'
+import { TOPICS, useParkingSubscription  } from '@/mqtt/topics/ParkingSubscriptions'
 import { useMqttStore } from '@/store/mqttStore'
-import { getData, getParkingData } from '@/utils/callsApi/apiCalls'
-import { SotanosDataType } from '@/types'
+import { getParkingData } from '@/utils/callsApi/apiCalls'
+import { ParkingType, SotanosStateDataType } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { SotanoImage } from './SotanoImage'
-import { toast, Toaster } from 'sonner'
-import { contarEstados, Estado } from '@/utils/decodecEstacionamiento'
+import { toast } from 'sonner'
+import { contarEstados} from '@/utils/decodecEstacionamiento'
 import CountCard from '../CountCard/CountCard'
 
 
-export default function GridSotanos({ sotanoData }: { sotanoData: SotanosDataType }) {
+export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDataType }) {
   const id = sotanoData.id.toString()
   const quantity = sotanoData.quantity
-  useEffect(() => {
-    subscribeSotano(id);
-    return () => {
-      unsubscribeSotano(id);
-    };
-  }, []);
+  useParkingSubscription(id);
   const setSubsData = useMqttStore((state) => state.setSubsData)
-  const { data, error, isLoading } = useQuery<string[], Error>({
+  const { data, error, isLoading } = useQuery<ParkingType[], Error>({
     queryKey: ['getParkingData', id], queryFn: () =>
       getParkingData(id),
     staleTime: Infinity, // Los datos permanecen frescos indefinidamente 
@@ -41,7 +36,8 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosDataTyp
 
   useEffect(() => {
     if (data) {
-      setSubsData(TOPICS[`sotano${id}`], data);
+      const sotano = data.map(parking=>parking.state)
+      setSubsData(TOPICS[`sotano${id}`], sotano);
       toast.success('Datos cargados correctamente.');
     }
   }, [data]);

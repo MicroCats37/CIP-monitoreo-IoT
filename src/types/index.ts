@@ -1,3 +1,5 @@
+
+import { z } from 'zod';
 export interface SotanosType {
     sotano1:string,
     sotano2:string,
@@ -5,19 +7,34 @@ export interface SotanosType {
     sotano4:string,
 }
 
-export interface SotanosDataType{
+export interface SotanosStateDataType{
     id:string
     quantity:number
 }
 
-export interface WaterPumpType{
-    bomba:string,
-    estado:boolean,
-    //time:string
-}
-
-export interface BoardType{
-    potencia:string,
-    value:boolean,
-    //time:string
-}
+// Esquema para ParkingType
+export const ParkingTypeSchema = z.object({
+    parking_id: z.string(),
+    state: z.string(),
+    // time: z.string().optional(), // Descomentar si decides usar el campo 'time'
+  });
+  
+  export type ParkingType = z.infer<typeof ParkingTypeSchema>;
+  
+  // Esquema para WaterPumpType
+  export const WaterPumpTypeSchema = z.object({
+    bomba: z.string(),
+    estado: z.boolean(),
+    // time: z.string().optional(), // Descomentar si decides usar el campo 'time'
+  });
+  
+  export type WaterPumpType = z.infer<typeof WaterPumpTypeSchema>;
+  
+  // Esquema para BoardType
+  export const BoardTypeSchema = z.object({
+    potencia: z.string(),
+    value: z.boolean(),
+    // time: z.string().optional(), // Descomentar si decides usar el campo 'time'
+  });
+  
+  export type BoardType = z.infer<typeof BoardTypeSchema>;

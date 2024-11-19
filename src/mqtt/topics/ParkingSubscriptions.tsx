@@ -33,6 +33,7 @@ export const unsubscribeSotano = (id: string) => {
 
 import { useMqttStore } from "@/store/mqttStore";
 import { decodeBinaryToStates, convertHexToBinary } from '@/utils/decodecEstacionamiento';
+import { useEffect } from "react";
 
 // Tópicos
 export const TOPICS: { [key: string]: string } = {
@@ -42,24 +43,23 @@ export const TOPICS: { [key: string]: string } = {
   sotano4: 'estacionamientos/sotano4',
 };
 
-// Función para suscribirse a un sótano basado en el id
-export const subscribeSotano = (id: string) => {
-  const topic = TOPICS[`sotano${id}`];
-  const { subscribeToTopic, setSubsData } = useMqttStore.getState();
 
-  if (topic) {
-    subscribeToTopic(topic, (message) => {
-      const blockStates = decodeBinaryToStates(convertHexToBinary(message.data));
-      setSubsData(topic, blockStates);
-    });
-  }
-};
-
-// Función para desuscribirse de un sótano basado en el id
-export const unsubscribeSotano = (id: string) => {
+export const useParkingSubscription = (id: string) => {
+  const subscribeToTopic = useMqttStore((state) => state.subscribeToTopic);
+  const unsubscribeFromTopic = useMqttStore((state) => state.unsubscribeFromTopic);
+  const setSubsData = useMqttStore((state) => state.setSubsData);
   const topic = TOPICS[`sotano${id}`];
-  const { unsubscribeFromTopic } = useMqttStore.getState();
-  if (topic) {
-    unsubscribeFromTopic(topic);
-  }
+
+  useEffect(() => {
+    if (topic) {
+      subscribeToTopic(topic, (message) => {
+        const blockStates = decodeBinaryToStates(convertHexToBinary(message.data));
+        setSubsData(topic,blockStates);
+      });
+    }
+
+    return () => {
+      if (topic) unsubscribeFromTopic(topic);
+    };
+  }, [topic, subscribeToTopic, unsubscribeFromTopic, setSubsData]);
 };

@@ -5,8 +5,8 @@ const INFLUXDB_BUCKET_ESTACIONAMIENTOS = 'Estacionamientos';
 interface SotanoEstado{
     parking_id: string; 
     state: string; 
-    value: number; 
-    time: string
+    //value: number; 
+    //time: string
 }
 
 
@@ -45,7 +45,7 @@ export const getLatestValues = async () => {
 
 
   // Función para obtener estacionamientos ocupados en los distintos sotanos
-  export const getOccupiedParkingSotano = async (id:string):Promise<string []> => {
+  export const getSotanoEstado = async (id:string):Promise<SotanoEstado []> => {
     const fluxQuery = `
         from(bucket: "TEST2")
         |> range(start: -30m)  // Limita el rango de tiempo (últimos 30 minutos)
@@ -64,8 +64,8 @@ export const getLatestValues = async () => {
     rows.push({
       parking_id: record.parking_id,
       state: record._field, // El tipo de estado (ocupado, libre, etc.)
-      value: record._value, // El valor (1 o 0)
-      time: record._time,   // Timestamp del último estado
+      //value: record._value, // El valor (1 o 0)
+      //time: record._time,   // Timestamp del último estado
     });
   }
 
@@ -81,8 +81,8 @@ export const getLatestValues = async () => {
     };
     // Ordenar los parkings
     const orderRows = sortParkings(rows);
-    const sotano = orderRows.map(parking=>parking.state)
-  return sotano;
+    //const sotano = orderRows.map(parking=>parking.state)
+  return orderRows;
   };
 
 
