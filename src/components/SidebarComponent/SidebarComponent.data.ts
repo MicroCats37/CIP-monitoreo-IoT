@@ -5,7 +5,7 @@ import {ParkingMeter,Cable,LayoutDashboard ,Droplets} from "lucide-react"
 export const linkRoutes:LinkRouteType[] = [
     {
       title: "DashBoard",
-      url: "#",
+      url: "/dashboard",
       icon: LayoutDashboard,
     },
     {

@@ -27,7 +27,7 @@ export const getBombasEstado = async (bomba:string): Promise<BombaEstado[]> => {
     `;
   
     const rows: BombaEstado[] = [];
-  
+
     for await (const { values, tableMeta } of queryApi.iterateRows(fluxQuery)) {
       const record = tableMeta.toObject(values);
       rows.push({
@@ -35,7 +35,6 @@ export const getBombasEstado = async (bomba:string): Promise<BombaEstado[]> => {
         estado: Boolean(record._value), // Convertido directamente a 1 o 0 desde InfluxDB
         //time: record._time, // Marca de tiempo del estado
       });
-    }
-          
+    }  
     return rows;
   };

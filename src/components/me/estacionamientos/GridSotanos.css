@@ -4,6 +4,18 @@
     grid-template-rows: repeat(6, 1fr);
 }
 
+.gridsotano > div {
+  width: 100%;
+  height: 100%;
+}
+
+/* Pseudo-elemento para rellenar las áreas vacías */
+.gridsotano::before {
+  content: '';
+  grid-column: 1 / -1; /* Ocupa todas las columnas */
+  grid-row: 1 / -1;    /* Ocupa todas las filas */
+}
+
 .car{
     display: flex;
     justify-content: center;

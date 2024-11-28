@@ -6,6 +6,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -15,6 +16,7 @@ import Link from "next/link"
 import { linkRoutes  } from "./SidebarComponent.data"
 
 import { usePathname } from 'next/navigation';
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 export function AppSidebar() {
 
@@ -22,6 +24,18 @@ export function AppSidebar() {
   return (
     <>
     <Sidebar>
+    <SidebarHeader className="border-b px-4 py-2">
+        <div className="flex items-center space-x-3">
+          <Avatar>
+            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
+          <div>
+            <p className="text-sm font-medium">user</p>
+            <p className="text-xs text-muted-foreground">user@cst.com</p>
+          </div>
+        </div>
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Application</SidebarGroupLabel>
@@ -33,9 +47,9 @@ export function AppSidebar() {
                   
                 {
                   route.pages? (
-                    <Accordion type="single" collapsible key={`acordeo-e${route.title}`}>
+                    <Accordion type="single" collapsible key={`acordeon-${route.title}`} >
                       <AccordionItem value="item-1">
-                          <AccordionTrigger className="p-0">
+                          <AccordionTrigger className="p-0 pr-2 bg-sidebar-accent rounded-md ">
                               <SidebarMenuButton asChild >
                                 <Link href={route.url} passHref>
                                   <route.icon />
@@ -49,7 +63,7 @@ export function AppSidebar() {
                                 <div key={page.url} className="w-full flex text-center items-center justify-center h-auto">
                                   <Link href={page.url} className="p-4 cursor-pointer" passHref prefetch={false}>
                                     <span className={`px-4 py-2 rounded ${
-                                      pathname===route.url ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'
+                                      pathname===page.url ? 'bg-black text-white' : 'bg-gray-200 text-black'
                                     }`}>{page.title}</span>
                                   </Link>
                                 </div>

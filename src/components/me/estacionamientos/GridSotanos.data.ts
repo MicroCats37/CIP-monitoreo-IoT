@@ -1,6 +1,6 @@
-import { SotanosDataType } from "@/types";
+import { SotanosStateDataType } from "@/types";
 
-export const sotanosData:SotanosDataType[] =[
+export const sotanosData:SotanosStateDataType[] =[
     {
         id:'1',
         quantity:49

@@ -36,7 +36,6 @@ export default function BoardsContent() {
         }
       }, [data]);
       const BoardsData = useMqttStore((state) => state.subsData['tableros']);
-      console.log(BoardsData)
       if (isLoading) return <div>Cargando...</div>;
       if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (

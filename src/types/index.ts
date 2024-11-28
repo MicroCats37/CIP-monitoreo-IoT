@@ -33,8 +33,21 @@ export const ParkingTypeSchema = z.object({
   // Esquema para BoardType
   export const BoardTypeSchema = z.object({
     potencia: z.string(),
-    value: z.boolean(),
+    value: z.number(),
     // time: z.string().optional(), // Descomentar si decides usar el campo 'time'
   });
   
   export type BoardType = z.infer<typeof BoardTypeSchema>;
+
+  export const VariatorsTypeSchema = z.object({
+    bomba: z.string(),  // Nombre de la bomba (Q01, Q02, etc.)
+    velocidad_y_direccion: z.number(),  // Opcional, ya que puede estar ausente en algunos casos
+    frecuencia: z.number(),
+    intensidad: z.number(),
+    potencia: z.number(),
+    tension_salida: z.number(),
+    temperatura_unidad: z.number(),
+    tiempo_marcha: z.number(),
+  });
+  
+  export type VariatorsType = z.infer<typeof VariatorsTypeSchema>;

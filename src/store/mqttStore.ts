@@ -20,7 +20,6 @@ export const useMqttStore = create<MqttStore>()(
     subscribeToTopic: (topic, onMessage) => {
       const { subscribedTopics } = get();
       const client = getClient();
-      console.log(get().subscribedTopics)
       if (!subscribedTopics[topic]) {
         // Iniciar el contador para el tópico si no existe
         subscribedTopics[topic] = 1;
@@ -31,7 +30,7 @@ export const useMqttStore = create<MqttStore>()(
             console.error(`Error al suscribirse al tópico ${topic}:`, err);
           } else {
             console.log(`Suscrito al tópico: ${topic}`);
-            toast.success('Conexión MQTT establecida');
+            toast.success(`Conexión MQTT establecida ${topic}`);
           }
         });
 
@@ -40,7 +39,7 @@ export const useMqttStore = create<MqttStore>()(
           if (subscribedTopics[receivedTopic]) {
             try {
               const parsedMessage = JSON.parse(message.toString());
-              console.log('Mensaje recibido:', parsedMessage);
+              //console.log('Mensaje recibido:', parsedMessage);
               // Llamar a onMessage solo para el tópico que estamos escuchando
               if (receivedTopic === topic) {
                 onMessage(parsedMessage);
@@ -73,9 +72,12 @@ export const useMqttStore = create<MqttStore>()(
           client?.unsubscribe(topic, (err) => {
             if (err) {
               console.error(`Error al desuscribirse del tópico ${topic}:`, err);
-            } else {
+            } 
+            /*
+            else {
               console.log(`Desuscrito del tópico: ${topic}`);
             }
+              */
           });
           // Eliminar el tópico de las suscripciones
           delete subscribedTopics[topic];

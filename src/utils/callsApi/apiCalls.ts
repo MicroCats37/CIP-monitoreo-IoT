@@ -1,7 +1,7 @@
 import { z } from 'zod';
 // Importa los esquemas definidos previamente.
 import apiClient from './apiClient'; 
-import { BoardType, BoardTypeSchema, type ParkingType, ParkingTypeSchema, WaterPumpType, WaterPumpTypeSchema } from '@/types';
+import { BoardType, BoardTypeSchema, type ParkingType, ParkingTypeSchema, VariatorsType, VariatorsTypeSchema, WaterPumpType, WaterPumpTypeSchema } from '@/types';
 
 // Función para obtener datos de estacionamientos
 export const getParkingData = async (id: string): Promise<ParkingType[]> => {
@@ -44,6 +44,21 @@ export const getBoardData = async (): Promise<BoardType[]> => {
     return parsedData;
   } catch (error: any) {
     console.error('Error al obtener datos de tableros:', error.response?.data || error.message);
+    throw error;
+  }
+};
+
+
+export const getVariatorData = async (id: string): Promise<VariatorsType[]> => {
+  try {
+    const response = await apiClient.get(`/variadores/${id}`);
+
+    // Validar que la respuesta sea un array de objetos de tipo WaterPumpType
+    const parsedData = z.array(VariatorsTypeSchema).parse(response.data);
+
+    return parsedData;
+  } catch (error: any) {
+    console.error('Error al obtener datos de variadores de agua:', error.response?.data || error.message);
     throw error;
   }
 };
