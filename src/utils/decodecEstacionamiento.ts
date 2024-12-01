@@ -41,8 +41,13 @@ export const decodeBinaryToStates = (binary: string): string[] => {
 
 export type Estados = "libre" | "dañado" | "ocupado" | "reservado"; // Definimos los estados posibles
 
+export interface EstadoConteo {
+  state: Estados
+  count: number
+}
+
 // Función para contar los estados en el array
-export function contarEstados(estados: string[]): { state: Estados, count: number }[] {
+export function contarEstados(estados: string[]):  EstadoConteo[] {
   // Verificamos si 'estados' es un arreglo válido
   if (!Array.isArray(estados)) {
     throw new Error("El argumento debe ser un arreglo de estados.");

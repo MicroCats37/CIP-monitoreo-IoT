@@ -11,7 +11,7 @@ import { useQuery } from '@tanstack/react-query'
 import { SotanoImage } from './SotanoImage'
 import { toast } from 'sonner'
 import { contarEstados, type Estados } from '@/utils/decodecEstacionamiento'
-import CountCard from '../../Card/CountCard/CountCard'
+import { ParkingCard } from '../../Card/ParkingCard/ParkingCard'
 import CarNumber from './CarNumber'
 import { useShallow } from 'zustand/react/shallow'
 import { FormattedDate } from '../../Utils/FormattedDate'
@@ -95,22 +95,35 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
   // Contamos los estados de B
   const countStateCarsB = EstadosArrayB && EstadosArrayB.length > 0 ? contarEstados(EstadosArrayB) : [];
 
-  console.log(countStateCarsA)
   if (isLoading_a || isLoading_b) return <div>Cargando...</div>;
   if (error_a || error_b) return <div>Error al obtener datos</div>
 
   return (
     <div className='w-full  h-full '>
 
-      {( 
+      {(
         <div className='flex-col flex-wrap h-full justify-between items-center space-y-4 p-4 pb-8'>
-          <div className='flex w-full h-[15%]'>
-            <FormattedDate dateString={parkingDataA.time}></FormattedDate>
-            <CountCard className='flex  gap-4 flex-shrink  justify-center' data={countStateCarsA}></CountCard>
-            <FormattedDate dateString={parkingDataB.time}></FormattedDate>
-            <CountCard className='flex gap-4 flex-shrink  justify-center' data={countStateCarsB}></CountCard>
+          <div className='flex w-full h-[15%] gap-4'>
+
+            {parkingDataA && parkingDataA.data.length > 0 && parkingDataA.time &&
+              (<>
+
+                <ParkingCard time={parkingDataA.time} sotano={`${id}A`} estados={countStateCarsA}></ParkingCard>
+              </>
+
+              )
+            }
+
+            {parkingDataB && parkingDataB.data.length > 0 && parkingDataB.time &&
+              (<>
+
+                <ParkingCard time={parkingDataB.time} sotano={`${id}B`} estados={countStateCarsB}></ParkingCard>
+              </>
+
+              )
+            }
           </div>
-          
+
           <div className='flex relative flex-shrink object-contain h-[85%]'>
             <SotanoImage id={id} />
             <div className={`gridsotano gridsotano${id} w-full`}>
@@ -122,7 +135,13 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
                         {
                           // Verifica que esté usando correctamente el valor de `p.tag` para acceder a las claves
                           (SensorA[p.tag] || SensorB[p.tag]) ? (
-                            <CartState state={SensorA[p.tag] || SensorB[p.tag]} />
+                            <>
+                              <div className='flex justify-center items-center absolute top-0 h-1/6 w-[90%] text-white text-sm m-1 border  border-white rounded-sm'>
+                                  {p.tag.replace("E", "")}
+                              </div>
+                              <CartState state={SensorA[p.tag] || SensorB[p.tag]} />
+                            </>
+
                           ) : (
                             null // Cuando no haya coincidencia
                           )
