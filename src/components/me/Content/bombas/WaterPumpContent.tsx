@@ -1,5 +1,5 @@
 'use client'
-import PumpCard from "@/components/me/PumpCard/PumpCard";
+import PumpCard from "@/components/me/Card/PumpCard/PumpCard";
 import {  TOPICS,  useWaterPumpSubscription } from "@/mqtt/topics/BombasSubscriptions";
 import { useMqttStore } from "@/store/mqttStore";
 import { VariatorsType, WaterPumpType } from "@/types";
@@ -7,7 +7,7 @@ import {  getVariatorData, getWaterPumpData } from "@/utils/callsApi/apiCalls";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import VariatorCard from "../VariatorCard/VariatorCard";
+import VariatorCard from "../../Card/VariatorCard/VariatorCard";
 import { TOPICS as TOPICSV,useVariatorsSubscription } from "@/mqtt/topics/VariadoresSubscriptions";
 
 export default function WaterPumpContent({ id }: { id: string }) {
@@ -34,7 +34,6 @@ export default function WaterPumpContent({ id }: { id: string }) {
   
   useEffect(() => {
     if (error) {
-
       toast.success(`error al conectarse a la base de datos`);
     }
   }, [error]);

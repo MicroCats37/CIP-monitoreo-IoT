@@ -1,11 +1,11 @@
-import GridSotanos from "@/components/me/estacionamientos/GridSotanos"
+import GridSotanos from "@/components/me/Content/estacionamientos/GridSotanos"
 import { redirect, useParams } from "next/navigation";
 interface Props {
     params: {
       sotanoId: string; // Parámetro dinámico
     };
   }
-import { sotanosData } from "@/components/me/estacionamientos/GridSotanos.data";
+import { sotanosData } from "@/components/me/Content/estacionamientos/GridSotanos.data";
 
 export default function Sotano({ params }: Props)  {
   const validPages = ["1", "2", "3", "4"];

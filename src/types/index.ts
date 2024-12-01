@@ -10,17 +10,23 @@ export interface SotanosType {
 export interface SotanosStateDataType{
     id:string
     quantity:number
+    order:{
+      position:number,
+      tag:string
+    }[]
 }
 
-// Esquema para ParkingType
 export const ParkingTypeSchema = z.object({
-    parking_id: z.string(),
-    state: z.string(),
-    // time: z.string().optional(), // Descomentar si decides usar el campo 'time'
-  });
-  
-  export type ParkingType = z.infer<typeof ParkingTypeSchema>;
-  
+  data: z.array(
+    z.object({
+      estacionamiento: z.string(), // Ejemplo: "E1"
+      estado: z.string(),          // Ejemplo: "ocupado", "libre", etc.
+    })
+  ), // Lista de estacionamientos y sus estados
+  time: z.string(),                // Timestamp del estado
+});
+
+export type ParkingType = z.infer<typeof ParkingTypeSchema>;
   // Esquema para WaterPumpType
   export const WaterPumpTypeSchema = z.object({
     bomba: z.string(),

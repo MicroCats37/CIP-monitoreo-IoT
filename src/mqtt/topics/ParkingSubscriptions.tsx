@@ -37,10 +37,14 @@ import { useEffect } from "react";
 
 // Tópicos
 export const TOPICS: { [key: string]: string } = {
-  sotano1: 'estacionamientos/sotano1',
-  sotano2: 'estacionamientos/sotano2',
-  sotano3: 'estacionamientos/sotano3',
-  sotano4: 'estacionamientos/sotano4',
+  sotano1a: 'estacionamientos/sotano/1a',
+  sotano2a: 'estacionamientos/sotano/2a',
+  sotano3a: 'estacionamientos/sotano/3a',
+  sotano4a: 'estacionamientos/sotano/4a',
+  sotano1b: 'estacionamientos/sotano/1b',
+  sotano2b: 'estacionamientos/sotano/2b',
+  sotano3b: 'estacionamientos/sotano/3b',
+  sotano4b: 'estacionamientos/sotano/4b',
 };
 
 
@@ -53,8 +57,7 @@ export const useParkingSubscription = (id: string) => {
   useEffect(() => {
     if (topic) {
       subscribeToTopic(topic, (message) => {
-        const blockStates = decodeBinaryToStates(convertHexToBinary(message.data));
-        setSubsData(topic,blockStates);
+        setSubsData(topic,message);
       });
     }
 

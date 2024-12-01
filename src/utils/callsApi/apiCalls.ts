@@ -4,17 +4,20 @@ import apiClient from './apiClient';
 import { BoardType, BoardTypeSchema, type ParkingType, ParkingTypeSchema, VariatorsType, VariatorsTypeSchema, WaterPumpType, WaterPumpTypeSchema } from '@/types';
 
 // Función para obtener datos de estacionamientos
-export const getParkingData = async (id: string): Promise<ParkingType[]> => {
+export const getParkingData = async (id: string): Promise<ParkingType> => {
   try {
     const response = await apiClient.get(`/sotanos/${id}`);
 
-    // Validar que la respuesta sea un array de objetos de tipo ParkingType
-    const parsedData = z.array(ParkingTypeSchema).parse(response.data);
+    // Validar que la respuesta cumpla con el esquema ParkingDataSchema
+    const parsedData = ParkingTypeSchema.parse(response.data);
 
     return parsedData;
   } catch (error: any) {
-    console.error('Error al obtener datos de estacionamiento:', error.response?.data || error.message);
-    throw error;
+    console.error(
+      "Error al obtener datos de estacionamiento:",
+      error.response?.data || error.message
+    );
+    throw new Error("Error al obtener datos del estacionamiento");
   }
 };
 

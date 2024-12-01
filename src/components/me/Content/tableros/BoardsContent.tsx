@@ -6,7 +6,7 @@ import { getBoardData } from '@/utils/callsApi/apiCalls';
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect } from 'react'
 import { toast, Toaster } from 'sonner';
-import BoardCard from '../BoardCard/BoardCard';
+import BoardCard from '../../Card/BoardCard/BoardCard';
 import { useBoardSubscription } from '@/mqtt/topics/TablerosSubscriptions';
 
 export default function BoardsContent() {

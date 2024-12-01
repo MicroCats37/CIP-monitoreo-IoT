@@ -9,13 +9,6 @@
   height: 100%;
 }
 
-/* Pseudo-elemento para rellenar las áreas vacías */
-.gridsotano::before {
-  content: '';
-  grid-column: 1 / -1; /* Ocupa todas las columnas */
-  grid-row: 1 / -1;    /* Ocupa todas las filas */
-}
-
 .car{
     display: flex;
     justify-content: center;
@@ -23,13 +16,13 @@
 }
 
 .gridsotano1 {  display: grid;
-    grid-template-areas: 
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car1 s1car1 . s1car2 s1car2 s1car3 s1car3 s1car4 s1car4 s1car5 s1car5 s1car6 s1car6 s1car7 s1car7 s1car8 s1car8 . . s1car9 s1car9 s1car10 s1car10 s1car11 s1car11 s1car12 s1car12 . . s1car13 s1car13 s1car14 s1car14 s1car15 s1car15 . . . . . . . . . . . ."
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car16 s1car16 s1car17 s1car17 s1car18 s1car18 s1car19 s1car19 s1car20 s1car20 s1car21 s1car21 s1car22 s1car22 s1car23 s1car23 s1car24 s1car24 s1car25 s1car25 s1car26 s1car26 s1car27 s1car27 s1car28 s1car28 s1car29 s1car29 s1car30 s1car30 . . s1car31 s1car31 s1car32 s1car32 . . . . . ."
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car33 s1car33 s1car34 s1car34 s1car35 s1car35 . . s1car36 s1car36 s1car37 s1car37 s1car38 s1car38 s1car39 s1car39 s1car40 s1car40 s1car41 s1car41 s1car42 s1car42 s1car43 s1car43 s1car44 s1car44 s1d1 s1car45 s1car45 s1d2 . . s1car46 s1car46 s1car47 s1car47 . . . . . ."
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car48 s1car48 s1car49 s1car49 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."; 
+  grid-template-areas: 
+  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car1 s1car1 . s1car2 s1car2 s1car3 s1car3 s1car4 s1car4 s1car5 s1car5 s1car6 s1car6 s1car7 s1car7 s1car8 s1car8 s1car9 s1car9 s1car10 s1car10 s1car11 s1car11 s1car12 s1car12 s1car13 s1car13 . . s1car14 s1car14 s1car15 s1car15 s1car16 s1car16 . . . . . . . . . . . ."
+  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car17 s1car17 s1car18 s1car18 s1car19 s1car19 s1car20 s1car20 s1car21 s1car21 s1car22 s1car22 s1car23 s1car23 s1car24 s1car24 s1car25 s1car25 s1car26 s1car26 s1car27 s1car27 s1car28 s1car28 s1car29 s1car29 s1car30 s1car30 s1car31 s1car31 . . s1car32 s1car32 s1car33 s1car33 . . . . . ."
+  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car34 s1car34 s1car35 s1car35 s1car36 s1car36 . . s1car37 s1car37 s1car38 s1car38 s1car39 s1car39 s1car40 s1car40 s1car41 s1car41 s1car42 s1car42 s1car43 s1car43 s1car44 s1car44 s1car45 s1car45 s1d1 s1car46 s1car46 s1d2 . . s1car47 s1car47 s1car48 s1car48 . . . . . ."
+  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car49 s1car49 s1car50 s1car50 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."; 
   }
     .s1car1 { grid-area: s1car1; }
     
@@ -128,6 +121,8 @@
     .s1car48 { grid-area: s1car48; }
     
     .s1car49 { grid-area: s1car49; }
+
+    .s1car50 { grid-area: s1car50; }
   
     .s1d1 { grid-area:s1d1 }
   
@@ -350,14 +345,14 @@
     .s2car100 { grid-area: s2car100; }
 
     .gridsotano3 {
-        grid-template-areas: 
-        ". . . . . . . . . . . . . . . . s3car1 s3car1 s3car2 s3car2 s3car3 s3car3 s3car4 s3car4 s3car5 s3car5 s3car6 s3car6 s3car7 s3car7 . s3car8 s3car8 s3car9 s3car9 s3car10 s3car10 s3car11 s3car11 s3car12 s3car12 s3car13 s3car13 s3car14 s3car14 s3car15 s3car15 s3car16 s3car16 s3car17 s3car17 s3car18 s3car18 s3car19 s3car19 . . s3car20 s3car20 s3car21 s3car21 s3car22 s3car22 . . . . . . . . . . . . ."
-        ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-        "s3car23 s3car23 . . . . s3car24 s3car24 s3car25 s3car25 . . . . . . . . . . . . s3car26 s3car26 s3car27 s3car27 s3car28 s3car28 . . . . . s3car29 s3car29 s3car30 s3car30 s3car31 s3car31 s3car32 s3car32 s3car33 s3car33 s3car34 s3car34 s3car35 s3car35 s3car36 s3car36 s3car37 s3car37 s3car38 s3car38 s3car39 s3car39 s3car40 s3car40 s3car41 s3car41 s3car42 s3car42 s3car43 s3car43 . . s3car44 s3car44 s3car45 s3car45 . . . . . . ."
-        "s3car46 s3car46 . . . . s3car47 s3car47 s3car48 s3car48 . . . . . . . . . . . . s3car49 s3car49 s3car50 s3car50 s3car51 s3car51 . . . . . s3car52 s3car52 s3car53 s3car53 s3car54 s3car54 . . s3car55 s3car55 s3car56 s3car56 s3car57 s3car57 s3car58 s3car58 s3car59 s3car59 s3car60 s3car60 s3car61 s3car61 s3car62 s3car62 s3car63 s3car63 s3d1 s3car64 s3car64 s3d2 . . s3car65 s3car65 s3car66 s3car66 . . . . . . ."
-        ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-        "s3car67 s3car67 s3car68 s3car68 s3car69 s3car69 s3car70 s3car70 s3car71 s3car71 s3car72 s3car72 s3car73 s3car73 s3car74 s3car74 s3car75 s3car75 s3car76 s3car76 s3car77 s3car77 . . . . . . s3car78 s3car78 s3d3 s3car79 s3car79 . . . . . . s3car80 s3car80 s3car81 s3car81 s3car82 s3car82 s3car83 s3car83 s3car84 s3car84 s3car85 s3car85 s3car86 s3car86 s3car87 s3car87 s3car88 s3car88 . . . . . . s3car89 s3car89 s3car90 s3car90 s3car91 s3car91 s3car92 s3car92 s3car93 s3car93 . . ."; 
-      }
+      grid-template-areas: 
+      ". . . . . . . . . . . . . . . . s3car1 s3car1 s3car2 s3car2 s3car3 s3car3 s3car4 s3car4 s3car5 s3car5 s3car6 s3car6 s3car7 s3car7 . s3car8 s3car8 s3car9 s3car9 s3car10 s3car10 s3car11 s3car11 s3car12 s3car12 s3car13 s3car13 s3car14 s3car14 s3car15 s3car15 s3car16 s3car16 s3car17 s3car17 s3car18 s3car18 s3car19 s3car19 . . s3car20 s3car20 s3car21 s3car21 s3car22 s3car22 . . . . . . . . . . . . ."
+      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+      "s3car23 s3car23 . . . . s3car24 s3car24 s3car25 s3car25 . . . . . . . . . . . . s3car26 s3car26 s3car27 s3car27 s3car28 s3car28 . . . . . s3car29 s3car29 s3car30 s3car30 s3car31 s3car31 s3car32 s3car32 s3car33 s3car33 s3car34 s3car34 s3car35 s3car35 s3car36 s3car36 s3car37 s3car37 s3car38 s3car38 s3car39 s3car39 s3car40 s3car40 s3car41 s3car41 s3car42 s3car42 s3car43 s3car43 . . s3car44 s3car44 s3car45 s3car45 . . . . . . ."
+      "s3car46 s3car46 . . . . s3car47 s3car47 s3car48 s3car48 . . . . . . . . . . . . s3car49 s3car49 s3car50 s3car50 s3car51 s3car51 . . . . . s3car52 s3car52 s3car53 s3car53 s3car54 s3car54 . . s3car55 s3car55 s3car56 s3car56 s3car57 s3car57 s3car58 s3car58 s3car59 s3car59 s3car60 s3car60 s3car61 s3car61 s3car62 s3car62 s3car63 s3car63 s3d1 s3car64 s3car64 s3d2 . . s3car65 s3car65 s3car66 s3car66 . . . . . . ."
+      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+      "s3car67 s3car67 s3car68 s3car68 s3car69 s3car69 s3car70 s3car70 s3car71 s3car71 s3car72 s3car72 s3car73 s3car73 s3car74 s3car74 s3car75 s3car75 s3car76 s3car76 s3car77 s3car77 s3car78 s3car78 s3car79 s3car79 s3car80 s3car80 s3car81 s3car81 s3d3 s3car82 s3car82 . . . . . . s3car83 s3car83 s3car84 s3car84 s3car85 s3car85 s3car86 s3car86 s3car87 s3car87 s3car88 s3car88 s3car89 s3car89 s3car90 s3car90 s3car91 s3car91 . . . . . . s3car92 s3car92 s3car93 s3car93 s3car94 s3car94 s3car95 s3car95 s3car96 s3car96 . . ."; 
+    }
     
       .s3car1 { grid-area: s3car1; }
       
@@ -552,6 +547,10 @@
       .s3car93 { grid-area: s3car93; }
       
       .s3car94 { grid-area: s3car94; }
+
+      .s3car95 { grid-area: s3car95; }
+
+      .s3car96 { grid-area: s3car96; }
 
       .gridsotano4 {
         grid-template-areas: 

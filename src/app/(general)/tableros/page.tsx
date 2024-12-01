@@ -1,4 +1,4 @@
-import BoardsContent from "@/components/me/tableros/BoardsContent";
+import BoardsContent from "@/components/me/Content/tableros/BoardsContent";
 
 export default function Tableros() {
   return (
