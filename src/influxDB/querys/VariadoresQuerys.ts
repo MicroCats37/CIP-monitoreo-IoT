@@ -9,6 +9,7 @@ export interface VariadoresDatos {
     tension_salida: number;
     temperatura_unidad: number;
     tiempo_marcha: number;
+    time: string,
 }
 
 export const formatString = (input: string): string => {
@@ -46,6 +47,7 @@ export const getVariadoresDatos = async (bomba: string): Promise<VariadoresDatos
             tension_salida: record.tension_salida,
             temperatura_unidad: record.temperatura_unidad,
             tiempo_marcha: record.tiempo_marcha,
+            time: record._time,
         };
 
         rows.push(variadorData);

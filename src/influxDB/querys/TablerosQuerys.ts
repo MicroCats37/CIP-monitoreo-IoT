@@ -3,7 +3,7 @@ import { queryApi } from "@/influxDB/influxConfig";// Ajusta la ruta a tu client
 export interface TableroEstado {
   potencia: string; // Nombre del tablero (Q01, Q02, etc.)
   value: number; // Valor de potencia
-  //time: string; // Timestamp del estado
+  time: string; // Timestamp del estado
 }
 
 export const getTableroEstados = async (): Promise<TableroEstado[]> => {
@@ -24,7 +24,7 @@ export const getTableroEstados = async (): Promise<TableroEstado[]> => {
     rows.push({
       potencia: record.potencia, // Nombre del tablero
       value: record._value, // Valor de potencia
-      //time: record._time, // Marca de tiempo del último estado
+      time: record._time, // Marca de tiempo del último estado
     });
   }
 

@@ -3,7 +3,7 @@ import { queryApi } from "../influxConfig";
 export interface BombaEstado {
     bomba: string; // Nombre de la bomba (Q01, Q02, etc.)
     estado: boolean; // Estado de la bomba (1: operativo, 0: no operativo)
-    //time: string; // Timestamp del estado
+    time: string; // Timestamp del estado
   }
   
 export const formatString = (input: string): string => {
@@ -33,7 +33,7 @@ export const getBombasEstado = async (bomba:string): Promise<BombaEstado[]> => {
       rows.push({
         bomba: record.bomba,
         estado: Boolean(record._value), // Convertido directamente a 1 o 0 desde InfluxDB
-        //time: record._time, // Marca de tiempo del estado
+        time: record._time, // Marca de tiempo del estado
       });
     }  
     return rows;
