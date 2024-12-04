@@ -1,13 +1,13 @@
 
 import { z } from 'zod';
 
-export interface SotanosStateDataType{
-    id:string
-    quantity:number
-    order:{
-      position:number,
-      tag:string
-    }[]
+export interface SotanosStateDataType {
+  id: string
+  quantity: number
+  order: {
+    position: number,
+    tag: string
+  }[]
 }
 
 export const ParkingTypeSchema = z.object({
@@ -21,37 +21,38 @@ export const ParkingTypeSchema = z.object({
 });
 
 export type ParkingType = z.infer<typeof ParkingTypeSchema>;
-  // Esquema para WaterPumpType
-  export const WaterPumpTypeSchema = z.object({
-    bomba: z.string(),
-    estado: z.boolean(),
-    time: z.string().optional(), // Descomentar si decides usar el campo 'time'
-  });
-  
-  export type WaterPumpType = z.infer<typeof WaterPumpTypeSchema>;
-  
-  // Esquema para BoardType
-  export const BoardTypeSchema = z.object({
-    potencia: z.string(),
-    value: z.number(),
-    time: z.string().optional(), // Descomentar si decides usar el campo 'time'
-  });
-  
-  export type BoardType = z.infer<typeof BoardTypeSchema>;
+// Esquema para WaterPumpType
+export const WaterPumpTypeSchema = z.object({
+  bomba: z.string(),
+  estado: z.boolean(),
+  time: z.string().optional(), // Descomentar si decides usar el campo 'time'
+});
 
-  export const VariatorsTypeSchema = z.object({
-    bomba: z.string(),  // Nombre de la bomba (Q01, Q02, etc.)
-    velocidad_y_direccion: z.number(),  // Opcional, ya que puede estar ausente en algunos casos
-    frecuencia: z.number(),
-    intensidad: z.number(),
-    potencia: z.number(),
-    tension_salida: z.number(),
-    temperatura_unidad: z.number(),
-    tiempo_marcha: z.number(),
-    time: z.string().optional(), 
-  });
-  
-  export type VariatorsType = z.infer<typeof VariatorsTypeSchema>;
+export type WaterPumpType = z.infer<typeof WaterPumpTypeSchema>;
+
+// Esquema para BoardType
+export const BoardTypeSchema = z.object({
+  potencia: z.string(),
+  value: z.number(),
+  time: z.string().optional(), // Descomentar si decides usar el campo 'time'
+});
+
+export type BoardType = z.infer<typeof BoardTypeSchema>;
+
+export const VariatorsTypeSchema = z.object({
+  bomba: z.string(),  // Nombre de la bomba (Q01, Q02, etc.)
+  velocidad_y_direccion: z.number(),  // Opcional, ya que puede estar ausente en algunos casos
+  frecuencia: z.number(),
+  intensidad: z.number(),
+  potencia: z.number(),
+  tension_salida: z.number(),
+  temperatura_unidad: z.number(),
+  tiempo_marcha: z.number(),
+  time: z.string().optional(),
+});
+
+export type VariatorsType = z.infer<typeof VariatorsTypeSchema>;
+
 
 
 
@@ -80,7 +81,78 @@ export const SCITypeSchema = z.object({
   user_alarm_18: z.boolean(),
   user_alarm_19: z.boolean(),
   user_alarm_20: z.boolean(),
-  time: z.string(),
+  time: z.string().optional(),
 });
 
 export type SCIType = z.infer<typeof SCITypeSchema>;
+
+
+// Definir el esquema Zod
+export const AirConditioningTypeSchema = z.object({
+  data: z.array(
+      z.object({
+          unit_name: z.string().min(1, "El nombre de la unidad no puede estar vacío."),
+          alias: z.string().min(1, "El alias no puede estar vacío."),
+          id: z.string().min(1, "El ID no puede estar vacío."),
+          alarm: z.number().nonnegative("El campo alarm debe ser un número no negativo."),
+          status: z.string().min(1, "El estado no puede estar vacío."),
+      })
+  ),
+  time: z.string().optional()
+});
+
+// Generar la interfaz o tipo a partir del esquema Zod
+export type AirConditioningType = z.infer<typeof AirConditioningTypeSchema>;
+
+
+
+
+
+
+
+
+
+
+
+// Función para validar y manejar errores específicos
+export const validateData = (data: any, schema: z.ZodSchema<any>) => {
+  try {
+    // Intentar parsear los datos con el esquema
+    schema.parse(data);
+    console.log('Datos válidos');
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      const errorMessages = error.errors.map((err) => {
+        return `Campo: ${err.path.join('.')}, Error: ${err.message}`;
+      }).join('\n');
+
+      console.error('Errores de validación:\n', errorMessages);
+      throw new Error('Datos inválidos');
+    }
+  }
+};
+
+// Función para validar SCI
+export const validateSCIData = (data: any) => {
+  validateData(data, SCITypeSchema);
+};
+
+// Función para validar WaterPump
+export const validateWaterPumpData = (data: any) => {
+  validateData(data, WaterPumpTypeSchema);
+};
+
+// Función para validar Board
+export const validateBoardData = (data: any) => {
+  validateData(data, BoardTypeSchema);
+};
+
+// Función para validar Variators
+export const validateVariatorsData = (data: any) => {
+  validateData(data, VariatorsTypeSchema);
+};
+
+// Función para validar Parking
+export const validateParkingData = (data: any) => {
+  validateData(data, ParkingTypeSchema);
+};

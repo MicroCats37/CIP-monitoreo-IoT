@@ -14,7 +14,7 @@ import { contarEstados, type Estados } from '@/utils/decodecEstacionamiento'
 import { ParkingCard } from '../../Card/ParkingCard/ParkingCard'
 import CarNumber from './CarNumber'
 import { useShallow } from 'zustand/react/shallow'
-import { FormattedDate } from '../../Utils/FormattedDate'
+
 
 export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDataType }) {
   const id = sotanoData.id.toString()

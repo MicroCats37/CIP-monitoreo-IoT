@@ -1,9 +1,8 @@
-
-
-
 import { create } from 'zustand';
 import { getClient } from '@/mqtt/mqttClient';
 import { toast } from 'sonner';
+import { validateBoardData, validateParkingData, validateSCIData, validateVariatorsData, validateWaterPumpData } from '@/types'; // Asegúrate de importar las funciones de validación
+import { consoleLogger } from '@influxdata/influxdb-client';
 
 // Define el tipo de datos del estado global
 interface MqttStore {
@@ -15,7 +14,6 @@ interface MqttStore {
 }
 
 export const useMqttStore = create<MqttStore>()(
-  //persist(
   (set, get) => ({
     subscribedTopics: {},
     subsData: {},
@@ -46,7 +44,19 @@ export const useMqttStore = create<MqttStore>()(
             try {
               const parsedMessage = JSON.parse(message.toString());
               onMessage(parsedMessage); // Llamamos al callback con el mensaje
-              //console.log(`Mensaje recibido para ${topic}:`, parsedMessage);
+              // Aquí puedes llamar a las funciones de validación dependiendo del tipo de datos que esperes
+              if (topic === 'sci/topic') {
+                validateSCIData(parsedMessage); // Validar SCI
+              } else if (topic === 'waterpump/topic') {
+                validateWaterPumpData(parsedMessage); // Validar WaterPump
+              } else if (topic === 'board/topic') {
+                validateBoardData(parsedMessage); // Validar Board
+              } else if (topic === 'variators/topic') {
+                validateVariatorsData(parsedMessage); // Validar Variators
+              } else if (topic === 'parking/topic') {
+                validateParkingData(parsedMessage); // Validar Parking
+              }
+
             } catch (err) {
               console.error(`Error al parsear el mensaje de ${topic}:`, err);
             }
@@ -91,9 +101,32 @@ export const useMqttStore = create<MqttStore>()(
 
     // Función para actualizar los datos de un tópico
     setSubsData: (topic, data) => {
-      set((state) => ({
-        subsData: { ...state.subsData, [topic]: data },
-      }));
+      // Validar los datos antes de almacenarlos
+      try {
+        // Aquí puedes aplicar las validaciones necesarias dependiendo del tipo de tópico
+        if (topic === 'sci/topic') {
+          validateSCIData(data); // Validar SCI
+        } else if (topic === 'waterpump/topic') {
+          validateWaterPumpData(data); // Validar WaterPump
+        } else if (topic === 'board/topic') {
+          validateBoardData(data); // Validar Board
+        } else if (topic === 'variators/topic') {
+          validateVariatorsData(data); // Validar Variators
+        } else if (topic === 'parking/topic') {
+          validateParkingData(data); // Validar Parking
+        }
+
+        // Si la validación pasa, se actualizan los datos
+        set((state) => ({
+          subsData: { ...state.subsData, [topic]: data },
+        }));
+
+        console.log(get().subsData[topic])
+
+      } catch (err) {
+        console.error(`Error en la validación de datos del tópico ${topic}:`, err);
+        toast.error(`Error en la validación de datos para el tópico ${topic}`);
+      }
     },
   })
 );

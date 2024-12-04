@@ -1,7 +1,7 @@
 import { z } from 'zod';
 // Importa los esquemas definidos previamente.
 import apiClient from './apiClient'; 
-import { BoardType, BoardTypeSchema, type ParkingType, ParkingTypeSchema, VariatorsType, VariatorsTypeSchema, WaterPumpType, WaterPumpTypeSchema,SCIType,SCITypeSchema } from '@/types';
+import { BoardType, BoardTypeSchema, type ParkingType, ParkingTypeSchema, VariatorsType, VariatorsTypeSchema, WaterPumpType, WaterPumpTypeSchema,SCIType,SCITypeSchema, AirConditioningType, AirConditioningTypeSchema } from '@/types';
 
 // Función para obtener datos de estacionamientos
 export const getParkingData = async (id: string): Promise<ParkingType> => {
@@ -68,9 +68,9 @@ export const getVariatorData = async (id: string): Promise<VariatorsType[]> => {
 
 
 // Función para obtener los datos de alarmas
-export const getAlarmsData = async (): Promise<SCIType> => {
+export const getSCIData = async (): Promise<SCIType> => {
   try {
-    const response = await apiClient.get('/sotanos/alarms');  // Asegúrate de que la URL sea la correcta
+    const response = await apiClient.get('/sci');  // Asegúrate de que la URL sea la correcta
 
     // Validar que la respuesta cumpla con el esquema AlarmDataSchema
     const parsedData = SCITypeSchema.parse(response.data);
@@ -82,5 +82,24 @@ export const getAlarmsData = async (): Promise<SCIType> => {
       error.response?.data || error.message
     );
     throw new Error("Error al obtener datos de alarmas");
+  }
+};
+
+
+
+
+export const getAirConditioningData = async (port: string): Promise<AirConditioningType> => {
+  try {
+    // Realizamos la solicitud a la API para obtener los datos
+    const response = await apiClient.get(`/aire-acondicionado/${port}`); 
+
+    // Validamos que la respuesta sea un objeto con la estructura correcta
+    const parsedData = AirConditioningTypeSchema.parse(response.data); // Usamos Zod para validar
+
+    return parsedData;
+  } catch (error: any) {
+    // Manejo de errores
+    console.error('Error al obtener datos de aire acondicionado:', error.response?.data || error.message);
+    throw error;
   }
 };
