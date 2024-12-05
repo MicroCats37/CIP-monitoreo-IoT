@@ -31,11 +31,11 @@ export default function BoardsContent() {
     
       useEffect(() => {
         if (data) {
-          setSubsData('tableros', data);
+          setSubsData('dashboard/tableros', data);
           toast.success('Datos cargados correctamente.');
         }
       }, [data]);
-      const BoardsData = useMqttStore((state) => state.subsData['tableros']);
+      const BoardsData = useMqttStore((state) => state.subsData['dashboard/tableros']);
       if (isLoading) return <div>Cargando...</div>;
       if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (

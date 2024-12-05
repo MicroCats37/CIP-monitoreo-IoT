@@ -31,11 +31,11 @@ export default function SCIContent() {
     
       useEffect(() => {
         if (data) {
-          setSubsData('sci', data);
+          setSubsData('dashboard/sci', data);
           toast.success('Datos cargados correctamente.');
         }
       }, [data]);
-      const SCIData = useMqttStore((state) => state.subsData['sci']);
+      const SCIData = useMqttStore((state) => state.subsData['dashboard/sci']);
       console.log(data)
       if (isLoading) return <div>Cargando...</div>;
       if (error) return <div>Error al obtener datos: {(error as Error).message}</div>

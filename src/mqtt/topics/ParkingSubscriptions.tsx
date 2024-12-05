@@ -37,14 +37,14 @@ import { useEffect } from "react";
 
 // Tópicos
 export const TOPICS: { [key: string]: string } = {
-  sotano1a: 'estacionamientos/sotano/1a',
-  sotano2a: 'estacionamientos/sotano/2a',
-  sotano3a: 'estacionamientos/sotano/3a',
-  sotano4a: 'estacionamientos/sotano/4a',
-  sotano1b: 'estacionamientos/sotano/1b',
-  sotano2b: 'estacionamientos/sotano/2b',
-  sotano3b: 'estacionamientos/sotano/3b',
-  sotano4b: 'estacionamientos/sotano/4b',
+  sotano1a: 'dashboard/estacionamientos/sotano/1a',
+  sotano2a: 'dashboard/estacionamientos/sotano/2a',
+  sotano3a: 'dashboard/estacionamientos/sotano/3a',
+  sotano4a: 'dashboard/estacionamientos/sotano/4a',
+  sotano1b: 'dashboard/estacionamientos/sotano/1b',
+  sotano2b: 'dashboard/estacionamientos/sotano/2b',
+  sotano3b: 'dashboard/estacionamientos/sotano/3b',
+  sotano4b: 'dashboard/estacionamientos/sotano/4b',
 };
 
 

@@ -3,8 +3,8 @@ import { useEffect } from "react";
 
 // Tópicos
 export const TOPICS: { [key: string]: string } = {
-  aire1: 'aire-acondicionado/1',
-  aire2: 'aire-acondicionado/2',
+  aire1: 'dashboard/aire-acondicionado/1',
+  aire2: 'dashboard/aire-acondicionado/2',
 };
 
 

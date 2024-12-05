@@ -5,9 +5,9 @@ import { useEffect } from "react";
 
 // Tópicos
 export const TOPICS: { [key: string]: string } = {
-  bombaaguapotable: 'bombas/agua-potable',
-  bombaaguastratadas: 'bombas/aguas-tratadas',
-  bombaaguasgrises: 'bombas/aguas-grises',
+  bombaaguapotable: 'dashboard/bombas/agua-potable',
+  bombaaguastratadas: 'dashboard/bombas/aguas-tratadas',
+  bombaaguasgrises: 'dashboard/bombas/aguas-grises',
 };
 
 export const useWaterPumpSubscription = (id: string) => {

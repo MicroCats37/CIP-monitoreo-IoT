@@ -31,12 +31,12 @@ export default function AirConditioningContent({ id }: { id: string }) {
 
   useEffect(() => {
     if (data) {
-      setSubsData(TOPICS[`aire${id}`], data);
+      setSubsData(TOPICS[`dashboard/aire${id}`], data);
       toast.success('Datos cargados correctamente.');
     }
   }, [data]);
 
-  const airData= useMqttStore((state) => state.subsData[TOPICS[`aire${id}`]]);
+  const airData= useMqttStore((state) => state.subsData[TOPICS[`dashboard/aire${id}`]]);
   console.log(airData)
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Error al obtener datos</div>

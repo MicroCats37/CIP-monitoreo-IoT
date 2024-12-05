@@ -5,7 +5,7 @@ export const useBoardSubscription = () => {
   const subscribeToTopic = useMqttStore((state) => state.subscribeToTopic);
   const unsubscribeFromTopic = useMqttStore((state) => state.unsubscribeFromTopic);
   const setSubsData = useMqttStore((state) => state.setSubsData);
-  const topic = 'tableros';
+  const topic = 'dashboard/tableros';
 
   useEffect(() => {
     if (topic) {

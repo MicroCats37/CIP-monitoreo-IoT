@@ -4,9 +4,9 @@ import { useEffect } from "react";
 
 // Tópicos
 export const TOPICS: { [key: string]: string } = {
-  variadoraguapotable: 'variadores/agua-potable',
-  variadoraguastratadas: 'variadores/aguas-tratadas',
-  variadoraguasgrises: 'variadores/aguas-grises',
+  variadoraguapotable: 'dashboard/variadores/agua-potable',
+  variadoraguastratadas: 'dashboard/variadores/aguas-tratadas',
+  variadoraguasgrises: 'dashboard/variadores/aguas-grises',
 };
 
 export const useVariatorsSubscription = (id: string) => {

@@ -5,7 +5,7 @@ export const useSCISubscription = () => {
   const subscribeToTopic = useMqttStore((state) => state.subscribeToTopic);
   const unsubscribeFromTopic = useMqttStore((state) => state.unsubscribeFromTopic);
   const setSubsData = useMqttStore((state) => state.setSubsData);
-  const topic = 'sci';
+  const topic = 'dashboard/sci';
 
   useEffect(() => {
     if (topic) {
