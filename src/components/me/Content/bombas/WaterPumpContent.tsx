@@ -12,8 +12,8 @@ import { TOPICS as TOPICSV,useVariatorsSubscription } from "@/mqtt/topics/Variad
 
 export default function WaterPumpContent({ id }: { id: string }) {
   const sentId=id.replaceAll('-', '')
-  useWaterPumpSubscription('dashboard/bomba'+sentId);
-  useVariatorsSubscription('dashboard/variador'+sentId)
+  useWaterPumpSubscription('bomba'+sentId);
+  useVariatorsSubscription('variador'+sentId)
   const setSubsData = useMqttStore((state) => state.setSubsData)
 
   const { data, error, isLoading } = useQuery<WaterPumpType[], Error>({
@@ -47,20 +47,20 @@ export default function WaterPumpContent({ id }: { id: string }) {
 
   useEffect(() => {
     if (data) {
-      setSubsData(TOPICS[`dashboard/bomba${sentId}`], data);
+      setSubsData(TOPICS[`bomba${sentId}`], data);
       toast.success('Datos cargados correctamente.');
     }
   }, [data]);
 
   useEffect(() => {
     if (datav) {
-      setSubsData(TOPICSV[`dashboard/variador${sentId}`], datav);
+      setSubsData(TOPICSV[`variador${sentId}`], datav);
       toast.success('Datos cargados correctamente.');
     }
   }, [datav]);
 
-  const WaterPumpData= useMqttStore((state) => state.subsData[TOPICS[`dashboard/bomba${sentId}`]]);
-  const VariatorData= useMqttStore((state) => state.subsData[TOPICSV[`dashboard/variador/${sentId}`]]);
+  const WaterPumpData= useMqttStore((state) => state.subsData[TOPICS[`bomba${sentId}`]]);
+  const VariatorData= useMqttStore((state) => state.subsData[TOPICSV[`variador${sentId}`]]);
 
   if (isLoading || isLoadingv) return <div>Cargando...</div>;
   if (error || errorv) return <div>Error al obtener datos: </div>
