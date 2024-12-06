@@ -1,6 +1,6 @@
 
 import { LinkRouteType } from "./Sidebar.types";
-import { ParkingMeter, Cable, LayoutDashboard, AlarmSmoke, Droplets, FireExtinguisher } from "lucide-react"
+import { ParkingMeter, Cable, AlarmSmoke, Droplets, FireExtinguisher } from "lucide-react"
 // Menu items.
 export const linkRoutes: LinkRouteType[] = [
 

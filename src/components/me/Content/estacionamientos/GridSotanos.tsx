@@ -10,10 +10,10 @@ import { ParkingType, SotanosStateDataType } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { SotanoImage } from './SotanoImage'
 import { toast } from 'sonner'
-import { contarEstados, type Estados } from '@/utils/decodecEstacionamiento'
+import { contarEstados } from '@/utils/decodecEstacionamiento'
 import { ParkingCard } from '../../Card/ParkingCard/ParkingCard'
 import CarNumber from './CarNumber'
-import { useShallow } from 'zustand/react/shallow'
+import LedCartState from './LedCarState'
 
 
 export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDataType }) {
@@ -68,12 +68,13 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
     }
   }, [data_b]);
 
-  const parkingDataA: ParkingType = useMqttStore((state) => state.subsData[TOPICS[`sotano${id}a`]]);
-  const parkingDataB: ParkingType = useMqttStore((state) => state.subsData[TOPICS[`sotano${id}b`]]);
-  let EstadosArrayA: string[] = [];
-  let EstadosArrayB: string[] = [];
-  let SensorA: { [key: string]: string } = {};
-  let SensorB: { [key: string]: string } = {}; // Definimos Sensor como un objeto con keys de tipo string (estacionamiento) y valores de tipo string
+  const parkingDataA = useMqttStore((state) => state.subsData[TOPICS[`sotano${id}a`]]) as ParkingType;
+  const parkingDataB = useMqttStore((state) => state.subsData[TOPICS[`sotano${id}b`]]) as ParkingType;
+  const EstadosArrayA: string[] = [];
+  const EstadosArrayB: string[] = [];
+  const SensorA: { [key: string]: string } = {};
+  const SensorB: { [key: string]: string } = {};
+  // Definimos Sensor como un objeto con keys de tipo string (estacionamiento) y valores de tipo string
 
   if (!parkingDataA || !parkingDataB) return; // Salimos si no existen los datos
 
@@ -131,15 +132,18 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
                 order.slice(0, quantity).map((p, index: number) => {
                   return (
                     <div className={`car s${id}car${index + 1}`} key={index}>
-                      <CarNumber parking={p.tag}>
+                      <CarNumber parking={p.tag} className={`${p.orientation === true ? 'border-t-4 border-transparent' : 'border-b-4 border-transparent'}`}>
                         {
                           // Verifica que esté usando correctamente el valor de `p.tag` para acceder a las claves
                           (SensorA[p.tag] || SensorB[p.tag]) ? (
                             <>
-                              <div className='flex justify-center items-center absolute top-0 h-1/6 w-[90%] text-white text-sm m-1 border  border-white rounded-sm'>
-                                  {p.tag.replace("E", "")}
+                              <div className={`flex justify-center items-center absolute h-1/6 w-[90%] text-white text-sm m-1 border  border-white rounded-sm ${p.orientation === true ? 'top-0  ' : 'bottom-0'}`}>
+                                {p.tag.replace("E", "")}
                               </div>
-                              <CartState state={SensorA[p.tag] || SensorB[p.tag]} />
+                              <LedCartState orientation={p.orientation} state={SensorA[p.tag] || SensorB[p.tag]}/>
+                              <CartState orientation={p.orientation} state={SensorA[p.tag] || SensorB[p.tag]} />
+                              
+
                             </>
 
                           ) : (

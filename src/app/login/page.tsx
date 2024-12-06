@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
 type FormData = {
@@ -28,8 +28,6 @@ export default function LoginPage() {
       await new Promise(resolve => setTimeout(resolve, 1000))
       
       if (data.email === 'user@cst.com' && data.password === 'admin') {
-        // Login exitoso
-        console.log('Login exitoso')
         router.push('/dashboard')
       } else {
         setError('Credenciales inválidas. Por favor, intente de nuevo.')

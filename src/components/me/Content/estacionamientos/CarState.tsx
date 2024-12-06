@@ -5,9 +5,10 @@ import React from 'react';
 
 interface EstadoImagenProps {
   state: string;
+  orientation: boolean
 }
 
-export const CartState: React.FC<EstadoImagenProps> = ({ state }) => {
+export const CartState: React.FC<EstadoImagenProps> = ({ state,orientation }) => {
   let src = '';
 
   // Define la imagen según el state
@@ -16,13 +17,13 @@ export const CartState: React.FC<EstadoImagenProps> = ({ state }) => {
       src = '/assets/cart-states/libre.webp';
       break;
     case 'reservado':
-      src = '/assets/cart-states/reservado.jpg';
+      src = '/assets/cart-states/reservado.png';
       break;
     case 'dañado':
-      src = '/assets/cart-states/dañado.png';
+      src = '/assets/cart-states/dañado.webp';
       break;
     case 'ocupado':
-      src = '/assets/cart-states/oscupado.webp';
+      src = '/assets/cart-states/ocupado.webp';
       break;
     default:
       src = '/assets/cart-states/dañado.png'; // Imagen por defecto en caso de un state inesperado
@@ -40,6 +41,7 @@ export const CartState: React.FC<EstadoImagenProps> = ({ state }) => {
     }}
     width={500}
     height={300}
+    className={`${ state!=='ocupado' ? 'p-':''} ${orientation ===false && state==='ocupado' ? 'rotate-180 h-100%':''} ${state==='ocupado' ? 'p-1':''}`}
   />
         
   );

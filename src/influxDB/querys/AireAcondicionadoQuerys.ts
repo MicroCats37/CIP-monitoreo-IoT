@@ -4,8 +4,11 @@ export interface Unidad {
     unit_name: string;
     alias: string;
     id: string;
-    alarm: number;
+    alarm: string;
     status: string;
+    temperature_setting: number;
+    temperature_indoor: number
+    
 }
 
 export interface AireAcondicionadoResponse {
@@ -22,11 +25,11 @@ export const getAireAcondicionadoDatos = async (port: string): Promise<AireAcond
         r["_measurement"] == "INDOOR-BUS-2-${port}" or 
         r["_measurement"] == "INDOOR-BUS-3-${port}"
     )
-    |> filter(fn: (r) => r["_field"] == "alarm" or r["_field"] == "status")
+    |> filter(fn: (r) => r["_field"] == "alarm" or r["_field"] == "status" or r["_field"] == "temperature_setting" or r["_field"] == "temperature_indoor")
     |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
     |> group(columns: ["_measurement", "unit_name", "alias", "id"])
     |> unique(column: "_time")
-    |> keep(columns: ["_time", "unit_name", "alias", "id", "alarm", "status"])
+    |> keep(columns: ["_time", "unit_name", "alias", "id", "alarm", "status","temperature_setting","temperature_indoor"])
     |> sort(columns: ["_time"], desc: true)
     |> limit(n: 1)
 `;
@@ -39,7 +42,6 @@ export const getAireAcondicionadoDatos = async (port: string): Promise<AireAcond
 
     for await (const { values, tableMeta } of queryApi.iterateRows(fluxQuery)) {
         const record = tableMeta.toObject(values);
-        console.log(record)
         // Asignar el timestamp del primer registro encontrado como `time`
         if (!rows.time) {
             rows.time = record._time;
@@ -47,11 +49,13 @@ export const getAireAcondicionadoDatos = async (port: string): Promise<AireAcond
 
         // Validar y agregar datos al array `data`
         rows.data.push({
-            unit_name: record.unit_name || "Unknown", // Fallback si no se encuentra el campo
-            alias: record.alias || "Unknown",
-            id: record.id || "Unknown",
-            alarm: parseInt(record.alarm, 10) || 0, // Si no hay alarm, usar 0 como valor por defecto
-            status: record.status || "Unknown",
+            unit_name: record.unit_name, // Fallback si no se encuentra el campo
+            alias: record.alias,
+            id: record.id,
+            alarm: record.alarm.toString(), // Si no hay alarm, usar 0 como valor por defecto
+            status: record.status,
+            temperature_setting:  record.temperature_setting,
+            temperature_indoor:  record.temperature_indoor ,
         });
     }
 

@@ -35,9 +35,7 @@ export default function AirConditioningContent({ id }: { id: string }) {
       toast.success('Datos cargados correctamente.');
     }
   }, [data]);
-
-  const airData= useMqttStore((state) => state.subsData[TOPICS[`dashboard/aire${id}`]]);
-  console.log(airData)
+  const airData= useMqttStore((state) => state.subsData[TOPICS[`dashboard/aire${id}`]]) as AirConditioningType;
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Error al obtener datos</div>
 

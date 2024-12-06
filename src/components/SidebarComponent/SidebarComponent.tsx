@@ -32,7 +32,7 @@ export function AppSidebar() {
           </Avatar>
           <div>
             <p className="text-sm font-medium">user</p>
-            <p className="text-xs text-muted-foreground">user@cst.com</p>
+            <p className="text-xs text-muted-foreground">pedro@cip.com.pe</p>
           </div>
         </div>
       </SidebarHeader>

@@ -1,5 +1,5 @@
 import GridSotanos from "@/components/me/Content/estacionamientos/GridSotanos"
-import { redirect, useParams } from "next/navigation";
+import { redirect } from "next/navigation";
 interface Props {
     params: {
       sotanoId: string; // Parámetro dinámico

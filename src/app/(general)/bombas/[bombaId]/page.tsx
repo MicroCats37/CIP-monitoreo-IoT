@@ -1,6 +1,6 @@
 import WaterPumpContent from "@/components/me/Content/bombas/WaterPumpContent";
 
-import { redirect, useParams } from "next/navigation";
+import { redirect } from "next/navigation";
 interface Props {
     params: {
       bombaId: string; // Parámetro dinámico
@@ -13,7 +13,6 @@ export default function WaterPump({ params }: Props)  {
       // Redirige al usuario a la página principal
       redirect("/estacionamientos");
     }
-    console.log(bombaId)
     return(
       
         <div className="flex w-full h-full justify-center items-center">

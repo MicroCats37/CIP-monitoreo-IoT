@@ -5,56 +5,56 @@ export const sotanosData: SotanosStateDataType[] = [
         id: '1',
         quantity: 50,
         order: [
-            { position: 1, tag: 'E1' },
-            { position: 2, tag: 'E2' },
-            { position: 3, tag: 'E3' },
-            { position: 4, tag: 'E4' },
-            { position: 5, tag: 'E5' },
-            { position: 6, tag: 'E6' },
-            { position: 7, tag: 'E7' },
-            { position: 8, tag: 'E8' },
-            { position: 9, tag: 'E9' },
-            { position: 10, tag: 'E10' },
-            { position: 11, tag: 'E11' },
-            { position: 12, tag: 'E12' },
-            { position: 13, tag: 'E13' },
-            { position: 14, tag: 'E14' },
-            { position: 15, tag: 'E15' },
-            { position: 16, tag: 'E16' },
-            { position: 17, tag: 'E33' },
-            { position: 18, tag: 'E32' },
-            { position: 19, tag: 'E31' },
-            { position: 20, tag: 'E30' },
-            { position: 21, tag: 'E29' },
-            { position: 22, tag: 'E28' },
-            { position: 23, tag: 'E27' },
-            { position: 24, tag: 'E26' },
-            { position: 25, tag: 'E25' },
-            { position: 26, tag: 'E24' },
-            { position: 27, tag: 'E23' },
-            { position: 28, tag: 'E22' },
-            { position: 29, tag: 'E21' },
-            { position: 30, tag: 'E20' },
-            { position: 31, tag: 'E19' },
-            { position: 32, tag: 'E18' },
-            { position: 33, tag: 'E17' },
-            { position: 34, tag: 'E34' },
-            { position: 35, tag: 'E35' },
-            { position: 36, tag: 'E36' },
-            { position: 37, tag: 'E37' },
-            { position: 38, tag: 'E38' },
-            { position: 39, tag: 'E39' },
-            { position: 40, tag: 'E40' },
-            { position: 41, tag: 'E41' },
-            { position: 42, tag: 'E42' },
-            { position: 43, tag: 'E43' },
-            { position: 44, tag: 'E44' },
-            { position: 45, tag: 'E45' },
-            { position: 46, tag: 'E46' },
-            { position: 47, tag: 'E47' },
-            { position: 48, tag: 'E48' },
-            { position: 49, tag: 'E50' },
-            { position: 50, tag: 'E49' }
+            { position: 1, tag: 'E1', orientation: true },
+            { position: 2, tag: 'E2', orientation: true },
+            { position: 3, tag: 'E3', orientation: true },
+            { position: 4, tag: 'E4', orientation: true },
+            { position: 5, tag: 'E5', orientation: true },
+            { position: 6, tag: 'E6', orientation: true },
+            { position: 7, tag: 'E7', orientation: true },
+            { position: 8, tag: 'E8', orientation: true },
+            { position: 9, tag: 'E9', orientation: true },
+            { position: 10, tag: 'E10', orientation: true },
+            { position: 11, tag: 'E11', orientation: true },
+            { position: 12, tag: 'E12', orientation: true },
+            { position: 13, tag: 'E13', orientation: true },
+            { position: 14, tag: 'E14', orientation: true },
+            { position: 15, tag: 'E15', orientation: true },
+            { position: 16, tag: 'E16', orientation: true },
+            { position: 17, tag: 'E33', orientation: false },
+            { position: 18, tag: 'E32', orientation: false },
+            { position: 19, tag: 'E31', orientation: false },
+            { position: 20, tag: 'E30', orientation: false },
+            { position: 21, tag: 'E29', orientation: false },
+            { position: 22, tag: 'E28', orientation: false },
+            { position: 23, tag: 'E27', orientation: false },
+            { position: 24, tag: 'E26', orientation: false },
+            { position: 25, tag: 'E25', orientation: false },
+            { position: 26, tag: 'E24', orientation: false },
+            { position: 27, tag: 'E23', orientation: false },
+            { position: 28, tag: 'E22', orientation: false },
+            { position: 29, tag: 'E21', orientation: false },
+            { position: 30, tag: 'E20', orientation: false },
+            { position: 31, tag: 'E19', orientation: false },
+            { position: 32, tag: 'E18', orientation: false },
+            { position: 33, tag: 'E17', orientation: false },
+            { position: 34, tag: 'E34', orientation: true },
+            { position: 35, tag: 'E35', orientation: true },
+            { position: 36, tag: 'E36', orientation: true },
+            { position: 37, tag: 'E37', orientation: true },
+            { position: 38, tag: 'E38', orientation: true },
+            { position: 39, tag: 'E39', orientation: true },
+            { position: 40, tag: 'E40', orientation: true},
+            { position: 41, tag: 'E41', orientation: true },
+            { position: 42, tag: 'E42', orientation: true },
+            { position: 43, tag: 'E43', orientation: true },
+            { position: 44, tag: 'E44', orientation: true },
+            { position: 45, tag: 'E45', orientation: true },
+            { position: 46, tag: 'E46', orientation: true },
+            { position: 47, tag: 'E47', orientation: true },
+            { position: 48, tag: 'E48', orientation: true },
+            { position: 49, tag: 'E50', orientation: false },
+            { position: 50, tag: 'E49', orientation: false }
         ]
     }
     ,
@@ -62,106 +62,501 @@ export const sotanosData: SotanosStateDataType[] = [
         id: '2',
         quantity: 99,
         order: [
-            { position: 51, tag: 'E51' },
-            { position: 52, tag: 'E52' },
-            { position: 53, tag: 'E53' },
-            { position: 54, tag: 'E54' },
-            { position: 55, tag: 'E55' },
-            { position: 56, tag: 'E56' },
-            { position: 57, tag: 'E57' },
-            { position: 58, tag: 'E58' },
-            { position: 59, tag: 'E59' },
-            { position: 60, tag: 'E60' },
-            { position: 61, tag: 'E61' },
-            { position: 62, tag: 'E62' },
-            { position: 63, tag: 'E63' },
-            { position: 64, tag: 'E64' },
-            { position: 65, tag: 'E65' },
-            { position: 66, tag: 'E66' },
-            { position: 67, tag: 'E67' },
-            { position: 68, tag: 'E68' },
-            { position: 69, tag: 'E69' },
-            { position: 70, tag: 'E70' },
-            { position: 71, tag: 'E71' },
-            { position: 72, tag: 'E72' },
-            { position: 73, tag: 'E73' },
-            { position: 74, tag: 'E74' },
-            { position: 75, tag: 'E75' },
-            { position: 76, tag: 'E76' },
-            { position: 77, tag: 'E77' },
-            { position: 78, tag: 'E78' },
-            { position: 79, tag: 'E101' },
-            { position: 80, tag: 'E100' },
-            { position: 81, tag: 'E99' },
-            { position: 82, tag: 'E98' },
-            { position: 83, tag: 'E97' },
-            { position: 84, tag: 'E96' },
-            { position: 85, tag: 'E95' },
-            { position: 86, tag: 'E94' },
-            { position: 87, tag: 'E93' },
-            { position: 88, tag: 'E92' },
-            { position: 89, tag: 'E91' },
-            { position: 90, tag: 'E90' },
-            { position: 91, tag: 'E89' },
-            { position: 92, tag: 'E88' },
-            { position: 93, tag: 'E87' },
-            { position: 94, tag: 'E86' },
-            { position: 95, tag: 'E85' },
-            { position: 96, tag: 'E84' },
-            { position: 97, tag: 'E83' },
-            { position: 98, tag: 'E82' },
-            { position: 99, tag: 'E81' },
-            { position: 100, tag: 'E80' },
-            { position: 101, tag: 'E79' },
-            { position: 102, tag: 'E102' },
-            { position: 103, tag: 'E103' },
-            { position: 104, tag: 'E104' },
-            { position: 105, tag: 'E105' },
-            { position: 106, tag: 'E106' },
-            { position: 107, tag: 'E107' },
-            { position: 108, tag: 'E108' },
-            { position: 109, tag: 'E109' },
-            { position: 110, tag: 'E110' },
-            { position: 111, tag: 'E111' },
-            { position: 112, tag: 'E112' },
-            { position: 113, tag: 'E113' },
-            { position: 114, tag: 'E114' },
-            { position: 115, tag: 'E115' },
-            { position: 116, tag: 'E116' },
-            { position: 117, tag: 'E117' },
-            { position: 118, tag: 'E118' },
-            { position: 119, tag: 'E119' },
-            { position: 120, tag: 'E120' },
-            { position: 121, tag: 'E121' },
-            { position: 122, tag: 'E122' },
-            { position: 123, tag: 'E149' },
-            { position: 124, tag: 'E148' },
-            { position: 125, tag: 'E147' },
-            { position: 126, tag: 'E146' },
-            { position: 127, tag: 'E145' },
-            { position: 128, tag: 'E144' },
-            { position: 129, tag: 'E143' },
-            { position: 130, tag: 'E142' },
-            { position: 131, tag: 'E141' },
-            { position: 132, tag: 'E140' },
-            { position: 133, tag: 'E139' },
-            { position: 134, tag: 'E138' },
-            { position: 135, tag: 'E137' },
-            { position: 136, tag: 'E136' },
-            { position: 137, tag: 'E135' },
-            { position: 138, tag: 'E134' },
-            { position: 139, tag: 'E133' },
-            { position: 140, tag: 'E132' },
-            { position: 141, tag: 'E131' },
-            { position: 142, tag: 'E130' },
-            { position: 143, tag: 'E129' },
-            { position: 144, tag: 'E128' },
-            { position: 145, tag: 'E127' },
-            { position: 146, tag: 'E126' },
-            { position: 147, tag: 'E125' },
-            { position: 148, tag: 'E124' },
-            { position: 149, tag: 'E123' }
-
+            {
+                "position": 51,
+                "tag": "E51",
+                "orientation": true
+            },
+            {
+                "position": 52,
+                "tag": "E52",
+                "orientation": true
+            },
+            {
+                "position": 53,
+                "tag": "E53",
+                "orientation": true
+            },
+            {
+                "position": 54,
+                "tag": "E54",
+                "orientation": true
+            },
+            {
+                "position": 55,
+                "tag": "E55",
+                "orientation": true
+            },
+            {
+                "position": 56,
+                "tag": "E56",
+                "orientation": true
+            },
+            {
+                "position": 57,
+                "tag": "E57",
+                "orientation": true
+            },
+            {
+                "position": 58,
+                "tag": "E58",
+                "orientation": true
+            },
+            {
+                "position": 59,
+                "tag": "E59",
+                "orientation": true
+            },
+            {
+                "position": 60,
+                "tag": "E60",
+                "orientation": true
+            },
+            {
+                "position": 61,
+                "tag": "E61",
+                "orientation": true
+            },
+            {
+                "position": 62,
+                "tag": "E62",
+                "orientation": true
+            },
+            {
+                "position": 63,
+                "tag": "E63",
+                "orientation": true
+            },
+            {
+                "position": 64,
+                "tag": "E64",
+                "orientation": true
+            },
+            {
+                "position": 65,
+                "tag": "E65",
+                "orientation": true
+            },
+            {
+                "position": 66,
+                "tag": "E66",
+                "orientation": true
+            },
+            {
+                "position": 67,
+                "tag": "E67",
+                "orientation": true
+            },
+            {
+                "position": 68,
+                "tag": "E68",
+                "orientation": true
+            },
+            {
+                "position": 69,
+                "tag": "E69",
+                "orientation": true
+            },
+            {
+                "position": 70,
+                "tag": "E70",
+                "orientation": true
+            },
+            {
+                "position": 71,
+                "tag": "E71",
+                "orientation": true
+            },
+            {
+                "position": 72,
+                "tag": "E72",
+                "orientation": true
+            },
+            {
+                "position": 73,
+                "tag": "E73",
+                "orientation": true
+            },
+            {
+                "position": 74,
+                "tag": "E74",
+                "orientation": true
+            },
+            {
+                "position": 75,
+                "tag": "E75",
+                "orientation": true
+            },
+            {
+                "position": 76,
+                "tag": "E76",
+                "orientation": true
+            },
+            {
+                "position": 77,
+                "tag": "E77",
+                "orientation": true
+            },
+            {
+                "position": 78,
+                "tag": "E78",
+                "orientation": true
+            },
+            {
+                "position": 79,
+                "tag": "E101",
+                "orientation": true
+            },
+            {
+                "position": 80,
+                "tag": "E100",
+                "orientation": false
+            },
+            {
+                "position": 81,
+                "tag": "E99",
+                "orientation": false
+            },
+            {
+                "position": 82,
+                "tag": "E98",
+                "orientation": false
+            },
+            {
+                "position": 83,
+                "tag": "E97",
+                "orientation": false
+            },
+            {
+                "position": 84,
+                "tag": "E96",
+                "orientation": false
+            },
+            {
+                "position": 85,
+                "tag": "E95",
+                "orientation": false
+            },
+            {
+                "position": 86,
+                "tag": "E94",
+                "orientation": false
+            },
+            {
+                "position": 87,
+                "tag": "E93",
+                "orientation": false
+            },
+            {
+                "position": 88,
+                "tag": "E92",
+                "orientation": false
+            },
+            {
+                "position": 89,
+                "tag": "E91",
+                "orientation": false
+            },
+            {
+                "position": 90,
+                "tag": "E90",
+                "orientation": false
+            },
+            {
+                "position": 91,
+                "tag": "E89",
+                "orientation": false
+            },
+            {
+                "position": 92,
+                "tag": "E88",
+                "orientation": false
+            },
+            {
+                "position": 93,
+                "tag": "E87",
+                "orientation": false
+            },
+            {
+                "position": 94,
+                "tag": "E86",
+                "orientation": false
+            },
+            {
+                "position": 95,
+                "tag": "E85",
+                "orientation": false
+            },
+            {
+                "position": 96,
+                "tag": "E84",
+                "orientation": false
+            },
+            {
+                "position": 97,
+                "tag": "E83",
+                "orientation": false
+            },
+            {
+                "position": 98,
+                "tag": "E82",
+                "orientation": false
+            },
+            {
+                "position": 99,
+                "tag": "E81",
+                "orientation": false
+            },
+            {
+                "position": 100,
+                "tag": "E80",
+                "orientation": false
+            },
+            {
+                "position": 101,
+                "tag": "E79",
+                "orientation": false
+            },
+            {
+                "position": 102,
+                "tag": "E102",
+                "orientation": true
+            },
+            {
+                "position": 103,
+                "tag": "E103",
+                "orientation": true
+            },
+            {
+                "position": 104,
+                "tag": "E104",
+                "orientation": true
+            },
+            {
+                "position": 105,
+                "tag": "E105",
+                "orientation": true
+            },
+            {
+                "position": 106,
+                "tag": "E106",
+                "orientation": true
+            },
+            {
+                "position": 107,
+                "tag": "E107",
+                "orientation": true
+            },
+            {
+                "position": 108,
+                "tag": "E108",
+                "orientation": true
+            },
+            {
+                "position": 109,
+                "tag": "E109",
+                "orientation": true
+            },
+            {
+                "position": 110,
+                "tag": "E110",
+                "orientation": true
+            },
+            {
+                "position": 111,
+                "tag": "E111",
+                "orientation": true
+            },
+            {
+                "position": 112,
+                "tag": "E112",
+                "orientation": true
+            },
+            {
+                "position": 113,
+                "tag": "E113",
+                "orientation": true
+            },
+            {
+                "position": 114,
+                "tag": "E114",
+                "orientation": true
+            },
+            {
+                "position": 115,
+                "tag": "E115",
+                "orientation": true
+            },
+            {
+                "position": 116,
+                "tag": "E116",
+                "orientation": true
+            },
+            {
+                "position": 117,
+                "tag": "E117",
+                "orientation": true
+            },
+            {
+                "position": 118,
+                "tag": "E118",
+                "orientation": true
+            },
+            {
+                "position": 119,
+                "tag": "E119",
+                "orientation": true
+            },
+            {
+                "position": 120,
+                "tag": "E120",
+                "orientation": true
+            },
+            {
+                "position": 121,
+                "tag": "E121",
+                "orientation": true
+            },
+            {
+                "position": 122,
+                "tag": "E122",
+                "orientation": true
+            },
+            {
+                "position": 123,
+                "tag": "E149",
+                "orientation": false
+            },
+            {
+                "position": 124,
+                "tag": "E148",
+                "orientation": false
+            },
+            {
+                "position": 125,
+                "tag": "E147",
+                "orientation": false
+            },
+            {
+                "position": 126,
+                "tag": "E146",
+                "orientation": false
+            },
+            {
+                "position": 127,
+                "tag": "E145",
+                "orientation": false
+            },
+            {
+                "position": 128,
+                "tag": "E144",
+                "orientation": false
+            },
+            {
+                "position": 129,
+                "tag": "E143",
+                "orientation": false
+            },
+            {
+                "position": 130,
+                "tag": "E142",
+                "orientation": false
+            },
+            {
+                "position": 131,
+                "tag": "E141",
+                "orientation": false
+            },
+            {
+                "position": 132,
+                "tag": "E140",
+                "orientation": false
+            },
+            {
+                "position": 133,
+                "tag": "E139",
+                "orientation": false
+            },
+            {
+                "position": 134,
+                "tag": "E138",
+                "orientation": false
+            },
+            {
+                "position": 135,
+                "tag": "E137",
+                "orientation": false
+            },
+            {
+                "position": 136,
+                "tag": "E136",
+                "orientation": false
+            },
+            {
+                "position": 137,
+                "tag": "E135",
+                "orientation": false
+            },
+            {
+                "position": 138,
+                "tag": "E134",
+                "orientation": false
+            },
+            {
+                "position": 139,
+                "tag": "E133",
+                "orientation": false
+            },
+            {
+                "position": 140,
+                "tag": "E132",
+                "orientation": false
+            },
+            {
+                "position": 141,
+                "tag": "E131",
+                "orientation": false
+            },
+            {
+                "position": 142,
+                "tag": "E130",
+                "orientation": false
+            },
+            {
+                "position": 143,
+                "tag": "E129",
+                "orientation": false
+            },
+            {
+                "position": 144,
+                "tag": "E128",
+                "orientation": false
+            },
+            {
+                "position": 145,
+                "tag": "E127",
+                "orientation": false
+            },
+            {
+                "position": 146,
+                "tag": "E126",
+                "orientation": false
+            },
+            {
+                "position": 147,
+                "tag": "E125",
+                "orientation": false
+            },
+            {
+                "position": 148,
+                "tag": "E124",
+                "orientation": false
+            },
+            {
+                "position": 149,
+                "tag": "E123",
+                "orientation": false
+            }
         ]
 
     },
@@ -169,102 +564,486 @@ export const sotanosData: SotanosStateDataType[] = [
         id: '3',
         quantity: 96,
         order: [
-            { position: 150, tag: 'E150' },
-            { position: 151, tag: 'E151' },
-            { position: 152, tag: 'E152' },
-            { position: 153, tag: 'E153' },
-            { position: 154, tag: 'E154' },
-            { position: 155, tag: 'E155' },
-            { position: 156, tag: 'E156' },
-            { position: 157, tag: 'E157' },
-            { position: 158, tag: 'E158' },
-            { position: 159, tag: 'E159' },
-            { position: 160, tag: 'E160' },
-            { position: 161, tag: 'E161' },
-            { position: 162, tag: 'E162' },
-            { position: 163, tag: 'E163' },
-            { position: 164, tag: 'E164' },
-            { position: 165, tag: 'E165' },
-            { position: 166, tag: 'E166' },
-            { position: 167, tag: 'E167' },
-            { position: 168, tag: 'E168' },
-            { position: 169, tag: 'E169' },
-            { position: 170, tag: 'E170' },
-            { position: 171, tag: 'E171' },
-            { position: 172, tag: 'E194' },
-            { position: 173, tag: 'E193' },
-            { position: 174, tag: 'E192' },
-            { position: 175, tag: 'E191' },
-            { position: 176, tag: 'E190' },
-            { position: 177, tag: 'E189' },
-            { position: 178, tag: 'E188' },
-            { position: 179, tag: 'E187' },
-            { position: 180, tag: 'E186' },
-            { position: 181, tag: 'E185' },
-            { position: 182, tag: 'E184' },
-            { position: 183, tag: 'E183' },
-            { position: 184, tag: 'E182' },
-            { position: 185, tag: 'E181' },
-            { position: 186, tag: 'E180' },
-            { position: 187, tag: 'E179' },
-            { position: 188, tag: 'E178' },
-            { position: 189, tag: 'E177' },
-            { position: 190, tag: 'E176' },
-            { position: 191, tag: 'E175' },
-            { position: 192, tag: 'E174' },
-            { position: 193, tag: 'E173' },
-            { position: 194, tag: 'E172' },
-            { position: 195, tag: 'E195' },
-            { position: 196, tag: 'E196' },
-            { position: 197, tag: 'E197' },
-            { position: 198, tag: 'E198' },
-            { position: 199, tag: 'E199' },
-            { position: 200, tag: 'E200' },
-            { position: 201, tag: 'E201' },
-            { position: 202, tag: 'E202' },
-            { position: 203, tag: 'E203' },
-            { position: 204, tag: 'E204' },
-            { position: 205, tag: 'E205' },
-            { position: 206, tag: 'E206' },
-            { position: 207, tag: 'E207' },
-            { position: 208, tag: 'E208' },
-            { position: 209, tag: 'E209' },
-            { position: 210, tag: 'E210' },
-            { position: 211, tag: 'E211' },
-            { position: 212, tag: 'E212' },
-            { position: 213, tag: 'E213' },
-            { position: 214, tag: 'E214' },
-            { position: 215, tag: 'E215' },
-            { position: 216, tag: 'E245' },
-            { position: 217, tag: 'E244' },
-            { position: 218, tag: 'E243' },
-            { position: 219, tag: 'E242' },
-            { position: 220, tag: 'E241' },
-            { position: 221, tag: 'E240' },
-            { position: 222, tag: 'E239' },
-            { position: 223, tag: 'E238' },
-            { position: 224, tag: 'E237' },
-            { position: 225, tag: 'E236' },
-            { position: 226, tag: 'E235' },
-            { position: 227, tag: 'E234' },
-            { position: 228, tag: 'E233' },
-            { position: 229, tag: 'E232' },
-            { position: 230, tag: 'E231' },
-            { position: 231, tag: 'E230' },
-            { position: 232, tag: 'E229' },
-            { position: 233, tag: 'E228' },
-            { position: 234, tag: 'E227' },
-            { position: 235, tag: 'E226' },
-            { position: 236, tag: 'E225' },
-            { position: 237, tag: 'E224' },
-            { position: 238, tag: 'E223' },
-            { position: 239, tag: 'E222' },
-            { position: 240, tag: 'E221' },
-            { position: 241, tag: 'E220' },
-            { position: 242, tag: 'E219' },
-            { position: 243, tag: 'E218' },
-            { position: 244, tag: 'E217' },
-            { position: 245, tag: 'E216' }
+            {
+                "position": 150,
+                "tag": "E150",
+                "orientation": true
+            },
+            {
+                "position": 151,
+                "tag": "E151",
+                "orientation": true
+            },
+            {
+                "position": 152,
+                "tag": "E152",
+                "orientation": true
+            },
+            {
+                "position": 153,
+                "tag": "E153",
+                "orientation": true
+            },
+            {
+                "position": 154,
+                "tag": "E154",
+                "orientation": true
+            },
+            {
+                "position": 155,
+                "tag": "E155",
+                "orientation": true
+            },
+            {
+                "position": 156,
+                "tag": "E156",
+                "orientation": true
+            },
+            {
+                "position": 157,
+                "tag": "E157",
+                "orientation": true
+            },
+            {
+                "position": 158,
+                "tag": "E158",
+                "orientation": true
+            },
+            {
+                "position": 159,
+                "tag": "E159",
+                "orientation": true
+            },
+            {
+                "position": 160,
+                "tag": "E160",
+                "orientation": true
+            },
+            {
+                "position": 161,
+                "tag": "E161",
+                "orientation": true
+            },
+            {
+                "position": 162,
+                "tag": "E162",
+                "orientation": true
+            },
+            {
+                "position": 163,
+                "tag": "E163",
+                "orientation": true
+            },
+            {
+                "position": 164,
+                "tag": "E164",
+                "orientation": true
+            },
+            {
+                "position": 165,
+                "tag": "E165",
+                "orientation": true
+            },
+            {
+                "position": 166,
+                "tag": "E166",
+                "orientation": true
+            },
+            {
+                "position": 167,
+                "tag": "E167",
+                "orientation": true
+            },
+            {
+                "position": 168,
+                "tag": "E168",
+                "orientation": true
+            },
+            {
+                "position": 169,
+                "tag": "E169",
+                "orientation": true
+            },
+            {
+                "position": 170,
+                "tag": "E170",
+                "orientation": true
+            },
+            {
+                "position": 171,
+                "tag": "E171",
+                "orientation": true
+            },
+            {
+                "position": 172,
+                "tag": "E194",
+                "orientation": false
+            },
+            {
+                "position": 173,
+                "tag": "E193",
+                "orientation": false
+            },
+            {
+                "position": 174,
+                "tag": "E192",
+                "orientation": false
+            },
+            {
+                "position": 175,
+                "tag": "E191",
+                "orientation": false
+            },
+            {
+                "position": 176,
+                "tag": "E190",
+                "orientation": false
+            },
+            {
+                "position": 177,
+                "tag": "E189",
+                "orientation": false
+            },
+            {
+                "position": 178,
+                "tag": "E188",
+                "orientation": false
+            },
+            {
+                "position": 179,
+                "tag": "E187",
+                "orientation": false
+            },
+            {
+                "position": 180,
+                "tag": "E186",
+                "orientation": false
+            },
+            {
+                "position": 181,
+                "tag": "E185",
+                "orientation": false
+            },
+            {
+                "position": 182,
+                "tag": "E184",
+                "orientation": false
+            },
+            {
+                "position": 183,
+                "tag": "E183",
+                "orientation": false
+            },
+            {
+                "position": 184,
+                "tag": "E182",
+                "orientation": false
+            },
+            {
+                "position": 185,
+                "tag": "E181",
+                "orientation": false
+            },
+            {
+                "position": 186,
+                "tag": "E180",
+                "orientation": false
+            },
+            {
+                "position": 187,
+                "tag": "E179",
+                "orientation": false
+            },
+            {
+                "position": 188,
+                "tag": "E178",
+                "orientation": false
+            },
+            {
+                "position": 189,
+                "tag": "E177",
+                "orientation": false
+            },
+            {
+                "position": 190,
+                "tag": "E176",
+                "orientation": false
+            },
+            {
+                "position": 191,
+                "tag": "E175",
+                "orientation": false
+            },
+            {
+                "position": 192,
+                "tag": "E174",
+                "orientation": false
+            },
+            {
+                "position": 193,
+                "tag": "E173",
+                "orientation": false
+            },
+            {
+                "position": 194,
+                "tag": "E172",
+                "orientation": false
+            },
+            {
+                "position": 195,
+                "tag": "E195",
+                "orientation": true
+            },
+            {
+                "position": 196,
+                "tag": "E196",
+                "orientation": true
+            },
+            {
+                "position": 197,
+                "tag": "E197",
+                "orientation": true
+            },
+            {
+                "position": 198,
+                "tag": "E198",
+                "orientation": true
+            },
+            {
+                "position": 199,
+                "tag": "E199",
+                "orientation": true
+            },
+            {
+                "position": 200,
+                "tag": "E200",
+                "orientation": true
+            },
+            {
+                "position": 201,
+                "tag": "E201",
+                "orientation": true
+            },
+            {
+                "position": 202,
+                "tag": "E202",
+                "orientation": true
+            },
+            {
+                "position": 203,
+                "tag": "E203",
+                "orientation": true
+            },
+            {
+                "position": 204,
+                "tag": "E204",
+                "orientation": true
+            },
+            {
+                "position": 205,
+                "tag": "E205",
+                "orientation": true
+            },
+            {
+                "position": 206,
+                "tag": "E206",
+                "orientation": true
+            },
+            {
+                "position": 207,
+                "tag": "E207",
+                "orientation": true
+            },
+            {
+                "position": 208,
+                "tag": "E208",
+                "orientation": true
+            },
+            {
+                "position": 209,
+                "tag": "E209",
+                "orientation": true
+            },
+            {
+                "position": 210,
+                "tag": "E210",
+                "orientation": true
+            },
+            {
+                "position": 211,
+                "tag": "E211",
+                "orientation": true
+            },
+            {
+                "position": 212,
+                "tag": "E212",
+                "orientation": true
+            },
+            {
+                "position": 213,
+                "tag": "E213",
+                "orientation": true
+            },
+            {
+                "position": 214,
+                "tag": "E214",
+                "orientation": true
+            },
+            {
+                "position": 215,
+                "tag": "E215",
+                "orientation": true
+            },
+            {
+                "position": 216,
+                "tag": "E245",
+                "orientation": false
+            },
+            {
+                "position": 217,
+                "tag": "E244",
+                "orientation": false
+            },
+            {
+                "position": 218,
+                "tag": "E243",
+                "orientation": false
+            },
+            {
+                "position": 219,
+                "tag": "E242",
+                "orientation": false
+            },
+            {
+                "position": 220,
+                "tag": "E241",
+                "orientation": false
+            },
+            {
+                "position": 221,
+                "tag": "E240",
+                "orientation": false
+            },
+            {
+                "position": 222,
+                "tag": "E239",
+                "orientation": false
+            },
+            {
+                "position": 223,
+                "tag": "E238",
+                "orientation": false
+            },
+            {
+                "position": 224,
+                "tag": "E237",
+                "orientation": false
+            },
+            {
+                "position": 225,
+                "tag": "E236",
+                "orientation": false
+            },
+            {
+                "position": 226,
+                "tag": "E235",
+                "orientation": false
+            },
+            {
+                "position": 227,
+                "tag": "E234",
+                "orientation": false
+            },
+            {
+                "position": 228,
+                "tag": "E233",
+                "orientation": false
+            },
+            {
+                "position": 229,
+                "tag": "E232",
+                "orientation": false
+            },
+            {
+                "position": 230,
+                "tag": "E231",
+                "orientation": false
+            },
+            {
+                "position": 231,
+                "tag": "E230",
+                "orientation": false
+            },
+            {
+                "position": 232,
+                "tag": "E229",
+                "orientation": false
+            },
+            {
+                "position": 233,
+                "tag": "E228",
+                "orientation": false
+            },
+            {
+                "position": 234,
+                "tag": "E227",
+                "orientation": false
+            },
+            {
+                "position": 235,
+                "tag": "E226",
+                "orientation": false
+            },
+            {
+                "position": 236,
+                "tag": "E225",
+                "orientation": false
+            },
+            {
+                "position": 237,
+                "tag": "E224",
+                "orientation": false
+            },
+            {
+                "position": 238,
+                "tag": "E223",
+                "orientation": false
+            },
+            {
+                "position": 239,
+                "tag": "E222",
+                "orientation": false
+            },
+            {
+                "position": 240,
+                "tag": "E221",
+                "orientation": false
+            },
+            {
+                "position": 241,
+                "tag": "E220",
+                "orientation": false
+            },
+            {
+                "position": 242,
+                "tag": "E219",
+                "orientation": false
+            },
+            {
+                "position": 243,
+                "tag": "E218",
+                "orientation": false
+            },
+            {
+                "position": 244,
+                "tag": "E217",
+                "orientation": false
+            },
+            {
+                "position": 245,
+                "tag": "E216",
+                "orientation": false
+            }
         ]
 
 
@@ -272,90 +1051,420 @@ export const sotanosData: SotanosStateDataType[] = [
     {
         id: '4',
         quantity: 82,
-        order: [
-            { position: 246, tag: 'E246' },
-            { position: 247, tag: 'E247' },
-            { position: 248, tag: 'E248' },
-            { position: 249, tag: 'E249' },
-            { position: 250, tag: 'E250' },
-            { position: 251, tag: 'E251' },
-            { position: 252, tag: 'E252' },
-            { position: 253, tag: 'E253' },
-            { position: 254, tag: 'E254' },
-            { position: 255, tag: 'E255' },
-            { position: 256, tag: 'E256' },
-            { position: 257, tag: 'E257' },
-            { position: 258, tag: 'E258' },
-            { position: 259, tag: 'E259' },
-            { position: 260, tag: 'E260' },
-            { position: 261, tag: 'E261' },
-            { position: 262, tag: 'E262' },
-            { position: 263, tag: 'E263' },
-            { position: 264, tag: 'E264' },
-            { position: 265, tag: 'E265' },
-            { position: 266, tag: 'E266' },
-            { position: 267, tag: 'E267' },
-            { position: 268, tag: 'E268' },
-            { position: 269, tag: 'E269' },
-            { position: 270, tag: 'E270' },
-            { position: 271, tag: 'E271' },
-            { position: 272, tag: 'E294' },
-            { position: 273, tag: 'E293' },
-            { position: 274, tag: 'E292' },
-            { position: 275, tag: 'E291' },
-            { position: 276, tag: 'E290' },
-            { position: 277, tag: 'E289' },
-            { position: 278, tag: 'E288' },
-            { position: 279, tag: 'E287' },
-            { position: 280, tag: 'E286' },
-            { position: 281, tag: 'E285' },
-            { position: 282, tag: 'E284' },
-            { position: 283, tag: 'E283' },
-            { position: 284, tag: 'E282' },
-            { position: 285, tag: 'E281' },
-            { position: 286, tag: 'E280' },
-            { position: 287, tag: 'E279' },
-            { position: 288, tag: 'E278' },
-            { position: 289, tag: 'E277' },
-            { position: 290, tag: 'E276' },
-            { position: 291, tag: 'E275' },
-            { position: 292, tag: 'E274' },
-            { position: 293, tag: 'E273' },
-            { position: 294, tag: 'E272' },
-            { position: 295, tag: 'E295' },
-            { position: 296, tag: 'E296' },
-            { position: 297, tag: 'E297' },
-            { position: 298, tag: 'E298' },
-            { position: 299, tag: 'E299' },
-            { position: 300, tag: 'E300' },
-            { position: 301, tag: 'E301' },
-            { position: 302, tag: 'E302' },
-            { position: 303, tag: 'E303' },
-            { position: 304, tag: 'E304' },
-            { position: 305, tag: 'E305' },
-            { position: 306, tag: 'E306' },
-            { position: 307, tag: 'E307' },
-            { position: 308, tag: 'E308' },
-            { position: 309, tag: 'E309' },
-            { position: 310, tag: 'E310' },
-            { position: 311, tag: 'E311' },
-            { position: 312, tag: 'E327' },
-            { position: 313, tag: 'E326' },
-            { position: 314, tag: 'E325' },
-            { position: 315, tag: 'E324' },
-            { position: 316, tag: 'E323' },
-            { position: 317, tag: 'E322' },
-            { position: 318, tag: 'E321' },
-            { position: 319, tag: 'E320' },
-            { position: 320, tag: 'E319' },
-            { position: 321, tag: 'E318' },
-            { position: 322, tag: 'E317' },
-            { position: 323, tag: 'E316' },
-            { position: 324, tag: 'E315' },
-            { position: 325, tag: 'E314' },
-            { position: 326, tag: 'E313' },
-            { position: 327, tag: 'E312' }
-        ]
+        order:
+            [
+                {
+                    "position": 246,
+                    "tag": "E246",
+                    "orientation": true
+                },
+                {
+                    "position": 247,
+                    "tag": "E247",
+                    "orientation": true
+                },
+                {
+                    "position": 248,
+                    "tag": "E248",
+                    "orientation": true
+                },
+                {
+                    "position": 249,
+                    "tag": "E249",
+                    "orientation": true
+                },
+                {
+                    "position": 250,
+                    "tag": "E250",
+                    "orientation": true
+                },
+                {
+                    "position": 251,
+                    "tag": "E251",
+                    "orientation": true
+                },
+                {
+                    "position": 252,
+                    "tag": "E252",
+                    "orientation": true
+                },
+                {
+                    "position": 253,
+                    "tag": "E253",
+                    "orientation": true
+                },
+                {
+                    "position": 254,
+                    "tag": "E254",
+                    "orientation": true
+                },
+                {
+                    "position": 255,
+                    "tag": "E255",
+                    "orientation": true
+                },
+                {
+                    "position": 256,
+                    "tag": "E256",
+                    "orientation": true
+                },
+                {
+                    "position": 257,
+                    "tag": "E257",
+                    "orientation": true
+                },
+                {
+                    "position": 258,
+                    "tag": "E258",
+                    "orientation": true
+                },
+                {
+                    "position": 259,
+                    "tag": "E259",
+                    "orientation": true
+                },
+                {
+                    "position": 260,
+                    "tag": "E260",
+                    "orientation": true
+                },
+                {
+                    "position": 261,
+                    "tag": "E261",
+                    "orientation": true
+                },
+                {
+                    "position": 262,
+                    "tag": "E262",
+                    "orientation": true
+                },
+                {
+                    "position": 263,
+                    "tag": "E263",
+                    "orientation": true
+                },
+                {
+                    "position": 264,
+                    "tag": "E264",
+                    "orientation": true
+                },
+                {
+                    "position": 265,
+                    "tag": "E265",
+                    "orientation": true
+                },
+                {
+                    "position": 266,
+                    "tag": "E266",
+                    "orientation": true
+                },
+                {
+                    "position": 267,
+                    "tag": "E267",
+                    "orientation": true
+                },
+                {
+                    "position": 268,
+                    "tag": "E268",
+                    "orientation": true
+                },
+                {
+                    "position": 269,
+                    "tag": "E269",
+                    "orientation": true
+                },
+                {
+                    "position": 270,
+                    "tag": "E270",
+                    "orientation": true
+                },
+                {
+                    "position": 271,
+                    "tag": "E271",
+                    "orientation": true
+                },
+                {
+                    "position": 272,
+                    "tag": "E294",
+                    "orientation": false
+                },
+                {
+                    "position": 273,
+                    "tag": "E293",
+                    "orientation": false
+                },
+                {
+                    "position": 274,
+                    "tag": "E292",
+                    "orientation": false
+                },
+                {
+                    "position": 275,
+                    "tag": "E291",
+                    "orientation": false
+                },
+                {
+                    "position": 276,
+                    "tag": "E290",
+                    "orientation": false
+                },
+                {
+                    "position": 277,
+                    "tag": "E289",
+                    "orientation": false
+                },
+                {
+                    "position": 278,
+                    "tag": "E288",
+                    "orientation": false
+                },
+                {
+                    "position": 279,
+                    "tag": "E287",
+                    "orientation": false
+                },
+                {
+                    "position": 280,
+                    "tag": "E286",
+                    "orientation": false
+                },
+                {
+                    "position": 281,
+                    "tag": "E285",
+                    "orientation": false
+                },
+                {
+                    "position": 282,
+                    "tag": "E284",
+                    "orientation": false
+                },
+                {
+                    "position": 283,
+                    "tag": "E283",
+                    "orientation": false
+                },
+                {
+                    "position": 284,
+                    "tag": "E282",
+                    "orientation": false
+                },
+                {
+                    "position": 285,
+                    "tag": "E281",
+                    "orientation": false
+                },
+                {
+                    "position": 286,
+                    "tag": "E280",
+                    "orientation": false
+                },
+                {
+                    "position": 287,
+                    "tag": "E279",
+                    "orientation": false
+                },
+                {
+                    "position": 288,
+                    "tag": "E278",
+                    "orientation": false
+                },
+                {
+                    "position": 289,
+                    "tag": "E277",
+                    "orientation": false
+                },
+                {
+                    "position": 290,
+                    "tag": "E276",
+                    "orientation": false
+                },
+                {
+                    "position": 291,
+                    "tag": "E275",
+                    "orientation": false
+                },
+                {
+                    "position": 292,
+                    "tag": "E274",
+                    "orientation": false
+                },
+                {
+                    "position": 293,
+                    "tag": "E273",
+                    "orientation": false
+                },
+                {
+                    "position": 294,
+                    "tag": "E272",
+                    "orientation": false
+                },
+                {
+                    "position": 295,
+                    "tag": "E295",
+                    "orientation": true
+                },
+                {
+                    "position": 296,
+                    "tag": "E296",
+                    "orientation": true
+                },
+                {
+                    "position": 297,
+                    "tag": "E297",
+                    "orientation": true
+                },
+                {
+                    "position": 298,
+                    "tag": "E298",
+                    "orientation": true
+                },
+                {
+                    "position": 299,
+                    "tag": "E299",
+                    "orientation": true
+                },
+                {
+                    "position": 300,
+                    "tag": "E300",
+                    "orientation": true
+                },
+                {
+                    "position": 301,
+                    "tag": "E301",
+                    "orientation": true
+                },
+                {
+                    "position": 302,
+                    "tag": "E302",
+                    "orientation": true
+                },
+                {
+                    "position": 303,
+                    "tag": "E303",
+                    "orientation": true
+                },
+                {
+                    "position": 304,
+                    "tag": "E304",
+                    "orientation": true
+                },
+                {
+                    "position": 305,
+                    "tag": "E305",
+                    "orientation": true
+                },
+                {
+                    "position": 306,
+                    "tag": "E306",
+                    "orientation": true
+                },
+                {
+                    "position": 307,
+                    "tag": "E307",
+                    "orientation": true
+                },
+                {
+                    "position": 308,
+                    "tag": "E308",
+                    "orientation": true
+                },
+                {
+                    "position": 309,
+                    "tag": "E309",
+                    "orientation": true
+                },
+                {
+                    "position": 310,
+                    "tag": "E310",
+                    "orientation": true
+                },
+                {
+                    "position": 311,
+                    "tag": "E311",
+                    "orientation": true
+                },
+                {
+                    "position": 312,
+                    "tag": "E327",
+                    "orientation": false
+                },
+                {
+                    "position": 313,
+                    "tag": "E326",
+                    "orientation": false
+                },
+                {
+                    "position": 314,
+                    "tag": "E325",
+                    "orientation": false
+                },
+                {
+                    "position": 315,
+                    "tag": "E324",
+                    "orientation": false
+                },
+                {
+                    "position": 316,
+                    "tag": "E323",
+                    "orientation": false
+                },
+                {
+                    "position": 317,
+                    "tag": "E322",
+                    "orientation": false
+                },
+                {
+                    "position": 318,
+                    "tag": "E321",
+                    "orientation": false
+                },
+                {
+                    "position": 319,
+                    "tag": "E320",
+                    "orientation": false
+                },
+                {
+                    "position": 320,
+                    "tag": "E319",
+                    "orientation": false
+                },
+                {
+                    "position": 321,
+                    "tag": "E318",
+                    "orientation": false
+                },
+                {
+                    "position": 322,
+                    "tag": "E317",
+                    "orientation": false
+                },
+                {
+                    "position": 323,
+                    "tag": "E316",
+                    "orientation": false
+                },
+                {
+                    "position": 324,
+                    "tag": "E315",
+                    "orientation": false
+                },
+                {
+                    "position": 325,
+                    "tag": "E314",
+                    "orientation": false
+                },
+                {
+                    "position": 326,
+                    "tag": "E313",
+                    "orientation": false
+                },
+                {
+                    "position": 327,
+                    "tag": "E312",
+                    "orientation": false
+                }
+            ]
+
 
     }
 ]

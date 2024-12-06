@@ -5,7 +5,7 @@ import { BoardType } from '@/types';
 import { getBoardData } from '@/utils/callsApi/apiCalls';
 import { useQuery } from '@tanstack/react-query';
 import React, { useEffect } from 'react'
-import { toast, Toaster } from 'sonner';
+import { toast} from 'sonner';
 import BoardCard from '../../Card/BoardCard/BoardCard';
 import { useBoardSubscription } from '@/mqtt/topics/TablerosSubscriptions';
 
@@ -35,7 +35,7 @@ export default function BoardsContent() {
           toast.success('Datos cargados correctamente.');
         }
       }, [data]);
-      const BoardsData = useMqttStore((state) => state.subsData['dashboard/tableros']);
+      const BoardsData = useMqttStore((state) => state.subsData['dashboard/tableros']) as BoardType[];
       if (isLoading) return <div>Cargando...</div>;
       if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (

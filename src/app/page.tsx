@@ -1,25 +1,14 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-import Image from 'next/image';
+export default function HomePage() {
+  const router = useRouter();
 
-const EstacionamientoPage = () => {
-  return (
+  useEffect(() => {
+    router.push("/login"); // Redirige al usuario a la página de login
+  }, [router]);
 
-
-    <div>
-
-
-<Image
-    src='/assets/cart-states/reservado.jpg'
-    alt={`Estado `}
-    sizes="100vw"
-    width={500}
-    height={300}
-  />
-    </div>
-  );
-};
-
-export default EstacionamientoPage;
+  return null; // No renderiza nada en esta página porque redirige.
+}

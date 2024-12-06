@@ -1,19 +1,39 @@
 import { create } from 'zustand';
 import { getClient } from '@/mqtt/mqttClient';
 import { toast } from 'sonner';
-import { validateBoardData, validateParkingData, validateSCIData, validateVariatorsData, validateWaterPumpData } from '@/types'; // Asegúrate de importar las funciones de validación
-import { consoleLogger } from '@influxdata/influxdb-client';
+import { BoardType,  ParkingType, ParkingTypeSchema, SCIType, SCITypeSchema, VariatorsType, WaterPumpType,  AirConditioningType,AirConditioningTypeSchema, ArrayWaterPumpTypeSchema, ArrayBoardTypeSchema, ArrayVariatorsTypeSchema } from '@/types';
+
+const schemas = [
+  AirConditioningTypeSchema,
+  SCITypeSchema,
+  ParkingTypeSchema,
+  ArrayWaterPumpTypeSchema,
+  ArrayBoardTypeSchema,
+  ArrayVariatorsTypeSchema,
+  
+];
+
+
+// Unificar todos los tipos de mensaje posibles
+export type MqttMessageType =
+  AirConditioningType
+  | SCIType
+  | ParkingType
+  | WaterPumpType[]
+  | BoardType[]
+  | VariatorsType[];
 
 // Define el tipo de datos del estado global
 interface MqttStore {
   subscribedTopics: { [topic: string]: number }; // Cada tópico tiene un contador de suscripciones
-  subsData: { [topic: string]: any }; 
-  setSubsData: (topic: string, data: any) => void;
-  subscribeToTopic: (topic: string, onMessage: (message: any) => void) => void;
+  subsData: { [topic: string]: MqttMessageType };  // Los datos ahora son de tipo MqttMessageType
+  setSubsData: (topic: string, data: MqttMessageType) => void;  // Recibe datos validados
+  subscribeToTopic: (topic: string, onMessage: (message: MqttMessageType) => void) => void;  // Recibe cualquier tipo de mensaje
   unsubscribeFromTopic: (topic: string) => void;
 }
 
 export const useMqttStore = create<MqttStore>()(
+  //persist(
   (set, get) => ({
     subscribedTopics: {},
     subsData: {},
@@ -43,20 +63,25 @@ export const useMqttStore = create<MqttStore>()(
           if (receivedTopic === topic) {
             try {
               const parsedMessage = JSON.parse(message.toString());
-              onMessage(parsedMessage); // Llamamos al callback con el mensaje
-              // Aquí puedes llamar a las funciones de validación dependiendo del tipo de datos que esperes
-              if (topic === 'sci/topic') {
-                validateSCIData(parsedMessage); // Validar SCI
-              } else if (topic === 'waterpump/topic') {
-                validateWaterPumpData(parsedMessage); // Validar WaterPump
-              } else if (topic === 'board/topic') {
-                validateBoardData(parsedMessage); // Validar Board
-              } else if (topic === 'variators/topic') {
-                validateVariatorsData(parsedMessage); // Validar Variators
-              } else if (topic === 'parking/topic') {
-                validateParkingData(parsedMessage); // Validar Parking
+              // Validamos el mensaje con Zod antes de pasarlo al callback
+
+
+
+              // Validamos el mensaje contra todos los esquemas disponibles
+              for (const schema of schemas) {
+                try {
+                  schema.parse(parsedMessage)
+                  // Si el mensaje pasa el esquema, lo enviamos
+                  onMessage(parsedMessage);
+                  return;
+                } catch (error) {
+                  // Si el mensaje no pasa, probamos con el siguiente esquema
+                  continue;
+                }
               }
 
+              // Si ninguno de los esquemas valida el mensaje
+              console.error('Mensaje recibido no válido según los esquemas Zod');
             } catch (err) {
               console.error(`Error al parsear el mensaje de ${topic}:`, err);
             }
@@ -101,32 +126,31 @@ export const useMqttStore = create<MqttStore>()(
 
     // Función para actualizar los datos de un tópico
     setSubsData: (topic, data) => {
-      // Validar los datos antes de almacenarlos
-      try {
-        // Aquí puedes aplicar las validaciones necesarias dependiendo del tipo de tópico
-        if (topic === 'sci/topic') {
-          validateSCIData(data); // Validar SCI
-        } else if (topic === 'waterpump/topic') {
-          validateWaterPumpData(data); // Validar WaterPump
-        } else if (topic === 'board/topic') {
-          validateBoardData(data); // Validar Board
-        } else if (topic === 'variators/topic') {
-          validateVariatorsData(data); // Validar Variators
-        } else if (topic === 'parking/topic') {
-          validateParkingData(data); // Validar Parking
+      // Validamos los datos antes de almacenarlos en el estado
+
+      let isValid = false;
+      
+      // Validamos el mensaje contra todos los esquemas disponibles
+      for (const schema of schemas) {
+        try {
+          
+          schema.parse(data); // Si el mensaje pasa el esquema, lo almacenamos
+          isValid = true;
+          break;
+        } catch (error) {
+          continue;
         }
-
-        // Si la validación pasa, se actualizan los datos
-        set((state) => ({
-          subsData: { ...state.subsData, [topic]: data },
-        }));
-
-        console.log(get().subsData[topic])
-
-      } catch (err) {
-        console.error(`Error en la validación de datos del tópico ${topic}:`, err);
-        toast.error(`Error en la validación de datos para el tópico ${topic}`);
       }
+
+      if (!isValid) {
+        console.error('Los datos no son válidos según los esquemas Zod');
+        return;
+      }
+
+      // Si los datos son válidos, actualizamos el estado
+      set((state) => ({
+        subsData: { ...state.subsData, [topic]: data },
+      }));
     },
   })
 );

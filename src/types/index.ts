@@ -7,6 +7,7 @@ export interface SotanosStateDataType {
   order: {
     position: number,
     tag: string
+    orientation:boolean
   }[]
 }
 
@@ -28,6 +29,12 @@ export const WaterPumpTypeSchema = z.object({
   time: z.string().optional(), // Descomentar si decides usar el campo 'time'
 });
 
+export const ArrayWaterPumpTypeSchema = z.array(z.object({
+  bomba: z.string(),
+  estado: z.boolean(),
+  time: z.string().optional(), // Descomentar si decides usar el campo 'time'
+}));
+
 export type WaterPumpType = z.infer<typeof WaterPumpTypeSchema>;
 
 // Esquema para BoardType
@@ -36,7 +43,11 @@ export const BoardTypeSchema = z.object({
   value: z.number(),
   time: z.string().optional(), // Descomentar si decides usar el campo 'time'
 });
-
+export const ArrayBoardTypeSchema = z.array(z.object({
+  potencia: z.string(),
+  value: z.number(),
+  time: z.string().optional(), // Descomentar si decides usar el campo 'time'
+}));
 export type BoardType = z.infer<typeof BoardTypeSchema>;
 
 export const VariatorsTypeSchema = z.object({
@@ -51,52 +62,81 @@ export const VariatorsTypeSchema = z.object({
   time: z.string().optional(),
 });
 
+export const ArrayVariatorsTypeSchema = z.array(z.object({
+  bomba: z.string(),  // Nombre de la bomba (Q01, Q02, etc.)
+  velocidad_y_direccion: z.number(),  // Opcional, ya que puede estar ausente en algunos casos
+  frecuencia: z.number(),
+  intensidad: z.number(),
+  potencia: z.number(),
+  tension_salida: z.number(),
+  temperatura_unidad: z.number(),
+  tiempo_marcha: z.number(),
+  time: z.string().optional(),
+}));
+
 export type VariatorsType = z.infer<typeof VariatorsTypeSchema>;
 
 
 
 
 export const SCITypeSchema = z.object({
-  voltage: z.number(),
-  current: z.number(),
-  frequency: z.number(),
-  custom_locked_rotor_current: z.number(),
-  user_alarm_1: z.boolean(),
-  user_alarm_2: z.boolean(),
-  user_alarm_3: z.boolean(),
-  user_alarm_4: z.boolean(),
-  user_alarm_5: z.boolean(),
-  user_alarm_6: z.boolean(),
-  user_alarm_7: z.boolean(),
-  user_alarm_8: z.boolean(),
-  user_alarm_9: z.boolean(),
-  user_alarm_10: z.boolean(),
-  user_alarm_11: z.boolean(),
-  user_alarm_12: z.boolean(),
-  user_alarm_13: z.boolean(),
-  user_alarm_14: z.boolean(),
-  user_alarm_15: z.boolean(),
-  user_alarm_16: z.boolean(),
-  user_alarm_17: z.boolean(),
-  user_alarm_18: z.boolean(),
-  user_alarm_19: z.boolean(),
-  user_alarm_20: z.boolean(),
+  data: z.object({
+    voltage: z.number(),
+    current: z.number(),
+    frequency: z.number(),
+    custom_locked_rotor_current: z.number(),
+    normal_phase_reserval: z.boolean(),
+    phase_loss_l1: z.boolean(),
+    phase_loss_l2: z.boolean(),
+    phase_loss_l3: z.boolean(),
+    lock_rotor_current: z.boolean(),
+    fail_to_start: z.boolean(),
+    transfer_switch_trouble: z.boolean(),
+    power_loss: z.boolean(),
+    service_required: z.boolean(),
+    undercurrent: z.boolean(),
+    overcurrent: z.boolean(),
+    undervoltage: z.boolean(),
+    overvoltage: z.boolean(),
+    phase_unbalanced: z.boolean(),
+    weekly_test_cut_in_not_reached: z.boolean(),
+    weekly_test_check_solenoid_valve: z.boolean(),
+    faulty_pressure_transducer: z.boolean(),
+    overpressure: z.boolean(),
+    underpressure: z.boolean(),
+    low_suction_pressure: z.boolean(),
+    flow_start: z.boolean(),
+    alternate_phase_reversal: z.boolean(),
+    alternate_isolating_switch_open: z.boolean(),
+    alternate_circuit_breaker_tripped: z.boolean(),
+    io_electric_board_communication_loss: z.boolean(),
+    io_transfer_switch_board_comm_loss: z.boolean(),
+    weekly_test_required: z.boolean(),
+    alternate_lock_rotor_current: z.boolean(),
+    low_ambient_temperature_internal_sensor: z.boolean(),
+    high_ambient_temperature_internal_sensor: z.boolean(),
+    control_voltage_not_healthy: z.boolean(),
+    soft_starter_fault: z.boolean(),
+  }),
   time: z.string().optional(),
 });
 
 export type SCIType = z.infer<typeof SCITypeSchema>;
 
 
+
 // Definir el esquema Zod
 export const AirConditioningTypeSchema = z.object({
   data: z.array(
-      z.object({
-          unit_name: z.string().min(1, "El nombre de la unidad no puede estar vacío."),
-          alias: z.string().min(1, "El alias no puede estar vacío."),
-          id: z.string().min(1, "El ID no puede estar vacío."),
-          alarm: z.number().nonnegative("El campo alarm debe ser un número no negativo."),
-          status: z.string().min(1, "El estado no puede estar vacío."),
-      })
+    z.object({
+      unit_name: z.string(),
+      alias: z.string(),
+      id: z.string(),
+      alarm: z.string(),
+      status: z.string(),
+      temperature_setting: z.number(),
+      temperature_indoor: z.number(),
+    })
   ),
   time: z.string().optional()
 });
@@ -108,51 +148,3 @@ export type AirConditioningType = z.infer<typeof AirConditioningTypeSchema>;
 
 
 
-
-
-
-
-
-
-// Función para validar y manejar errores específicos
-export const validateData = (data: any, schema: z.ZodSchema<any>) => {
-  try {
-    // Intentar parsear los datos con el esquema
-    schema.parse(data);
-    console.log('Datos válidos');
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      const errorMessages = error.errors.map((err) => {
-        return `Campo: ${err.path.join('.')}, Error: ${err.message}`;
-      }).join('\n');
-
-      console.error('Errores de validación:\n', errorMessages);
-      throw new Error('Datos inválidos');
-    }
-  }
-};
-
-// Función para validar SCI
-export const validateSCIData = (data: any) => {
-  validateData(data, SCITypeSchema);
-};
-
-// Función para validar WaterPump
-export const validateWaterPumpData = (data: any) => {
-  validateData(data, WaterPumpTypeSchema);
-};
-
-// Función para validar Board
-export const validateBoardData = (data: any) => {
-  validateData(data, BoardTypeSchema);
-};
-
-// Función para validar Variators
-export const validateVariatorsData = (data: any) => {
-  validateData(data, VariatorsTypeSchema);
-};
-
-// Función para validar Parking
-export const validateParkingData = (data: any) => {
-  validateData(data, ParkingTypeSchema);
-};

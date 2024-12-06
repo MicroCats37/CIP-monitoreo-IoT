@@ -21,33 +21,33 @@ export default function SCIContent() {
         refetchOnMount: true, // Los datos permanecen en caché indefinidamente 
         refetchOnWindowFocus: true,// No refetch al montar el componente refetchOnWindowFocus: false, });
       })
-    
+      
       useEffect(() => {
         if (error) {
     
           toast.success(`error al conectarse a la base de datos`);
         }
       }, [error]);
-    
+      console.log(error)
       useEffect(() => {
         if (data) {
           setSubsData('dashboard/sci', data);
           toast.success('Datos cargados correctamente.');
         }
       }, [data]);
-      const SCIData = useMqttStore((state) => state.subsData['dashboard/sci']);
-      console.log(data)
+      const SCIData = useMqttStore((state) => state.subsData['dashboard/sci'])  as SCIType;
+      console.log(SCIData)
       if (isLoading) return <div>Cargando...</div>;
       if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (
     <div className='w-full flex relative'>
        
 
-        {SCIData?
+        { SCIData &&
             (<div className='w-full'>
                 <SCICard data={SCIData}></SCICard>
             </div>)
-            :(<div>Error</div>)
+            
         }
         
     </div>
