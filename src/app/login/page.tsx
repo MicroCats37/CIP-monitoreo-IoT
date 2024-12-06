@@ -27,8 +27,8 @@ export default function LoginPage() {
     try {
       await new Promise(resolve => setTimeout(resolve, 1000))
       
-      if (data.email === 'user@cst.com' && data.password === 'admin') {
-        router.push('/dashboard')
+      if (data.email === 'pedro@cip.com.pe' && data.password === 'admin') {
+        router.push('/sistema-contra-incendios')
       } else {
         setError('Credenciales inválidas. Por favor, intente de nuevo.')
       }

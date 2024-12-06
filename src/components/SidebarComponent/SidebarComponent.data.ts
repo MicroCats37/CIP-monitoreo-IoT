@@ -6,7 +6,7 @@ export const linkRoutes: LinkRouteType[] = [
 
   {
     title: "Aire Acondicionado",
-    url: "/aire-acondicionado",
+    url: "#",
     icon: AlarmSmoke,
     pages: [
       {
@@ -21,7 +21,7 @@ export const linkRoutes: LinkRouteType[] = [
   },
   {
     title: "Sistema Contra Incendio",
-    url: "/sci",
+    url: "/sistema-contra-incendios",
     icon: FireExtinguisher,
   },
   {
@@ -51,7 +51,7 @@ export const linkRoutes: LinkRouteType[] = [
   },
   {
     title: "Estacionamiento",
-    url: "/estacionamientos",
+    url: "#",
     icon: ParkingMeter,
     pages: [
       {
