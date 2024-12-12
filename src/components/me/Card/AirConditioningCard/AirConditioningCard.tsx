@@ -5,7 +5,6 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-  CardFooter,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
@@ -36,7 +35,7 @@ export default function AirConditioningCard({ data }: { data: AirConditioningTyp
   )
 
   return (
-    <div className="w-full p-4 space-y-4">
+    <div className="w-full space-y-4 flex-col">
       <div className="w-full flex items-center space-x-2">
         <Search className="text-gray-400" />
         <Input

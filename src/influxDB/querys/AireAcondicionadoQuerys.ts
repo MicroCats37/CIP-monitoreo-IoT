@@ -66,3 +66,5 @@ export const getAireAcondicionadoDatos = async (port: string): Promise<AireAcond
 
     return rows;
 };
+
+//mejorar el mensaje de error para este query ya qeu no te devuelve el array inicail cuando no hay nada solo te da un un erro al ingresar a la base ed datos

@@ -30,9 +30,7 @@ export const getClient = (): MqttClient => {
     });
   }
 
-
   removeAllExceptLastListener();
-
   return client;
 };
 

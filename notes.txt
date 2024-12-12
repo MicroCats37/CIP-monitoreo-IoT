@@ -1,0 +1,2 @@
+en vez de poner pd a main hay que crear un componete que tenga ese arreglo por que no hace el gap-4 en alguno dios sbara por que  Ppipiip.
+

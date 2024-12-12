@@ -30,7 +30,7 @@ export const LedCartState: React.FC<EstadoLedProps> = ({ state, orientation }) =
     }
 
     return (
-        <div className={`z-100 flex justify-center items-center absolute w-[15%] aspect-square rounded-sm m-2 ${color}  ${orientation === false ? 'top-0' : 'bottom-0'}`}>
+        <div className={`z-100 flex justify-center items-center absolute w-[25%] aspect-square rounded-sm m-2 ${color}  ${orientation === false ? 'top-0' : 'bottom-0'}`}>
 
         </div>
 

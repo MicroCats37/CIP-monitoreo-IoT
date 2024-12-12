@@ -50,7 +50,7 @@ export default function BoardCard({ data }: { data: BoardCardProps }) {
   }
 
   return (
-    <div className="flex gap-4 p-4 w-full">
+    <div className="flex flex-col space-y-4 w-full h-full sm:flex-row sm:space-y-0 sm:space-x-4">
       {data.map((board, index: number) => (
         <Card key={index} className={cn("w-full transition-all duration-300 hover:shadow-lg", getCardStyle(board.potencia))}>
           <CardHeader>

@@ -23,7 +23,7 @@ export const CartState: React.FC<EstadoImagenProps> = ({ state,orientation }) =>
       src = '/assets/cart-states/dañado.webp';
       break;
     case 'ocupado':
-      src = '/assets/cart-states/ocupado.webp';
+      src = '/assets/cart-states/ocupado.png';
       break;
     default:
       src = '/assets/cart-states/dañado.png'; // Imagen por defecto en caso de un state inesperado
@@ -41,7 +41,7 @@ export const CartState: React.FC<EstadoImagenProps> = ({ state,orientation }) =>
     }}
     width={500}
     height={300}
-    className={`${ state!=='ocupado' ? 'p-':''} ${orientation ===false && state==='ocupado' ? 'rotate-180 h-100%':''} ${state==='ocupado' ? 'p-1':''}`}
+    className={`${ state!=='ocupado' ? 'p-1':''} ${orientation ===false && state==='ocupado' ? 'rotate-180 h-100%':''} ${state==='ocupado' ? 'p-1':''}`}
   />
         
   );

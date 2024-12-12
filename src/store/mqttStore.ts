@@ -153,7 +153,7 @@ export const useMqttStore = create<MqttStore>()(
     // Función para actualizar los datos de un tópico
     setSubsData: (topic, data) => {
       // Validamos los datos antes de almacenarlos en el estado
-
+      
       let isValid = false;
       
       // Validamos el mensaje contra todos los esquemas disponibles
@@ -167,7 +167,7 @@ export const useMqttStore = create<MqttStore>()(
           continue;
         }
       }
-
+      console.log(data,isValid,topic)
       if (!isValid) {
         console.error('Los datos no son válidos según los esquemas Zod');
         return;

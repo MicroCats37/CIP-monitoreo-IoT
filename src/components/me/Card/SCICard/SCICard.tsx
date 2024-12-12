@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { SCIType } from "@/types"
-import { Zap, Activity, AlertTriangle, CheckCircle, Thermometer, Gauge, Wind,BellElectric } from 'lucide-react'
+import { Zap, Activity, AlertTriangle, CheckCircle, Thermometer, Gauge, Wind, BellElectric } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
@@ -22,50 +22,50 @@ export default function SCICard({ data }: { data: SCIType }) {
         className="flex items-center space-x-1"
       >
         {icon}
-        <span>{value ? 'Activo' : 'Inactivo'}</span>
+        <span className="hidden sm:inline">{value ? 'Activo' : 'Inactivo'}</span>
       </Badge>
     </div>
   )
 
   return (
-    <Card className="w-full max-w-2xl mx-auto bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
-      <CardHeader>
-        <CardTitle className="flex items-center justify-between text-2xl">
-          <span>Sistema Contra Incendios</span>
-          <BellElectric className={cn("w-8 h-8", getStatusColor(!data.data.power_loss))} />
+    <Card className="flex-col h-full w-full bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+      <CardHeader className="w-full ">
+        <CardTitle className="flex items-center justify-between text-xl sm:text-2xl">
+          <span className="mr-2">Sistema Contra Incendios</span>
+          <BellElectric className={cn("w-6 h-6 sm:w-8 sm:h-8", getStatusColor(!data.data.power_loss))} />
         </CardTitle>
-        <CardDescription>
+        <CardDescription className="text-sm">
           Última actualización: {new Date(data.time!).toLocaleString()}
         </CardDescription>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div className="flex flex-col items-center justify-center p-3 bg-yellow-100 rounded-lg dark:bg-yellow-900/20">
-              <Zap className="text-yellow-500 w-6 h-6 mb-2" />
-              <span className="text-lg font-bold">{data.data.voltage}V</span>
+      <CardContent className="">
+        <div className="flex-col gap-4 sm:gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-4">
+            <div className="flex flex-col items-center justify-center p-2 sm:p-3 bg-yellow-100 rounded-lg dark:bg-yellow-900/20">
+              <Zap className="text-yellow-500 w-4 h-4 sm:w-6 sm:h-6 mb-1 sm:mb-2" />
+              <span className="text-base sm:text-lg font-bold">{data.data.voltage}V</span>
               <span className="text-xs">Voltaje</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-3 bg-blue-100 rounded-lg dark:bg-blue-900/20">
-              <Activity className="text-blue-500 w-6 h-6 mb-2" />
-              <span className="text-lg font-bold">{data.data.current}A</span>
+            <div className="flex flex-col items-center justify-center p-2 sm:p-3 bg-blue-100 rounded-lg dark:bg-blue-900/20">
+              <Activity className="text-blue-500 w-4 h-4 sm:w-6 sm:h-6 mb-1 sm:mb-2" />
+              <span className="text-base sm:text-lg font-bold">{data.data.current}A</span>
               <span className="text-xs">Corriente</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-3 bg-purple-100 rounded-lg dark:bg-purple-900/20">
-              <Gauge className="text-purple-500 w-6 h-6 mb-2" />
-              <span className="text-lg font-bold">{data.data.frequency}Hz</span>
+            <div className="flex flex-col items-center justify-center p-2 sm:p-3 bg-purple-100 rounded-lg dark:bg-purple-900/20">
+              <Gauge className="text-purple-500 w-4 h-4 sm:w-6 sm:h-6 mb-1 sm:mb-2" />
+              <span className="text-base sm:text-lg font-bold">{data.data.frequency}Hz</span>
               <span className="text-xs">Frecuencia</span>
             </div>
-            <div className="flex flex-col items-center justify-center p-3 bg-orange-100 rounded-lg dark:bg-orange-900/20">
-              <Wind className="text-orange-500 w-6 h-6 mb-2" />
-              <span className="text-lg font-bold">{data.data.custom_locked_rotor_current}A</span>
+            <div className="flex flex-col items-center justify-center p-2 sm:p-3 bg-orange-100 rounded-lg dark:bg-orange-900/20">
+              <Wind className="text-orange-500 w-4 h-4 sm:w-6 sm:h-6 mb-1 sm:mb-2" />
+              <span className="text-base sm:text-lg font-bold">{data.data.custom_locked_rotor_current}A</span>
               <span className="text-xs">LRC</span>
             </div>
           </div>
           
-          <div>
-            <h4 className="font-semibold mb-2 text-lg">Estado del Sistema</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="mt-4 sm:mt-6">
+            <h4 className="font-semibold mb-2 text-base sm:text-lg">Estado del Sistema</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {renderStatusItem('Pérdida de Fase L1', data.data.phase_loss_l1, <AlertTriangle size={14} />)}
               {renderStatusItem('Pérdida de Fase L2', data.data.phase_loss_l2, <AlertTriangle size={14} />)}
               {renderStatusItem('Pérdida de Fase L3', data.data.phase_loss_l3, <AlertTriangle size={14} />)}
@@ -77,9 +77,9 @@ export default function SCICard({ data }: { data: SCIType }) {
             </div>
           </div>
           
-          <div>
-            <h4 className="font-semibold mb-2 text-lg">Alarmas Adicionales</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <div className="mt-4 sm:mt-6">
+            <h4 className="font-semibold mb-2 text-base sm:text-lg">Alarmas Adicionales</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {renderStatusItem('Subcorriente', data.data.undercurrent, <Activity size={14} />)}
               {renderStatusItem('Sobrecorriente', data.data.overcurrent, <Activity size={14} />)}
               {renderStatusItem('Bajo Voltaje', data.data.undervoltage, <Zap size={14} />)}

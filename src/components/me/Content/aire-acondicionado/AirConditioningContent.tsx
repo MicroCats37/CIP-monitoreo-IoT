@@ -16,9 +16,8 @@ export default function AirConditioningContent({ id }: { id: string }) {
   const { data, error, isLoading } = useQuery<AirConditioningType, Error>({
     queryKey: ['getAirConditioningData', `${id}`], queryFn: () =>
       getAirConditioningData(`${id}`),
-    staleTime: Infinity, // Los datos permanecen frescos indefinidamente 
-    refetchOnMount: true, // Los datos permanecen en caché indefinidamente 
-    refetchOnWindowFocus: true,// No refetch al montar el componente refetchOnWindowFocus: false, });
+    staleTime: 0, // Los datos permanecen frescos indefinidamente 
+    refetchOnMount: true, // No refetch al montar el componente refetchOnWindowFocus: false, });
   })
 
 
@@ -31,11 +30,11 @@ export default function AirConditioningContent({ id }: { id: string }) {
 
   useEffect(() => {
     if (data) {
-      setSubsData(TOPICS[`dashboard/aire${id}`], data);
+      setSubsData(TOPICS[`aire${id}`], data);
       toast.success('Datos cargados correctamente.');
     }
   }, [data]);
-  const airData= useMqttStore((state) => state.subsData[TOPICS[`dashboard/aire${id}`]]) as AirConditioningType;
+  const airData= useMqttStore((state) => state.subsData[TOPICS[`aire${id}`]]) as AirConditioningType;
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Error al obtener datos</div>
 

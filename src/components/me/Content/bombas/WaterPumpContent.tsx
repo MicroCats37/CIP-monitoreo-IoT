@@ -19,17 +19,15 @@ export default function WaterPumpContent({ id }: { id: string }) {
   const { data, error, isLoading } = useQuery<WaterPumpType[], Error>({
     queryKey: ['getWaterPumpData', id], queryFn: () =>
       getWaterPumpData(id),
-    staleTime: Infinity, // Los datos permanecen frescos indefinidamente 
-    refetchOnMount: true, // Los datos permanecen en caché indefinidamente 
-    refetchOnWindowFocus: true,// No refetch al montar el componente refetchOnWindowFocus: false, });
+    staleTime: 0, // Los datos permanecen frescos indefinidamente 
+    refetchOnMount: true, // No refetch al montar el componente refetchOnWindowFocus: false, });
   })
 
   const { data: datav, error: errorv, isLoading: isLoadingv } = useQuery<VariatorsType[], Error>({
     queryKey: ['getVariatorData', id], queryFn: () =>
       getVariatorData(id),
-    staleTime: Infinity, // Los datos permanecen frescos indefinidamente 
-    refetchOnMount: true, // Los datos permanecen en caché indefinidamente 
-    refetchOnWindowFocus: true,// No refetch al montar el componente refetchOnWindowFocus: false, });
+    staleTime: 0, // Los datos permanecen frescos indefinidamente 
+    refetchOnMount: true, // No refetch al montar el componente refetchOnWindowFocus: false, });
   })
 
   useEffect(() => {
@@ -65,14 +63,13 @@ export default function WaterPumpContent({ id }: { id: string }) {
   if (isLoading || isLoadingv) return <div>Cargando...</div>;
   if (error || errorv) return <div>Error al obtener datos: </div>
   return (
-    <div className='w-full flex relative'>
+    <div className='w-full h-full flex items-center justify-center'>
       {WaterPumpData && VariatorData ?
-        (<div className='w-full flex-col'>
+        (<div className='w-full flex-col space-y-4 items-center justify-center'>
           <PumpCard data={WaterPumpData }></PumpCard>
           <VariatorCard data={VariatorData}></VariatorCard>
         </div>) : (<div>Error</div>)
       }
-
     </div>
   )
 }
