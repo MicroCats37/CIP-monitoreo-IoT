@@ -167,7 +167,6 @@ export const useMqttStore = create<MqttStore>()(
           continue;
         }
       }
-      console.log(data,isValid,topic)
       if (!isValid) {
         console.error('Los datos no son válidos según los esquemas Zod');
         return;

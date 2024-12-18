@@ -70,7 +70,7 @@ export default function BoardCard({ data }: { data: BoardCardProps }) {
                 {board.value.toLocaleString()}
               </span>
               <span className={cn("text-2xl font-semibold mt-2", getUnitColor(board.potencia))}>
-                {board.potencia === 'activa' ? 'W' : board.potencia === 'reactiva' ? 'VAR' : 'VA'}
+                {board.potencia === 'activa' ? 'KW' : board.potencia === 'reactiva' ? 'KVAR' : 'KVA'}
               </span>
             </div>
             {board.time && (

@@ -31,7 +31,7 @@ export const linkRoutes: LinkRouteType[] = [
   },
   {
     title: "Bombas",
-    url: "#",
+    url: "/bombas",
     icon: Droplets,
     pages: [
       {

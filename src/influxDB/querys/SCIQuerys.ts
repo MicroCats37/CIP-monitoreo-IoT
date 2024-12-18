@@ -46,10 +46,10 @@ export interface AlarmData {
 
 export const getAlarmsData = async (): Promise<AlarmData> => {
   const fluxQuery = `
-    from(bucket: "Sistema Contra Incendios")
-    |> range(start: -30m)
-    |> filter(fn: (r) => r["_measurement"] == "SCI")
-    |> filter(fn: (r) =>
+  from(bucket: "Sistema Contra Incendios")
+  |> range(start: -30m)
+  |> filter(fn: (r) => r["_measurement"] == "SCI")
+  |> filter(fn: (r) =>
       r["_field"] == "voltage" or
       r["_field"] == "current" or
       r["_field"] == "frequency" or
@@ -85,12 +85,11 @@ export const getAlarmsData = async (): Promise<AlarmData> => {
       r["_field"] == "low_ambient_temperature_internal_sensor" or
       r["_field"] == "high_ambient_temperature_internal_sensor" or
       r["_field"] == "control_voltage_not_healthy" or
-      r["_field"] == "soft_starter_fault"
-    )
-    |> last()
-    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
-    |> yield(name: "last")
-  `;
+      r["_field"] == "soft_starter_fault")
+  |> aggregateWindow(every: 3s, fn: last, createEmpty: false)
+  |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+  |> limit(n:1)
+`;
 
   const rows: AlarmData = {
     data: {} as Alarm, // Se inicializa como un objeto vacío con el tipo `Alarm`.
@@ -99,7 +98,6 @@ export const getAlarmsData = async (): Promise<AlarmData> => {
 
   for await (const { values, tableMeta } of queryApi.iterateRows(fluxQuery)) {
     const record = tableMeta.toObject(values);
-
     if (!rows.time) {
       rows.time = record._time; // Asigna el timestamp global.
     }
