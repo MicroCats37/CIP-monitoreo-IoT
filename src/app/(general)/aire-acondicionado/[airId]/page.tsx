@@ -1,4 +1,4 @@
-import AirConditioningContent from "@/components/me/Content/aire-acondicionado/AirConditioningContent";
+import AirConditioningContent from "@/components/Partial/Content/aire-acondicionado/AirConditioningContent";
 
 import { redirect } from "next/navigation";
 interface Props {

@@ -1,4 +1,4 @@
-import WaterPumpContent from "@/components/me/Content/bombas/WaterPumpContent";
+import WaterPumpContent from "@/components/Partial/Content/bombas/WaterPumpContent";
 
 import { redirect } from "next/navigation";
 interface Props {

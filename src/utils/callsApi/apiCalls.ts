@@ -1,8 +1,10 @@
 import { z } from 'zod';
 // Importa los esquemas definidos previamente.
 import apiClient from './apiClient'; 
-import { BoardType, BoardTypeSchema, type ParkingType, ParkingTypeSchema, VariatorsType, VariatorsTypeSchema, WaterPumpType, WaterPumpTypeSchema,SCIType,SCITypeSchema, AirConditioningType, AirConditioningTypeSchema } from '@/types';
+
 import { AxiosError } from 'axios';
+import type { AirConditioningType, BoardType, ParkingType, SCIType, VariatorsType, WaterPumpType } from '@/types';
+import { AirConditioningTypeSchema, BoardTypeSchema, ParkingTypeSchema, SCITypeSchema, VariatorsTypeSchema, WaterPumpTypeSchema } from '@/validators';
 
 
 export const getParkingData = async (id: string): Promise<ParkingType> => {

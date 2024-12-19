@@ -1,4 +1,4 @@
-import SCIContent from "@/components/me/Content/sci/SCIContent";
+import SCIContent from "@/components/Partial/Content/sci/SCIContent";
 
 export default function Sci() {
   return (

@@ -1,21 +1,15 @@
+import { ParkingType } from "@/types";
 import { queryApi } from "../influxConfig";
 
 const INFLUXDB_BUCKET_ESTACIONAMIENTOS = 'Estacionamientos';
 
-interface SotanoEstado {
-  data: {
-    estacionamiento: string;
-    estado: string;
-  }[];
-  time: string;
-}
 
 // Función para obtener estacionamientos ocupados en los distintos sótanos
-export const getSotanoEstado = async (id: string): Promise<SotanoEstado> => {
+export const getSotanoEstado = async (id: string): Promise<ParkingType> => {
   const fluxQuery = `
     from(bucket: "${INFLUXDB_BUCKET_ESTACIONAMIENTOS}")
     |> range(start: -30m)  // Limita el rango de tiempo (últimos 30 minutos)
-    |> filter(fn: (r) => r["_measurement"] == "Sotano_${id}")
+    |> filter(fn: (r) => r["_measurement"] == "Sotano_${id.toUpperCase()}")
     |> filter(fn: (r) => r["_field"] == "ocupado" or r["_field"] == "libre" or r["_field"] == "reservado" or r["_field"] == "dañado")
     |> group(columns: ["estacionamiento", "_field"])  // Agrupa por estacionamiento y estado
     |> last()  // Obtiene el último valor
@@ -23,7 +17,7 @@ export const getSotanoEstado = async (id: string): Promise<SotanoEstado> => {
     |> yield(name: "last")
   `;
 
-  const rows: SotanoEstado = {
+  const rows: ParkingType = {
     data: [],
     time: ""
   };

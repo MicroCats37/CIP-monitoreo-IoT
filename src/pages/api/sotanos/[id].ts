@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 const { id } = req.query;
-   const validParkingIds = ['1A', '2A', '3A', '4A','1B', '2B', '3B', '4B'];
+   const validParkingIds = ['1a', '2a', '3a', '4a','1b', '2b', '3b', '4b'];
 
   if (!validParkingIds.includes(id as string)) {
     res.status(404).json({ error: 'Estacionamiento no válido' });

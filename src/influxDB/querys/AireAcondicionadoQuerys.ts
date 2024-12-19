@@ -1,22 +1,9 @@
+import { AirConditioningType } from "@/types";
 import { queryApi } from "../influxConfig";
 
-export interface Unidad {
-    unit_name: string;
-    alias: string;
-    id: string;
-    alarm: string;
-    status: string;
-    temperature_setting: number;
-    temperature_indoor: number
-    
-}
 
-export interface AireAcondicionadoResponse {
-    data: Unidad[];
-    time: string; // Tiempo global de la última consulta
-}
 
-export const getAireAcondicionadoDatos = async (port: string): Promise<AireAcondicionadoResponse> => {
+export const getAireAcondicionadoDatos = async (port: string): Promise<AirConditioningType> => {
     const fluxQuery = `
     from(bucket: "Aire Acondicionado")
     |> range(start: -30m)
@@ -35,7 +22,7 @@ export const getAireAcondicionadoDatos = async (port: string): Promise<AireAcond
 `;
 
 
-    const rows: AireAcondicionadoResponse = {
+    const rows: AirConditioningType = {
         data: [],
         time: ""
     };

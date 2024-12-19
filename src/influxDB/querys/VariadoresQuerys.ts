@@ -1,16 +1,6 @@
+import { VariatorsType } from "@/types";
 import { queryApi } from "../influxConfig";
 
-export interface VariadoresDatos {
-    bomba: string;  // Nombre de la bomba (Q01, Q02, etc.)
-    velocidad_y_direccion?: number;
-    frecuencia: number;
-    intensidad: number;
-    potencia: number;
-    tension_salida: number;
-    temperatura_unidad: number;
-    tiempo_marcha: number;
-    time: string,
-}
 
 export const formatString = (input: string): string => {
     return input
@@ -19,7 +9,7 @@ export const formatString = (input: string): string => {
         .join(' ');
 };
 
-export const getVariadoresDatos = async (bomba: string): Promise<VariadoresDatos[]> => {
+export const getVariadoresDatos = async (bomba: string): Promise<VariatorsType[]> => {
     const fluxQuery = `
         from(bucket: "Variadores")
         |> range(start: -30m)  
@@ -29,7 +19,7 @@ export const getVariadoresDatos = async (bomba: string): Promise<VariadoresDatos
         |> yield(name: "last")
     `;
 
-    const rows: VariadoresDatos[] = [];
+    const rows: VariatorsType[] = [];
 
     for await (const { values, tableMeta } of queryApi.iterateRows(fluxQuery)) {
         const record = tableMeta.toObject(values);
@@ -38,15 +28,17 @@ export const getVariadoresDatos = async (bomba: string): Promise<VariadoresDatos
         const bombaName = record.bomba;
         if (!bombaName) continue; // Saltamos filas sin nombre de bomba
 
-        const variadorData: VariadoresDatos = {
-            bomba: bombaName,
-            velocidad_y_direccion: record.velocidad_y_direccion,
-            frecuencia: record.frecuencia ,
-            intensidad: record.intensidad ,
-            potencia: record.potencia,
-            tension_salida: record.tension_salida,
-            temperatura_unidad: record.temperatura_unidad,
-            tiempo_marcha: record.tiempo_marcha,
+        const variadorData: VariatorsType = {
+            data: {
+                bomba: bombaName,
+                velocidad_y_direccion: record.velocidad_y_direccion,
+                frecuencia: record.frecuencia,
+                intensidad: record.intensidad,
+                potencia: record.potencia,
+                tension_salida: record.tension_salida,
+                temperatura_unidad: record.temperatura_unidad,
+                tiempo_marcha: record.tiempo_marcha,
+            },
             time: record._time,
         };
 
