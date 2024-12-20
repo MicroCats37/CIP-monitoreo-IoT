@@ -1,7 +1,10 @@
 
-import { AirConditioningTypeSchema, BoardTypeSchema, ParkingTypeSchema, SCITypeSchema, VariatorsTypeSchema, WaterPumpTypeSchema } from '@/validators';
+import { AirConditioningTypeSchema, BoardTypeSchema, ParkingTypeSchema, SCIDataTypeSchema, SCITypeSchema, VariatorsTypeSchema, WaterPumpTypeSchema } from '@/validators/schemas';
 import { z } from 'zod';
 
+export interface SotanosStateKeyDataType {
+  [key: string]: SotanosStateDataType
+}
 export interface SotanosStateDataType {
   id: string
   quantity: number
@@ -10,6 +13,14 @@ export interface SotanosStateDataType {
     tag: string
     orientation: boolean
   }[]
+} 
+
+export interface AreaKeyDataType {
+  [area: string]: AreaData | { [param: string]: AreaData };
+}
+export interface AreaData {
+  id?: string,
+  topickey: string,
 }
 
 
@@ -30,7 +41,7 @@ export type VariatorsType = z.infer<typeof VariatorsTypeSchema>;
 
 export type SCIType = z.infer<typeof SCITypeSchema>;
 
-
+export type SCIDataType = z.infer<typeof SCIDataTypeSchema>
 
 // Generar la interfaz o tipo a partir del esquema Zod
 export type AirConditioningType = z.infer<typeof AirConditioningTypeSchema>;

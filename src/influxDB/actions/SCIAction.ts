@@ -1,6 +1,8 @@
+"use server";
 import { SCIDataType, SCIType } from "@/types";
 import { queryApi } from "../influxConfig";
-
+import { SCITypeSchema } from "@/validators/schemas";
+import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
 
 export const getAlarmsData = async (): Promise<SCIType> => {
   const fluxQuery = `
@@ -101,4 +103,8 @@ export const getAlarmsData = async (): Promise<SCIType> => {
   }
 
   return rows; // Devuelve los datos procesados.
+};
+
+export const getSCIAction= async (): Promise<SCIType> => {
+  return fetchDataAction(() => getAlarmsData (), SCITypeSchema);
 };

@@ -1,7 +1,7 @@
 'use client'
 
 import { useMqttStore } from '@/mqtt/store/mqttStore';
-import { BoardType } from '@/types';
+import { AreaData, BoardType } from '@/types';
 import { getBoardData } from '@/utils/callsApi/apiCalls';
 import { useQuery } from '@tanstack/react-query';
 import BoardCard from '../../Card/BoardCard/BoardCard';
@@ -9,8 +9,8 @@ import { useResponseData } from '@/hooks/useResponseData';
 import { useTopicsSubcriptions } from '@/mqtt/topics/useTopicsSubscriptions';
 import { TOPICS } from '@/mqtt/topics/topics.data';
 
-export default function BoardsContent() {
-  const topic = TOPICS[`tableros`]
+export default function BoardsContent({ contentData }: { contentData: AreaData }) {
+  const topic = TOPICS[contentData.topickey]
   useTopicsSubcriptions(topic)
   const { data, error, isLoading } = useQuery<BoardType[], Error>({
     queryKey: ['getBoardData'], queryFn: () =>

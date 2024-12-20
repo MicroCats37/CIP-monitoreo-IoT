@@ -1,4 +1,6 @@
 import WaterPumpContent from "@/components/Partial/Content/bombas/WaterPumpContent";
+import { AreasData } from "@/components/Partial/Content/content.data";
+import { AreaData } from "@/types";
 
 import { redirect } from "next/navigation";
 interface Props {
@@ -13,10 +15,11 @@ export default function WaterPump({ params }: Props)  {
       // Redirige al usuario a la página principal
       redirect("/estacionamientos");
     }
+    const data = (AreasData['Bombas'] as { [param: string]: AreaData })[bombaId];
     return(
       
         <div className="flex w-full h-full justify-center items-center">
-              <WaterPumpContent id={bombaId}></WaterPumpContent>
+              <WaterPumpContent contentData={data}></WaterPumpContent>
         </div>
     )
 } 

@@ -1,4 +1,6 @@
+import { AreasData } from "@/components/Partial/Content/content.data";
 import VariatorsContent from "@/components/Partial/Content/variadores/VariatorsContent";
+import { AreaData  } from "@/types";
 import { redirect } from "next/navigation";
 interface Props {
     params: {
@@ -12,10 +14,12 @@ export default function WaterPump({ params }: Props)  {
       // Redirige al usuario a la página principal
       redirect("/estacionamientos");
     }
+
+    const data = (AreasData['Variadores'] as { [param: string]: AreaData })[variadorId];
     return(
       
         <div className="flex w-full h-full justify-center items-center">
-              <VariatorsContent id={variadorId}></VariatorsContent>
+              <VariatorsContent contentData={data}></VariatorsContent>
         </div>
     )
 } 

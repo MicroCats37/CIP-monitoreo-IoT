@@ -1,7 +1,7 @@
-import { SotanosStateDataType } from "@/types";
+import { SotanosStateKeyDataType } from "@/types";
 
-export const sotanosData: SotanosStateDataType[] = [
-    {
+export const sotanosData: SotanosStateKeyDataType= {
+    "1":{
         id: '1',
         quantity: 50,
         order: [
@@ -58,7 +58,7 @@ export const sotanosData: SotanosStateDataType[] = [
         ]
     }
     ,
-    {
+    "2":{
         id: '2',
         quantity: 99,
         order: [
@@ -560,7 +560,7 @@ export const sotanosData: SotanosStateDataType[] = [
         ]
 
     },
-    {
+    "3":{
         id: '3',
         quantity: 96,
         order: [
@@ -1048,7 +1048,7 @@ export const sotanosData: SotanosStateDataType[] = [
 
 
     },
-    {
+    "4":{
         id: '4',
         quantity: 82,
         order:
@@ -1466,5 +1466,4 @@ export const sotanosData: SotanosStateDataType[] = [
             ]
 
 
-    }
-]
+    }}

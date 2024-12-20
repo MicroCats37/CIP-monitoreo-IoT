@@ -1,9 +1,9 @@
-import {persist} from 'zustand/middleware'
+//import {persist} from 'zustand/middleware'
 import { create } from 'zustand';
 import { getClient } from '@/mqtt/mqttClient';
 import { toast } from 'sonner';
 import type { BoardType,  ParkingType, SCIType, VariatorsType, WaterPumpType,  AirConditioningType } from '@/types';
-import { AirConditioningTypeSchema, ArrayBoardTypeSchema, ArrayVariatorsTypeSchema, ArrayWaterPumpTypeSchema, ParkingTypeSchema, SCITypeSchema } from '@/validators';
+import { AirConditioningTypeSchema, ArrayBoardTypeSchema, ArrayVariatorsTypeSchema, ArrayWaterPumpTypeSchema, ParkingTypeSchema, SCITypeSchema } from '@/validators/schemas';
 
 
 
@@ -17,12 +17,12 @@ const schemas = [
 ];
 
 
-const topicNames: { [key: string]: string } = {
+export const topicNames: { [key: string]: string } = {
   "dashboard/aire-acondicionado/1": "Aire Acondicionado 1",
   "dashboard/aire-acondicionado/2": "Aire Acondicionado 2",
-  'dashboard/bombas/agua-potable': "Agua Potable",
-  'dashboard/bombas/aguas-tratadas': "Aguas Tratadas",
-  'dashboard/bombas/aguas-grises': "Agua Grises",
+  'dashboard/bombas/agua-potable': "Bombas Agua Potable",
+  'dashboard/bombas/aguas-tratadas': "Bombas Aguas Tratadas",
+  'dashboard/bombas/aguas-grises': "Bombas Agua Grises",
   'dashboard/estacionamientos/sotano/1a': "Estacionamiento Sotano 1A",
   'dashboard/estacionamientos/sotano/2a': "Estacionamiento Sotano 2A",
   'dashboard/estacionamientos/sotano/3a': "Estacionamiento Sotano 3A",

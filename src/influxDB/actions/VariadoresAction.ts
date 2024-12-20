@@ -1,6 +1,10 @@
+"use server";
+
 import { VariatorsType } from "@/types";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
+import { ArrayVariatorsTypeSchema } from "@/validators/schemas";
+import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
 
 
 export const getVariadoresDatos = async (variador: string): Promise<VariatorsType[]> => {
@@ -39,4 +43,8 @@ export const getVariadoresDatos = async (variador: string): Promise<VariatorsTyp
         rows.push(variadorData);
     }
     return rows;
+};
+
+export const getVariadoresAction = async (variador: string): Promise<VariatorsType[]> => {
+  return fetchDataAction(() => getVariadoresAction(variador), ArrayVariatorsTypeSchema);
 };

@@ -35,7 +35,7 @@ export default function AirConditioningCard({ data }: { data: AirConditioningTyp
   )
 
   return (
-    <div className="w-full space-y-4 flex-col">
+    <div className="w-full flex-col">
       <div className="w-full flex items-center space-x-2">
         <Search className="text-gray-400" />
         <Input
@@ -49,6 +49,7 @@ export default function AirConditioningCard({ data }: { data: AirConditioningTyp
           Última actualización: {new Date(data.time!).toLocaleString()}
         </p>
       </div>
+      <div className='w-full h-4'></div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {filteredData.map((air, index: number) => (
           <Card key={index} className="flex flex-col bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 transition-all duration-300 hover:shadow-lg">
@@ -100,6 +101,7 @@ export default function AirConditioningCard({ data }: { data: AirConditioningTyp
           </Card>
         ))}
       </div>
+      <div className='w-full h-4'></div>
 
     </div>
   )

@@ -11,7 +11,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { cn } from '@/lib/utils'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Link from "next/link"
 import { linkRoutes } from "./SidebarComponent.data"
@@ -24,7 +23,7 @@ export function AppSidebar() {
   const pathname = usePathname();
   return (
     <>
-      <Sidebar>
+      <Sidebar className="h-screen">
         <SidebarHeader className="border-b px-4 py-2">
           <div className="flex items-center space-x-3">
             <Avatar>
@@ -39,7 +38,7 @@ export function AppSidebar() {
         </SidebarHeader>
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>DashBoad IoT</SidebarGroupLabel>
+            <SidebarGroupLabel>DashBoard IoT</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu className="gap-2">
 
@@ -49,8 +48,8 @@ export function AppSidebar() {
                     {
                       route.pages ? (
                         <Accordion type="single" collapsible key={`acordeon-${route.title}`} >
-                          <AccordionItem value="item-1">
-                            <AccordionTrigger className="p-0 pr-2 bg-sidebar-accent rounded-md ">
+                          <AccordionItem value={route.title}>
+                            <AccordionTrigger className="bg-sidebar-accent rounded-md ">
                               <SidebarMenuButton asChild >
                                 <Link href={route.url} passHref>
                                   <route.icon />

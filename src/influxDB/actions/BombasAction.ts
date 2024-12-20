@@ -1,10 +1,13 @@
+"use server";
 import { WaterPumpType } from "@/types";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
+import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { ArrayWaterPumpTypeSchema} from "@/validators/schemas";
 
 
 
-export const getBombasEstado = async (bomba: string): Promise<WaterPumpType[]> => {
+export const getBombasEstadoAction = async (bomba: string): Promise<WaterPumpType[]> => {
   const fluxQuery = `
       from(bucket: "Bombas de Agua")
       |> range(start: -30m)  
@@ -29,4 +32,8 @@ export const getBombasEstado = async (bomba: string): Promise<WaterPumpType[]> =
     });
   }
   return rows;
+};
+
+export const getBombasAction = async (bomba: string): Promise<WaterPumpType[]> => {
+  return fetchDataAction(() => getBombasEstadoAction(bomba), ArrayWaterPumpTypeSchema);
 };

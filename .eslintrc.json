@@ -1,8 +1,8 @@
-/*{
+{
   "extends": ["next/core-web-vitals", "next/typescript"]
 }
-  */
 
+/*
 {
   "extends": "next",
   "rules": {
@@ -10,3 +10,4 @@
     "@next/next/no-page-custom-font": "off"
   }
 }
+  */

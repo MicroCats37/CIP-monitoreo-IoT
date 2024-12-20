@@ -1,4 +1,6 @@
 import AirConditioningContent from "@/components/Partial/Content/aire-acondicionado/AirConditioningContent";
+import { AreasData } from "@/components/Partial/Content/content.data";
+import { AreaData } from "@/types";
 
 import { redirect } from "next/navigation";
 interface Props {
@@ -13,10 +15,11 @@ export default function WaterPump({ params }: Props)  {
       // Redirige al usuario a la página principal
       redirect("/estacionamientos");
     }
+    const data = (AreasData['Aire Acondicionado'] as { [param: string]: AreaData })[airId];
     return(
       
         <div className="flex w-full h-full justify-center items-center">
-              <AirConditioningContent id={airId}></AirConditioningContent>
+              <AirConditioningContent contentData={data}></AirConditioningContent>
         </div>
     )
 } 

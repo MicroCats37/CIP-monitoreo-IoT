@@ -20,7 +20,7 @@ export const linkRoutes: LinkRouteType[] = [
     ]
   },
   {
-    title: "Sistema Contra Incendio",
+    title: "Sistema contra Incendio",
     url: "/sistema-contra-incendios",
     icon: FireExtinguisher,
   },

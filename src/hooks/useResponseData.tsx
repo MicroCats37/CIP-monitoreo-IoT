@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { useMqttStore } from "@/mqtt/store/mqttStore";
+import { MqttMessageType, useMqttStore } from "@/mqtt/store/mqttStore";
 
 /**
  * Hook para manejar lógica basada en error y datos.
@@ -11,7 +11,7 @@ import { useMqttStore } from "@/mqtt/store/mqttStore";
 export const useResponseData = (
   topic: string,
   error: Error | null,
-  data: any
+  data: MqttMessageType | undefined
 ) => {
   const setSubsData = useMqttStore((state) => state.setSubsData);
 

@@ -1,25 +1,20 @@
 export const TOPICS: { [key: string]: string } = {
-  aire1: 'dashboard/aire-acondicionado/1',
-  aire2: 'dashboard/aire-acondicionado/2',
-
-  sci: 'dashboard/sci',
-
-  sotano1a: 'dashboard/estacionamientos/sotano/1a',
-  sotano2a: 'dashboard/estacionamientos/sotano/2a',
-  sotano3a: 'dashboard/estacionamientos/sotano/3a',
-  sotano4a: 'dashboard/estacionamientos/sotano/4a',
-  sotano1b: 'dashboard/estacionamientos/sotano/1b',
-  sotano2b: 'dashboard/estacionamientos/sotano/2b',
-  sotano3b: 'dashboard/estacionamientos/sotano/3b',
-  sotano4b: 'dashboard/estacionamientos/sotano/4b',
-
-  bombaaguapotable: 'dashboard/bombas/agua-potable',
-  bombaaguastratadas: 'dashboard/bombas/aguas-tratadas',
-
-  bombaaguasgrises: 'dashboard/bombas/aguas-grises',
-  variadoraguapotable: 'dashboard/variadores/agua-potable',
-  variadoraguastratadas: 'dashboard/variadores/aguas-tratadas',
-  variadoraguasgrises: 'dashboard/variadores/aguas-grises',
-  
-  tableros: 'dashboard/tableros',
+  "aire acondicionado 1": "dashboard/aire-acondicionado/1",
+  "aire acondicionado 2": "dashboard/aire-acondicionado/2",
+  "bombas agua potable": "dashboard/bombas/agua-potable",
+  "bombas aguas tratadas": "dashboard/bombas/aguas-tratadas",
+  "bombas agua grises": "dashboard/bombas/aguas-grises",
+  "estacionamiento sotano 1a": "dashboard/estacionamientos/sotano/1a",
+  "estacionamiento sotano 2a": "dashboard/estacionamientos/sotano/2a",
+  "estacionamiento sotano 3a": "dashboard/estacionamientos/sotano/3a",
+  "estacionamiento sotano 4a": "dashboard/estacionamientos/sotano/4a",
+  "estacionamiento sotano 1b": "dashboard/estacionamientos/sotano/1b",
+  "estacionamiento sotano 2b": "dashboard/estacionamientos/sotano/2b",
+  "estacionamiento sotano 3b": "dashboard/estacionamientos/sotano/3b",
+  "estacionamiento sotano 4b": "dashboard/estacionamientos/sotano/4b",
+  "sistema contra incendios": "dashboard/sci",
+  "tableros electricos": "dashboard/tableros",
+  "variadores agua potable": "dashboard/variadores/agua-potable",
+  "variadores aguas tratables": "dashboard/variadores/aguas-tratadas",
+  "variadores aguas grises": "dashboard/variadores/aguas-grises",
 };

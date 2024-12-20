@@ -23,8 +23,8 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
   const quantity = sotanoData.quantity
   const order = sotanoData.order
 
-  useTopicsSubcriptions(TOPICS[`sotano${id}a`])
-  useTopicsSubcriptions(TOPICS[`sotano${id}b`])
+  useTopicsSubcriptions(TOPICS[`estacionamiento sotano ${id}a`])
+  useTopicsSubcriptions(TOPICS[`estacionamiento sotano ${id}b`])
 
 
   const { data: data_a, error: error_a, isLoading: isLoading_a } = useQuery<ParkingType, Error>({
@@ -41,11 +41,11 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
     refetchOnMount: false, // No refetch al montar el componente refetchOnWindowFocus: false, });
   })
 
-  useResponseData(TOPICS[`sotano${id}a`], error_a, data_a);
-  useResponseData(TOPICS[`sotano${id}b`], error_b, data_b);
+  useResponseData(TOPICS[`estacionamiento sotano ${id}a`], error_a, data_a);
+  useResponseData(TOPICS[`estacionamiento sotano ${id}b`], error_b, data_b);
 
-  const parkingDataA = useMqttStore((state) => state.subsData[TOPICS[`sotano${id}a`]]) as ParkingType;
-  const parkingDataB = useMqttStore((state) => state.subsData[TOPICS[`sotano${id}b`]]) as ParkingType;
+  const parkingDataA= useMqttStore((state) => state.subsData[TOPICS[`estacionamiento sotano ${id}a`]]) as ParkingType;
+  const parkingDataB = useMqttStore((state) => state.subsData[TOPICS[`estacionamiento sotano ${id}b`]]) as ParkingType;
   const EstadosArrayA: string[] = [];
   const EstadosArrayB: string[] = [];
   const SensorA: { [key: string]: string } = {};
@@ -78,11 +78,11 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
   return (
     <div className='w-full  h-full'>
       {(
-        <div className='flex-col h-full w-full space-y-4 sm:pb-4'>
-          <div className='flex flex-col w-full sm:h-[15%] gap-4 sm:flex-row'>
+        <div className='flex-col h-full w-full space-y-4 lg:pb-4'>
+          <div className='flex flex-col w-full lg:h-[15%] gap-4 lg:flex-row'>
 
             {parkingDataA && parkingDataA.data.length > 0 && parkingDataA.time &&
-              (<div className='flex-col space-y-4 sm:space-y-0 sm:flex-1 '>
+              (<div className='flex-col space-y-4 lg:space-y-0 lg:flex-1 '>
                 <ParkingCard time={parkingDataA.time} sotano={`${id}A`} estados={countStateCarsA}></ParkingCard>
                 <TableCars nombre={`Sotano ${id}A`}>
                   {
@@ -105,7 +105,7 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
             }
 
             {parkingDataB && parkingDataB.data.length > 0 && parkingDataB.time &&
-              (<div className='flex-col space-y-4 sm:space-y-0 sm:flex-1'>
+              (<div className='flex-col space-y-4 lg:space-y-0 lg:flex-1 pb-4 lg:pb-0'>
                 <ParkingCard time={parkingDataB.time} sotano={`${id}B`} estados={countStateCarsB}></ParkingCard>
                 <TableCars nombre={`Sotano ${id}B`}>
                   {
@@ -127,7 +127,7 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
             }
           </div>
 
-          <div className='hidden relative h-[85%] sm:flex'>
+          <div className='hidden relative h-[85%] lg:flex'>
             <SotanoImage id={id} />
             <div className={`gridsotano gridsotano${id} w-full`}>
               {
@@ -139,7 +139,7 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
                           // Verifica que esté usando correctamente el valor de `p.tag` para acceder a las claves
                           (SensorA[p.tag] || SensorB[p.tag]) ? (
                             <>
-                              <div className={`flex justify-center items-center absolute h-1/6 w-[90%] text-white text-sm m-1 border  border-white rounded-sm ${p.orientation === true ? 'top-0  ' : 'bottom-0'}`}>
+                              <div className={`flex justify-center items-center absolute h-1/6 w-[90%] text-white text-lg m-1 border  border-white rounded-lg ${p.orientation === true ? 'top-0  ' : 'bottom-0'}`}>
                                 {p.tag.replace("E", "")}
                               </div>
                               <LedCartState orientation={p.orientation} state={SensorA[p.tag] || SensorB[p.tag]} />

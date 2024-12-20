@@ -9,7 +9,7 @@ interface TableCarsProps {
 
 export const TableCars: React.FC<TableCarsProps> = ({ nombre, children }) => {
   return (
-    <Card className="flex w-full sm:hidden">
+    <Card className="flex w-full lg:hidden">
       <CardContent className="p-6 w-full">
         <h2 className="text-center text-2xl font-bold mb-4">{nombre}</h2>
         <div className="overflow-x-auto">

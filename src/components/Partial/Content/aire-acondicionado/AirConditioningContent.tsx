@@ -1,8 +1,8 @@
 'use client'
-import React, { useEffect } from 'react'
+
 import { useMqttStore } from '@/mqtt/store/mqttStore'
 import { useQuery } from '@tanstack/react-query'
-import { AirConditioningType } from '@/types'
+import { AirConditioningType, AreaData } from '@/types'
 import { getAirConditioningData } from '@/utils/callsApi/apiCalls'
 import AirConditioningCard from '../../Card/AirConditioningCard/AirConditioningCard'
 import { useResponseData } from '@/hooks/useResponseData'
@@ -11,8 +11,9 @@ import { TOPICS } from '@/mqtt/topics/topics.data'
 
 
 
-export default function AirConditioningContent({ id }: { id: string }) {
-  const topic = TOPICS[`aire${id}`]
+export default function AirConditioningContent({ contentData }: { contentData: AreaData }) {
+  const topic = TOPICS[contentData.topickey]
+  const id = contentData.id
   useTopicsSubcriptions(topic)
   const { data, error, isLoading } = useQuery<AirConditioningType, Error>({
     queryKey: ['getAirConditioningData', `${id}`], queryFn: () =>
@@ -25,7 +26,7 @@ export default function AirConditioningContent({ id }: { id: string }) {
 
   const airData = useMqttStore((state) => state.subsData[topic]) as AirConditioningType;
   if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error al obtener datos</div>
+  if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
 
   return (
     <div className='w-full h-full'>
