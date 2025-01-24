@@ -1,4 +1,4 @@
-import { Area, AreaChart, XAxis, YAxis, CartesianGrid} from "recharts"
+import { Area, AreaChart, XAxis, YAxis, CartesianGrid } from "recharts"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
@@ -37,18 +37,18 @@ export function BoardChart({ data, title, color }: BoardChartProps) {
           }}
           className="h-[300px] w-full"
         >
-          
-            <AreaChart data={formattedData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="time"/>
-              <YAxis domain={["auto", "auto"]} tickFormatter={(value) => `${value} ${dataKey === 'activa' ? 'KW': (dataKey === 'reactiva'? 'KVAR':'KVA')}`} />
-              <ChartTooltip
+
+          <AreaChart data={formattedData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="time" tickFormatter={(value) =>(value.slice(0, 5))}/>
+            <YAxis domain={["auto", "auto"]} tickFormatter={(value) => `${value} ${dataKey === 'activa' ? 'KW' : (dataKey === 'reactiva' ? 'KVAR' : 'KVA')}`} />
+            <ChartTooltip
               cursor={false}
-              content={<ChartTooltipContent indicator="dot" formatter={(value)=>`Potencia ${dataKey} ${value} ${dataKey === 'activa' ? 'KW': (dataKey === 'reactiva'? 'KVAR':'KVA')}`}/>}
+              content={<ChartTooltipContent indicator="dot" formatter={(value) => `Potencia ${dataKey} ${value} ${dataKey === 'activa' ? 'KW' : (dataKey === 'reactiva' ? 'KVAR' : 'KVA')}`} />}
             />
-              <Area type="monotone" dataKey={dataKey} stroke={color} fill={color} fillOpacity={0.3} />
-            </AreaChart>
-          
+            <Area type="monotone" dataKey={dataKey} stroke={color} fill={color} fillOpacity={0.3} />
+          </AreaChart>
+
         </ChartContainer>
       </CardContent>
     </Card>

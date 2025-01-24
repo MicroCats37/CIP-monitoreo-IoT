@@ -15,7 +15,7 @@ import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useHistoricalStore } from '@/store/plots';
 import { VariatorAllCharts } from '../../Plot/variadores/VariatorAllCharts';
 import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function VariatorsContent({ contentData }: { contentData: AreaData }) {
 
@@ -27,12 +27,20 @@ export default function VariatorsContent({ contentData }: { contentData: AreaDat
   useTopicsSubcriptions(topic)
   useTopicsSubcriptions(TOPICS[topic])
 
-  const { data: h_data, error: h_error, isLoading: h_isLoading } = useQuery<VariatorsType[][], Error>({
+  const { data: h_data, error: h_error, isLoading: h_isLoading, refetch: h_refetch } = useQuery<VariatorsType[][], Error>({
     queryKey: ['getVariadoresHistoricoAction', id], queryFn: () =>
-      getVariadoresHistoricoAction(id,intervalo),
+      getVariadoresHistoricoAction(id, intervalo),
     staleTime: Infinity, // Los datos permanecen frescos indefinidamente 
     refetchOnMount: false, // No refetch al montar el componente refetchOnWindowFocus: false, });
   })
+
+  useEffect(() => {
+    if (intervalo) {
+      h_refetch(); // Refetch solo si intervalo tiene un valor
+    }
+  }, [intervalo]);
+
+
   const { data, error, isLoading } = useQuery<VariatorsType[], Error>({
     queryKey: ['getVariadoresAction', id], queryFn: () =>
       getVariadoresAction(id),
@@ -66,6 +74,5 @@ export default function VariatorsContent({ contentData }: { contentData: AreaDat
 
       </div>
     </div>
-
   )
 }

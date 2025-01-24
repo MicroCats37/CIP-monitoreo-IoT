@@ -33,7 +33,7 @@ export default function Page() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1))
 
-      if (data.email === "pedro@cip.com.pe" && data.password === "admin") {
+      if ((data.email === "psotelo@cip.org.pe" || data.email === "gestionsecretaria@cip.org.pe") && data.password === "admin") {
         router.push("/sistema-contra-incendios")
       } else {
         setError("Credenciales inválidas. Por favor, intente de nuevo.")

@@ -31,8 +31,8 @@ export function AppSidebar() {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div>
-              <p className="text-sm font-medium">Pedro</p>
-              <p className="text-xs text-muted-foreground">pedro@cip.com.pe</p>
+              <p className="text-sm font-medium">Pedro Sotelo</p>
+              <p className="text-xs text-muted-foreground">Usuario CIP</p>
             </div>
           </div>
         </SidebarHeader>

@@ -24,7 +24,7 @@ const timeDictionary: TimeDictionary = {
   "8h": "8 horas",
   "1d": "1 día",
   "7d": "7 días",
-  "30":"30 dias"
+  "30d":"30 dias"
 };
 
 interface FetchingDateProps {// Tipado del array de intervalos

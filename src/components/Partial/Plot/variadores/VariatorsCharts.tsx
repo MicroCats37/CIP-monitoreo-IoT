@@ -101,7 +101,7 @@ export function VariatorsCharts({ data }: DataChartProps) {
         tiempo_marcha: reading.data.tiempo_marcha,
     }))
     const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>("potencia")
-
+/*
     const total = React.useMemo(
         () => ({
             velocidad_y_direccion: chartData.reduce((acc, curr) => acc + curr.velocidad_y_direccion, 0),
@@ -114,7 +114,7 @@ export function VariatorsCharts({ data }: DataChartProps) {
         }),
         [chartData],
     )
-
+*/
     return (
         <Card className="grid w-full">
             <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
@@ -140,7 +140,7 @@ export function VariatorsCharts({ data }: DataChartProps) {
                                     <div className="flex flex-wrap justify-center">
 
                                         <span className="text-lg font-bold leading-none">
-                                            {total[key].toLocaleString()}
+                                            {chartData[chartData.length-1][key].toLocaleString()}
                                         </span>
                                         <span className="text-lg font-bold leading-none">
                                             {chartConfig[chart].unit}
@@ -167,12 +167,13 @@ export function VariatorsCharts({ data }: DataChartProps) {
                                 }}
                             >
                                 <CartesianGrid vertical={false} />
-                                <XAxis dataKey="time" />
+                                <XAxis dataKey="time" tickFormatter={(value) =>(value.slice(0, 5))}/>
                                 <YAxis
                                     yAxisId="left"
                                     orientation="left"
                                     stroke={`var(--color-${activeChart})`}
                                     unit={chartConfig[activeChart].unit}
+                                    
                                 />
                                 <ChartTooltip content={<ChartTooltipContent />} />
 
@@ -197,7 +198,7 @@ export function VariatorsCharts({ data }: DataChartProps) {
                                 }}
                             >
                                 <CartesianGrid vertical={false} />
-                                <XAxis dataKey="time" />
+                                <XAxis dataKey="time" tickFormatter={(value) =>(value.slice(0, 5))}/>
                                 <YAxis
                                     yAxisId="left"
                                     orientation="left"

@@ -13,7 +13,7 @@ import { useInitialHistoricalData } from '@/hooks/useInitialHistoricalData';
 import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useHistoricalStore } from '@/store/plots';
 import { SCIAllCharts } from '../../Plot/sci/SCIAllCharts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
 
 export default function SCIContent({ contentData }: { contentData: AreaData }) {
@@ -23,12 +23,18 @@ export default function SCIContent({ contentData }: { contentData: AreaData }) {
   const topic = TOPICS[contentData.topickey]
   useTopicsSubcriptions(topic)
   let plotData: SCISimplifiedType[][] = []
-  const { data: h_data, error: h_error, isLoading: h_isLoading } = useQuery<SCISimplifiedType[][], Error>({
+  const { data: h_data, error: h_error, isLoading: h_isLoading, refetch: h_refetch } = useQuery<SCISimplifiedType[][], Error>({
     queryKey: ['getHistoricoSCIAction'], queryFn: () =>
       getHistoricoSCIAction(intervalo),
     staleTime: Infinity, // Los datos permanecen frescos indefinidamente 
     refetchOnMount: false, // No refetch al montar el componente refetchOnWindowFocus: false, });
   })
+
+  useEffect(() => {
+    if (intervalo) {
+      h_refetch(); // Refetch solo si intervalo tiene un valor
+    }
+  }, [intervalo]);
 
   const { data, error, isLoading } = useQuery<SCIType, Error>({
     queryKey: ['getSCIAction'], queryFn: () =>

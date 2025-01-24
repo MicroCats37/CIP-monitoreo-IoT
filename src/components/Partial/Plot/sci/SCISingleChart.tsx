@@ -47,7 +47,7 @@ export function SCISingleChart({ sensorData, sensorKey, title, color, unit }: Si
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="time" />
+            <XAxis dataKey="time" tickFormatter={(value) =>(value.slice(0, 5))}/>
             <YAxis domain={["auto", "auto"]} tickFormatter={(value) => `${value}${unit}`} />
             <ChartTooltip
               cursor={false}

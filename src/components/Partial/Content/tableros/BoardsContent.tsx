@@ -10,7 +10,7 @@ import { TOPICS } from '@/mqtt/topics/topics.data';
 import { getTableroAction } from '@/influxDB/actions/TablerosAction';
 import { getHistoricoTablerosAction } from '@/influxDB/actions-plots/HistoricoTablerosActions';
 import { useHistoricalStore } from '@/store/plots';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useInitialHistoricalData } from '@/hooks/useInitialHistoricalData';
 import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useShallow } from 'zustand/react/shallow'
@@ -24,12 +24,19 @@ export default function BoardsContent({ contentData }: { contentData: AreaData }
   let plotData: BoardType[][] = []
   useTopicsSubcriptions(topic)
 
-  const { data: h_data, error: h_error, isLoading: h_isLoading } = useQuery<BoardType[][], Error>({
+  const { data: h_data, error: h_error, isLoading: h_isLoading, refetch: h_refetch } = useQuery<BoardType[][], Error>({
     queryKey: ['getHistoricoTablerosAction'],
     queryFn: () => getHistoricoTablerosAction(intervalo),
     staleTime: Infinity,
     refetchOnMount: false,
   });
+
+
+  useEffect(() => {
+    if (intervalo) {
+      h_refetch(); // Refetch solo si intervalo tiene un valor
+    }
+  }, [intervalo]);
 
   const { data, error, isLoading } = useQuery<BoardType[], Error>({
     queryKey: ['getTableroAction'], queryFn: () =>

@@ -14,7 +14,7 @@ import { useHistoricalData } from "@/hooks/useHistorialData";
 import { useHistoricalStore } from "@/store/plots";
 import { WaterPumpCharts } from "../../Plot/bombas/WaterPumpCharts";
 import { ButtonFechingDate } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 export default function WaterPumpContent({ contentData }: { contentData: AreaData }) {
@@ -25,12 +25,18 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
   let plotData: WaterPumpType[][] = []
   useTopicsSubcriptions(topic)
 
-  const { data: h_data, error: h_error, isLoading: h_isLoading } = useQuery<WaterPumpType[][], Error>({
+  const { data: h_data, error: h_error, isLoading: h_isLoading, refetch: h_refetch } = useQuery<WaterPumpType[][], Error>({
     queryKey: ['getBombasHistoricoAction', id],
-    queryFn: () => getBombasHistoricoAction(id,intervalo),
+    queryFn: () => getBombasHistoricoAction(id, intervalo),
     staleTime: Infinity,
     refetchOnMount: false,
   });
+
+  useEffect(() => {
+    if (intervalo) {
+      h_refetch(); // Refetch solo si intervalo tiene un valor
+    }
+  }, [intervalo]);
 
   const { data, error, isLoading } = useQuery<WaterPumpType[], Error>({
     queryKey: ['getBombasAction', id],
@@ -53,9 +59,6 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
   if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (
     <div className="w-full h-full m-auto">
-
-
-
       <div className='w-full flex-col items-center justify-center pb-4 gap-4 space-y-4'>
         <ButtonFechingDate setIntervalo={setIntervalo} intervalo={intervalo}></ButtonFechingDate>
         <div className='w-full h-full flex-col space-y-4 items-center justify-center'>

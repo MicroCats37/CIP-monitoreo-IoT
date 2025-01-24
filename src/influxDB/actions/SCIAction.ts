@@ -7,7 +7,7 @@ import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
 export const getAlarmsData = async (): Promise<SCIType> => {
   const fluxQuery = `
   from(bucket: "Sistema Contra Incendios")
-  |> range(start: -30m)
+  |> range(start: -30d)
   |> filter(fn: (r) => r["_measurement"] == "SCI")
   |> filter(fn: (r) =>
       r["_field"] == "voltage" or

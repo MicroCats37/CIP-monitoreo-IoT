@@ -28,7 +28,7 @@ export function WaterPumpChart({ pumpData, color }: SinglePumpChartProps) {
   return (
     <Card className="w-full">
       <CardHeader>
-        <CardTitle>Pump {pumpData[0].data.bomba} Status</CardTitle>
+        <CardTitle>Bomba {pumpData[0].data.bomba} Estado</CardTitle>
       </CardHeader>
       <CardContent>
         <ChartContainer
@@ -47,18 +47,18 @@ export function WaterPumpChart({ pumpData, color }: SinglePumpChartProps) {
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="time" />
+            <XAxis dataKey="time" tickFormatter={(value) =>(value.slice(0, 5))}/>
             <YAxis domain={[0, 1]} ticks={[0, 1]} tickFormatter={(value) => (value === 1 ? "On" : "Off")} />
             <ChartTooltip content={<ChartTooltipContent
-                    labelFormatter={(value) => {
-                      return value
-                    }}
-                    formatter={(value) => [`Bomba ${pumpData[0].data.bomba} `, value === 1 ? "Encendida" : "Apagada"]}
-                    indicator="dot"
-                  />} />
+              labelFormatter={(value) => {
+                return value
+              }}
+              formatter={(value) => [`Bomba ${pumpData[0].data.bomba} `, value === 1 ? "Encendida" : "Apagada"]}
+              indicator="dot"
+            />} />
             <Area type="stepAfter" dataKey="estado" stroke={color} dot={false} fill={`${color}`}
-                  
-                  fillOpacity={0.3}/>
+
+              fillOpacity={0.3} />
           </AreaChart>
         </ChartContainer>
       </CardContent>
