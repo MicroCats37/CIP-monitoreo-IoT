@@ -1,0 +1,48 @@
+"use server";
+import { SCISimplifiedType } from "@/types";
+import { queryApi } from "../influxConfig";
+import { ArrayHistoricalSCITypeSchema } from "@/validators/schemas";
+import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+
+
+
+export const getHistoricoSCI = async (time:string): Promise<SCISimplifiedType[][]> => {
+  const fluxQuery = `
+  from(bucket: "Sistema Contra Incendios")
+  |> range(start: -${time})
+  |> filter(fn: (r) => r["_measurement"] == "SCI")
+  |> filter(fn: (r) =>
+      r["_field"] == "voltage" or
+      r["_field"] == "current" or
+      r["_field"] == "frequency" or
+      r["_field"] == "custom_locked_rotor_current")
+  |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+  |> sort(columns: ["_time"], desc: false)
+`;
+
+
+  const historicalData: SCISimplifiedType[][] = []; // Array para almacenar el histórico.
+
+  for await (const { values, tableMeta } of queryApi.iterateRows(fluxQuery)) {
+    const record = tableMeta.toObject(values);
+
+    historicalData.push([{
+      // Asignar timestamp al registro.
+      data: {
+        voltage: record.voltage,
+        current: record.current,
+        frequency: record.frequency,
+        custom_locked_rotor_current: record.custom_locked_rotor_current,
+      },
+      time: record._time, 
+    }]);
+  }
+
+  return historicalData; // Devolver el histórico completo.
+};
+
+export const getHistoricoSCIAction= async (time:string): Promise<SCISimplifiedType[][]> => {
+  return fetchDataAction(() => getHistoricoSCI(time), ArrayHistoricalSCITypeSchema);
+};
+
+

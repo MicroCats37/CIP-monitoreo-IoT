@@ -3,7 +3,6 @@ import './GridSotanos.css'
 
 import CartState from './CarState'
 import { useMqttStore } from '@/mqtt/store/mqttStore'
-import { getParkingData } from '@/utils/callsApi/apiCalls'
 import { ParkingType, SotanosStateDataType } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { SotanoImage } from './SotanoImage'
@@ -16,6 +15,7 @@ import { EstadoEstacionamiento, TableItemCars } from './TableItemCars'
 import { useResponseData } from '@/hooks/useResponseData'
 import { useTopicsSubcriptions } from '@/mqtt/topics/useTopicsSubscriptions'
 import { TOPICS } from '@/mqtt/topics/topics.data'
+import { getSotanoAction } from '@/influxDB/actions/EstacionamientoAction'
 
 
 export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDataType }) {
@@ -28,16 +28,16 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
 
 
   const { data: data_a, error: error_a, isLoading: isLoading_a } = useQuery<ParkingType, Error>({
-    queryKey: ['getParkingData', `${id}a`], queryFn: () =>
-      getParkingData(`${id}a`),
-    staleTime: 0, // Los datos permanecen frescos indefinidamente 
+    queryKey: ['getSotanoAction', `${id}a`], queryFn: () =>
+      getSotanoAction(`${id}a`),
+    staleTime: 30000, // Los datos permanecen frescos indefinidamente 
     refetchOnMount: false, // No refetch al montar el componente refetchOnWindowFocus: false, });
   })
 
   const { data: data_b, error: error_b, isLoading: isLoading_b } = useQuery<ParkingType, Error>({
-    queryKey: ['getParkingData', `${id}b`], queryFn: () =>
-      getParkingData(`${id}b`),
-    staleTime: 0, // Los datos permanecen frescos indefinidamente 
+    queryKey: ['getSotanoAction', `${id}b`], queryFn: () =>
+      getSotanoAction(`${id}b`),
+    staleTime: 30000, // Los datos permanecen frescos indefinidamente 
     refetchOnMount: false, // No refetch al montar el componente refetchOnWindowFocus: false, });
   })
 

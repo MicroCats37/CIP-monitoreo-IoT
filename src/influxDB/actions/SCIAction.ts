@@ -46,9 +46,8 @@ export const getAlarmsData = async (): Promise<SCIType> => {
       r["_field"] == "high_ambient_temperature_internal_sensor" or
       r["_field"] == "control_voltage_not_healthy" or
       r["_field"] == "soft_starter_fault")
-  |> aggregateWindow(every: 3s, fn: last, createEmpty: false)
+  |> last()
   |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
-  |> limit(n:1)
 `;
 
   const rows: SCIType = {
@@ -105,6 +104,55 @@ export const getAlarmsData = async (): Promise<SCIType> => {
   return rows; // Devuelve los datos procesados.
 };
 
-export const getSCIAction= async (): Promise<SCIType> => {
-  return fetchDataAction(() => getAlarmsData (), SCITypeSchema);
+export const getSCIAction = async (): Promise<SCIType> => {
+  return fetchDataAction(() => getAlarmsData(), SCITypeSchema);
 };
+
+
+/*
+const fluxQuery = 
+  from(bucket: "Sistema Contra Incendios")
+  |> range(start: -30m)
+  |> filter(fn: (r) => r["_measurement"] == "SCI")
+  |> filter(fn: (r) =>
+      r["_field"] == "voltage" or
+      r["_field"] == "current" or
+      r["_field"] == "frequency" or
+      r["_field"] == "custom_locked_rotor_current" or
+      r["_field"] == "normal_phase_reserval" or
+      r["_field"] == "phase_loss_l1" or
+      r["_field"] == "phase_loss_l2" or
+      r["_field"] == "phase_loss_l3" or
+      r["_field"] == "lock_rotor_current" or
+      r["_field"] == "fail_to_start" or
+      r["_field"] == "transfer_switch_trouble" or
+      r["_field"] == "power_loss" or
+      r["_field"] == "service_required" or
+      r["_field"] == "undercurrent" or
+      r["_field"] == "overcurrent" or
+      r["_field"] == "undervoltage" or
+      r["_field"] == "overvoltage" or
+      r["_field"] == "phase_unbalanced" or
+      r["_field"] == "weekly_test_cut_in_not_reached" or
+      r["_field"] == "weekly_test_check_solenoid_valve" or
+      r["_field"] == "faulty_pressure_transducer" or
+      r["_field"] == "overpressure" or
+      r["_field"] == "underpressure" or
+      r["_field"] == "low_suction_pressure" or
+      r["_field"] == "flow_start" or
+      r["_field"] == "alternate_phase_reversal" or
+      r["_field"] == "alternate_isolating_switch_open" or
+      r["_field"] == "alternate_circuit_breaker_tripped" or
+      r["_field"] == "io_electric_board_communication_loss" or
+      r["_field"] == "io_transfer_switch_board_comm_loss" or
+      r["_field"] == "weekly_test_required" or
+      r["_field"] == "alternate_lock_rotor_current" or
+      r["_field"] == "low_ambient_temperature_internal_sensor" or
+      r["_field"] == "high_ambient_temperature_internal_sensor" or
+      r["_field"] == "control_voltage_not_healthy" or
+      r["_field"] == "soft_starter_fault")
+  |> aggregateWindow(every: 3s, fn: last, createEmpty: false)
+  |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+  |> limit(n:1)
+;
+*/

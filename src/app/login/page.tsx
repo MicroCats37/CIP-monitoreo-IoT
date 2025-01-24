@@ -1,36 +1,42 @@
-'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { useForm } from 'react-hook-form'
+'use client'
+import { useForm } from "react-hook-form"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 
 type FormData = {
-  email: string;
-  password: string;
+  email: string
+  password: string
 }
 
-export default function LoginPage() {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
-  const [error, setError] = useState('')
+export default function Page() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>()
+  const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
   const onSubmit = async (data: FormData) => {
     setIsLoading(true)
-    setError('')
+    setError("")
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000))
-      
-      if (data.email === 'pedro@cip.com.pe' && data.password === 'admin') {
-        router.push('/sistema-contra-incendios')
+      await new Promise((resolve) => setTimeout(resolve, 1))
+
+      if (data.email === "pedro@cip.com.pe" && data.password === "admin") {
+        router.push("/sistema-contra-incendios")
       } else {
-        setError('Credenciales inválidas. Por favor, intente de nuevo.')
+        setError("Credenciales inválidas. Por favor, intente de nuevo.")
       }
 
       // Aquí iría la llamada real a tu API de backend
@@ -46,52 +52,58 @@ export default function LoginPage() {
       //   setError(responseData.message || 'Error de autenticación')
       // }
     } catch (err) {
-      setError('Ocurrió un error al intentar iniciar sesión. Por favor, intente más tarde.')
+      setError("Ocurrió un error al intentar iniciar sesión. Por favor, intente más tarde.")
     } finally {
       setIsLoading(false)
     }
   }
 
   return (
-    <div className="flex w-full h-full items-center justify-center min-h-screen bg-gray-100">
-      <Card className="w-[350px]">
-        <CardHeader>
-          <CardTitle>Iniciar Sesión</CardTitle>
-          <CardDescription>Ingrese sus credenciales de empresa para acceder.</CardDescription>
+    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-red-900 via-red-600 to-yellow-500 p-4 relative overflow-hidden">
+      {/* Círculo decorativo */}
+      <div className="absolute top-[-50%] left-[-25%] w-[150%] h-[150%] bg-yellow-400 rounded-full opacity-20 z-0"></div>
+
+      <Card className="w-full max-w-md bg-white shadow-2xl relative z-10">
+        <CardHeader className="pb-8 pt-6">
+          <div className="flex justify-center mb-4">
+          <Avatar>
+              <AvatarImage
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtlBG0gTCz0ut6KaTl1E6aKFoVRXGkvW173A&s"
+                alt="Colegio de Ingenieros del Perú Logo"
+                className="rounded-full border-4 border-red-700 w-[200px]"
+              />
+              </Avatar>
+          </div>
+          <CardTitle className="text-2xl font-bold text-center text-red-700">Colegio de Ingenieros del Perú</CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="email">Correo electrónico</Label>
-                <Input 
-                  id="email" 
-                  placeholder="nombre@empresa.com" 
-                  className="placeholder-opacity-10 placeholder-gray-500 border border-gray-300 rounded px-2 py-1"
-                  {...register("email", { 
-                    required: "El correo electrónico es requerido",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Dirección de correo inválida"
-                    }
-                  })}
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email" className="text-sm font-medium text-gray-700">
+                  Correo Electrónico
+                </Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder=".....@cip.com.pe"
+                  {...register("email", { required: "El correo electrónico es requerido" })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                 />
-                {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+                {errors.email && <p className="text-red-500 text-xs italic">{errors.email.message}</p>}
               </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="password">Contraseña</Label>
-                <Input 
-                  id="password" 
+              <div className="space-y-2">
+                <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+                  Contraseña
+                </Label>
+                <Input
+                  id="password"
                   type="password"
-                  {...register("password", { 
-                    required: "La contraseña es requerida",
-                    minLength: {
-                      value: 4,
-                      message: "La contraseña debe tener al menos 4 caracteres"
-                    }
-                  })}
+                  placeholder="••••••••"
+                  {...register("password", { required: "La contraseña es requerida" })}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                 />
-                {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
+                {errors.password && <p className="text-red-500 text-xs italic">{errors.password.message}</p>}
               </div>
             </div>
             {error && (
@@ -99,12 +111,22 @@ export default function LoginPage() {
                 <AlertDescription>{error}</AlertDescription>
               </Alert>
             )}
-            <Button className="w-full mt-4" type="submit" disabled={isLoading}>
-              {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
+            <Button
+              type="submit"
+              className="w-full mt-6 bg-gradient-to-r from-red-900 via-red-600 to-yellow-500 hover:from-red-800 hover:via-red-700 hover:to-yellow-600 text-white transition-all duration-300"
+              disabled={isLoading}
+            >
+              {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
             </Button>
           </form>
         </CardContent>
+        <CardFooter className="flex justify-center">
+          <a href="#" className="text-sm text-red-700 hover:text-yellow-500 transition-colors duration-300">
+            ¿Olvidaste tu contraseña?
+          </a>
+        </CardFooter>
       </Card>
     </div>
   )
 }
+

@@ -28,7 +28,8 @@ export default function SCICard({ data }: { data: SCIType }) {
   )
 
   return (
-    <Card className="flex-col h-full w-full bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
+  <div className="flex-col w-full">
+  <Card className="flex flex-col w-full bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 lg:flex-1">
       <CardHeader className="w-full ">
         <CardTitle className="flex items-center justify-between text-xl sm:text-2xl">
           <span className="mr-2">Sistema Contra Incendios</span>
@@ -93,6 +94,9 @@ export default function SCICard({ data }: { data: SCIType }) {
         </div>
       </CardContent>
     </Card>
+    
+  </div>
+    
   )
 }
 

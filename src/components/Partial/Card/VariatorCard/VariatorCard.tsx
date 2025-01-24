@@ -23,7 +23,7 @@ export default function VariatorCard({ data }: { data: VariatorProps }) {
   }
 
   return (
-    <div className="flex flex-wrap gap-4 flex-col sm:flex-row">
+    <div className="flex flex-wrap gap-4 flex-col lg:flex-row pb-4 lg:pb-0">
       {data.map((pump, index: number) => (
         <Card key={index} className="flex-1 w-full bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20">
           <CardHeader className="pb-2">

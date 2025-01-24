@@ -14,7 +14,6 @@ export const useResponseData = (
   data: MqttMessageType | undefined
 ) => {
   const setSubsData = useMqttStore((state) => state.setSubsData);
-
   useEffect(() => {
     if (error) {
       toast.error(`${error}`);

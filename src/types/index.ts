@@ -15,6 +15,13 @@ export interface SotanosStateDataType {
   }[]
 } 
 
+export interface PlotDataType{
+  data:{
+    [key: string]: number | boolean | string
+  },
+  time:string
+}
+
 export interface AreaKeyDataType {
   [area: string]: AreaData | { [param: string]: AreaData };
 }
@@ -45,6 +52,13 @@ export type SCIDataType = z.infer<typeof SCIDataTypeSchema>
 
 // Generar la interfaz o tipo a partir del esquema Zod
 export type AirConditioningType = z.infer<typeof AirConditioningTypeSchema>;
+
+export type SCISimplifiedType = {
+  time: SCIType["time"];  // Asignar el tipo directamente a `time`
+  data: Pick<SCIType["data"], "voltage" | "current" | "frequency" | "custom_locked_rotor_current">; // Seleccionar solo las propiedades necesarias de `data`
+};
+
+
 
 
 

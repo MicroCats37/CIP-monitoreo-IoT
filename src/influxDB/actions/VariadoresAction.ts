@@ -46,5 +46,5 @@ export const getVariadoresDatos = async (variador: string): Promise<VariatorsTyp
 };
 
 export const getVariadoresAction = async (variador: string): Promise<VariatorsType[]> => {
-  return fetchDataAction(() => getVariadoresAction(variador), ArrayVariatorsTypeSchema);
+  return fetchDataAction(() => getVariadoresDatos(variador), ArrayVariatorsTypeSchema);
 };

@@ -21,7 +21,7 @@ export default function GeneralLayout({
         <SidebarTrigger className=" fixed z-[10] scale-150 bottom-0 right-0 mb-6 mr-6 bg-slate-300 bg-opacity-15 p-4 rounded-full lg:bottom-auto lg:right-auto lg:m-0 lg:scale-100 lg:bg-[--tw-bg-opacity] lg:p-0 shadow-lg" />
         <main className="w-full h-full">
           <div className="w-full h-full p-4">
-          <Toaster expand visibleToasts={1} position="top-right" />
+          <Toaster expand visibleToasts={3} position="top-right" />
           {children}
           </div> 
         </main>

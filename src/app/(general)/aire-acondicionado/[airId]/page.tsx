@@ -17,7 +17,7 @@ export default function WaterPump({ params }: Props)  {
     }
     const data = (AreasData['Aire Acondicionado'] as { [param: string]: AreaData })[airId];
     return(
-      
+
         <div className="flex w-full h-full justify-center items-center">
               <AirConditioningContent contentData={data}></AirConditioningContent>
         </div>

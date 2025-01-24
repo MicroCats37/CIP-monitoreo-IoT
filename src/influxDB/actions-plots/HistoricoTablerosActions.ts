@@ -1,0 +1,46 @@
+"use server";
+import { queryApi } from "@/influxDB/influxConfig"; // Ajusta la ruta a tu cliente de InfluxDB
+import { BoardType } from "@/types";
+import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { ArrayHistoricalBoardTypeSchema } from "@/validators/schemas";
+
+
+export const getHistoricoTableros = async (time:string): Promise<BoardType[][]> => {
+  const fluxQuery = `
+    from(bucket: "Tableros de Energia")
+    |> range(start: -${time}) // Historial de la última hora
+    |> filter(fn: (r) => r["_measurement"] == "Potencias")
+    |> filter(fn: (r) => r["_field"] == "value")
+    |> group(columns: ["potencia"])  // Agrupa por tablero
+    |> sort(columns: ["_time"], desc: false) // Orden cronológico ascendente
+  `;
+
+  // Objeto para agrupar los tableros por nombre
+  const boards: { [key: string]: BoardType[] } = {};
+
+  for await (const { values, tableMeta } of queryApi.iterateRows(fluxQuery)) {
+    const record = tableMeta.toObject(values);
+    const boardName = record.potencia; // Nombre del tablero
+
+    // Inicializa el array del tablero si no existe
+    if (!boards[boardName]) {
+      boards[boardName] = [];
+    }
+
+    // Agrega el registro al historial de ese tablero
+    boards[boardName].push({
+      data: {
+        potencia: boardName,
+        value: record._value,
+      },
+      time: record._time, // Marca de tiempo del estado
+    });
+  }
+
+  // Convierte el objeto agrupado en un array de arrays
+  return Object.values(boards);
+};
+
+export const getHistoricoTablerosAction = async (time:string): Promise<BoardType[][]> => {
+  return fetchDataAction(() => getHistoricoTableros(time), ArrayHistoricalBoardTypeSchema);
+};

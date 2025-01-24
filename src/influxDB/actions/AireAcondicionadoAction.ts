@@ -4,7 +4,7 @@ import { queryApi } from "../influxConfig";
 import { AirConditioningTypeSchema } from "@/validators/schemas";
 import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
 
-export const getAireAcondicionadoDatosAction = async (port: string): Promise<AirConditioningType> => {
+export const getAireAcondicionadoDatos = async (port: string): Promise<AirConditioningType> => {
     const fluxQuery = `
     from(bucket: "Aire Acondicionado")
     |> range(start: -30m)
@@ -21,6 +21,7 @@ export const getAireAcondicionadoDatosAction = async (port: string): Promise<Air
     |> sort(columns: ["_time"], desc: true)
     |> limit(n: 1)
 `;
+
 
 
     const rows: AirConditioningType = {
@@ -42,21 +43,20 @@ export const getAireAcondicionadoDatosAction = async (port: string): Promise<Air
             id: record.id,
             alarm: record.alarm.toString(), // Si no hay alarm, usar 0 como valor por defecto
             status: record.status,
-            temperature_setting:  record.temperature_setting,
-            temperature_indoor:  record.temperature_indoor ,
+            temperature_setting: record.temperature_setting,
+            temperature_indoor: record.temperature_indoor,
         });
     }
-
     // Verificar si se obtuvieron datos; si no, lanzar error
     if (rows.data.length === 0) {
         throw new Error(`No se encontraron datos en InfluxDB para el puerto ${port}.`);
     }
-
+    
     return rows;
 };
 
 //mejorar el mensaje de error para este query ya qeu no te devuelve el array inicail cuando no hay nada solo te da un un erro al ingresar a la base ed datos
 
 export const getAireAcondicionadoAction = async (air: string): Promise<AirConditioningType> => {
-  return fetchDataAction(() => getAireAcondicionadoAction(air), AirConditioningTypeSchema);
+    return fetchDataAction(() => getAireAcondicionadoDatos(air=='1' ? '55':'56'), AirConditioningTypeSchema);
 };

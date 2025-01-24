@@ -28,6 +28,8 @@ export const BoardTypeSchema = z.object({
   time: z.string(), // Descomentar si decides usar el campo 'time'
 });
 
+
+
 export const VariatorsTypeSchema = z.object({
   data: z.object({
     bomba: z.string(),  // Nombre de la bomba (Q01, Q02, etc.)
@@ -41,6 +43,8 @@ export const VariatorsTypeSchema = z.object({
   }),
   time: z.string(),
 });
+
+
 
 export const SCIDataTypeSchema = z.object({
 
@@ -82,11 +86,15 @@ export const SCIDataTypeSchema = z.object({
   soft_starter_fault: z.boolean(),
 });
 
+
+
 export const SCITypeSchema = z.object({
   data: SCIDataTypeSchema,
   time: z.string(),
 });
 
+
+//export const ArrayHistoricalSCITypeSchema = z.array(z.array(SCITypeSchema))
 
 
 // Definir el esquema Zod
@@ -116,6 +124,8 @@ export const ArrayWaterPumpTypeSchema = z.array(z.object({
   time: z.string(), // Descomentar si decides usar el campo 'time'
 }));
 
+export const ArrayHistoricalWaterPumpTypeSchema = z.array(ArrayWaterPumpTypeSchema);
+
 export const ArrayBoardTypeSchema = z.array(z.object({
   data: z.object({
     potencia: z.string(),
@@ -124,6 +134,7 @@ export const ArrayBoardTypeSchema = z.array(z.object({
   time: z.string(), // Descomentar si decides usar el campo 'time'
 }));
 
+export const ArrayHistoricalBoardTypeSchema = z.array(ArrayBoardTypeSchema)
 
 export const ArrayVariatorsTypeSchema = z.array(z.object({
   data: z.object({
@@ -138,3 +149,20 @@ export const ArrayVariatorsTypeSchema = z.array(z.object({
   }),
   time: z.string(),
 }));
+
+export const ArrayHistoricalVariatorsTypeSchema = z.array(ArrayVariatorsTypeSchema)
+
+
+export const SCISimplifiedTypeSchema = z.object({
+  time: z.string(),
+  data: z.object({
+    voltage: z.number(),
+    current: z.number(),
+    frequency: z.number(),
+    custom_locked_rotor_current: z.number(),
+  }),
+});
+
+export const ArrayHistoricalSCITypeSchema = z.array(
+  z.array(SCISimplifiedTypeSchema)
+);

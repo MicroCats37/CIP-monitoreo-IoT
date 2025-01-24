@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import {
   Card,
   CardContent,
@@ -11,9 +11,14 @@ import { Input } from "@/components/ui/input"
 import { AirConditioningType } from '@/types'
 import { Wind, Thermometer, Bell, Power, ArrowUp, ArrowDown, Search } from 'lucide-react'
 import { cn } from "@/lib/utils"
+import {FilterStatus } from '@/components/Custom/FilterAir/FilterMenu'
+import { FilterDialog } from '@/components/Custom/FilterAir/FilterDialog'
 
 export default function AirConditioningCard({ data }: { data: AirConditioningType }) {
   const [searchTerm, setSearchTerm] = useState('')
+  const [filterStatus, setFilterStatus] = useState<FilterStatus>('all')
+  const [minIndoorTemp, setMinIndoorTemp] = useState(0)
+  const [minSettingTemp, setMinSettingTemp] = useState(0)
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -30,38 +35,60 @@ export default function AirConditioningCard({ data }: { data: AirConditioningTyp
     return alarmCount > 0 ? "text-red-500" : "text-green-500"
   }
 
-  const filteredData = data.data.filter(air => 
-    air.alias.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  const filteredAndSortedData = useMemo(() => {
+    return data.data
+      .filter(air =>
+        air.alias.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (filterStatus === 'all' ||
+          (filterStatus === 'on' && air.status === 'run') ||
+          (filterStatus === 'off' && air.status === 'stop')) &&
+        air.temperature_indoor >= minIndoorTemp &&
+        air.temperature_setting >= minSettingTemp
+      )
+      .sort((a, b) => parseInt(a.id) - parseInt(b.id));
+  }, [data.data, searchTerm, filterStatus, minIndoorTemp, minSettingTemp]);
 
   return (
     <div className="w-full flex-col">
-      <div className="w-full flex items-center space-x-2">
-        <Search className="text-gray-400" />
-        <Input
-          type="text"
-          placeholder="Buscar por alias..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="max-w-sm"
-        />
-        <p className="text-sm text-muted-foreground">
+      <div className="w-full flex items-center flex-wrap gap-4">
+        <div className='flex items-center gap-4 flex-1 min-w-72'>
+          <Search className="text-gray-400" />
+          <Input
+            type="text"
+            placeholder="Buscar por alias..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="max-w-sm"
+          />
+
+        </div>
+
+        <p className="text-sm text-muted-foreground text-center my-auto">
           Última actualización: {new Date(data.time!).toLocaleString()}
         </p>
+        <FilterDialog
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          minIndoorTemp={minIndoorTemp}
+          setMinIndoorTemp={setMinIndoorTemp}
+          minSettingTemp={minSettingTemp}
+          setMinSettingTemp={setMinSettingTemp}
+        />
+
       </div>
       <div className='w-full h-4'></div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {filteredData.map((air, index: number) => (
+        {filteredAndSortedData.map((air, index: number) => (
           <Card key={index} className="flex flex-col bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 transition-all duration-300 hover:shadow-lg">
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <span className="text-lg font-bold">{air.alias}</span>
-                <Badge 
+                <Badge
                   variant="default"
                   className={cn("flex items-center space-x-1 text-white", getStatusColor(air.status))}
                 >
                   <Power size={14} />
-                  <span>{air.status}</span>
+                  <span>{air.status === 'run' ? 'on' : 'off'}</span>
                 </Badge>
               </CardTitle>
               <CardDescription className="text-sm font-medium">{air.unit_name}</CardDescription>

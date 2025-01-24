@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils"
 
 export default function PumpCard({ data }: { data: PumpCardProps }) {
   return (
-    <div className="flex gap-4 w-full flex-col sm:flex-row">
+    <div className="flex gap-4 w-full flex-col lg:flex-row">
       {data.map((pump, index: number) => (
         <Card key={index} className={cn(
           "w-full transition-all duration-300",
