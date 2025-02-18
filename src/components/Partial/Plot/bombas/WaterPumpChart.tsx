@@ -22,7 +22,7 @@ interface SinglePumpChartProps {
 export function WaterPumpChart({ pumpData, color }: SinglePumpChartProps) {
   const formattedData = pumpData.map((status) => ({
     time: formatTime(status.time),
-    estado: status.data.estado ? 1 : 0,
+    estado: status.data.estado
   }))
 
   return (

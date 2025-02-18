@@ -15,6 +15,8 @@ import { useHistoricalStore } from '@/store/plots';
 import { SCIAllCharts } from '../../Plot/sci/SCIAllCharts';
 import { useEffect, useState } from 'react';
 import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
+import { CSIMultipleChartFormatted } from './SCIFormattedDataPlot';
+import { MultipleSingleCharts } from '../../Plot/general/MultipleSingleCharts';
 
 export default function SCIContent({ contentData }: { contentData: AreaData }) {
 
@@ -57,6 +59,7 @@ export default function SCIContent({ contentData }: { contentData: AreaData }) {
   } : undefined;
   useHistoricalData(simplifiedData ? [simplifiedData as SCISimplifiedType] : undefined, topic)
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as SCISimplifiedType[][];
+  const { chartDataM, chartConfigM} = CSIMultipleChartFormatted(plotData)
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (
@@ -70,9 +73,7 @@ export default function SCIContent({ contentData }: { contentData: AreaData }) {
               <SCICard data={SCIData}></SCICard>
             ) : (<div>Error</div>)
           }
-          {
-            plotData && <SCIAllCharts data={plotData}></SCIAllCharts>
-          }
+          {chartDataM && chartDataM.length>=0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
 
         </div>
 

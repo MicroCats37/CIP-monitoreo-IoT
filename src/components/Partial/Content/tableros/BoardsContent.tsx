@@ -16,6 +16,8 @@ import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useShallow } from 'zustand/react/shallow'
 import { BoardCharts } from '../../Plot/tableros/BoardCharts';
 import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
+import { BoardMultipleChartFormatted } from './BoardFormattedDataPlot';
+import { MultipleSingleCharts } from '../../Plot/general/MultipleSingleCharts';
 export default function BoardsContent({ contentData }: { contentData: AreaData }) {
   const [intervalo, setIntervalo] = useState<string>("30m");
 
@@ -51,6 +53,7 @@ export default function BoardsContent({ contentData }: { contentData: AreaData }
   const BoardsData = useMqttStore((state) => state.subsData[topic]) as BoardType[];
   useHistoricalData(BoardsData, topic, 'potencia')
   plotData = useHistoricalStore(useShallow((state) => state.historicalData[topic])) as BoardType[][];
+  const { chartDataM, chartConfigM} = BoardMultipleChartFormatted(plotData)
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (
@@ -64,7 +67,7 @@ export default function BoardsContent({ contentData }: { contentData: AreaData }
             )
             : (<div>Error</div>)
           }
-          {plotData && <BoardCharts powerData={plotData} />}
+          {chartDataM && chartDataM.length>=0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
         </div>
       </div>
     </div>

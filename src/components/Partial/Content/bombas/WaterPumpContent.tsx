@@ -1,7 +1,7 @@
 'use client'
 import PumpCard from "@/components/Partial/Card/PumpCard/PumpCard";
 import { useMqttStore } from "@/mqtt/store/mqttStore";
-import { AreaData, WaterPumpType } from "@/types";
+import { AreaData, DataPlotStaked, WaterPumpType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { useResponseData } from "@/hooks/useResponseData";
 import { useTopicsSubcriptions } from "@/mqtt/topics/useTopicsSubscriptions";
@@ -15,6 +15,11 @@ import { useHistoricalStore } from "@/store/plots";
 import { WaterPumpCharts } from "../../Plot/bombas/WaterPumpCharts";
 import { ButtonFechingDate } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
 import { useEffect, useState } from "react";
+
+import { StakedSingleChart } from "../../Plot/general/StackedSingleChart";
+import { MultipleSingleCharts } from "../../Plot/general/MultipleSingleCharts";
+import { DataPlotFormatted, WaterPumpMultipleChartFormatted } from "./WaterPumpFormattedDataPlot";
+
 
 
 export default function WaterPumpContent({ contentData }: { contentData: AreaData }) {
@@ -53,8 +58,9 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
   const WaterPumpData = useMqttStore((state) => state.subsData[topic]) as WaterPumpType[];
   useHistoricalData(WaterPumpData, topic, 'bomba')
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as WaterPumpType[][];
-
-
+  const { chartData, chartConfig, YAxisFormatter} = DataPlotFormatted(plotData)
+  const { chartDataM, chartConfigM, YAxisFormatterM} = WaterPumpMultipleChartFormatted(plotData)
+  console.log(chartDataM)
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
   return (
@@ -68,11 +74,8 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
               <PumpCard data={WaterPumpData}></PumpCard>
             ) : (<div>Error</div>)
           }
-
-          {plotData && (<PumpPlots pumpData={plotData} />)}
-          {plotData && (<WaterPumpCharts pumpData={plotData} />)}
-
-
+          {chartData.length>=0 && <StakedSingleChart YAxisFormatter={YAxisFormatter} chartData={chartData} chartConfig={chartConfig} plotType="linear"></StakedSingleChart>}
+          {chartDataM && chartDataM.length>=0 && <MultipleSingleCharts YAxisFormatter={YAxisFormatterM} chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
         </div>
 
       </div>

@@ -58,7 +58,6 @@ export default function PumpPlots({ pumpData }: PumpStateChartProps) {
       ]),
     ),
   }
-
   return (
     <div className="flex w-full">
       <Card className="w-full">

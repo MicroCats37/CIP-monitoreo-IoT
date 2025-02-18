@@ -16,6 +16,9 @@ import { useHistoricalStore } from '@/store/plots';
 import { VariatorAllCharts } from '../../Plot/variadores/VariatorAllCharts';
 import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
 import { useEffect, useState } from 'react';
+import { VariatorMultipleChartFormatted } from './VariatorsFormattedDataPlot';
+import { SelectorInteractiveCharts } from '../../Plot/general/SelectorInteractiveCharts';
+import { MultipleSelectorInteractiveCharts } from '../../Plot/general/MultipleSelectorInteractiveCharts';
 
 export default function VariatorsContent({ contentData }: { contentData: AreaData }) {
 
@@ -51,7 +54,6 @@ export default function VariatorsContent({ contentData }: { contentData: AreaDat
   useResponseData(topic, error, data);
   const VariatorData = useMqttStore((state) => state.subsData[topic]) as VariatorsType[];
   useHistoricalData(VariatorData, topic, 'bomba')
-
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as VariatorsType[][];
   if (isLoading) return <div>Cargando...</div>;
   if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
@@ -67,11 +69,10 @@ export default function VariatorsContent({ contentData }: { contentData: AreaDat
             ) : (<div>Error</div>)
           }
 
-          {<VariatorAllCharts data={plotData}></VariatorAllCharts>}
-
-
+          { plotData &&
+            <MultipleSelectorInteractiveCharts chartsData={plotData} dataKey='bomba'></MultipleSelectorInteractiveCharts>
+          }
         </div>
-
       </div>
     </div>
   )

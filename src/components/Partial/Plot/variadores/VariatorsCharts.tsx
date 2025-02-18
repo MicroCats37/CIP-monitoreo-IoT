@@ -13,12 +13,6 @@ interface DataChartProps {
 }
 
 const chartConfig = {
-    views: {
-      label: "Page Views",
-      color: "#f39c12", // Amarillo (coincide con text-yellow-500)
-      icon: Wind,
-      unit: "rpm",
-    },
     velocidad_y_direccion: {
       label: "Velocidad y Dirección",
       color: "#3498db", // Azul (coincide con text-blue-500)
@@ -81,8 +75,6 @@ const getStatusColor = (status: string): string => {
         return "text-pink-500 hover:text-pink-600";
       case "tiempo_marcha":
         return "text-gray-500 hover:text-gray-600";
-      case "views":
-        return "text-yellow-500 hover:text-yellow-600";
       default:
         return "text-yellow-500 hover:text-yellow-600";
     }
@@ -101,6 +93,7 @@ export function VariatorsCharts({ data }: DataChartProps) {
         tiempo_marcha: reading.data.tiempo_marcha,
     }))
     const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>("potencia")
+    console.log(chartData)
 /*
     const total = React.useMemo(
         () => ({
@@ -124,7 +117,6 @@ export function VariatorsCharts({ data }: DataChartProps) {
                 </div>
                 <div className="flex flex-wrap">
                     {(Object.keys(chartConfig) as Array<keyof typeof chartConfig>)
-                        .filter((key) => key !== "views")
                         .map((key) => {
                             const chart = key as keyof typeof chartConfig
                             const Icon = chartConfig[chart].icon

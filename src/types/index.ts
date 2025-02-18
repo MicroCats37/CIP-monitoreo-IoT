@@ -15,6 +15,11 @@ export interface SotanosStateDataType {
   }[]
 } 
 
+export interface DataPlotStaked {
+  time: string;
+  [key: string]: number | string | boolean; // Permite otros campos dinámicos
+}
+
 export interface PlotDataType{
   data:{
     [key: string]: number | boolean | string
@@ -57,6 +62,10 @@ export type SCISimplifiedType = {
   time: SCIType["time"];  // Asignar el tipo directamente a `time`
   data: Pick<SCIType["data"], "voltage" | "current" | "frequency" | "custom_locked_rotor_current">; // Seleccionar solo las propiedades necesarias de `data`
 };
+
+export type TickFormattedType = {
+  tickFormatter?: (value: any, index: number) => string;
+}
 
 
 

@@ -1,0 +1,25 @@
+import { DataPlotStaked, PlotDataType } from "@/types";
+import { VariatorMultipleChartFormatted } from "../../Content/variadores/VariatorsFormattedDataPlot";
+import { SelectorInteractiveCharts } from "./SelectorInteractiveCharts";
+
+interface ChartsData {
+    chartsData: PlotDataType[][]
+    dataKey:string
+}
+
+export function MultipleSelectorInteractiveCharts({ chartsData, dataKey }: ChartsData) {
+    return (
+        <>
+            {chartsData.map((chartData, indexChart) => {
+                const {chartDataM, chartConfigM} = VariatorMultipleChartFormatted([chartData])
+                return (
+                    <div key={indexChart} className="flex">
+                        <div className="flex flex-wrap flex-row w-full">
+                        <SelectorInteractiveCharts chartData={chartDataM[0]} chartConfig={chartConfigM} dataKey={chartData[0].data[dataKey] ? chartData[0].data[dataKey] as string:''}></SelectorInteractiveCharts>
+                        </div>
+                    </div>
+                );
+            })}
+        </>
+    );
+}
