@@ -2,7 +2,7 @@ import { ChartConfig } from "@/components/ui/chart";
 import { DataPlotStaked, WaterPumpType } from "@/types";
 import { formatTime } from "@/utils/formatTime";
 
-export function DataPlotFormatted(dataSeries?: WaterPumpType[][]) {
+export function WaterPumpDataPlotFormatted(dataSeries?: WaterPumpType[][]) {
   if (!dataSeries || dataSeries.length === 0) {
     return { chartData: [], chartConfig: {} };
   }
@@ -90,7 +90,6 @@ export function WaterPumpMultipleChartFormatted(dataSeries?: WaterPumpType[][]) 
 
   // Configuración para las bombas y sus colores
   const entityNames = dataSeries.map((entitySeries) => Object.values(entitySeries[0].data)[0]);
-
   const chartConfigM: ChartConfig = Object.fromEntries(
     entityNames.map((name, index) => [
       name,

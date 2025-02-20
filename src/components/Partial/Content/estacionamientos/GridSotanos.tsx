@@ -16,6 +16,8 @@ import { useResponseData } from '@/hooks/useResponseData'
 import { useTopicsSubcriptions } from '@/mqtt/topics/useTopicsSubscriptions'
 import { TOPICS } from '@/mqtt/topics/topics.data'
 import { getSotanoAction } from '@/influxDB/actions/EstacionamientoAction'
+import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner'
+import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard'
 
 
 export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDataType }) {
@@ -72,8 +74,9 @@ export default function GridSotanos({ sotanoData }: { sotanoData: SotanosStateDa
   // Contamos los estados de B
   const countStateCarsB = EstadosArrayB && EstadosArrayB.length > 0 ? contarEstados(EstadosArrayB) : [];
 
-  if (isLoading_a || isLoading_b) return <div>Cargando...</div>;
-  if (error_a || error_b) return <div>Error al obtener datos</div>
+  if (isLoading_a || isLoading_b) return <LoadingSpinner></LoadingSpinner>
+  if (error_a || error_b) return <ErrorCard message={(error_a?.message || error_b?.message) || ''}></ErrorCard>
+
 
   return (
     <div className='w-full  h-full'>

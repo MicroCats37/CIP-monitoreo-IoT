@@ -1,6 +1,6 @@
-import {AreaKeyDataType } from "@/types";
+import { AreaKeyDataType } from "@/types";
 
-export const AreasData: AreaKeyDataType= {
+export const AreasData: AreaKeyDataType = {
     "Aire Acondicionado": {
         "1": {
             id: "1",
@@ -22,16 +22,16 @@ export const AreasData: AreaKeyDataType= {
         },
         "aguas-grises": {
             id: "aguas-grises",
-            topickey: "bombas agua grises",
+            topickey: "bombas aguas grises",
         },
     },
     "Sistema contra Incendios": {
-            topickey: "sistema contra incendios",
+        topickey: "sistema contra incendios",
 
     },
     "Tableros Electricos": {
 
-            topickey: "tableros electricos",
+        topickey: "tableros electricos",
 
     },
     "Variadores": {
@@ -47,5 +47,8 @@ export const AreasData: AreaKeyDataType= {
             id: "aguas-grises",
             topickey: "variadores aguas grises",
         },
+    },
+    "Piscinas": {
+        topickey: "concentracion de cloro piscina 1",
     },
 };

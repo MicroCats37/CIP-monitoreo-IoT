@@ -8,18 +8,16 @@ import { useTopicsSubcriptions } from "@/mqtt/topics/useTopicsSubscriptions";
 import { TOPICS } from "@/mqtt/topics/topics.data";
 import { getBombasAction } from "@/influxDB/actions/BombasAction";
 import { getBombasHistoricoAction } from "@/influxDB/actions-plots/HistoricoBombasActions";
-import PumpPlots from "../../Plot/bombas/PumpPlots";
 import { useInitialHistoricalData } from "@/hooks/useInitialHistoricalData";
 import { useHistoricalData } from "@/hooks/useHistorialData";
 import { useHistoricalStore } from "@/store/plots";
-import { WaterPumpCharts } from "../../Plot/bombas/WaterPumpCharts";
 import { ButtonFechingDate } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
 import { useEffect, useState } from "react";
-
 import { StakedSingleChart } from "../../Plot/general/StackedSingleChart";
 import { MultipleSingleCharts } from "../../Plot/general/MultipleSingleCharts";
-import { DataPlotFormatted, WaterPumpMultipleChartFormatted } from "./WaterPumpFormattedDataPlot";
-
+import { WaterPumpDataPlotFormatted, WaterPumpMultipleChartFormatted } from "./WaterPumpFormattedDataPlot";
+import { ErrorCard } from "@/components/Custom/ErrorCard/ErrorCard";
+import LoadingSpinner from "@/components/Custom/LoaderSpiner/LoadingSpinner";
 
 
 export default function WaterPumpContent({ contentData }: { contentData: AreaData }) {
@@ -58,11 +56,10 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
   const WaterPumpData = useMqttStore((state) => state.subsData[topic]) as WaterPumpType[];
   useHistoricalData(WaterPumpData, topic, 'bomba')
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as WaterPumpType[][];
-  const { chartData, chartConfig, YAxisFormatter} = DataPlotFormatted(plotData)
-  const { chartDataM, chartConfigM, YAxisFormatterM} = WaterPumpMultipleChartFormatted(plotData)
-  console.log(chartDataM)
-  if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
+  const { chartData, chartConfig, YAxisFormatter } = WaterPumpDataPlotFormatted(plotData)
+  const { chartDataM, chartConfigM, YAxisFormatterM } = WaterPumpMultipleChartFormatted(plotData)
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>
+  if (error) return <ErrorCard message={error.message}></ErrorCard>
   return (
     <div className="w-full h-full m-auto">
       <div className='w-full flex-col items-center justify-center pb-4 gap-4 space-y-4'>
@@ -70,12 +67,11 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
         <div className='w-full h-full flex-col space-y-4 items-center justify-center'>
           {WaterPumpData ?
             (
-
               <PumpCard data={WaterPumpData}></PumpCard>
             ) : (<div>Error</div>)
           }
-          {chartData.length>=0 && <StakedSingleChart YAxisFormatter={YAxisFormatter} chartData={chartData} chartConfig={chartConfig} plotType="linear"></StakedSingleChart>}
-          {chartDataM && chartDataM.length>=0 && <MultipleSingleCharts YAxisFormatter={YAxisFormatterM} chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
+          {chartData.length >= 0 && <StakedSingleChart YAxisFormatter={YAxisFormatter} chartData={chartData} chartConfig={chartConfig} plotType="linear"></StakedSingleChart>}
+          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts YAxisFormatter={YAxisFormatterM} chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
         </div>
 
       </div>

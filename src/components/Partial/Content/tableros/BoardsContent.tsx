@@ -14,10 +14,11 @@ import { useEffect, useState } from 'react';
 import { useInitialHistoricalData } from '@/hooks/useInitialHistoricalData';
 import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useShallow } from 'zustand/react/shallow'
-import { BoardCharts } from '../../Plot/tableros/BoardCharts';
 import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
 import { BoardMultipleChartFormatted } from './BoardFormattedDataPlot';
 import { MultipleSingleCharts } from '../../Plot/general/MultipleSingleCharts';
+import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner';
+import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard';
 export default function BoardsContent({ contentData }: { contentData: AreaData }) {
   const [intervalo, setIntervalo] = useState<string>("30m");
 
@@ -53,9 +54,9 @@ export default function BoardsContent({ contentData }: { contentData: AreaData }
   const BoardsData = useMqttStore((state) => state.subsData[topic]) as BoardType[];
   useHistoricalData(BoardsData, topic, 'potencia')
   plotData = useHistoricalStore(useShallow((state) => state.historicalData[topic])) as BoardType[][];
-  const { chartDataM, chartConfigM} = BoardMultipleChartFormatted(plotData)
-  if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
+  const { chartDataM, chartConfigM } = BoardMultipleChartFormatted(plotData)
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>
+  if (error) return <ErrorCard message={error.message}></ErrorCard>
   return (
     <div className='w-full h-full m-auto'>
       <div className='w-full flex-col items-center justify-center pb-4 gap-4 space-y-4'>
@@ -67,7 +68,7 @@ export default function BoardsContent({ contentData }: { contentData: AreaData }
             )
             : (<div>Error</div>)
           }
-          {chartDataM && chartDataM.length>=0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
+          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
         </div>
       </div>
     </div>

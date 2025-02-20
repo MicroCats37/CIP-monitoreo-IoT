@@ -2,8 +2,8 @@
 import { create } from 'zustand';
 import { getClient } from '@/mqtt/mqttClient';
 import { toast } from 'sonner';
-import type { BoardType,  ParkingType, SCIType, VariatorsType, WaterPumpType,  AirConditioningType } from '@/types';
-import { AirConditioningTypeSchema, ArrayBoardTypeSchema, ArrayVariatorsTypeSchema, ArrayWaterPumpTypeSchema, ParkingTypeSchema, SCITypeSchema } from '@/validators/schemas';
+import type { BoardType,  ParkingType, SCIType, VariatorsType, WaterPumpType,  AirConditioningType, PoolType } from '@/types';
+import { AirConditioningTypeSchema, ArrayBoardTypeSchema, ArrayPoolTypeSchema, ArrayVariatorsTypeSchema, ArrayWaterPumpTypeSchema, ParkingTypeSchema, PoolTypeSchema, SCITypeSchema } from '@/validators/schemas';
 
 
 
@@ -14,6 +14,7 @@ const schemas = [
   ArrayWaterPumpTypeSchema,
   ArrayBoardTypeSchema,
   ArrayVariatorsTypeSchema,
+  PoolTypeSchema
 ];
 
 
@@ -36,6 +37,8 @@ export const topicNames: { [key: string]: string } = {
   'dashboard/variadores/agua-potable': "Variadores Agua Potable",
   'dashboard/variadores/aguas-tratadas': "Variadores Aguas Tratables",
   'dashboard/variadores/aguas-grises': "Variadores Aguas Grises",
+  'dashboard/piscinas/1': "Piscina 1",
+  'dashboard/piscinas/2': "Piscina 2",
 }
 
 const getTopicName = (topic:string) => {
@@ -50,7 +53,8 @@ export type MqttMessageType =
   | ParkingType
   | WaterPumpType[]
   | BoardType[]
-  | VariatorsType[];
+  | VariatorsType[]
+  | PoolType;
 
 // Define el tipo de datos del estado global
 interface MqttStore {

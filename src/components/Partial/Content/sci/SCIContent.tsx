@@ -12,11 +12,12 @@ import { getHistoricoSCIAction } from '@/influxDB/actions-plots/HistoricoSCIActi
 import { useInitialHistoricalData } from '@/hooks/useInitialHistoricalData';
 import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useHistoricalStore } from '@/store/plots';
-import { SCIAllCharts } from '../../Plot/sci/SCIAllCharts';
 import { useEffect, useState } from 'react';
 import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
 import { CSIMultipleChartFormatted } from './SCIFormattedDataPlot';
 import { MultipleSingleCharts } from '../../Plot/general/MultipleSingleCharts';
+import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner';
+import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard';
 
 export default function SCIContent({ contentData }: { contentData: AreaData }) {
 
@@ -59,9 +60,9 @@ export default function SCIContent({ contentData }: { contentData: AreaData }) {
   } : undefined;
   useHistoricalData(simplifiedData ? [simplifiedData as SCISimplifiedType] : undefined, topic)
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as SCISimplifiedType[][];
-  const { chartDataM, chartConfigM} = CSIMultipleChartFormatted(plotData)
-  if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
+  const { chartDataM, chartConfigM } = CSIMultipleChartFormatted(plotData)
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>
+  if (error) return <ErrorCard message={error.message}></ErrorCard>
   return (
     <div className='w-full h-full m-auto'>
 
@@ -73,7 +74,7 @@ export default function SCIContent({ contentData }: { contentData: AreaData }) {
               <SCICard data={SCIData}></SCICard>
             ) : (<div>Error</div>)
           }
-          {chartDataM && chartDataM.length>=0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
+          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
 
         </div>
 

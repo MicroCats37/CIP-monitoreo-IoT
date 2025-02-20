@@ -8,6 +8,8 @@ import { useResponseData } from '@/hooks/useResponseData'
 import { useTopicsSubcriptions } from '@/mqtt/topics/useTopicsSubscriptions'
 import { TOPICS } from '@/mqtt/topics/topics.data'
 import { getAireAcondicionadoAction } from '@/influxDB/actions/AireAcondicionadoAction'
+import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner'
+import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard'
 
 
 
@@ -26,8 +28,8 @@ export default function AirConditioningContent({ contentData }: { contentData: A
   useResponseData(topic, error, data);
 
   const airData = useMqttStore((state) => state.subsData[topic]) as AirConditioningType;
-  if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>
+  if (error) return <ErrorCard message={error.message}></ErrorCard>
 
   return (
     <div className='w-full h-full'>

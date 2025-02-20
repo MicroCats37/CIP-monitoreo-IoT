@@ -1,5 +1,5 @@
 
-import { AirConditioningTypeSchema, BoardTypeSchema, ParkingTypeSchema, SCIDataTypeSchema, SCITypeSchema, VariatorsTypeSchema, WaterPumpTypeSchema } from '@/validators/schemas';
+import { AirConditioningTypeSchema, BoardTypeSchema, ParkingTypeSchema, PoolTypeSchema, SCIDataTypeSchema, SCITypeSchema, VariatorsTypeSchema, WaterPumpTypeSchema } from '@/validators/schemas';
 import { z } from 'zod';
 
 export interface SotanosStateKeyDataType {
@@ -46,7 +46,7 @@ export type WaterPumpType = z.infer<typeof WaterPumpTypeSchema>;
 
 export type BoardType = z.infer<typeof BoardTypeSchema>;
 
-
+export type PoolType = z.infer<typeof PoolTypeSchema>;
 
 export type VariatorsType = z.infer<typeof VariatorsTypeSchema>;
 

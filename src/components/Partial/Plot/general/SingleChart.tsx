@@ -16,7 +16,8 @@ interface ChartProps {
 }
 
 export function SingleChart({ chartData, chartConfig, plotType, chartIndex, YAxisFormatter }: ChartProps) {
-  const key = Object.keys(chartConfig)[chartIndex ? chartIndex : 0];
+  const keyColor = Object.keys(chartConfig)[chartIndex ?? 0]?.replace(/\s+/g, '') || '';
+  const key = Object.keys(chartConfig)[chartIndex ?? 0];
   return (
 
     <Card className="w-full">
@@ -36,9 +37,9 @@ export function SingleChart({ chartData, chartConfig, plotType, chartIndex, YAxi
             data={chartData}
           >
             <defs>
-              <linearGradient key={'gradientes' + chartIndex + key} id={`sfill${key}`} x1="0" y1="0" x2="0" y2="1">
+              <linearGradient key={'gradientes' + chartIndex + key} id={`sfill${keyColor}`} x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor={chartConfig[key].color} stopOpacity={0.8} />
-                <stop offset="95%" stopColor={chartConfig[key].color} stopOpacity={0.1} />
+                <stop offset="80%" stopColor={chartConfig[key].color} stopOpacity={0.1} />
               </linearGradient>
             </defs>
             <CartesianGrid vertical={false} />
@@ -70,7 +71,7 @@ export function SingleChart({ chartData, chartConfig, plotType, chartIndex, YAxi
               stroke={chartConfig[key].color}
               dot={false}
               strokeWidth={1}
-              fill={`url(#sfill${key})`}
+              fill={`url(#sfill${keyColor})`}
               fillOpacity={0.4} />
             <ChartLegend content={<ChartLegendContent />} />
           </AreaChart>

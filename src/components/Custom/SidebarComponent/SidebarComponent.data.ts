@@ -1,6 +1,6 @@
 
 import { LinkRouteType } from "./Sidebar.types";
-import { ParkingMeter, Cable, AlarmSmoke, Droplets, FireExtinguisher ,Vault} from "lucide-react"
+import { ParkingMeter, Cable, AlarmSmoke, Droplets, FireExtinguisher ,Vault,Waves} from "lucide-react"
 // Menu items.
 export const linkRoutes: LinkRouteType[] = [
 
@@ -92,5 +92,9 @@ export const linkRoutes: LinkRouteType[] = [
       }
     ]
   },
-
+  {
+    title: "Piscinas",
+    url: "/piscinas",
+    icon: Waves,
+  },
 ]

@@ -13,12 +13,11 @@ import { getVariadoresHistoricoAction } from '@/influxDB/actions-plots/Historico
 import { useInitialHistoricalData } from '@/hooks/useInitialHistoricalData';
 import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useHistoricalStore } from '@/store/plots';
-import { VariatorAllCharts } from '../../Plot/variadores/VariatorAllCharts';
 import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
 import { useEffect, useState } from 'react';
-import { VariatorMultipleChartFormatted } from './VariatorsFormattedDataPlot';
-import { SelectorInteractiveCharts } from '../../Plot/general/SelectorInteractiveCharts';
 import { MultipleSelectorInteractiveCharts } from '../../Plot/general/MultipleSelectorInteractiveCharts';
+import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner';
+import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard';
 
 export default function VariatorsContent({ contentData }: { contentData: AreaData }) {
 
@@ -55,8 +54,8 @@ export default function VariatorsContent({ contentData }: { contentData: AreaDat
   const VariatorData = useMqttStore((state) => state.subsData[topic]) as VariatorsType[];
   useHistoricalData(VariatorData, topic, 'bomba')
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as VariatorsType[][];
-  if (isLoading) return <div>Cargando...</div>;
-  if (error) return <div>Error al obtener datos: {(error as Error).message}</div>
+  if (isLoading) return <LoadingSpinner></LoadingSpinner>
+  if (error) return <ErrorCard message={error.message}></ErrorCard>
   return (
     <div className='h-full w-full m-auto'>
       <div className='w-full flex-col items-center justify-center pb-4 gap-4 space-y-4'>
@@ -69,7 +68,7 @@ export default function VariatorsContent({ contentData }: { contentData: AreaDat
             ) : (<div>Error</div>)
           }
 
-          { plotData &&
+          {plotData &&
             <MultipleSelectorInteractiveCharts chartsData={plotData} dataKey='bomba'></MultipleSelectorInteractiveCharts>
           }
         </div>

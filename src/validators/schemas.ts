@@ -28,7 +28,16 @@ export const BoardTypeSchema = z.object({
   time: z.string(), // Descomentar si decides usar el campo 'time'
 });
 
+export const PoolTypeSchema = z.object({
+  data: z.object({
+    piscina: z.string(),
+    cloro: z.number(),        // Ejemplo: "ocupado", "libre", etc.
+  }),
+  time: z.string(), // Descomentar si decides usar el campo 'time'
+});
 
+export const ArrayPoolTypeSchema = z.array(PoolTypeSchema);
+export const ArrayHistoricalPoolTypeSchema = z.array(ArrayPoolTypeSchema)
 
 export const VariatorsTypeSchema = z.object({
   data: z.object({

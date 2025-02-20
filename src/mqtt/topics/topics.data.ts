@@ -3,7 +3,7 @@ export const TOPICS: { [key: string]: string } = {
   "aire acondicionado 2": "dashboard/aire-acondicionado/2",
   "bombas agua potable": "dashboard/bombas/agua-potable",
   "bombas aguas tratadas": "dashboard/bombas/aguas-tratadas",
-  "bombas agua grises": "dashboard/bombas/aguas-grises",
+  "bombas aguas grises": "dashboard/bombas/aguas-grises",
   "estacionamiento sotano 1a": "dashboard/estacionamientos/sotano/1a",
   "estacionamiento sotano 2a": "dashboard/estacionamientos/sotano/2a",
   "estacionamiento sotano 3a": "dashboard/estacionamientos/sotano/3a",
@@ -15,6 +15,8 @@ export const TOPICS: { [key: string]: string } = {
   "sistema contra incendios": "dashboard/sci",
   "tableros electricos": "dashboard/tableros",
   "variadores agua potable": "dashboard/variadores/agua-potable",
-  "variadores aguas tratables": "dashboard/variadores/aguas-tratadas",
+  "variadores aguas tratadas": "dashboard/variadores/aguas-tratadas",
   "variadores aguas grises": "dashboard/variadores/aguas-grises",
+  "concentracion de cloro piscina 1": "dashboard/piscinas/1",
+  "concentracion de cloro piscina 2": "dashboard/piscinas/2",
 };
