@@ -1,7 +1,6 @@
 import { ChartConfig } from "@/components/ui/chart";
 import { BoardType, DataPlotStaked} from "@/types";
 import { Capitalize } from "@/utils/capitalizeLetter";
-import { formatTime } from "@/utils/formatTime";
 
 export function BoardDataPlotFormatted(dataSeries?: BoardType[][]) {
   if (!dataSeries || dataSeries.length === 0) {
@@ -26,7 +25,7 @@ export function BoardDataPlotFormatted(dataSeries?: BoardType[][]) {
   const chartData = Array.from(allTimes)
     .sort()
     .map((time) => ({
-      time:formatTime(time),
+      time:time,
       ...timeSeriesData[time],
     }));
 
@@ -84,7 +83,7 @@ export function BoardMultipleChartFormatted(dataSeries?: BoardType[][]) {
     const pumpData = Array.from(allTimes)
       .sort() // Asegurarse de que los tiempos estén ordenados
       .map((time) => ({
-        time: formatTime(time), // Formatear la fecha
+        time: time, // Formatear la fecha
         [pumpId]: timeSeriesData[time][pumpId] || 0, // Obtener el valor de la bomba para ese tiempo
       }));
 

@@ -11,13 +11,14 @@ import { getBombasHistoricoAction } from "@/influxDB/actions-plots/HistoricoBomb
 import { useInitialHistoricalData } from "@/hooks/useInitialHistoricalData";
 import { useHistoricalData } from "@/hooks/useHistorialData";
 import { useHistoricalStore } from "@/store/plots";
-import { ButtonFechingDate } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
+import { ButtonFechingDate, QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
 import { useEffect, useState } from "react";
 import { StakedSingleChart } from "../../Plot/general/StackedSingleChart";
 import { MultipleSingleCharts } from "../../Plot/general/MultipleSingleCharts";
 import { WaterPumpDataPlotFormatted, WaterPumpMultipleChartFormatted } from "./WaterPumpFormattedDataPlot";
 import { ErrorCard } from "@/components/Custom/ErrorCard/ErrorCard";
 import LoadingSpinner from "@/components/Custom/LoaderSpiner/LoadingSpinner";
+import { RealTimeCondition } from "@/utils/validatorRealTimePlot";
 
 
 export default function WaterPumpContent({ contentData }: { contentData: AreaData }) {
@@ -54,7 +55,7 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
 
 
   const WaterPumpData = useMqttStore((state) => state.subsData[topic]) as WaterPumpType[];
-  useHistoricalData(WaterPumpData, topic, 'bomba')
+  useHistoricalData(WaterPumpData, topic,RealTimeCondition(intervalo as QueryTimeType),'bomba')
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as WaterPumpType[][];
   const { chartData, chartConfig, YAxisFormatter } = WaterPumpDataPlotFormatted(plotData)
   const { chartDataM, chartConfigM, YAxisFormatterM } = WaterPumpMultipleChartFormatted(plotData)
@@ -70,8 +71,8 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
               <PumpCard data={WaterPumpData}></PumpCard>
             ) : (<div>Error</div>)
           }
-          {chartData.length >= 0 && <StakedSingleChart YAxisFormatter={YAxisFormatter} chartData={chartData} chartConfig={chartConfig} plotType="linear"></StakedSingleChart>}
-          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts YAxisFormatter={YAxisFormatterM} chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
+          {chartData.length >= 0 && <StakedSingleChart timeRange={intervalo as QueryTimeType} YAxisFormatter={YAxisFormatter} chartData={chartData} chartConfig={chartConfig} plotType="linear"></StakedSingleChart>}
+          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts YAxisFormatter={YAxisFormatterM} chartData={chartDataM} chartConfig={chartConfigM} plotType="linear" timeRange={intervalo as QueryTimeType}></MultipleSingleCharts>}
         </div>
 
       </div>

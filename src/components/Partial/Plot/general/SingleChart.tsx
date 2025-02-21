@@ -5,19 +5,27 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { type ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { CurveType } from "recharts/types/shape/Curve"
 import { DataPlotStaked } from "@/types"
-
-
+import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate"
+import { format} from "date-fns"
+import { formatTime } from "@/utils/formatTime"
+import { formatTimeByRange } from "@/utils/formatRangeTime"
 interface ChartProps {
   chartData: DataPlotStaked[]
   chartConfig: ChartConfig
   plotType: string
+  timeRange: QueryTimeType
   chartIndex?: number
   YAxisFormatter?: ((value: any, index: number) => string)
 }
 
-export function SingleChart({ chartData, chartConfig, plotType, chartIndex, YAxisFormatter }: ChartProps) {
+export function SingleChart({ chartData, chartConfig, plotType, chartIndex, YAxisFormatter, timeRange }: ChartProps) {
+  /*const chartDataT = chartData.map(z => ({
+    ...z,
+    time: new Date(z.time) // Convertir string a Date
+}));*/
   const keyColor = Object.keys(chartConfig)[chartIndex ?? 0]?.replace(/\s+/g, '') || '';
   const key = Object.keys(chartConfig)[chartIndex ?? 0];
+  //console.log(chartDataT)
   return (
 
     <Card className="w-full">
@@ -45,10 +53,9 @@ export function SingleChart({ chartData, chartConfig, plotType, chartIndex, YAxi
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="time"
-              interval={5}
               tickMargin={8}
               minTickGap={32}
-              tickFormatter={(value) => (value.slice(0, 8))}
+              tickFormatter={(value) =>(formatTimeByRange(value,timeRange))}
             />
             <YAxis
               yAxisId="left"
@@ -57,11 +64,15 @@ export function SingleChart({ chartData, chartConfig, plotType, chartIndex, YAxi
               tickLine={false}
               axisLine={false}
               allowDataOverflow={false}
-              tickFormatter={(YAxisFormatter) || undefined || (value=>`${value} ${chartConfig[key].unit ? chartConfig[key].unit:''}`)}
+              tickFormatter={(YAxisFormatter) || undefined || (value => `${value} ${chartConfig[key].unit ? chartConfig[key].unit : ''}`)}
             />
             <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
+              cursor={true}
+              content={<ChartTooltipContent
+              labelFormatter={(label) => formatTime(label)}
+              
+            />}
+
             />
             <Area
               key={key + chartIndex + 's'}

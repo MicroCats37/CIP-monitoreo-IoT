@@ -5,27 +5,30 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { type ChartConfig, ChartContainer, ChartLegend, ChartLegendContent, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { CurveType } from "recharts/types/shape/Curve"
 import { DataPlotStaked } from "@/types"
+import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate"
+import { formatTimeByRange } from "@/utils/formatRangeTime"
+import { formatTime } from "@/utils/formatTime"
 
 
 interface ChartProps {
   chartData: DataPlotStaked[]
   chartConfig: ChartConfig
   plotType: string
-  YAxisFormatter?:((value: any, index: number) => string)
-
+  YAxisFormatter?: ((value: any, index: number) => string)
+  timeRange: QueryTimeType
 }
 
 
 
-export function StakedSingleChart({ chartData, chartConfig, plotType,YAxisFormatter}: ChartProps) {
+export function StakedSingleChart({ chartData, chartConfig, plotType, YAxisFormatter, timeRange }: ChartProps) {
   return (
     <Card className="w-full">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 lg:flex-row">
-          <div className="grid gap-1 text-center sm:text-left">
-            <CardTitle>Estado de las Bombas</CardTitle>
-            <CardDescription>Mostrando el estado de las bombas en las últimas horas</CardDescription>
-          </div>
-        </CardHeader>
+        <div className="grid gap-1 text-center sm:text-left">
+          <CardTitle>Estado de las Bombas</CardTitle>
+          <CardDescription>Mostrando el estado de las bombas en las últimas horas</CardDescription>
+        </div>
+      </CardHeader>
       <CardContent className="flex w-full px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer
           config={chartConfig}
@@ -47,10 +50,9 @@ export function StakedSingleChart({ chartData, chartConfig, plotType,YAxisFormat
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="time"
-              interval={5}
               tickMargin={8}
               minTickGap={32}
-              tickFormatter={(value) =>(value.slice(0, 7))}
+              tickFormatter={(value) => (formatTimeByRange(value, timeRange))}
             />
             <YAxis
               yAxisId="left"
@@ -58,11 +60,14 @@ export function StakedSingleChart({ chartData, chartConfig, plotType,YAxisFormat
               orientation="left"
               tickLine={false}
               axisLine={false}
-              tickFormatter={(YAxisFormatter) || undefined} 
-              />
+              tickFormatter={(YAxisFormatter) || undefined}
+            />
             <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="line" />}
+              cursor={true}
+              content={<ChartTooltipContent
+                labelFormatter={(label) => formatTime(label)}
+
+              />}
 
             />
             {

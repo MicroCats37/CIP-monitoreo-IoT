@@ -2,17 +2,21 @@
 import { WaterPumpType } from "@/types";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { ArrayHistoricalWaterPumpTypeSchema } from "@/validators/schemas";
+import { getWindowPeriod } from "@/utils/contextWindow";
+import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
 
 
 
 export const getBombasHistorico = async (bomba: string,time:string): Promise<WaterPumpType[][]> => {
+    const windowPeriod = time !== "30m" ? `|> aggregateWindow(every: ${getWindowPeriod(time as QueryTimeType)}, fn: mean, createEmpty: false)` : "";
     const fluxQuery = `
         from(bucket: "Bombas de Agua")
         |> range(start: -${time})  // Historial de la última hora
         |> filter(fn: (r) => r["_measurement"] == "${formatString(bomba)}")
         |> filter(fn: (r) => r["_field"] == "estado")
+        ${windowPeriod}
         |> sort(columns: ["_time"], desc: false) // Orden cronológico ascendente
       `;
   

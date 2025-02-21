@@ -1,18 +1,23 @@
 "use server";
 import { PoolType } from "@/types";
 import { queryApi } from "../influxConfig";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { ArrayHistoricalPoolTypeSchema } from "@/validators/schemas";
+import { getWindowPeriod } from "@/utils/contextWindow";
+import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
+
 
 export const getPiscinasHistorico = async (time: string): Promise<PoolType[][]> => {
+  const windowPeriod = time !== "30m" ? `|> aggregateWindow(every: ${getWindowPeriod(time as QueryTimeType)}, fn: mean, createEmpty: false)` : "";
   const fluxQuery = `
       from(bucket: "Concentracion de Cloro")
       |> range(start: -${time})  
       |> filter(fn: (r) => r["_measurement"] == "Piscina 1" or r["_measurement"] == "Piscina 2")
       |> filter(fn: (r) => r["_field"] == "value")
+      ${windowPeriod}
       |> sort(columns: ["_time"], desc: false) // Orden cronológico ascendente
     `;
-
+  //|> aggregateWindow(every: ${getWindowPeriod(time as QueryTimeType)}, fn: mean, createEmpty: false)
   // Crear un mapa para agrupar por nombre de piscina
   const piscinaMap: Record<string, PoolType[]> = {};
 

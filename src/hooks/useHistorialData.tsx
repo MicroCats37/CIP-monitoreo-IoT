@@ -7,14 +7,15 @@ import { areTimestampsEqual } from "@/utils/DateComparation";
 export const useHistoricalData = (
     currentData: PlotDataType[] | undefined,
     topic:string,
-    key?:string
+    switchHidratation:boolean,
+    key?:string,
 ) => {
     const addData = useHistoricalStore((state) => state.addData);
     const currentDataStore = useHistoricalStore((state)=> state.currentData)
     useEffect(() => {
         if (
             currentData && currentData.length > 0
-            && !areTimestampsEqual(currentData, currentDataStore)
+            && !areTimestampsEqual(currentData, currentDataStore) && switchHidratation
         ) {
             addData(topic,currentData,key);
         }

@@ -2,7 +2,7 @@
 import { SCISimplifiedType } from "@/types";
 import { queryApi } from "../influxConfig";
 import { ArrayHistoricalSCITypeSchema } from "@/validators/schemas";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 
 
 

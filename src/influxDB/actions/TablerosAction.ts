@@ -1,7 +1,7 @@
 "use server";
 import { queryApi } from "@/influxDB/influxConfig";// Ajusta la ruta a tu cliente de InfluxDB
 import { BoardType } from "@/types";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { ArrayBoardTypeSchema } from "@/validators/schemas";
 
 
@@ -9,7 +9,7 @@ import { ArrayBoardTypeSchema } from "@/validators/schemas";
 export const getTableroEstados = async (): Promise<BoardType[]> => {
   const fluxQuery = `
     from(bucket: "Tableros de Energia")
-    |> range(start: -30m)  // Últimos 30 minutos
+    |> range(start: -7d)  // Últimos 30 minutos
     |> filter(fn: (r) => r["_measurement"] == "Potencias")
     |> filter(fn: (r) => r["_field"] == "value")
     |> group(columns: ["potencia"])  // Agrupa por tablero

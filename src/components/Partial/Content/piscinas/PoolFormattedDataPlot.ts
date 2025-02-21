@@ -1,6 +1,5 @@
 import { ChartConfig } from "@/components/ui/chart";
 import { DataPlotStaked, PoolType } from "@/types";
-import { formatTime } from "@/utils/formatTime";
 
 export function PoolDataPlotFormatted(dataSeries?: PoolType[][]) {
   if (!dataSeries || dataSeries.length === 0) {
@@ -26,7 +25,7 @@ export function PoolDataPlotFormatted(dataSeries?: PoolType[][]) {
   const chartData = Array.from(allTimes)
     .sort()
     .map((time) => ({
-      time: formatTime(time),
+      time: time,
       ...timeSeriesData[time],
     }));
 
@@ -67,7 +66,7 @@ export function PoolMultipleChartFormatted(dataSeries?: PoolType[][]) {
     // Agregar los datos sin modificar el tiempo ni insertar valores innecesarios
     poolSeries.forEach((entry) => {
       poolDataMap[poolName].push({
-        time: formatTime(entry.time),
+        time: entry.time,
         [poolName]: entry.data.cloro, // Asociar el valor de cloro con la piscina
       });
     });

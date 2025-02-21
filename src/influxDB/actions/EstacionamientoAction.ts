@@ -1,7 +1,7 @@
 "use server";
 import { ParkingType } from "@/types";
 import { queryApi } from "../influxConfig";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { ParkingTypeSchema } from "@/validators/schemas";
 
 
@@ -12,7 +12,7 @@ const INFLUXDB_BUCKET_ESTACIONAMIENTOS = 'Estacionamientos';
 export const getSotanoEstadoAction = async (id: string): Promise<ParkingType> => {
   const fluxQuery = `
     from(bucket: "${INFLUXDB_BUCKET_ESTACIONAMIENTOS}")
-    |> range(start: -30m)  // Limita el rango de tiempo (últimos 30 minutos)
+    |> range(start: -7d)  // Limita el rango de tiempo (últimos 30 minutos)
     |> filter(fn: (r) => r["_measurement"] == "Sotano_${id.toUpperCase()}")
     |> filter(fn: (r) => r["_field"] == "ocupado" or r["_field"] == "libre" or r["_field"] == "reservado" or r["_field"] == "dañado")
     |> group(columns: ["estacionamiento", "_field"])  // Agrupa por estacionamiento y estado

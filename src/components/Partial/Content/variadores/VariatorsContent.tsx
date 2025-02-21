@@ -13,11 +13,12 @@ import { getVariadoresHistoricoAction } from '@/influxDB/actions-plots/Historico
 import { useInitialHistoricalData } from '@/hooks/useInitialHistoricalData';
 import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useHistoricalStore } from '@/store/plots';
-import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
+import { ButtonFechingDate, QueryTimeType } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
 import { useEffect, useState } from 'react';
 import { MultipleSelectorInteractiveCharts } from '../../Plot/general/MultipleSelectorInteractiveCharts';
 import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner';
 import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard';
+import { RealTimeCondition } from '@/utils/validatorRealTimePlot';
 
 export default function VariatorsContent({ contentData }: { contentData: AreaData }) {
 
@@ -52,7 +53,7 @@ export default function VariatorsContent({ contentData }: { contentData: AreaDat
   useInitialHistoricalData(h_data, topic)
   useResponseData(topic, error, data);
   const VariatorData = useMqttStore((state) => state.subsData[topic]) as VariatorsType[];
-  useHistoricalData(VariatorData, topic, 'bomba')
+  useHistoricalData(VariatorData, topic,RealTimeCondition(intervalo as QueryTimeType), 'bomba')
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as VariatorsType[][];
   if (isLoading) return <LoadingSpinner></LoadingSpinner>
   if (error) return <ErrorCard message={error.message}></ErrorCard>
@@ -69,7 +70,7 @@ export default function VariatorsContent({ contentData }: { contentData: AreaDat
           }
 
           {plotData &&
-            <MultipleSelectorInteractiveCharts chartsData={plotData} dataKey='bomba'></MultipleSelectorInteractiveCharts>
+            <MultipleSelectorInteractiveCharts timeRange={intervalo as QueryTimeType} chartsData={plotData} dataKey='bomba'></MultipleSelectorInteractiveCharts>
           }
         </div>
       </div>

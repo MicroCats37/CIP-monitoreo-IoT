@@ -1,6 +1,5 @@
 import { ChartConfig } from "@/components/ui/chart";
 import { PlotDataType } from "@/types";
-import { formatTime } from "@/utils/formatTime";
 
 export function CSIMultipleChartFormatted<T extends PlotDataType>(dataSeries?: T[][]) {
     if (!dataSeries || dataSeries.length === 0) {
@@ -36,7 +35,7 @@ export function CSIMultipleChartFormatted<T extends PlotDataType>(dataSeries?: T
       const keyData = Array.from(allTimes)
         .sort()
         .map((time) => ({
-          time: formatTime(time),
+          time: time,
           [key]: timeSeriesData[time][key] ?? 0,
         }));
   

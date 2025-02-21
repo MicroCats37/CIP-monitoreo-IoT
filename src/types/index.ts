@@ -16,7 +16,7 @@ export interface SotanosStateDataType {
 } 
 
 export interface DataPlotStaked {
-  time: string;
+  time: string ;
   [key: string]: number | string | boolean; // Permite otros campos dinámicos
 }
 

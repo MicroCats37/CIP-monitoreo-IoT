@@ -4,13 +4,18 @@ import { VariatorsType } from "@/types";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
 import { ArrayHistoricalVariatorsTypeSchema } from "@/validators/schemas";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
+import { getWindowPeriod } from "@/utils/contextWindow";
+import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
 
 export const getVariadoresHistorico = async (variador: string,time:string): Promise<VariatorsType[][]> => {
+    
+    const windowPeriod = time !== "30m" ? `|> aggregateWindow(every: ${getWindowPeriod(time as QueryTimeType)}, fn: mean, createEmpty: false)` : "";
     const fluxQuery = `
         from(bucket: "Variadores")
         |> range(start: -${time})  // Historial de la última hora
         |> filter(fn: (r) => r["_measurement"] == "${formatString(variador)}")
+        ${windowPeriod}
         |> sort(columns: ["_time"], desc: false) // Orden cronológico ascendente
         |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
     `;

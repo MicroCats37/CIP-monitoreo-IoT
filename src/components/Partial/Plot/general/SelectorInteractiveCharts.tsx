@@ -5,15 +5,19 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 import { useState } from "react"
 import { DataPlotStaked } from "@/types"
+import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
+import { formatTimeByRange } from "@/utils/formatRangeTime";
+import { formatTime } from "@/utils/formatTime";
 
 interface GeneralChartProps {
   chartData: DataPlotStaked[]
   chartConfig: ChartConfig
   dataKey: string
+  timeRange: QueryTimeType
   YAxisFormatter?: ((value: any, index: number) => string)
 }
 
-export function SelectorInteractiveCharts({ chartData, chartConfig, dataKey, YAxisFormatter }: GeneralChartProps) {
+export function SelectorInteractiveCharts({ chartData, chartConfig, dataKey, YAxisFormatter, timeRange }: GeneralChartProps) {
   const [activeChart, setActiveChart] = useState<keyof typeof chartConfig>(
     Object.keys(chartConfig)[0] as keyof typeof chartConfig,
   )
@@ -65,18 +69,25 @@ export function SelectorInteractiveCharts({ chartData, chartConfig, dataKey, YAx
               }}
             >
               <CartesianGrid vertical={false} />
-              <XAxis dataKey="time"
-                interval={5}
+              <XAxis
+                dataKey="time"
                 tickMargin={8}
                 minTickGap={32}
-                tickFormatter={(value) => (value.slice(0, 8))} />
+                tickFormatter={(value) => (formatTimeByRange(value, timeRange))} />
               <YAxis
                 yAxisId="left"
                 orientation="left"
                 stroke={`var(--color-${activeChart})`}
                 unit={chartConfig[activeChart].unit ? chartConfig[activeChart].unit.toString() : undefined}
               />
-              <ChartTooltip content={<ChartTooltipContent />} />
+              <ChartTooltip
+                cursor={true}
+                content={<ChartTooltipContent
+                  labelFormatter={(label) => formatTime(label)}
+
+                />}
+
+              />
               <Line
                 yAxisId="left"
                 dataKey={activeChart}
@@ -102,14 +113,23 @@ export function SelectorInteractiveCharts({ chartData, chartConfig, dataKey, YAx
                 </linearGradient>
               </defs>
               <CartesianGrid vertical={false} />
-              <XAxis dataKey="time" tickFormatter={(value) => value.slice(0, 8)} />
+              <XAxis
+                dataKey="time"
+                tickMargin={8}
+                minTickGap={32}
+                tickFormatter={(value) => (formatTimeByRange(value, timeRange))} />
               <YAxis
                 yAxisId="left"
                 orientation="left"
                 stroke={`var(--color-${activeChart})`}
                 unit={chartConfig[activeChart].unit ? chartConfig[activeChart].unit.toString() : undefined}
               />
-              <ChartTooltip content={<ChartTooltipContent />} />
+              <ChartTooltip
+                cursor={true}
+                content={<ChartTooltipContent
+                  labelFormatter={(label) => formatTime(label)}
+                />}
+              />
               <Area
                 yAxisId="left"
                 dataKey={activeChart}

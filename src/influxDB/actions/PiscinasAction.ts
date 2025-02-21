@@ -2,12 +2,12 @@
 "use server";
 import { PoolType } from "@/types";
 import { queryApi } from "../influxConfig";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { ArrayPoolTypeSchema } from "@/validators/schemas";
 export const getPiscinasEstadoAction = async (): Promise<PoolType[]> => {
   const fluxQuery = `
        from(bucket: "Concentracion de Cloro")
-        |> range(start: -30m)
+        |> range(start: -7d)
         |> filter(fn: (r) => r["_measurement"] == "Piscina 1" or r["_measurement"] == "Piscina 2")
         |> filter(fn: (r) => r["_field"] == "value")
         |> group(columns: ["_measurement"])  // Agrupar por piscina (en lugar de "sensor")

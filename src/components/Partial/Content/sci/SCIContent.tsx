@@ -13,11 +13,12 @@ import { useInitialHistoricalData } from '@/hooks/useInitialHistoricalData';
 import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useHistoricalStore } from '@/store/plots';
 import { useEffect, useState } from 'react';
-import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
+import { ButtonFechingDate, QueryTimeType } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
 import { CSIMultipleChartFormatted } from './SCIFormattedDataPlot';
 import { MultipleSingleCharts } from '../../Plot/general/MultipleSingleCharts';
 import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner';
 import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard';
+import { RealTimeCondition } from '@/utils/validatorRealTimePlot';
 
 export default function SCIContent({ contentData }: { contentData: AreaData }) {
 
@@ -58,7 +59,7 @@ export default function SCIContent({ contentData }: { contentData: AreaData }) {
       custom_locked_rotor_current: SCIData.data.custom_locked_rotor_current,
     },
   } : undefined;
-  useHistoricalData(simplifiedData ? [simplifiedData as SCISimplifiedType] : undefined, topic)
+  useHistoricalData(simplifiedData ? [simplifiedData as SCISimplifiedType] : undefined, topic,RealTimeCondition(intervalo as QueryTimeType))
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as SCISimplifiedType[][];
   const { chartDataM, chartConfigM } = CSIMultipleChartFormatted(plotData)
   if (isLoading) return <LoadingSpinner></LoadingSpinner>
@@ -74,7 +75,7 @@ export default function SCIContent({ contentData }: { contentData: AreaData }) {
               <SCICard data={SCIData}></SCICard>
             ) : (<div>Error</div>)
           }
-          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
+          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear" timeRange={intervalo as QueryTimeType}></MultipleSingleCharts>}
 
         </div>
 

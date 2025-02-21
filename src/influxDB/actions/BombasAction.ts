@@ -2,7 +2,7 @@
 import { WaterPumpType } from "@/types";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { ArrayWaterPumpTypeSchema} from "@/validators/schemas";
 
 
@@ -10,7 +10,7 @@ import { ArrayWaterPumpTypeSchema} from "@/validators/schemas";
 export const getBombasEstadoAction = async (bomba: string): Promise<WaterPumpType[]> => {
   const fluxQuery = `
       from(bucket: "Bombas de Agua")
-      |> range(start: -30m)  
+      |> range(start: -7d)  
       |> filter(fn: (r) => r["_measurement"] == "${formatString(bomba)}")
       |> filter(fn: (r) => r["_field"] == "estado")
       |> group(columns: ["bomba"])  // Agrupa por nombre de bomba

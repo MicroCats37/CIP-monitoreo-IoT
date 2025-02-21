@@ -4,13 +4,13 @@ import { VariatorsType } from "@/types";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
 import { ArrayVariatorsTypeSchema } from "@/validators/schemas";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 
 
 export const getVariadoresDatos = async (variador: string): Promise<VariatorsType[]> => {
     const fluxQuery = `
         from(bucket: "Variadores")
-        |> range(start: -30m)  
+        |> range(start: -7d)  
         |> filter(fn: (r) => r["_measurement"] == "${formatString(variador)}")
         |> last() 
         |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")

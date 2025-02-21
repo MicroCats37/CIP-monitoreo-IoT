@@ -16,9 +16,10 @@ import { useHistoricalData } from '@/hooks/useHistorialData'
 import { PoolDataPlotFormatted, PoolMultipleChartFormatted } from './PoolFormattedDataPlot'
 import { StakedSingleChart } from '../../Plot/general/StackedSingleChart'
 import { MultipleSingleCharts } from '../../Plot/general/MultipleSingleCharts'
-import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate'
+import { ButtonFechingDate, QueryTimeType } from '@/components/Custom/ButtonSelector/ButtonFechingDate'
 import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner'
 import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard'
+import { RealTimeCondition } from '@/utils/validatorRealTimePlot'
 
 export default function PoolContent({ contentData }: { contentData: AreaData }) {
   const [intervalo, setIntervalo] = useState<string>("30m");
@@ -68,7 +69,7 @@ export default function PoolContent({ contentData }: { contentData: AreaData }) 
   const poolData1 = useMqttStore((state) => state.subsData[topic1]) as PoolType;
   const poolData2 = useMqttStore((state) => state.subsData[topic2]) as PoolType;
   CardData = [poolData1, poolData2].filter(Boolean);
-  useHistoricalData(CardData, 'dashboard/piscinas', 'piscina')
+  useHistoricalData(CardData, 'dashboard/piscinas',RealTimeCondition(intervalo as QueryTimeType), 'piscina')
   plotData = useHistoricalStore((state) => state.historicalData['dashboard/piscinas']) as PoolType[][];
   const { chartDataM, chartConfigM, YAxisFormatterM } = PoolMultipleChartFormatted(plotData)
 
@@ -83,7 +84,7 @@ export default function PoolContent({ contentData }: { contentData: AreaData }) 
           {
             CardData.length > 0 && <PoolCard data={CardData}></PoolCard>
           }
-          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
+          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear" timeRange={intervalo as QueryTimeType}></MultipleSingleCharts>}
         </div>
 
       </div>

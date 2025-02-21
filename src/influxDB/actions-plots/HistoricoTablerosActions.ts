@@ -1,17 +1,21 @@
 "use server";
+import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
 import { queryApi } from "@/influxDB/influxConfig"; // Ajusta la ruta a tu cliente de InfluxDB
 import { BoardType } from "@/types";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { getWindowPeriod } from "@/utils/contextWindow";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { ArrayHistoricalBoardTypeSchema } from "@/validators/schemas";
 
 
 export const getHistoricoTableros = async (time:string): Promise<BoardType[][]> => {
+  const windowPeriod = time !== "30m" ? `|> aggregateWindow(every: ${getWindowPeriod(time as QueryTimeType)}, fn: mean, createEmpty: false)` : "";
   const fluxQuery = `
     from(bucket: "Tableros de Energia")
     |> range(start: -${time}) // Historial de la última hora
     |> filter(fn: (r) => r["_measurement"] == "Potencias")
     |> filter(fn: (r) => r["_field"] == "value")
     |> group(columns: ["potencia"])  // Agrupa por tablero
+    ${windowPeriod}
     |> sort(columns: ["_time"], desc: false) // Orden cronológico ascendente
   `;
 

@@ -2,7 +2,7 @@
 import { SCIDataType, SCIType } from "@/types";
 import { queryApi } from "../influxConfig";
 import { SCITypeSchema } from "@/validators/schemas";
-import { fetchDataAction } from "@/utils/ServerActions.ts/validator";
+import { fetchDataAction } from "@/utils/ServerActions/validator";
 
 export const getAlarmsData = async (): Promise<SCIType> => {
   const fluxQuery = `

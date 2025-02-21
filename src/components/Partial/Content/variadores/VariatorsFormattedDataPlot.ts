@@ -1,6 +1,6 @@
 import { ChartConfig } from "@/components/ui/chart";
 import { PlotDataType } from "@/types";
-import { formatTime } from "@/utils/formatTime";
+
 import { Activity, Battery, Clock, Gauge, Thermometer, Wind, Zap } from "lucide-react";
 
 export function VariatorMultipleChartFormatted<T extends PlotDataType>(dataSeries?: T[][]) {
@@ -17,7 +17,7 @@ export function VariatorMultipleChartFormatted<T extends PlotDataType>(dataSerie
 
         // Procesar cada entrada de la serie
         entitySeries.forEach((entry) => {
-            const time = formatTime(entry.time); // Formatear el tiempo
+            const time = entry.time; // Formatear el tiempo
 
             // Crear un objeto para el tiempo actual
             const timeData: { time: string; [key: string]: any } = { time };

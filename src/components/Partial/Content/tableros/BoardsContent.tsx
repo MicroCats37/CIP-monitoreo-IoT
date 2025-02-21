@@ -14,11 +14,12 @@ import { useEffect, useState } from 'react';
 import { useInitialHistoricalData } from '@/hooks/useInitialHistoricalData';
 import { useHistoricalData } from '@/hooks/useHistorialData';
 import { useShallow } from 'zustand/react/shallow'
-import { ButtonFechingDate } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
+import { ButtonFechingDate, QueryTimeType } from '@/components/Custom/ButtonSelector/ButtonFechingDate';
 import { BoardMultipleChartFormatted } from './BoardFormattedDataPlot';
 import { MultipleSingleCharts } from '../../Plot/general/MultipleSingleCharts';
 import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner';
 import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard';
+import { RealTimeCondition } from '@/utils/validatorRealTimePlot';
 export default function BoardsContent({ contentData }: { contentData: AreaData }) {
   const [intervalo, setIntervalo] = useState<string>("30m");
 
@@ -52,7 +53,7 @@ export default function BoardsContent({ contentData }: { contentData: AreaData }
   useInitialHistoricalData(h_data, topic)
   useResponseData(topic, error, data);
   const BoardsData = useMqttStore((state) => state.subsData[topic]) as BoardType[];
-  useHistoricalData(BoardsData, topic, 'potencia')
+  useHistoricalData(BoardsData, topic,RealTimeCondition(intervalo as QueryTimeType), 'potencia')
   plotData = useHistoricalStore(useShallow((state) => state.historicalData[topic])) as BoardType[][];
   const { chartDataM, chartConfigM } = BoardMultipleChartFormatted(plotData)
   if (isLoading) return <LoadingSpinner></LoadingSpinner>
@@ -68,7 +69,7 @@ export default function BoardsContent({ contentData }: { contentData: AreaData }
             )
             : (<div>Error</div>)
           }
-          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear"></MultipleSingleCharts>}
+          {chartDataM && chartDataM.length >= 0 && <MultipleSingleCharts chartData={chartDataM} chartConfig={chartConfigM} plotType="linear" timeRange={intervalo as QueryTimeType}></MultipleSingleCharts>}
         </div>
       </div>
     </div>
