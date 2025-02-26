@@ -6,22 +6,24 @@ import { fetchDataAction } from "@/utils/ServerActions/validator";
 
 export const getAireAcondicionadoDatos = async (port: string): Promise<AirConditioningType> => {
     const fluxQuery = `
-    from(bucket: "Aire Acondicionado")
-    |> range(start: -7d)
-    |> filter(fn: (r) => 
-        r["_measurement"] == "INDOOR-BUS-1-${port}" or 
-        r["_measurement"] == "INDOOR-BUS-2-${port}" or 
-        r["_measurement"] == "INDOOR-BUS-3-${port}"
-    )
-    |> filter(fn: (r) => r["_field"] == "alarm" or r["_field"] == "status" or r["_field"] == "temperature_setting" or r["_field"] == "temperature_indoor")
-    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
-    |> group(columns: ["_measurement", "unit_name", "alias", "id"])
-    |> unique(column: "_time")
-    |> keep(columns: ["_time", "unit_name", "alias", "id", "alarm", "status","temperature_setting","temperature_indoor"])
-    |> sort(columns: ["_time"], desc: true)
-    |> limit(n: 1)
-`;
-
+        from(bucket: "Aire Acondicionado")
+        |> range(start: -30d)
+        |> filter(fn: (r) => 
+            r["_measurement"] == "INDOOR-BUS-1-${port}" or 
+            r["_measurement"] == "INDOOR-BUS-2-${port}" or 
+            r["_measurement"] == "INDOOR-BUS-3-${port}"
+        )
+        |> filter(fn: (r) => 
+            r["_field"] == "alarm" or 
+            r["_field"] == "status" or 
+            r["_field"] == "temperature_setting" or 
+            r["_field"] == "temperature_indoor"
+        )
+        |> pivot(rowKey: ["_time"], columnKey: ["_field"], valueColumn: "_value")
+        |> group(columns: ["_measurement", "unit_name", "alias", "id"])
+        |> last(column: "_time")
+        |> keep(columns: ["_time", "unit_name", "alias", "id", "alarm", "status", "temperature_setting", "temperature_indoor"])
+    `;
 
 
     const rows: AirConditioningType = {
@@ -60,3 +62,24 @@ export const getAireAcondicionadoDatos = async (port: string): Promise<AirCondit
 export const getAireAcondicionadoAction = async (air: string): Promise<AirConditioningType> => {
     return fetchDataAction(() => getAireAcondicionadoDatos(air=='1' ? '55':'56'), AirConditioningTypeSchema);
 };
+
+/*
+const fluxQuery = `
+    from(bucket: "Aire Acondicionado")
+    |> range(start: -2d)
+    |> filter(fn: (r) => 
+        r["_measurement"] == "INDOOR-BUS-1-${port}" or 
+        r["_measurement"] == "INDOOR-BUS-2-${port}" or 
+        r["_measurement"] == "INDOOR-BUS-3-${port}"
+    )
+    |> filter(fn: (r) => r["_field"] == "alarm" or r["_field"] == "status" or r["_field"] == "temperature_setting" or r["_field"] == "temperature_indoor")
+    |> pivot(rowKey:["_time"], columnKey: ["_field"], valueColumn: "_value")
+    |> group(columns: ["_measurement", "unit_name", "alias", "id"])
+    |> unique(column: "_time")
+    |> keep(columns: ["_time", "unit_name", "alias", "id", "alarm", "status","temperature_setting","temperature_indoor"])
+    |> sort(columns: ["_time"], desc: true)
+    |> limit(n: 1)
+`;
+
+
+*/
