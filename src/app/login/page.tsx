@@ -33,7 +33,7 @@ export default function Page() {
     try {
       await new Promise((resolve) => setTimeout(resolve, 1))
 
-      if ((data.email === "psotelo@cip.org.pe" || data.email === "gestionsecretaria@cip.org.pe") && data.password === "admin") {
+      if ((data.email === "psotelo@cip.org.pe" || data.email === "gestionsecretaria@cip.org.pe" || data.email === "mantenimiento@ciplima.org.pe") && data.password === "admin") {
         router.push("/sistema-contra-incendios")
       } else {
         setError("Credenciales inválidas. Por favor, intente de nuevo.")
@@ -66,13 +66,13 @@ export default function Page() {
       <Card className="w-full max-w-md bg-white shadow-2xl relative z-10">
         <CardHeader className="pb-8 pt-6">
           <div className="flex justify-center mb-4">
-          <Avatar>
+            <Avatar>
               <AvatarImage
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtlBG0gTCz0ut6KaTl1E6aKFoVRXGkvW173A&s"
                 alt="Colegio de Ingenieros del Perú Logo"
                 className="rounded-full border-4 border-red-700 w-[200px]"
               />
-              </Avatar>
+            </Avatar>
           </div>
           <CardTitle className="text-2xl font-bold text-center text-red-700">Colegio de Ingenieros del Perú</CardTitle>
         </CardHeader>

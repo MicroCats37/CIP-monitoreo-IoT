@@ -34,7 +34,7 @@ export default function AirConditioningContent({ contentData }: { contentData: A
   return (
     <div className='w-full h-full'>
       {
-        airData && <AirConditioningCard data={airData}></AirConditioningCard>
+        airData && <AirConditioningCard data={airData} controller={id==='1'? '55':'56'}></AirConditioningCard>
       }
     </div>
   );

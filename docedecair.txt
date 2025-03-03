@@ -1,0 +1,29 @@
+wind
+
+wind 4
+low 3
+medium 2
+higth 1 
+
+
+
+
+http://10.10.5.55/cgi-bin/mdacxml.cgi?req=ctrl_indoor_unit&devid=indoor-3-0&run=1&mode=8&wind=3&temp=23&start_t=0&stop_t=0&economy=0&change_air=0&swing=0&elec_heat=0&ttt=1740760268723
+
+
+http://10.10.5.55/cgi-bin/mdacxml.cgi?req=devsta&devid=indoor-3-0
+
+run es apagado o no
+
+mode
+auto 16 <automatizacion/>
+colling 8
+heathlling 4
+dehumifificade 2 
+fan only  <send wind
+
+
+de alguna manera dehumidificar es cooling <colling
+
+
+
