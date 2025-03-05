@@ -178,7 +178,8 @@ export const AirConditioningUnitCard: React.FC<AirConditioningUnitCardProps> = (
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
                 <Wind className={cn("transition-colors", temperatureStyle.text)} size={20} />
-                <span className="font-light text-sm">ID: {air.id}</span>
+                <span className="font-light text-sm">Device: {air.unit_name}</span>
+                <span className="font-light text-sm">, ID: {air.id}</span>
               </div>
               <Badge
                 variant="secondary"

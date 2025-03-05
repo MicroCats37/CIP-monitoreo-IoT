@@ -21,7 +21,7 @@ export default function AirConditioningContent({ contentData }: { contentData: A
   const { data, error, isLoading } = useQuery<AirConditioningType, Error>({
     queryKey: ['getAireAcondicionadoAction', `${id}`], queryFn: () =>
       getAireAcondicionadoAction(`${id}`),
-    staleTime: 30000, // Los datos permanecen frescos indefinidamente 
+    staleTime: Infinity, // Los datos permanecen frescos indefinidamente 
     refetchOnMount: false, // No refetch al montar el componente refetchOnWindowFocus: false, });
   })
 

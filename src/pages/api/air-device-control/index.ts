@@ -17,14 +17,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Intentar parsear el cuerpo de la solicitud
     let data: ControlDeviceBody;
     try {
-      data = JSON.parse(req.body);
+      data = (req.body);
     } catch {
       return res.status(400).json({ error: "Formato JSON inválido" });
     }
 
     // Validaciones específicas
-    const { controller, devid, run, mode, wind, temp } = data;
-
+    const { controller, devid } = data;
+ 
     if (!controller || !devid) {
       return res.status(400).json({ error: "Los campos 'controller' y 'devid' son obligatorios" });
     }
