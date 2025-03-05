@@ -1,0 +1,2 @@
+docker build -t dash .
+docker run -d -p 3000:3000 --name dashboard dash

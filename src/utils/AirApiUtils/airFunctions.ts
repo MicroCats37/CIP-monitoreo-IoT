@@ -1,19 +1,8 @@
-// api/control-device.ts (o donde tengas tu Server Action)
-import { NextApiRequest } from 'next';
+
 import { AirDeviceDataType } from "@/types";
 import { cleanJson, getMode, getTemp, getWind } from "@/utils/AirApiUtils/getData";
 import { parseStringPromise } from "xml2js";
-
-export type APIResponse = {
-  result: {
-    $: {
-      status: string;
-      req: string;
-      controlmode: string;
-    };
-    device: AirDeviceDataType;
-  };
-};
+import { ControlDeviceBody } from './types';
 
 const username = "admin";
 const password = "12345";
@@ -53,7 +42,7 @@ async function getAirDeviceData(controller: string, devid: string) {
 }
 
 // Función para enviar comando de control
-async function controlDevice(controller: string, devid: string, run: number, mode: number, wind: number, temp: string) {
+async function controlDevice(controller: string, devid: string, run: string, mode: string, wind: string, temp: string) {
   const BASE_URL = getBaseUrl(controller);
 
   const url = `${BASE_URL}?req=ctrl_indoor_unit&devid=${devid}&run=${run}&mode=${mode}&wind=${wind}&temp=${temp}&start_t=0&stop_t=0&economy=0&change_air=0&swing=0&elec_heat=0`;
@@ -71,12 +60,11 @@ async function controlDevice(controller: string, devid: string, run: number, mod
   return response.text();
 }
 
-// Función principal para manejar el POST
-export async function POST(req: NextApiRequest) {
+export async function ControlerAirdevice(deviceData:ControlDeviceBody) {
   try {
     // Extraer el cuerpo de la solicitud
-    const body = req.body;
-    const { controller, devid, run, mode, wind, temp } = body;
+    
+    const { controller, devid, run, mode, wind, temp } = deviceData;
 
     if (!controller) {
       throw new Error("El 'controller' es requerido");

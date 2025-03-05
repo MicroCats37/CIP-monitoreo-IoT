@@ -48,7 +48,7 @@ export function SelectorInteractiveCharts({ chartData, chartConfig, dataKey, YAx
                 <span className="text-xs text-muted-foreground">{chartConfig[chart].label}</span>
                 <div className="flex flex-wrap justify-center">
                   <span className="text-lg font-bold leading-none">
-                    {chartData[chartData.length - 1][key]}
+                    {Number(chartData[chartData.length - 1][key]).toFixed(2)}
                   </span>
                   <span className="text-lg font-bold leading-none">{chartConfig[chart].unit}</span>
                 </div>

@@ -7,7 +7,7 @@ import { fetchDataAction } from "@/utils/ServerActions/validator";
 export const getAireAcondicionadoDatos = async (port: string): Promise<AirConditioningType> => {
     const fluxQuery = `
         from(bucket: "Aire Acondicionado")
-        |> range(start: -30m)
+        |> range(start: -7d)
         |> filter(fn: (r) => 
             r["_measurement"] == "INDOOR-BUS-1-${port}" or 
             r["_measurement"] == "INDOOR-BUS-2-${port}" or 
