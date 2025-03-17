@@ -40,7 +40,7 @@ export default function VariatorCard({ data }: { data: VariatorProps }) {
                     <Zap className="w-5 h-5 mr-2 text-yellow-500" /> Frecuencia
                   </TableCell>
                   <TableCell className={cn("text-right font-semibold", getColorClass(pump.data.frecuencia, [30, 50, 60]))}>
-                    {pump.data.frecuencia} Hz
+                    {pump.data.frecuencia.toFixed(2)} Hz
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -48,7 +48,7 @@ export default function VariatorCard({ data }: { data: VariatorProps }) {
                     <Gauge className="w-5 h-5 mr-2 text-blue-500" /> Intensidad
                   </TableCell>
                   <TableCell className={cn("text-right font-semibold", getColorClass(pump.data.intensidad, [10, 20, 30]))}>
-                    {pump.data.intensidad} A
+                    {pump.data.intensidad.toFixed(2)} A
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -56,7 +56,7 @@ export default function VariatorCard({ data }: { data: VariatorProps }) {
                     <Zap className="w-5 h-5 mr-2 text-purple-500" /> Potencia
                   </TableCell>
                   <TableCell className={cn("text-right font-semibold", getColorClass(pump.data.potencia, [5, 10, 15]))}>
-                    {pump.data.potencia} kW
+                    {pump.data.potencia.toFixed(2)} kW
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -64,7 +64,7 @@ export default function VariatorCard({ data }: { data: VariatorProps }) {
                     <Thermometer className="w-5 h-5 mr-2 text-red-500" /> Temperatura
                   </TableCell>
                   <TableCell className={cn("text-right font-semibold", getColorClass(pump.data.temperatura_unidad, [40, 60, 80]))}>
-                    {pump.data.temperatura_unidad} °C
+                    {pump.data.temperatura_unidad.toFixed(2)} °C
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -72,7 +72,7 @@ export default function VariatorCard({ data }: { data: VariatorProps }) {
                     <Waves className="w-5 h-5 mr-2 text-cyan-500" /> Tensión de Salida
                   </TableCell>
                   <TableCell className={cn("text-right font-semibold", getColorClass(pump.data.tension_salida, [200, 220, 240]))}>
-                    {pump.data.tension_salida} V
+                    {pump.data.tension_salida.toFixed(2)} V
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -80,7 +80,7 @@ export default function VariatorCard({ data }: { data: VariatorProps }) {
                     <Clock className="w-5 h-5 mr-2 text-green-500" /> Tiempo en Marcha
                   </TableCell>
                   <TableCell className="text-right font-semibold">
-                    {pump.data.tiempo_marcha}
+                    {pump.data.tiempo_marcha.toFixed(2)}
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -88,7 +88,7 @@ export default function VariatorCard({ data }: { data: VariatorProps }) {
                     <Navigation2 className="w-5 h-5 mr-2 text-orange-500" /> Velocidad y Dirección
                   </TableCell>
                   <TableCell className="text-right font-semibold">
-                    {pump.data.velocidad_y_direccion}
+                    {pump.data.velocidad_y_direccion.toFixed(2)}
                   </TableCell>
                 </TableRow>
               </TableBody>

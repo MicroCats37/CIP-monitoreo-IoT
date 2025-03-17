@@ -19,9 +19,18 @@ import { WaterPumpDataPlotFormatted, WaterPumpMultipleChartFormatted } from "./W
 import { ErrorCard } from "@/components/Custom/ErrorCard/ErrorCard";
 import LoadingSpinner from "@/components/Custom/LoaderSpiner/LoadingSpinner";
 import { RealTimeCondition } from "@/utils/validatorRealTimePlot";
+import { ButtonRangeDate } from "@/components/Custom/ButtonRangeDate/ButtonRangeDate";
+import { ButtonDownloadCSV } from "@/components/Custom/ButtonDownloadCSV/ButtonDownloadCSV";
+import { DateRange } from "react-day-picker";
 
 
 export default function WaterPumpContent({ contentData }: { contentData: AreaData }) {
+  const [dateRange, setDateRange] = useState<DateRange>({
+    from: new Date(new Date().setHours(new Date().getHours() - 1)), // 1 hora antes
+    to: new Date(),
+  });
+  const endTime = dateRange.to?.toISOString() ? dateRange.to?.toISOString():new Date().toISOString(); // Resta 1 hora
+  const startTime = dateRange.from?.toISOString() ?  dateRange.from?.toISOString():new Date(new Date(endTime).getTime() - 60 * 60 * 1000).toISOString();
   const [intervalo, setIntervalo] = useState<string>("30m");
 
   const topic = TOPICS[contentData.topickey]
@@ -55,7 +64,7 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
 
 
   const WaterPumpData = useMqttStore((state) => state.subsData[topic]) as WaterPumpType[];
-  useHistoricalData(WaterPumpData, topic,RealTimeCondition(intervalo as QueryTimeType),'bomba')
+  useHistoricalData(WaterPumpData, topic, RealTimeCondition(intervalo as QueryTimeType), 'bomba')
   plotData = useHistoricalStore((state) => state.historicalData[topic]) as WaterPumpType[][];
   const { chartData, chartConfig, YAxisFormatter } = WaterPumpDataPlotFormatted(plotData)
   const { chartDataM, chartConfigM, YAxisFormatterM } = WaterPumpMultipleChartFormatted(plotData)
@@ -64,7 +73,21 @@ export default function WaterPumpContent({ contentData }: { contentData: AreaDat
   return (
     <div className="w-full h-full m-auto">
       <div className='w-full flex-col items-center justify-center pb-4 gap-4 space-y-4'>
-        <ButtonFechingDate setIntervalo={setIntervalo} intervalo={intervalo}></ButtonFechingDate>
+        <div className='w-full flex gap-4 justify-between flex-wrap'>
+          <div className='flex gap-4 flex-wrap'>
+            <ButtonRangeDate dateRange={dateRange} setDateRange={setDateRange}></ButtonRangeDate>
+            <ButtonDownloadCSV
+              fileName={'Bombas de Agua'}
+              endpoint={contentData.download!}
+              startTime={startTime}
+              endTime={endTime}
+              query={`bomba=${id}`}
+            />
+
+          </div>
+
+          <ButtonFechingDate setIntervalo={setIntervalo} intervalo={intervalo}></ButtonFechingDate>
+        </div>
         <div className='w-full h-full flex-col space-y-4 items-center justify-center'>
           {WaterPumpData ?
             (

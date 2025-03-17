@@ -17,7 +17,7 @@ export const getBombasHistorico = async (bomba: string,time:string): Promise<Wat
         |> filter(fn: (r) => r["_measurement"] == "${formatString(bomba)}")
         |> filter(fn: (r) => r["_field"] == "estado")
         ${windowPeriod}
-        |> sort(columns: ["_time"], desc: false) // Orden cronológico ascendente
+        |> sort(columns: ["_time"], desc: false)
       `;
   
     // Crear un mapa para agrupar por nombre de bomba

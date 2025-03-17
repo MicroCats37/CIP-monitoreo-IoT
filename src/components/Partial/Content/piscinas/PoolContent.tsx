@@ -20,9 +20,18 @@ import { ButtonFechingDate, QueryTimeType } from '@/components/Custom/ButtonSele
 import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner'
 import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard'
 import { RealTimeCondition } from '@/utils/validatorRealTimePlot'
+import { DateRange } from 'react-day-picker'
+import { ButtonRangeDate } from '@/components/Custom/ButtonRangeDate/ButtonRangeDate'
+import { ButtonDownloadCSV } from '@/components/Custom/ButtonDownloadCSV/ButtonDownloadCSV'
 
 export default function PoolContent({ contentData }: { contentData: AreaData }) {
   const [intervalo, setIntervalo] = useState<string>("30m");
+  const [dateRange, setDateRange] = useState<DateRange>({
+    from: new Date(new Date().setHours(new Date().getHours() - 1)), // 1 hora antes
+    to: new Date(),
+  });
+  const endTime = dateRange.to?.toISOString() ? dateRange.to?.toISOString() : new Date().toISOString(); // Resta 1 hora
+  const startTime = dateRange.from?.toISOString() ? dateRange.from?.toISOString() : new Date(new Date(endTime).getTime() - 60 * 60 * 1000).toISOString();
   let data1: PoolType | undefined = undefined
   let data2: PoolType | undefined = undefined
   let plotData: PoolType[][] = []
@@ -69,7 +78,7 @@ export default function PoolContent({ contentData }: { contentData: AreaData }) 
   const poolData1 = useMqttStore((state) => state.subsData[topic1]) as PoolType;
   const poolData2 = useMqttStore((state) => state.subsData[topic2]) as PoolType;
   CardData = [poolData1, poolData2].filter(Boolean);
-  useHistoricalData(CardData, 'dashboard/piscinas',RealTimeCondition(intervalo as QueryTimeType), 'piscina')
+  useHistoricalData(CardData, 'dashboard/piscinas', RealTimeCondition(intervalo as QueryTimeType), 'piscina')
   plotData = useHistoricalStore((state) => state.historicalData['dashboard/piscinas']) as PoolType[][];
   const { chartDataM, chartConfigM, YAxisFormatterM } = PoolMultipleChartFormatted(plotData)
 
@@ -79,7 +88,20 @@ export default function PoolContent({ contentData }: { contentData: AreaData }) 
   return (
     <div className="w-full h-full m-auto">
       <div className='w-full flex-col items-center justify-center pb-4 gap-4 space-y-4'>
-        <ButtonFechingDate setIntervalo={setIntervalo} intervalo={intervalo}></ButtonFechingDate>
+        <div className='w-full flex gap-4 justify-between flex-wrap'>
+          <div className='flex gap-4 flex-wrap'>
+            <ButtonRangeDate dateRange={dateRange} setDateRange={setDateRange}></ButtonRangeDate>
+            <ButtonDownloadCSV
+              fileName={'Concentracion de Cloro Pisicinas '}
+              endpoint={contentData.download!}
+              startTime={startTime}
+              endTime={endTime}
+            />
+
+          </div>
+
+          <ButtonFechingDate setIntervalo={setIntervalo} intervalo={intervalo}></ButtonFechingDate>
+        </div>
         <div className='w-full h-full flex-col space-y-4 items-center justify-center'>
           {
             CardData.length > 0 && <PoolCard data={CardData}></PoolCard>

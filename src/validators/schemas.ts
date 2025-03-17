@@ -36,6 +36,17 @@ export const PoolTypeSchema = z.object({
   time: z.string(), // Descomentar si decides usar el campo 'time'
 });
 
+export const CO2TypeSchema = z.object({
+  data: z.object({
+    lugar: z.string(),
+    co2: z.number(),        // Ejemplo: "ocupado", "libre", etc.
+  }),
+  time: z.string(), // Descomentar si decides usar el campo 'time'
+});
+export const ArrayCO2TypeSchema = z.array(CO2TypeSchema);
+export const ArrayHistoricalCO2TypeSchema = z.array(ArrayCO2TypeSchema);
+
+
 export const ArrayPoolTypeSchema = z.array(PoolTypeSchema);
 export const ArrayHistoricalPoolTypeSchema = z.array(ArrayPoolTypeSchema)
 

@@ -17,7 +17,6 @@ export async function fetchDataAction<T>(
       // Lanzar un error con información más detallada para el cliente
       throw new Error(JSON.stringify(result.error.errors)); // Importante para Server Components
     }
-
     return result.data;
   } catch (error: unknown) {
     // Manejo de errores más robusto

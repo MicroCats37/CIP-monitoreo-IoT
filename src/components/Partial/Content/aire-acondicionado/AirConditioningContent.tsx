@@ -7,9 +7,10 @@ import AirConditioningCard from '../../Card/AirConditioningCard/AirConditioningC
 import { useResponseData } from '@/hooks/useResponseData'
 import { useTopicsSubcriptions } from '@/mqtt/topics/useTopicsSubscriptions'
 import { TOPICS } from '@/mqtt/topics/topics.data'
-import { getAireAcondicionadoAction } from '@/influxDB/actions/AireAcondicionadoAction'
 import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner'
 import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard'
+import { getAirConditioningData } from '@/utils/callsApi/apiCalls'
+import { getAireAcondicionadoAction } from '@/influxDB/actions/AireAcondicionadoAction'
 
 
 
@@ -34,7 +35,7 @@ export default function AirConditioningContent({ contentData }: { contentData: A
   return (
     <div className='w-full h-full'>
       {
-        airData && <AirConditioningCard data={airData} controller={id==='1'? '55':'56'}></AirConditioningCard>
+        airData && <AirConditioningCard data={airData} controller={id==='1'? '55':'56'} contentData={contentData}></AirConditioningCard>
       }
     </div>
   );

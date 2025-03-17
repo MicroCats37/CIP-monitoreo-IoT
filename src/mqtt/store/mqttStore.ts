@@ -2,8 +2,8 @@
 import { create } from 'zustand';
 import { getClient } from '@/mqtt/mqttClient';
 import { toast } from 'sonner';
-import type { BoardType,  ParkingType, SCIType, VariatorsType, WaterPumpType,  AirConditioningType, PoolType } from '@/types';
-import { AirConditioningTypeSchema, ArrayBoardTypeSchema, ArrayPoolTypeSchema, ArrayVariatorsTypeSchema, ArrayWaterPumpTypeSchema, ParkingTypeSchema, PoolTypeSchema, SCITypeSchema } from '@/validators/schemas';
+import type { BoardType,  ParkingType, SCIType, VariatorsType, WaterPumpType,  AirConditioningType, PoolType, CO2Type } from '@/types';
+import { AirConditioningTypeSchema, ArrayBoardTypeSchema, ArrayPoolTypeSchema, ArrayVariatorsTypeSchema, ArrayWaterPumpTypeSchema, CO2TypeSchema, ParkingTypeSchema, PoolTypeSchema, SCITypeSchema } from '@/validators/schemas';
 
 
 
@@ -14,7 +14,8 @@ const schemas = [
   ArrayWaterPumpTypeSchema,
   ArrayBoardTypeSchema,
   ArrayVariatorsTypeSchema,
-  PoolTypeSchema
+  PoolTypeSchema,
+  CO2TypeSchema
 ];
 
 
@@ -39,6 +40,7 @@ export const topicNames: { [key: string]: string } = {
   'dashboard/variadores/aguas-grises': "Variadores Aguas Grises",
   'dashboard/piscinas/1': "Piscina 1",
   'dashboard/piscinas/2': "Piscina 2",
+  'dashboard/co2': "CO2 en estacionamientos"
 }
 
 const getTopicName = (topic:string) => {
@@ -49,6 +51,7 @@ const getTopicName = (topic:string) => {
 // Unificar todos los tipos de mensaje posibles
 export type MqttMessageType =
   AirConditioningType
+  | CO2Type
   | SCIType
   | ParkingType
   | WaterPumpType[]

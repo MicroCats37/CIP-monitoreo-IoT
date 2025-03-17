@@ -20,8 +20,23 @@ import { MultipleSingleCharts } from '../../Plot/general/MultipleSingleCharts';
 import LoadingSpinner from '@/components/Custom/LoaderSpiner/LoadingSpinner';
 import { ErrorCard } from '@/components/Custom/ErrorCard/ErrorCard';
 import { RealTimeCondition } from '@/utils/validatorRealTimePlot';
+import { ButtonRangeDate } from '@/components/Custom/ButtonRangeDate/ButtonRangeDate';
+import { DateRange } from 'react-day-picker';
+import { Download } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useDownloadCSV } from '@/hooks/useDownloadCSV';
+import { toast } from 'sonner';
+import { ButtonDownloadCSV } from '@/components/Custom/ButtonDownloadCSV/ButtonDownloadCSV';
 export default function BoardsContent({ contentData }: { contentData: AreaData }) {
   const [intervalo, setIntervalo] = useState<string>("30m");
+  const [dateRange, setDateRange] = useState<DateRange>({
+    from: new Date(new Date().setHours(new Date().getHours() - 1)), // 1 hora antes
+    to: new Date(),
+  });
+  const endTime = dateRange.to?.toISOString() ? dateRange.to?.toISOString():new Date().toISOString(); // Resta 1 hora
+  const startTime = dateRange.from?.toISOString() ?  dateRange.from?.toISOString():new Date(new Date(endTime).getTime() - 60 * 60 * 1000).toISOString();
+  
+
 
 
   const topic = TOPICS[contentData.topickey]
@@ -53,7 +68,7 @@ export default function BoardsContent({ contentData }: { contentData: AreaData }
   useInitialHistoricalData(h_data, topic)
   useResponseData(topic, error, data);
   const BoardsData = useMqttStore((state) => state.subsData[topic]) as BoardType[];
-  useHistoricalData(BoardsData, topic,RealTimeCondition(intervalo as QueryTimeType), 'potencia')
+  useHistoricalData(BoardsData, topic, RealTimeCondition(intervalo as QueryTimeType), 'potencia')
   plotData = useHistoricalStore(useShallow((state) => state.historicalData[topic])) as BoardType[][];
   const { chartDataM, chartConfigM } = BoardMultipleChartFormatted(plotData)
   if (isLoading) return <LoadingSpinner></LoadingSpinner>
@@ -61,7 +76,21 @@ export default function BoardsContent({ contentData }: { contentData: AreaData }
   return (
     <div className='w-full h-full m-auto'>
       <div className='w-full flex-col items-center justify-center pb-4 gap-4 space-y-4'>
-        <ButtonFechingDate setIntervalo={setIntervalo} intervalo={intervalo}></ButtonFechingDate>
+        <div className='w-full flex gap-4 justify-between flex-wrap'>
+          <div className='flex gap-4 flex-wrap'>
+            <ButtonRangeDate dateRange={dateRange} setDateRange={setDateRange}></ButtonRangeDate>
+            <ButtonDownloadCSV
+              fileName={'Tableros de Energia'}
+              endpoint={contentData.download!}
+              startTime={startTime}
+              endTime={endTime}
+            />
+
+          </div>
+
+          <ButtonFechingDate setIntervalo={setIntervalo} intervalo={intervalo}></ButtonFechingDate>
+        </div>
+
         <div className='w-full h-full flex-col space-y-4 items-center justify-center'>
           {BoardsData ?
             (

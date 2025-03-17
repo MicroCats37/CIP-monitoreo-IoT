@@ -19,4 +19,5 @@ export const TOPICS: { [key: string]: string } = {
   "variadores aguas grises": "dashboard/variadores/aguas-grises",
   "concentracion de cloro piscina 1": "dashboard/piscinas/1",
   "concentracion de cloro piscina 2": "dashboard/piscinas/2",
+  "concentracion de CO2": "dashboard/co2"
 };
