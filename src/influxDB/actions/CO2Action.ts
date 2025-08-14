@@ -1,8 +1,8 @@
 "use server";
-import { CO2Type } from "@/types";
+import { CO2Type } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
-import { CO2TypeSchema } from "@/validators/schemas";
+import { CO2TypeSchema } from "@/validators0/schemas";
 
 export const getCO2ActionData = async (): Promise<CO2Type> => {
   const fluxQuery = `

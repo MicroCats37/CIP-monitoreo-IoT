@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import {
   Sidebar,
@@ -8,102 +8,68 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
 } from "@/components/ui/sidebar"
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import Link from "next/link"
-import { linkRoutes } from "./SidebarComponent.data"
-
-import { usePathname } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { NestedMenuItem } from "../NestedMenuItem/NestedMenuItem"
+import { linkRoutes } from "./SidebarComponent.data"
+import { ThemeToggle } from "../DarkMode/theme-toggle"
+
 
 export function AppSidebar() {
-
-  const pathname = usePathname();
   return (
-    <>
-      <Sidebar className="h-screen">
-        <SidebarHeader className="border-b px-4 py-2">
+    <Sidebar className="h-screen border-r">
+      <SidebarHeader className="border-b px-4 py-4">
+        <div className="flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <Avatar>
-              <AvatarImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtlBG0gTCz0ut6KaTl1E6aKFoVRXGkvW173A&s" alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
+            <Avatar className="h-10 w-10">
+              <AvatarImage
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtlBG0gTCz0ut6KaTl1E6aKFoVRXGkvW173A&s"
+                alt="Pedro Sotelo"
+              />
+              <AvatarFallback>PS</AvatarFallback>
             </Avatar>
-            <div>
-              <p className="text-sm font-medium">Pedro Sotelo</p>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold truncate">Pedro Sotelo</p>
               <p className="text-xs text-muted-foreground">Usuario CIP</p>
             </div>
           </div>
-        </SidebarHeader>
-        <SidebarContent>
-          <SidebarGroup>
-            <SidebarGroupLabel>DashBoard IoT</SidebarGroupLabel>
-            <SidebarGroupContent>
-              <SidebarMenu className="gap-2">
+          <ThemeToggle />
+        </div>
+      </SidebarHeader>
 
-                {linkRoutes.map((route) => (
-                  <SidebarMenuItem key={route.title}>
+      <SidebarContent className="">
+        <SidebarGroup>
+          <SidebarGroupLabel className="px-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+            Dashboard IoT
+          </SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu className="gap-1">
+              {linkRoutes.map((route, index) => (
+                <SidebarMenuItem key={`${route.title}-${index}`}>
+                  <NestedMenuItem
+                    item={{
+                      title: route.title,
+                      url: route.url,
+                      icon: route.icon,
+                      pages: route.pages,
+                    }}
+                    level={0}
+                  />
+                </SidebarMenuItem>
+              ))}
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
 
-                    {
-                      route.pages ? (
-                        <Accordion type="single" collapsible key={`acordeon-${route.title}`} >
-                          <AccordionItem value={route.title}>
-                            <AccordionTrigger className="bg-sidebar-accent rounded-md ">
-                              <SidebarMenuButton asChild >
-                                <Link href={route.url} passHref>
-                                  <route.icon />
-                                  <span >{route.title}</span>
-                                </Link>
-                              </SidebarMenuButton>
-                            </AccordionTrigger>
-                            <AccordionContent className="py-2">
-                              {
-                                route.pages.map((page) => (
-                                  <div key={page.url} className="w-full flex text-center items-center justify-center h-auto">
-                                    <Link href={page.url} className="p-4 cursor-pointer" passHref prefetch={false}>
-                                      <span className={`px-4 py-2 rounded ${pathname === page.url ? 'bg-black text-white' : 'bg-gray-200 text-black'
-                                        }`}>{page.title}</span>
-                                    </Link>
-                                  </div>
-                                ))
-                              }
-                            </AccordionContent>
-                          </AccordionItem>
-                        </Accordion>
-                      ) : (
-                        <SidebarMenuButton asChild >
-                          <Link
-                            href={route.url}
-                            
-                          >
-                            <route.icon className="h-4 w-4" />
-                            <span>{route.title}</span>
-                          </Link>
-                        </SidebarMenuButton>
-
-                      )
-                    }
-
-                  </SidebarMenuItem>
-
-                ))}
-              </SidebarMenu>
-            </SidebarGroupContent>
-          </SidebarGroup>
-        </SidebarContent>
-      </Sidebar>
-    </>
-
+      <SidebarFooter className="border-t px-4 py-2">
+        <div className="flex items-center justify-between text-xs text-muted-foreground">
+          <span>Dashboard IoT v1.0</span>
+          <ThemeToggle />
+        </div>
+      </SidebarFooter>
+    </Sidebar>
   )
 }
-
-/*
-<Accordion type="single" collapsible>
-  <AccordionItem value="item-1">
-    <AccordionTrigger>Is it accessible?</AccordionTrigger>
-    <AccordionContent>
-      Yes. It adheres to the WAI-ARIA design pattern.
-    </AccordionContent>
-  </AccordionItem>
-</Accordion>*/

@@ -1,4 +1,4 @@
-import { AirConditioningType } from "@/types";
+import { AirConditioningType } from "@/types0";
 import { queryApi } from "../influxConfig";
 
 

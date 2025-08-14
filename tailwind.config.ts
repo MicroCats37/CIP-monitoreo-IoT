@@ -48,11 +48,26 @@ const config: Config = {
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				chart: {
-					'1': 'hsl(var(--chart-1))',
-					'2': 'hsl(var(--chart-2))',
-					'3': 'hsl(var(--chart-3))',
-					'4': 'hsl(var(--chart-4))',
-					'5': 'hsl(var(--chart-5))'
+					"1": "hsl(var(--chart-1))",
+					"2": "hsl(var(--chart-2))",
+					"3": "hsl(var(--chart-3))",
+					"4": "hsl(var(--chart-4))",
+					"5": "hsl(var(--chart-5))",
+					"6": "hsl(var(--chart-6))",
+					"7": "hsl(var(--chart-7))",
+					"8": "hsl(var(--chart-8))",
+					"9": "hsl(var(--chart-9))",
+					"10": "hsl(var(--chart-10))",
+					"11": "hsl(var(--chart-11))",
+					"12": "hsl(var(--chart-12))",
+					"13": "hsl(var(--chart-13))",
+					"14": "hsl(var(--chart-14))",
+					"15": "hsl(var(--chart-15))",
+					"16": "hsl(var(--chart-16))",
+					"17": "hsl(var(--chart-17))",
+					"18": "hsl(var(--chart-18))",
+					"19": "hsl(var(--chart-19))",
+					"20": "hsl(var(--chart-20))",
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -74,7 +89,7 @@ const config: Config = {
 					700: "hsl(220 20% 8%)",
 					800: "hsl(220 20% 6%)",
 					900: "hsl(220 20% 4%)",
-				  },
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -97,7 +112,7 @@ const config: Config = {
 					to: {
 						height: '0'
 					}
-				}, 
+				},
 				"fade-in": {
 					"0%": {
 						opacity: "0",
@@ -108,13 +123,38 @@ const config: Config = {
 						transform: "translateY(0)",
 					},
 				},
-
+				smoothDown: {
+					from: {
+						maxHeight: '0',
+						opacity: '0',
+						transform: 'translateY(-4px)'
+					},
+					to: {
+						maxHeight: 'var(--radix-collapsible-content-height)',
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				smoothUp: {
+					from: {
+						maxHeight: 'var(--radix-collapsible-content-height)',
+						opacity: '1',
+						transform: 'translateY(0)'
+					},
+					to: {
+						maxHeight: '0',
+						opacity: '0',
+						transform: 'translateY(-4px)'
+					}
+				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				"fade-in": "fade-in 0.5s ease-out",
-			}
+				smoothDown: 'smoothDown 300ms cubic-bezier(0.16, 1, 0.3, 1)',
+				smoothUp: 'smoothUp 250ms cubic-bezier(0.4, 0, 0.2, 1)'
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

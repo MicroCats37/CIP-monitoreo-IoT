@@ -1,8 +1,8 @@
 "use server";
-import { ParkingType } from "@/types";
+import { ParkingType } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
-import { ParkingTypeSchema } from "@/validators/schemas";
+import { ParkingTypeSchema } from "@/validators0/schemas";
 
 
 const INFLUXDB_BUCKET_ESTACIONAMIENTOS = 'Estacionamientos';

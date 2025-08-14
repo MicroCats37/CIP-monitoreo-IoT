@@ -1,9 +1,9 @@
 "use server";
-import { WaterPumpType } from "@/types";
+import { WaterPumpType } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
-import { ArrayHistoricalWaterPumpTypeSchema } from "@/validators/schemas";
+import { ArrayHistoricalWaterPumpTypeSchema } from "@/validators0/schemas";
 import { getWindowPeriod } from "@/utils/contextWindow";
 import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
 

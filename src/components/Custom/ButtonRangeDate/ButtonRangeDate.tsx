@@ -232,7 +232,7 @@ export function ButtonRangeDate({ dateRange, setDateRange, includeTime = true }:
         <Button
           variant="outline"
           className={cn(
-            "w-full md:w-auto justify-between text-left font-normal border-2 px-4 shadow-sm transition-all hover:bg-gray-50",
+            "w-full md:w-auto justify-between text-left font-normal border-2 px-4 shadow-sm transition-all ",
             !dateRange?.from && "text-muted-foreground",
             error && isOpen && "border-red-300",
           )}

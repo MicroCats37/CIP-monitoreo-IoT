@@ -1,5 +1,10 @@
+'use client';
 import ProviderQuery from "@/QueryProvider";
 import "./globals.css";
+import { ThemeProvider } from "@/components/Custom/DarkMode/theme-provider";
+
+
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -7,14 +12,19 @@ export default function RootLayout({
 }>) {
  
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       {false && <head>
         <script src="https://unpkg.com/react-scan/dist/auto.global.js" async></script>
       </head>}
-      <body>
+      <body >
+        
           <ProviderQuery>
+            <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           {children}
+            </ThemeProvider>
           </ProviderQuery>
+        
+          
       </body>
     </html>
   );

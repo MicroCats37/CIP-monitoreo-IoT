@@ -5,7 +5,7 @@ import {
   SCITypeSchema,
   VariatorsTypeSchema,
   WaterPumpTypeSchema,
-} from "@/validators/schemas";
+} from "@/validators0/schemas";
 
 import type {
   AirConditioningType,
@@ -14,8 +14,8 @@ import type {
   SCIType,
   VariatorsType,
   WaterPumpType,
-} from "@/types";
-import { fetchData } from "@/validators/functions/validatorschema";
+} from "@/types0";
+import { fetchData } from "@/validators0/functions/validatorschema";
 import { z } from "zod";
 
 // Obtener datos de estacionamiento

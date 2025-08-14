@@ -1,7 +1,7 @@
 "use server";
-import { CO2Type } from "@/types";
+import { CO2Type } from "@/types0";
 import { queryApi } from "../influxConfig";
-import { ArrayHistoricalCO2TypeSchema } from "@/validators/schemas";
+import { ArrayHistoricalCO2TypeSchema } from "@/validators0/schemas";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { getWindowPeriod } from "@/utils/contextWindow";
 import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";

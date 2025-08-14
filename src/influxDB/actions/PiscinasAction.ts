@@ -1,9 +1,9 @@
 
 "use server";
-import { PoolType } from "@/types";
+import { PoolType } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
-import { ArrayPoolTypeSchema } from "@/validators/schemas";
+import { ArrayPoolTypeSchema } from "@/validators0/schemas";
 export const getPiscinasEstadoAction = async (): Promise<PoolType[]> => {
   const fluxQuery = `
        from(bucket: "Concentracion de Cloro")

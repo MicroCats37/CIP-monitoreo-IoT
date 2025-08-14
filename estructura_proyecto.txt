@@ -1,0 +1,313 @@
+# Estructura de archivos del proyecto
+
+```
+├── .env.local
+├── .eslintrc.json
+├── .gitignore
+├── Dockerfile
+├── README.md
+├── comandos-docker.txt
+├── components.json
+├── docedecair.txt
+├── next-env.d.ts
+├── next.config.mjs
+├── notes.txt
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── public/
+│   └── assets/
+│       ├── cart-states/
+│       │   ├── asd.webp
+│       │   ├── dañado.webp
+│       │   ├── libre.webp
+│       │   ├── ocupado.png
+│       │   ├── ocupadooosoos.webp
+│       │   └── reservado.png
+│       └── sotanos/
+│           ├── sotano1.png
+│           ├── sotano2.png
+│           ├── sotano3.png
+│           └── sotano4.png
+├── src/
+│   ├── QueryProvider/
+│   │   └── index.tsx
+│   ├── app/
+│   │   ├── (general)/
+│   │   │   ├── aire-acondicionado/
+│   │   │   │   └── [airId]/
+│   │   │   │       └── page.tsx
+│   │   │   ├── bombas/
+│   │   │   │   └── [bombaId]/
+│   │   │   │       └── page.tsx
+│   │   │   ├── co2/
+│   │   │   │   └── page.tsx
+│   │   │   ├── estacionamientos/
+│   │   │   │   └── sotanos/
+│   │   │   │       └── [sotanoId]/
+│   │   │   │           └── page.tsx
+│   │   │   ├── layout.tsx
+│   │   │   ├── piscinas/
+│   │   │   │   └── page.tsx
+│   │   │   ├── sistema-contra-incendios/
+│   │   │   │   └── page.tsx
+│   │   │   ├── tableros/
+│   │   │   │   └── page.tsx
+│   │   │   └── variadores/
+│   │   │       └── [variadorId]/
+│   │   │           └── page.tsx
+│   │   ├── api/
+│   │   │   └── download/
+│   │   │       ├── aire-acondicionado/
+│   │   │       │   └── route.ts
+│   │   │       ├── bombas/
+│   │   │       │   └── route.ts
+│   │   │       ├── co2/
+│   │   │       │   └── route.ts
+│   │   │       ├── piscinas/
+│   │   │       │   └── route.ts
+│   │   │       ├── sci/
+│   │   │       │   └── route.ts
+│   │   │       ├── tableros/
+│   │   │       │   └── route.ts
+│   │   │       └── variadores/
+│   │   │           └── route.ts
+│   │   ├── favicon.ico
+│   │   ├── fonts/
+│   │   │   ├── GeistMonoVF.woff
+│   │   │   └── GeistVF.woff
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── login/
+│   │   │   └── page.tsx
+│   │   └── page.tsx
+│   ├── components/
+│   │   ├── Custom/
+│   │   │   ├── ButtonDownloadCSV/
+│   │   │   │   └── ButtonDownloadCSV.tsx
+│   │   │   ├── ButtonRangeDate/
+│   │   │   │   └── ButtonRangeDate.tsx
+│   │   │   ├── ButtonSelector/
+│   │   │   │   └── ButtonFechingDate.tsx
+│   │   │   ├── CustomIcon/
+│   │   │   │   ├── CustomIcon.tsx
+│   │   │   │   ├── CustomIcon.types.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── ErrorCard/
+│   │   │   │   └── ErrorCard.tsx
+│   │   │   ├── FilterAir/
+│   │   │   │   ├── FilterDialog.tsx
+│   │   │   │   └── FilterMenu.tsx
+│   │   │   ├── LoaderSpiner/
+│   │   │   │   └── LoadingSpinner.tsx
+│   │   │   ├── NavBar/
+│   │   │   │   ├── Navbar.tsx
+│   │   │   │   ├── Navbar.types.ts
+│   │   │   │   └── index.ts
+│   │   │   └── SidebarComponent/
+│   │   │       ├── Sidebar.types.ts
+│   │   │       ├── SidebarComponent.data.ts
+│   │   │       ├── SidebarComponent.tsx
+│   │   │       └── index.ts
+│   │   ├── Partial/
+│   │   │   ├── Card/
+│   │   │   │   ├── AirConditioningCard/
+│   │   │   │   │   ├── AirConditioningCard.tsx
+│   │   │   │   │   ├── AirConditioningCard.type.ts
+│   │   │   │   │   ├── AirConditioningUnitCard.tsx
+│   │   │   │   │   ├── index.tsx
+│   │   │   │   │   └── useControlAirDevice.tsx
+│   │   │   │   ├── BoardCard/
+│   │   │   │   │   ├── BoardCard.tsx
+│   │   │   │   │   ├── BoardCard.type.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── CO2Card/
+│   │   │   │   │   └── CO2Card.tsx
+│   │   │   │   ├── ParkingCard/
+│   │   │   │   │   ├── ParkingCard.tsx
+│   │   │   │   │   └── ParkingCard.types.ts
+│   │   │   │   ├── PoolCard/
+│   │   │   │   │   ├── PoolCard.tsx
+│   │   │   │   │   └── PoolCard.type.ts
+│   │   │   │   ├── PumpCard/
+│   │   │   │   │   ├── PumpCard.tsx
+│   │   │   │   │   ├── PumpCard.type.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   ├── SCICard/
+│   │   │   │   │   ├── SCICard.tsx
+│   │   │   │   │   ├── SCICard.type.ts
+│   │   │   │   │   └── index.ts
+│   │   │   │   └── VariatorCard/
+│   │   │   │       ├── Variator.type.ts
+│   │   │   │       ├── VariatorCard.tsx
+│   │   │   │       └── index.ts
+│   │   │   ├── Content/
+│   │   │   │   ├── aire-acondicionado/
+│   │   │   │   │   └── AirConditioningContent.tsx
+│   │   │   │   ├── bombas/
+│   │   │   │   │   ├── WaterPumpContent.tsx
+│   │   │   │   │   └── WaterPumpFormattedDataPlot.ts
+│   │   │   │   ├── co2/
+│   │   │   │   │   ├── CO2FormattedDataPlot.ts
+│   │   │   │   │   └── CO2content.tsx
+│   │   │   │   ├── content.data.ts
+│   │   │   │   ├── estacionamientos/
+│   │   │   │   │   ├── CarNumber.tsx
+│   │   │   │   │   ├── CarState.tsx
+│   │   │   │   │   ├── GridSotanos.css
+│   │   │   │   │   ├── GridSotanos.data.ts
+│   │   │   │   │   ├── GridSotanos.tsx
+│   │   │   │   │   ├── LedCarState.tsx
+│   │   │   │   │   ├── SotanoImage.tsx
+│   │   │   │   │   ├── TableCars.tsx
+│   │   │   │   │   └── TableItemCars.tsx
+│   │   │   │   ├── piscinas/
+│   │   │   │   │   ├── PoolContent.tsx
+│   │   │   │   │   └── PoolFormattedDataPlot.ts
+│   │   │   │   ├── sci/
+│   │   │   │   │   ├── SCIContent.tsx
+│   │   │   │   │   └── SCIFormattedDataPlot.ts
+│   │   │   │   ├── tableros/
+│   │   │   │   │   ├── BoardFormattedDataPlot.ts
+│   │   │   │   │   └── BoardsContent.tsx
+│   │   │   │   └── variadores/
+│   │   │   │       ├── VariatorsContent.tsx
+│   │   │   │       └── VariatorsFormattedDataPlot.ts
+│   │   │   ├── Plot/
+│   │   │   │   └── general/
+│   │   │   │       ├── MultipleSelectorInteractiveCharts.tsx
+│   │   │   │       ├── MultipleSingleCharts.tsx
+│   │   │   │       ├── SelectorInteractiveCharts.tsx
+│   │   │   │       ├── SingleChart.tsx
+│   │   │   │       └── StackedSingleChart.tsx
+│   │   │   └── Utils/
+│   │   └── ui/
+│   │       ├── accordion.tsx
+│   │       ├── alert.tsx
+│   │       ├── avatar.tsx
+│   │       ├── badge.tsx
+│   │       ├── button.tsx
+│   │       ├── card.tsx
+│   │       ├── chart.tsx
+│   │       ├── dialog.tsx
+│   │       ├── dropdown-menu.tsx
+│   │       ├── input.tsx
+│   │       ├── label.tsx
+│   │       ├── popover.tsx
+│   │       ├── radio-group.tsx
+│   │       ├── select.tsx
+│   │       ├── separator.tsx
+│   │       ├── sheet.tsx
+│   │       ├── sidebar.tsx
+│   │       ├── skeleton.tsx
+│   │       ├── slider.tsx
+│   │       ├── switch.tsx
+│   │       ├── table.tsx
+│   │       ├── toggle.tsx
+│   │       └── tooltip.tsx
+│   ├── hooks/
+│   │   ├── use-mobile.tsx
+│   │   ├── useDownloadCSV.tsx
+│   │   ├── useHistorialData.tsx
+│   │   ├── useInitialHistoricalData.tsx
+│   │   └── useResponseData.tsx
+│   ├── influxDB/
+│   │   ├── actions/
+│   │   │   ├── AireAcondicionadoAction.ts
+│   │   │   ├── BombasAction.ts
+│   │   │   ├── CO2Action.ts
+│   │   │   ├── EstacionamientoAction.ts
+│   │   │   ├── PiscinasAction.ts
+│   │   │   ├── SCIAction.ts
+│   │   │   ├── TablerosAction.ts
+│   │   │   └── VariadoresAction.ts
+│   │   ├── actions-plots/
+│   │   │   ├── HisctoricoPiscinasActions.ts
+│   │   │   ├── HistoricoBombasActions.ts
+│   │   │   ├── HistoricoCO2Actions.ts
+│   │   │   ├── HistoricoSCIActions.ts
+│   │   │   ├── HistoricoTablerosActions.ts
+│   │   │   └── HistoricoVariadoresActions.ts
+│   │   ├── influxConfig.ts
+│   │   ├── querys/
+│   │   │   ├── AireAcondicionadoQuerys.ts
+│   │   │   ├── BombasQuerys.ts
+│   │   │   ├── EstacionamientoQuerys.ts
+│   │   │   ├── SCIQuerys.ts
+│   │   │   ├── TablerosQuerys.ts
+│   │   │   └── VariadoresQuerys.ts
+│   │   └── querys-download/
+│   │       ├── AireAcondicionadoDownload.ts
+│   │       ├── BombasDownload.ts
+│   │       ├── CO2Download.ts
+│   │       ├── PiscinasDownload.ts
+│   │       ├── SCIDownload.ts
+│   │       ├── TablerosDownload.ts
+│   │       └── VariadoresDownload.ts
+│   ├── lib/
+│   │   └── utils.ts
+│   ├── mqtt/
+│   │   ├── functions/
+│   │   ├── hooks/
+│   │   ├── mqttClient.ts
+│   │   ├── store/
+│   │   │   └── mqttStore.ts
+│   │   └── topics/
+│   │       ├── topics.data.ts
+│   │       └── useTopicsSubscriptions.tsx
+│   ├── pages/
+│   │   └── api/
+│   │       ├── air-device-control/
+│   │       │   └── index.ts
+│   │       ├── aire-acondicionado/
+│   │       │   ├── 1/
+│   │       │   │   ├── index.ts
+│   │       │   │   └── unit/
+│   │       │   │       └── [id].ts
+│   │       │   └── 2/
+│   │       │       ├── index.ts
+│   │       │       └── unit/
+│   │       │           └── [id].ts
+│   │       ├── bombas/
+│   │       │   └── [id].ts
+│   │       ├── sci/
+│   │       │   └── index.ts
+│   │       ├── sotanos/
+│   │       │   └── [id].ts
+│   │       ├── tableros/
+│   │       │   └── index.ts
+│   │       └── variadores/
+│   │           └── [id].ts
+│   ├── store/
+│   │   └── plots.ts
+│   ├── types/
+│   │   └── index.ts
+│   ├── utils/
+│   │   ├── AirApiUtils/
+│   │   │   ├── airFunctions.ts
+│   │   │   ├── apiClient.ts
+│   │   │   ├── getData.ts
+│   │   │   └── types.ts
+│   │   ├── DateComparation.ts
+│   │   ├── ServerActions/
+│   │   │   ├── reactqueryerror.ts
+│   │   │   └── validator.ts
+│   │   ├── callsApi/
+│   │   │   ├── apiCalls.ts
+│   │   │   └── apiClient.ts
+│   │   ├── capitalizeLetter.ts
+│   │   ├── contextWindow.ts
+│   │   ├── decodecEstacionamiento.ts
+│   │   ├── fomatTimeCharts.ts
+│   │   ├── formatRangeTime.ts
+│   │   ├── formatStringPump.ts
+│   │   ├── formatTime.ts
+│   │   └── validatorRealTimePlot.ts
+│   └── validators/
+│       ├── functions/
+│       │   └── validatorschema.ts
+│       └── schemas.ts
+├── tailwind.config.ts
+└── tsconfig.json
+
+```

@@ -1,8 +1,8 @@
 "use server";
-import { PoolType } from "@/types";
+import { PoolType } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
-import { ArrayHistoricalPoolTypeSchema } from "@/validators/schemas";
+import { ArrayHistoricalPoolTypeSchema } from "@/validators0/schemas";
 import { getWindowPeriod } from "@/utils/contextWindow";
 import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
 

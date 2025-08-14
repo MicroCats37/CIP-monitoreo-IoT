@@ -1,6 +1,6 @@
 
-import { AirDeviceDataType } from "@/types";
-import { cleanJson, getMode, getTemp, getWind } from "@/utils/AirApiUtils/getData";
+
+import { AirDeviceDataType, cleanJson, getMode, getTemp, getWind } from "@/utils/AirApiUtils/getData";
 import { parseStringPromise } from "xml2js";
 import { ControlDeviceBody } from './types';
 

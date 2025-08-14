@@ -1,70 +1,97 @@
 
-import { LinkRouteType } from "./Sidebar.types";
-import { ParkingMeter, Cable, AlarmSmoke, Droplets, FireExtinguisher ,Vault,Waves,AudioLines} from "lucide-react"
+import {  PageType } from "./Sidebar.types";
+import { ParkingMeter, Cable, AlarmSmoke, Droplets, FireExtinguisher ,AudioLines,TvMinimalPlay,Dot,Dice6,Activity,Waves, History} from "lucide-react"
 // Menu items.
-export const linkRoutes: LinkRouteType[] = [
-
+export const linkRoutes:  PageType[] = [
+  
+  
   {
+    title: "Monitoreo",
+    url: '#',
+    icon: TvMinimalPlay,
+    pages:[
+      {
     title: "Aire Acondicionado",
     url: "#",
     icon: AlarmSmoke,
     pages: [
       {
         title: 'Controlador 1',
-        url: '/aire-acondicionado/1'
+        url: '/dashboard-iot/monitoreo/aire-acondicionado/1',
+        icon: Dot, 
       },
       {
         title: 'Controlador 2',
-        url: '/aire-acondicionado/2'
+        url: '/dashboard-iot/monitoreo/aire-acondicionado/2',
+        icon: Dot,
       },
     ]
   },
   {
     title: "Sistema contra Incendio",
-    url: "/sistema-contra-incendios",
+    url: '/dashboard-iot/monitoreo/sistema-contra-incendios',
     icon: FireExtinguisher,
   },
   {
-    title: "Tableros de Energia",
-    url: "/tableros",
+    title: 'Tableros de Energia',
+    url: '#',
     icon: Cable,
+    pages: [
+      {
+        title: 'Tabero 1',
+        url: '/dashboard-iot/monitoreo/tableros-energia/tableros/1',
+        icon: Dot,
+      },
+    ]
   },
   {
-    title: "Bombas",
+    title: "Bombas de Agua",
     url: "#",
     icon: Droplets,
     pages: [
       {
-        title: 'Agua Potable',
-        url: '/bombas/agua-potable'
+        title: 'Estado',
+        url: '#',
+        icon: Activity,
+        pages:[
+          {
+            title: 'Agua Potable',
+            url: '/dashboard-iot/monitoreo/bombas-agua/estado/agua-potable',
+            icon: Dot,
+          },
+          {
+            title: 'Aguas Tratadas',
+            url: '/dashboard-iot/monitoreo/bombas-agua/estado/aguas-tratadas',
+            icon: Dot,
+          },
+          {
+            title: 'Aguas Grises',
+            url: '/dashboard-iot/monitoreo/bombas-agua/estado/aguas-grises',
+            icon: Dot,
+          }
+        ]
       },
       {
-        title: 'Aguas Grises',
-        url: '/bombas/aguas-grises'
-      },
-      {
-        title: 'Aguas Tratadas',
-        url: '/bombas/aguas-tratadas'
-      },
-    ]
-
-  },
-  {
-    title: "Variadores",
-    url: "#",
-    icon: Vault,
-    pages: [
-      {
-        title: 'Agua Potable',
-        url: '/variadores/agua-potable'
-      },
-      {
-        title: 'Aguas Grises',
-        url: '/variadores/aguas-grises'
-      },
-      {
-        title: 'Aguas Tratadas',
-        url: '/variadores/aguas-tratadas'
+        title: 'Variadores',
+        url: '#',
+        icon: Dice6,
+        pages:[
+          {
+            title: 'Agua Potable',
+            url: '/dashboard-iot/monitoreo/bombas-agua/variadores/agua-potable',
+            icon: Dot,
+          },
+          {
+            title: 'Agua Potable 2',
+            url: '/dashboard-iot/monitoreo/bombas-agua/variadores/agua-potable-2',
+            icon: Dot,
+          },
+          {
+            title: 'Aguas Tratadas',
+            url: '/dashboard-iot/monitoreo/bombas-agua/variadores/aguas-tratadas',
+            icon: Dot,
+          }
+        ]
       },
     ]
 
@@ -76,30 +103,53 @@ export const linkRoutes: LinkRouteType[] = [
     pages: [
       {
         title: 'Sotano 1',
-        url: '/estacionamientos/sotanos/1'
+        url: '/dashboard-iot/monitoreo/estacionamientos/sotanos/1',
+        icon: Dot,
       },
       {
         title: 'Sotano 2',
-        url: '/estacionamientos/sotanos/2'
+        url: '/dashboard-iot/monitoreo/estacionamientos/sotanos/2',
+        icon: Dot,
       },
       {
         title: 'Sotano 3',
-        url: '/estacionamientos/sotanos/3'
+        url: '/dashboard-iot/monitoreo/estacionamientos/sotanos/3',
+        icon: Dot,
       },
       {
         title: 'Sotano 4',
-        url: '/estacionamientos/sotanos/4'
+        url: '/dashboard-iot/monitoreo/estacionamientos/sotanos/4',
+        icon: Dot,
       }
     ]
   },
   {
-    title: "Piscinas",
-    url: "/piscinas",
-    icon: Waves,
+    title: "Concentracion de CL",
+    url: "#",
+    pages: [
+      {
+        title: 'Piscinas',
+        url: '/dashboard-iot/monitoreo/concentracion-cloro/piscinas',
+        icon: Dot,
+      },
+    ],
+    icon: Droplets,
   },
   {
-    title: "Concentracion de CO2",
-    url: "/co2",
+    title: "Concentracion de Co2",
+    url: '/dashboard-iot/monitoreo/concentracion-co2',
     icon: AudioLines,
+  },
+  {
+    title: "Automatizacion Chosica",
+    url: '/dashboard-iot/monitoreo/bombas-agua-chosica',
+    icon: Waves,
+  }
+    ]
+  },
+  {
+    title: "Historical",
+    url: '/dashboard-iot/historico',
+    icon: History,
   }
 ]

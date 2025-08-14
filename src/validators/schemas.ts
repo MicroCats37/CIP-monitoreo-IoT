@@ -1,188 +1,169 @@
+import { z } from "zod";
 
-import { z } from 'zod';
 
-export const ParkingTypeSchema = z.object({
-  data: z.array(
-    z.object({
-      estacionamiento: z.string(), // Ejemplo: "E1"
-      estado: z.string(),          // Ejemplo: "ocupado", "libre", etc.
-    })
-  ), // Lista de estacionamientos y sus estados
-  time: z.string(),                // Timestamp del estado
-});
-
-export const WaterPumpTypeSchema = z.object({
-  data: z.object({
-    bomba: z.string(),
-    estado: z.boolean(),      // Ejemplo: "ocupado", "libre", etc.
+const MQTTDataSchema = z.object({
+  sensor: z.object({
+    name: z.string(),
   }),
-  time: z.string(), // Descomentar si decides usar el campo 'time'
-});
-
-// Esquema para BoardType
-export const BoardTypeSchema = z.object({
-  data: z.object({
-    potencia: z.string(),
-    value: z.number(),        // Ejemplo: "ocupado", "libre", etc.
-  }),
-  time: z.string(), // Descomentar si decides usar el campo 'time'
-});
-
-export const PoolTypeSchema = z.object({
-  data: z.object({
-    piscina: z.string(),
-    cloro: z.number(),        // Ejemplo: "ocupado", "libre", etc.
-  }),
-  time: z.string(), // Descomentar si decides usar el campo 'time'
-});
-
-export const CO2TypeSchema = z.object({
-  data: z.object({
-    lugar: z.string(),
-    co2: z.number(),        // Ejemplo: "ocupado", "libre", etc.
-  }),
-  time: z.string(), // Descomentar si decides usar el campo 'time'
-});
-export const ArrayCO2TypeSchema = z.array(CO2TypeSchema);
-export const ArrayHistoricalCO2TypeSchema = z.array(ArrayCO2TypeSchema);
-
-
-export const ArrayPoolTypeSchema = z.array(PoolTypeSchema);
-export const ArrayHistoricalPoolTypeSchema = z.array(ArrayPoolTypeSchema)
-
-export const VariatorsTypeSchema = z.object({
-  data: z.object({
-    bomba: z.string(),  // Nombre de la bomba (Q01, Q02, etc.)
-    velocidad_y_direccion: z.number(),  // Opcional, ya que puede estar ausente en algunos casos
-    frecuencia: z.number(),
-    intensidad: z.number(),
-    potencia: z.number(),
-    tension_salida: z.number(),
-    temperatura_unidad: z.number(),
-    tiempo_marcha: z.number(),       // Ejemplo: "ocupado", "libre", etc.
-  }),
-  time: z.string(),
-});
-
-
-
-export const SCIDataTypeSchema = z.object({
-
-  voltage: z.number(),
-  current: z.number(),
-  frequency: z.number(),
-  custom_locked_rotor_current: z.number(),
-  normal_phase_reserval: z.boolean(),
-  phase_loss_l1: z.boolean(),
-  phase_loss_l2: z.boolean(),
-  phase_loss_l3: z.boolean(),
-  lock_rotor_current: z.boolean(),
-  fail_to_start: z.boolean(),
-  transfer_switch_trouble: z.boolean(),
-  power_loss: z.boolean(),
-  service_required: z.boolean(),
-  undercurrent: z.boolean(),
-  overcurrent: z.boolean(),
-  undervoltage: z.boolean(),
-  overvoltage: z.boolean(),
-  phase_unbalanced: z.boolean(),
-  weekly_test_cut_in_not_reached: z.boolean(),
-  weekly_test_check_solenoid_valve: z.boolean(),
-  faulty_pressure_transducer: z.boolean(),
-  overpressure: z.boolean(),
-  underpressure: z.boolean(),
-  low_suction_pressure: z.boolean(),
-  flow_start: z.boolean(),
-  alternate_phase_reversal: z.boolean(),
-  alternate_isolating_switch_open: z.boolean(),
-  alternate_circuit_breaker_tripped: z.boolean(),
-  io_electric_board_communication_loss: z.boolean(),
-  io_transfer_switch_board_comm_loss: z.boolean(),
-  weekly_test_required: z.boolean(),
-  alternate_lock_rotor_current: z.boolean(),
-  low_ambient_temperature_internal_sensor: z.boolean(),
-  high_ambient_temperature_internal_sensor: z.boolean(),
-  control_voltage_not_healthy: z.boolean(),
-  soft_starter_fault: z.boolean(),
-});
-
-
-
-export const SCITypeSchema = z.object({
-  data: SCIDataTypeSchema,
-  time: z.string(),
-});
-
-
-//export const ArrayHistoricalSCITypeSchema = z.array(z.array(SCITypeSchema))
-
-
-// Definir el esquema Zod
-export const AirConditioningTypeSchema = z.object({
-  data: z.array(
-    z.object({
-      unit_name: z.string(),
-      alias: z.string(),
-      id: z.string(),
-      alarm: z.string(),
-      status: z.string(),
-      temperature_setting: z.number(),
-      temperature_indoor: z.number(),
-    })
+  fields: z.record(
+    z.string(),
+    z.union([
+      z.number().optional(),
+      z.string().optional(),
+      z.boolean().optional(),
+      z.array(
+        z.object({
+          label: z.string(),
+          value: z.union([z.number(), z.string(), z.boolean()]),
+        })
+      ).optional()
+    ])
   ),
-  time: z.string()
-});
+})
+export const MQTTDetailsDataSchema = z.union([
+  z.array(MQTTDataSchema),
+  MQTTDataSchema
+])
 
-
-
-
-export const ArrayWaterPumpTypeSchema = z.array(z.object({
-  data: z.object({
-    bomba: z.string(),
-    estado: z.boolean(),      // Ejemplo: "ocupado", "libre", etc.
-  }),
-  time: z.string(), // Descomentar si decides usar el campo 'time'
-}));
-
-export const ArrayHistoricalWaterPumpTypeSchema = z.array(ArrayWaterPumpTypeSchema);
-
-export const ArrayBoardTypeSchema = z.array(z.object({
-  data: z.object({
-    potencia: z.string(),
-    value: z.number(),        // Ejemplo: "ocupado", "libre", etc.
-  }),
-  time: z.string(), // Descomentar si decides usar el campo 'time'
-}));
-
-export const ArrayHistoricalBoardTypeSchema = z.array(ArrayBoardTypeSchema)
-
-export const ArrayVariatorsTypeSchema = z.array(z.object({
-  data: z.object({
-    bomba: z.string(),  // Nombre de la bomba (Q01, Q02, etc.)
-    velocidad_y_direccion: z.number(),  // Opcional, ya que puede estar ausente en algunos casos
-    frecuencia: z.number(),
-    intensidad: z.number(),
-    potencia: z.number(),
-    tension_salida: z.number(),
-    temperatura_unidad: z.number(),
-    tiempo_marcha: z.number(),       // Ejemplo: "ocupado", "libre", etc.
-  }),
+export const MQTTDetailsSchema = z.object({
+  data: MQTTDetailsDataSchema,
   time: z.string(),
-}));
-
-export const ArrayHistoricalVariatorsTypeSchema = z.array(ArrayVariatorsTypeSchema)
+})
 
 
-export const SCISimplifiedTypeSchema = z.object({
-  time: z.string(),
-  data: z.object({
-    voltage: z.number(),
-    current: z.number(),
-    frequency: z.number(),
-    custom_locked_rotor_current: z.number(),
+export type MQTTDetailsDataType = z.infer<typeof MQTTDataSchema>
+/*
+const MQTTmessageSchema = z.object({
+  device: z.object({
+    name: z.string(),
   }),
-});
+  details: z.union([MQTTDetailsSchema, z.array(MQTTDetailsSchema)]),
+})
+*/
+export const MonitoreoPlotGeneralMessageDetailsObjectSchema = z.object({
+  device: z.object({
+    name: z.string(),
+  }),
+  details: z.array(z.object({
+    data: z.union([
+      z.array(MQTTDataSchema),
+      MQTTDataSchema
+    ]),
+    time: z.string(),
+  }))
+})
+export const MonitoreoPlotGeneralMessageDetailsArraySchema = z.object({
+  device: z.object({
+    name: z.string(),
+  }),
+  details: z.array(z.array(z.object({
+    data: MQTTDataSchema,
+    time: z.string(),
+  })))
+})
 
-export const ArrayHistoricalSCITypeSchema = z.array(
-  z.array(SCISimplifiedTypeSchema)
+export type MonitoreoPlotGeneralMessageDetailsArrayType = z.infer<typeof MonitoreoPlotGeneralMessageDetailsArraySchema>
+export type MonitoreoPlotGeneralMessageDetailsObjectType = z.infer<typeof MonitoreoPlotGeneralMessageDetailsObjectSchema>
+export const MonitoreoPlotGeneralSchema = z.union([
+  MonitoreoPlotGeneralMessageDetailsObjectSchema,
+  MonitoreoPlotGeneralMessageDetailsArraySchema
+])
+export type MonitoreoPlotGeneralMessageType = z.infer<typeof MonitoreoPlotGeneralSchema>
+
+
+export const MQTTmessageWhenDetailsIsObjectSchema = z.object({
+  device: z.object({
+    name: z.string(),
+  }),
+  details: z.object({
+    data: z.union([
+      z.array(MQTTDataSchema),
+      MQTTDataSchema
+    ]),
+    time: z.string(),
+  })
+})
+
+export type MQTTmessageWhenDetailsIsObjectType = z.infer<typeof MQTTmessageWhenDetailsIsObjectSchema>
+
+export const MQTTmessageWhenDetailsIsArraySchema = z.object({
+  device: z.object({
+    name: z.string(),
+  }),
+  details: z.array(z.object({
+    data: MQTTDataSchema,
+    time: z.string(),
+  }))
+})
+
+
+export const MQTTmessageType2Schema = z.object({
+  device: z.object({
+    name: z.string(),
+  }),
+  details: z.object({
+    data: z.array(MQTTDataSchema),
+    time: z.string(),
+  })
+})
+export const MQTTmessageType1Schema = z.object({
+  device: z.object({
+    name: z.string(),
+  }),
+  details: z.object({
+    data: MQTTDataSchema,
+    time: z.string(),
+  })
+})
+export const MQTTmessageType3Schema = z.object({
+  device: z.object({
+    name: z.string(),
+  }),
+  details: z.array(z.object({
+    data: MQTTDataSchema,
+    time: z.string(),
+  }))
+})
+
+
+
+
+export type MQTTmessageWhenDetailsIsArrayType = z.infer<typeof MQTTmessageWhenDetailsIsArraySchema>
+
+export const generalMQTTObjectSchema = z.union(
+  [MQTTmessageWhenDetailsIsArraySchema,
+    MQTTmessageWhenDetailsIsObjectSchema,
+    MQTTmessageType1Schema,
+    MQTTmessageType2Schema,
+    MQTTmessageType3Schema
+  ])
+
+// Serie individual (timestamp + campos)
+export const ChartSeriesDataSchema = (z.object({
+  timestamp: z.number(),
+}).catchall(z.union([z.number().optional(), z.string().optional()])))
+
+export const ChartSeriesDataArraySchema = z.array(z.object({
+  timestamp: z.number(),
+}).catchall(z.union([z.number().optional(), z.string().optional()])))
+// Todos los fields de un solo sensor (ChartStakedData)
+export const ChartStakedDataSchema = z.record(
+  z.array(ChartSeriesDataSchema)
 );
+
+// Versión agrupada por sensor y luego por field (ChartStakedDataSimple)
+export const ChartStakedDataSimpleSchema = z.record(
+  ChartStakedDataSchema
+);
+
+// Unión de ambos (ChartData)
+export const ChartDataSchema = z.union([
+  ChartStakedDataSchema,
+  ChartStakedDataSimpleSchema,
+]);
+
+export type ChartSeriesData = z.infer<typeof ChartSeriesDataSchema>;
+export type ChartSeriesDataArray = z.infer<typeof ChartSeriesDataArraySchema>;
+export type ChartStakedData = z.infer<typeof ChartStakedDataSchema>;
+export type ChartStakedDataSimple = z.infer<typeof ChartStakedDataSimpleSchema>;
+export type ChartData = z.infer<typeof ChartDataSchema>;

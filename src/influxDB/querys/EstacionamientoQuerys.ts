@@ -1,4 +1,4 @@
-import { ParkingType } from "@/types";
+import { ParkingType } from "@/types0";
 import { queryApi } from "../influxConfig";
 
 const INFLUXDB_BUCKET_ESTACIONAMIENTOS = 'Estacionamientos';

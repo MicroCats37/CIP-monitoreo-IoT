@@ -1,4 +1,4 @@
-import { WaterPumpType } from "@/types";
+import { WaterPumpType } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
 

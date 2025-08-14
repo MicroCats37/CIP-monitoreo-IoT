@@ -1,10 +1,10 @@
 "use server";
 import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";
 import { queryApi } from "@/influxDB/influxConfig"; // Ajusta la ruta a tu cliente de InfluxDB
-import { BoardType } from "@/types";
+import { BoardType } from "@/types0";
 import { getWindowPeriod } from "@/utils/contextWindow";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
-import { ArrayHistoricalBoardTypeSchema } from "@/validators/schemas";
+import { ArrayHistoricalBoardTypeSchema } from "@/validators0/schemas";
 
 
 export const getHistoricoTableros = async (time:string): Promise<BoardType[][]> => {

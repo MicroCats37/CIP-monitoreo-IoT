@@ -60,7 +60,7 @@ export function FilterDialog({
           Filtros
         </Button>
       </DialogTrigger>
-      <DialogContent className="w-[90%] flex-col lg:w-auto">
+      <DialogContent className="w-[90%] flex-col lg:w-auto rounded-lg">
         <DialogHeader>
           <DialogTitle>Opciones de filtrado</DialogTitle>
         </DialogHeader>

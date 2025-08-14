@@ -1,9 +1,9 @@
 "use server";
 
-import { VariatorsType } from "@/types";
+import { VariatorsType } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
-import { ArrayHistoricalVariatorsTypeSchema } from "@/validators/schemas";
+import { ArrayHistoricalVariatorsTypeSchema } from "@/validators0/schemas";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { getWindowPeriod } from "@/utils/contextWindow";
 import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";

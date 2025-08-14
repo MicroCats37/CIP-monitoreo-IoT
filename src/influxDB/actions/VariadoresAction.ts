@@ -1,9 +1,9 @@
 "use server";
 
-import { VariatorsType } from "@/types";
+import { VariatorsType } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
-import { ArrayVariatorsTypeSchema } from "@/validators/schemas";
+import { ArrayVariatorsTypeSchema } from "@/validators0/schemas";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
 
 

@@ -10,9 +10,11 @@ const THEMES = { light: "", dark: ".dark" } as const
 
 export type ChartConfig = {
   [k in string]: {
+    field?: React.ReactNode
     label?: React.ReactNode
     icon?: React.ComponentType
     unit?:React.ReactNode
+    chartType?:React.ReactNode
   } & (
     | { color?: string; theme?: never }
     | { color?: never; theme: Record<keyof typeof THEMES, string> }

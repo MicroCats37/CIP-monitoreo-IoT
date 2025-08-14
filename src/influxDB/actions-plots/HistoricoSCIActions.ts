@@ -1,7 +1,7 @@
 "use server";
-import { SCISimplifiedType } from "@/types";
+import { SCISimplifiedType } from "@/types0";
 import { queryApi } from "../influxConfig";
-import { ArrayHistoricalSCITypeSchema } from "@/validators/schemas";
+import { ArrayHistoricalSCITypeSchema } from "@/validators0/schemas";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
 import { getWindowPeriod } from "@/utils/contextWindow";
 import { QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate";

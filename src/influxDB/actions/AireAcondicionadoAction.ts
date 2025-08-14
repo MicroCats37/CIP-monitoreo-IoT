@@ -1,7 +1,7 @@
 "use server";
-import { AirConditioningType } from "@/types";
+import { AirConditioningType } from "@/types0";
 import { queryApi } from "../influxConfig";
-import { AirConditioningTypeSchema } from "@/validators/schemas";
+import { AirConditioningTypeSchema } from "@/validators0/schemas";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
 
 export const getAireAcondicionadoDatos = async (port: string): Promise<AirConditioningType> => {

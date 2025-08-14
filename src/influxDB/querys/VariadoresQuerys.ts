@@ -1,4 +1,4 @@
-import { VariatorsType } from "@/types";
+import { VariatorsType } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
 

@@ -1,4 +1,4 @@
-import { SCIDataType, SCIType } from "@/types";
+import { SCIDataType, SCIType } from "@/types0";
 import { queryApi } from "../influxConfig";
 
 

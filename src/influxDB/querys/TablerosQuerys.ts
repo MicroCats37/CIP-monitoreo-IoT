@@ -1,5 +1,5 @@
 import { queryApi } from "@/influxDB/influxConfig";// Ajusta la ruta a tu cliente de InfluxDB
-import { BoardType } from "@/types";
+import { BoardType } from "@/types0";
 
 
 

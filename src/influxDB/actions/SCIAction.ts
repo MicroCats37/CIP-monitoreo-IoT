@@ -1,7 +1,7 @@
 "use server";
-import { SCIDataType, SCIType } from "@/types";
+import { SCIDataType, SCIType } from "@/types0";
 import { queryApi } from "../influxConfig";
-import { SCITypeSchema } from "@/validators/schemas";
+import { SCITypeSchema } from "@/validators0/schemas";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
 
 export const getAlarmsData = async (): Promise<SCIType> => {

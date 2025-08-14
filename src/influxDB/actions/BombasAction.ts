@@ -1,9 +1,9 @@
 "use server";
-import { WaterPumpType } from "@/types";
+import { WaterPumpType } from "@/types0";
 import { queryApi } from "../influxConfig";
 import { formatString } from "@/utils/formatStringPump";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
-import { ArrayWaterPumpTypeSchema} from "@/validators/schemas";
+import { ArrayWaterPumpTypeSchema} from "@/validators0/schemas";
 
 
 

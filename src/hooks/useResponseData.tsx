@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { MqttMessageType, useMqttStore } from "@/mqtt/store/mqttStore";
+import { MqttMessageType, useMqttStore } from "@/mqtt0/store/mqttStore";
 
 /**
  * Hook para manejar lógica basada en error y datos.

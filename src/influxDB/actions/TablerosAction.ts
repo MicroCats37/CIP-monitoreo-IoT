@@ -1,8 +1,8 @@
 "use server";
 import { queryApi } from "@/influxDB/influxConfig";// Ajusta la ruta a tu cliente de InfluxDB
-import { BoardType } from "@/types";
+import { BoardType } from "@/types0";
 import { fetchDataAction } from "@/utils/ServerActions/validator";
-import { ArrayBoardTypeSchema } from "@/validators/schemas";
+import { ArrayBoardTypeSchema } from "@/validators0/schemas";
 
 
 
