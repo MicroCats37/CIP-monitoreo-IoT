@@ -13,7 +13,7 @@ const LoadingSpinner = ({ message = "Cargando...", size = "md" }: LoadingSpinner
   }
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 p-8">
+    <div className="flex flex-1 w-full flex-col items-center justify-center gap-4 p-8">
       <Loader2 className={`animate-spin text-primary ${sizeClasses[size]}`} />
       {message && <p className="text-sm text-muted-foreground text-center">{message}</p>}
     </div>

@@ -10,9 +10,9 @@ const credentials = Buffer.from(`${username}:${password}`).toString("base64");
 
 // Función para determinar la URL base según el `controller`
 function getBaseUrl(controller: string) {
-  if (controller === "55") {
+  if (controller === "Controlador 1") {
     return "http://10.10.5.55/cgi-bin/mdacxml.cgi";
-  } else if (controller === "56") {
+  } else if (controller === "Controlador 2") {
     return "http://10.10.5.56/cgi-bin/mdacxml.cgi";
   } else {
     throw new Error("El 'controller' debe ser '55' o '56'");

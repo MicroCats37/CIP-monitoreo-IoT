@@ -11,12 +11,12 @@ interface Props {
 
 const TablerosDeEnergiaChart: React.FC<Props> = ({ dataHistorical,timeRange }) => {
 
-  const {data:dato1,chartConfig:chartConfig1}=formatChartConfigStackedDetailsArray(dataHistorical)
+  const {data:dato1,chartConfig:chartConfig1}=formatChartConfigStackedDetailsArray(dataHistorical.device.name,dataHistorical)
 
 
   return (
     <div className="flex-col w-full gap-4 space-y-4">
-      <div><MultipleSingleCharts chartData={dato1} chartConfig={chartConfig1} timeRange={timeRange}></MultipleSingleCharts></div>
+      <div><MultipleSingleCharts id={dataHistorical.device.name} chartData={dato1} chartConfig={chartConfig1} timeRange={timeRange}></MultipleSingleCharts></div>
     </div>
     
   )

@@ -19,12 +19,12 @@ import { useMonitoreoHistoricalStore } from "@/store/storages/monitoreoPlots.sto
 import { useShallow } from "zustand/react/shallow"
 import { MultipleSelectorInteractiveCharts } from "@/components/Chart/Monitoreo/MultipleSelectorInteractiveCharts"
 import { formatChartConfigStackedDetailsArrayArray } from "@/utils/Devices/PlotFormat/general"
-import { useControlAirDevice } from "@/hooks/devices/aire-acondiconado/useMutation"
 import LoadingSpinner from "@/components/Custom/LoaderSpiner/LoadingSpinner"
 import ErrorDisplay from "@/components/Custom/Loaders/ErrorDisplay"
 import { diffTimeMs } from "@/utils/Devices/PlotFormat/ToolTip/diffTime"
 import { ButtonFechingDate, QueryTimeType } from "@/components/Custom/ButtonSelector/ButtonFechingDate"
 import { addIconsToChartConfig, IconMapping } from "@/utils/Devices/PlotFormat/addIconConfig"
+import { useControlAirDevice } from "@/hooks/devices/aire-acondiconado/useMutation"
 
 interface TimeRange {
   start: string
@@ -72,9 +72,8 @@ const AireDevice = ({
     const dataFormatted = {
       ...dataHistorical,
       details: [dataHistorical.details],
-
     };
-    const { data, chartConfig } = formatChartConfigStackedDetailsArrayArray(dataFormatted as MonitoreoPlotGeneralMessageDetailsArrayType)
+    const { data, chartConfig } = formatChartConfigStackedDetailsArrayArray(dataHistorical.device.name,dataFormatted as MonitoreoPlotGeneralMessageDetailsArrayType)
     const myIconMap: IconMapping = {
       status: CircleDot,
       alarm: BellRing,

@@ -258,46 +258,59 @@ export const PiscinasLabel = { cloro: "Cloro" } as const;
 export const CO2Unit = { co2: "ppm" } as const;
 export const CO2Label = { co2: "Concentración de CO2" } as const;
 
-type Dict = Record<string, string>;
 
-function mergeWithConflictCheck(...parts: ReadonlyArray<Dict>): Dict {
-  const out: Dict = {};
-  for (const part of parts) {
-    for (const [k, v] of Object.entries(part)) {
-      if (k in out && out[k] !== v) {
-        throw new Error(`Clave duplicada con valores distintos: "${k}" -> "${out[k]}" vs "${v}"`);
-      }
-      out[k] = v;
-    }
+export const getLabel = (key: string, id: string): string => {
+  switch (true) {
+    case id.includes("Controlador"):
+      return (AireLabel as Record<string, string>)[key] ?? key;
+
+    case id.includes("Variadores Bombas"):
+      return (VariadoresLabel as Record<string, string>)[key] ?? key;
+
+    case id.includes("Aire Acondicionado"):
+      return (AireLabel as Record<string, string>)[key] ?? key;
+
+    case id.includes("Estado de Bombas"):
+      return (EstadoLabel as Record<string, string>)[key] ?? key;
+
+    case id.includes("Tableros de Energia"):
+      return (TablerosLabel as Record<string, string>)[key] ?? key;
+
+    case id.includes("Concentracion de Cloro"):
+      return (PiscinasLabel as Record<string, string>)[key] ?? key;
+
+    case id.includes("Concentracion de CO2"):
+      return (CO2Label as Record<string, string>)[key] ?? key;
+
+    default:
+      return "";
   }
-  return out;
-}
+};
 
-export const Unit = Object.freeze(
-  mergeWithConflictCheck(
-    AireUnit,
-    EstadoUnit,
-    VariadoresUnit,
-    SCIUnit,
-    TablerosUnit,
-    PiscinasUnit,
-    CO2Unit,
-  )
-);
+export const getUnit = (key: string, id: string): string => {
+  switch (true) {
+    case id.includes("Controlador"):
+      return (AireUnit as Record<string, string>)[key] ?? key;
 
-export const Label = Object.freeze(
-  mergeWithConflictCheck(
-    AireLabel,
-    EstadoLabel,
-    VariadoresLabel,
-    SCILabel,
-    TablerosLabel,
-    PiscinasLabel,
-    CO2Label,
-  )
-);
-export const getLabel = (key: string): string =>
-  (Label as Record<string, string>)[key] ?? key;
+    case id.includes("Variadores Bombas de Agua"):
+      return (VariadoresUnit as Record<string, string>)[key] ?? "";
 
-export const getUnit = (key: string): string =>
-  (Unit as Record<string, string>)[key] ?? "";
+    case id.includes("Aire Acondicionado"):
+      return (AireUnit as Record<string, string>)[key] ?? "";
+
+    case id.includes("Estado de Bombas"):
+      return (EstadoUnit as Record<string, string>)[key] ?? "";
+
+    case id.includes("Tableros de Energia"):
+      return (TablerosUnit as Record<string, string>)[key] ?? "";
+
+    case id.includes("Concentracion de Cloro"):
+      return (PiscinasUnit as Record<string, string>)[key] ?? "";
+
+    case id.includes("Concentracion de CO2"):
+      return (CO2Unit as Record<string, string>)[key] ?? "";
+
+    default:
+      return "";
+  }
+};

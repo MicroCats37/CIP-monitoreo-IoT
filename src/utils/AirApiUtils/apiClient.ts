@@ -5,7 +5,7 @@ import { ControlDeviceBody } from "./types";
 
 
 export async function controlAirDevice(body: ControlDeviceBody): Promise<ControlDeviceResponse> {
-  const response = await fetch('/api/air-device-control', {
+  const response = await fetch('/api/device/aire-acondicionado/control', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

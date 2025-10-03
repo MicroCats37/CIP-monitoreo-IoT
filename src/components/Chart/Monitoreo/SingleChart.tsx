@@ -11,6 +11,7 @@ import { getLabel } from "@/utils/Devices/PlotFormat/LabelandUnits"
 
 interface ChartProps {
   name:string,
+  id:string,
   chartData: ChartSeriesDataArray,
   chartConfig: ChartConfig
   plotType?: string
@@ -18,7 +19,7 @@ interface ChartProps {
   chartIndex?: number
   YAxisFormatter?: (value: number) => string
 }
-export function SingleChart({ name,chartData, chartConfig, plotType, chartIndex, timeRange,YAxisFormatter }: ChartProps) {
+export function SingleChart({ id,name,chartData, chartConfig, plotType, chartIndex, timeRange,YAxisFormatter }: ChartProps) {
   /*const chartDataT = chartData.map(z => ({
     ...z,
     time: new Date(z.time) // Convertir string a Date
@@ -28,16 +29,14 @@ export function SingleChart({ name,chartData, chartConfig, plotType, chartIndex,
   const fieldsKeys = Object.keys(chartData[0]).filter(
     (field) => field !== 'timestamp'
   );
-
   const ss =(Object.keys(chartConfig)
               .filter((key) => fieldsKeys.includes(key))
               .map((key, index) =>(key)))
-  console.log(ss)
   return (
     <Card className="w-full">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 lg:flex-row">
         <div className="grid gap-1 text-center sm:text-left">
-          <CardTitle>{getLabel(name)}</CardTitle>
+          <CardTitle>{getLabel(name,id)}</CardTitle>
           <CardDescription>Mostrando el monitoreo en las últimas horas</CardDescription>
         </div>
       </CardHeader>

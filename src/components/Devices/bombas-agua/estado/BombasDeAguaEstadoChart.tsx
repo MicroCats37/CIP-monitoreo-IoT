@@ -14,8 +14,8 @@ interface Props {
 
 const BombasDeAguaEstadoChart: React.FC<Props> = ({ timeRange,dataHistorical }) => {
 
-  const { data: dato1, chartConfig: chartConfig1 } = formatChartConfigStackedDetailsArrayArray(dataHistorical)
-  const { flatData, chartConfig: chartConfig2 } = formatStackedDataArray(dato1)
+  const { data: dato1, chartConfig: chartConfig1 } = formatChartConfigStackedDetailsArrayArray(dataHistorical.device.name,dataHistorical)
+  const { flatData, chartConfig: chartConfig2 } = formatStackedDataArray(dataHistorical.device.name,dato1)
   const YAxisFormatter= (value: number) => {
     return value === 0 ? "Off" : value === 1 ? "On" : "";
   };
@@ -23,6 +23,7 @@ const BombasDeAguaEstadoChart: React.FC<Props> = ({ timeRange,dataHistorical }) 
 
     <div className="flex-col w-full gap-4 space-y-4">
       <SingleChart
+        id={dataHistorical.device.name}
         YAxisFormatter={YAxisFormatter}
         name={dataHistorical.device.name}
         key={`${dataHistorical.device.name}-chart`}
@@ -30,7 +31,7 @@ const BombasDeAguaEstadoChart: React.FC<Props> = ({ timeRange,dataHistorical }) 
         chartConfig={chartConfig2}
         timeRange={timeRange}
       />
-      <MultipleSingleCharts YAxisFormatter={YAxisFormatter} chartData={dato1} chartConfig={chartConfig1} timeRange={timeRange}></MultipleSingleCharts>
+      <MultipleSingleCharts id={dataHistorical.device.name} YAxisFormatter={YAxisFormatter} chartData={dato1} chartConfig={chartConfig1} timeRange={timeRange}></MultipleSingleCharts>
     </div>
   )
 };

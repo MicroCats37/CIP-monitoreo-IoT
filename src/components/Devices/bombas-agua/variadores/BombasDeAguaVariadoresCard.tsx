@@ -51,7 +51,7 @@ export default function BombasDeAguaVariadoresCard({ dataMQTT }: Props) {
                 >
                   <div className="flex items-center space-x-2">
                     <FieldIcon className="w-4 h-4 text-blue-500 dark:text-blue-400" />
-                    <span className="text-sm text-gray-600 dark:text-gray-400">{getLabel(fieldName)}</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">{getLabel(fieldName,dataMQTT.device.name)}</span>
                   </div>
 
                   <div className="text-right">

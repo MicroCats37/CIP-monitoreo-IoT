@@ -32,7 +32,7 @@ export function StackedChart({ name, chartData, chartConfig, plotType, chartInde
   const ss = (Object.keys(chartConfig)
     .filter((key) => fieldsKeys.includes(key))
     .map((key, index) => (key)))
-  console.log(ss)
+
   return (
     <Card className="w-full">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 lg:flex-row">

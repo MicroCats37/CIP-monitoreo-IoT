@@ -1,737 +1,1648 @@
-.gridsotano{
-    display: grid; 
-    grid-template-columns: repeat(74, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+.gridsotano {
+  display: grid;
+  grid-template-columns: repeat(74, 1fr);
+  grid-template-rows: repeat(6, 1fr);
 }
 
-.gridsotano > div {
+.gridsotano>div {
   width: 100%;
   height: 100%;
 }
 
-.car{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.car {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Gradiente horizontal */
+  background: linear-gradient(to right, #3a3a3a, #6c6c6c);
+  border:1px solid #000;
+  /* Opcional: para que ocupe todo el ancho/alto */
 }
 
-.gridsotano1 {  display: grid;
-  grid-template-areas: 
-  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car1 s1car1 . s1car2 s1car2 s1car3 s1car3 s1car4 s1car4 s1car5 s1car5 s1car6 s1car6 s1car7 s1car7 s1car8 s1car8 s1car9 s1car9 s1car10 s1car10 s1car11 s1car11 s1car12 s1car12 s1car13 s1car13 . . s1car14 s1car14 s1car15 s1car15 s1car16 s1car16 . . . . . . . . . . . ."
-  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car17 s1car17 s1car18 s1car18 s1car19 s1car19 s1car20 s1car20 s1car21 s1car21 s1car22 s1car22 s1car23 s1car23 s1car24 s1car24 s1car25 s1car25 s1car26 s1car26 s1car27 s1car27 s1car28 s1car28 s1car29 s1car29 s1car30 s1car30 s1car31 s1car31 . . s1car32 s1car32 s1car33 s1car33 . . . . . ."
-  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car34 s1car34 s1car35 s1car35 s1car36 s1car36 . . s1car37 s1car37 s1car38 s1car38 s1car39 s1car39 s1car40 s1car40 s1car41 s1car41 s1car42 s1car42 s1car43 s1car43 s1car44 s1car44 s1car45 s1car45 s1d1 s1car46 s1car46 s1d2 . . s1car47 s1car47 s1car48 s1car48 . . . . . ."
-  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-  ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car49 s1car49 s1car50 s1car50 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."; 
-  }
-    .s1car1 { grid-area: s1car1; }
-    
-    .s1car2 { grid-area: s1car2; }
-    
-    .s1car3 { grid-area: s1car3; }
-    
-    .s1car4 { grid-area: s1car4; }
-    
-    .s1car5 { grid-area: s1car5; }
-    
-    .s1car6 { grid-area: s1car6; }
-    
-    .s1car7 { grid-area: s1car7; }
-    
-    .s1car8 { grid-area: s1car8; }
-    
-    .s1car9 { grid-area: s1car9; }
-    
-    .s1car10 { grid-area: s1car10; }
-    
-    .s1car11 { grid-area: s1car11; }
-    
-    .s1car12 { grid-area: s1car12; }
-    
-    .s1car13 { grid-area: s1car13; }
-    
-    .s1car14 { grid-area: s1car14; }
-    
-    .s1car15 { grid-area: s1car15; }
-    
-    .s1car16 { grid-area: s1car16; }
-    
-    .s1car17 { grid-area: s1car17; }
-    
-    .s1car18 { grid-area: s1car18; }
-    
-    .s1car19 { grid-area: s1car19; }
-    
-    .s1car20 { grid-area: s1car20; }
-    
-    .s1car21 { grid-area: s1car21; }
-    
-    .s1car22 { grid-area: s1car22; }
-    
-    .s1car23 { grid-area: s1car23; }
-    
-    .s1car24 { grid-area: s1car24; }
-    
-    .s1car25 { grid-area: s1car25; }
-    
-    .s1car26 { grid-area: s1car26; }
-    
-    .s1car27 { grid-area: s1car27; }
-    
-    .s1car28 { grid-area: s1car28; }
-    
-    .s1car29 { grid-area: s1car29; }
-    
-    .s1car30 { grid-area: s1car30; }
-    
-    .s1car31 { grid-area: s1car31; }
-    
-    .s1car34 { grid-area: s1car34; }
-    
-    .s1car33 { grid-area: s1car33; }
-    
-    .s1car32 { grid-area: s1car32; }
-    
-    .s1car35 { grid-area: s1car35; }
-    
-    .s1car36 { grid-area: s1car36; }
-    
-    .s1car37 { grid-area: s1car37; }
-    
-    .s1car38 { grid-area: s1car38; }
-    
-    .s1car39 { grid-area: s1car39; }
-    
-    .s1car40 { grid-area: s1car40; }
-    
-    .s1car41 { grid-area: s1car41; }
-    
-    .s1car42 { grid-area: s1car42; }
-    
-    .s1car43 { grid-area: s1car43; }
-    
-    .s1car44 { grid-area: s1car44; }
-    
-    .s1car45 { grid-area: s1car45; }
-    
-    .s1car46 { grid-area: s1car46; }
-    
-    .s1car47 { grid-area: s1car47; }
-    
-    .s1car48 { grid-area: s1car48; }
-    
-    .s1car49 { grid-area: s1car49; }
 
-    .s1car50 { grid-area: s1car50; }
+.imagegridsotano {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  grid-template-areas:
+    "fondo1"
+
+
+    "pista1"
+
+    "fondo2"
+
+    "fondo3"
+
+    "pista2"
+
+    "fondo4"
+
+  ;
+}
+
+
+
+.imagegridsotano1 {
+  grid-template-areas:
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car1 s1car1 . s1car2 s1car2 s1car3 s1car3 s1car4 s1car4 s1car5 s1car5 s1car6 s1car6 s1car7 s1car7 s1car8 s1car8 s1car9 s1car9 s1car10 s1car10 s1car11 s1car11 s1car12 s1car12 s1car13 s1car13 . . s1car14 s1car14 s1car15 s1car15 s1car16 s1car16 . . . . . . . . . . . ."
+
+    "pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1"
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car17 s1car17 s1car18 s1car18 s1car19 s1car19 s1car20 s1car20 s1car21 s1car21 s1car22 s1car22 s1car23 s1car23 s1car24 s1car24 s1car25 s1car25 s1car26 s1car26 s1car27 s1car27 s1car28 s1car28 s1car29 s1car29 s1car30 s1car30 s1car31 s1car31 . . s1car32 s1car32 s1car33 s1car33 . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car34 s1car34 s1car35 s1car35 s1car36 s1car36 . . s1car37 s1car37 s1car38 s1car38 s1car39 s1car39 s1car40 s1car40 s1car41 s1car41 s1car42 s1car42 s1car43 s1car43 s1car44 s1car44 s1car45 s1car45 s1d1 s1car46 s1car46 s1d2 . . s1car47 s1car47 s1car48 s1car48 . . . . . ."
+    "pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2  pista2"
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car49 s1car49 s1car50 s1car50 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .";
+}
+
+.imagegridsotano2 {
+  grid-template-areas:
+    ". . . . s2car1 s2car1 s2car2 s2car2 s2car3 s2car3 s2car4 s2car4 s2car5 s2car5 s2car6 s2car6 s2car7 s2car7 s2car8 s2car8 s2car9 s2car9 s2car10 s2car10 s2car11 s2car11 s2car12 s2car12 s2car13 s2car13 . s2car14 s2car14 s2car15 s2car15 s2car16 s2car16 s2car17 s2car17 s2car18 s2car18 s2car19 s2car19 s2car20 s2car20 s2car21 s2car21 s2car22 s2car22 s2car23 s2car23 s2car24 s2car24 s2car25 s2car25 . . s2car26 s2car26 s2car27 s2car27 s2car28 s2car28 . . . . . . . . . . . ."
+    "pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1"
+    "s2car29 s2car29 . . . . s2car30 s2car30 s2car31 s2car31 . . . . . . . . . . . . s2car32 s2car32 s2car33 s2car33 s2car34 s2car34 . . . . . s2car35 s2car35 s2car36 s2car36 s2car37 s2car37 s2car38 s2car38 s2car39 s2car39 s2car40 s2car40 s2car41 s2car41 s2car42 s2car42 s2car43 s2car43 s2car44 s2car44 s2car45 s2car45 s2car46 s2car46 s2car47 s2car47 s2car48 s2car48 s2car49 s2car49 . . s2car50 s2car50 s2car51 s2car51 . . . . . ."
+    "s2car52 s2car52 . . . . s2car53 s2car53 s2car54 s2car54 . . . . . . . . . . . . s2car55 s2car55 s2car56 s2car56 s2car57 s2car57 . . . . . s2car58 s2car58 s2car59 s2car59 s2car60 s2car60 . . s2car61 s2car61 s2car62 s2car62 s2car63 s2car63 s2car64 s2car64 s2car65 s2car65 s2car66 s2car66 s2car67 s2car67 s2car68 s2car68 s2car69 s2car69 s2d1 s2car70 s2car70 s2d2 . . s2car71 s2car71 s2car72 s2car72 . . . . . ."
+    "pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2  pista2"
+    "s2car73 s2car73 s2car74 s2car74 s2car75 s2car75 s2car76 s2car76 s2car77 s2car77 s2car78 s2car78 s2car79 s2car79 s2car80 s2car80 s2car81 s2car81 s2car82 s2car82 s2car83 s2car83 . . . . . . s2car84 s2car84 s2d3 s2car85 s2car85 . . . . . . s2car86 s2car86 s2car87 s2car87 s2car88 s2car88 s2car89 s2car89 s2car90 s2car90 s2car91 s2car91 s2car92 s2car92 s2car93 s2car93 s2car94 s2car94 . . . . . . s2car95 s2car95 s2car96 s2car96 s2car97 s2car97 s2car98 s2car98 s2car99 s2car99 . .";
+}
+
+.imagegridsotano3 {
+  grid-template-areas:
+    ". . . . . . . . . . . . . . . . s3car1 s3car1 s3car2 s3car2 s3car3 s3car3 s3car4 s3car4 s3car5 s3car5 s3car6 s3car6 s3car7 s3car7 . s3car8 s3car8 s3car9 s3car9 s3car10 s3car10 s3car11 s3car11 s3car12 s3car12 s3car13 s3car13 s3car14 s3car14 s3car15 s3car15 s3car16 s3car16 s3car17 s3car17 s3car18 s3car18 s3car19 s3car19 . . s3car20 s3car20 s3car21 s3car21 s3car22 s3car22 . . . . . . . . . . . . ."
+    "pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1"
+    "s3car23 s3car23 . . . . s3car24 s3car24 s3car25 s3car25 . . . . . . . . . . . . s3car26 s3car26 s3car27 s3car27 s3car28 s3car28 . . . . . s3car29 s3car29 s3car30 s3car30 s3car31 s3car31 s3car32 s3car32 s3car33 s3car33 s3car34 s3car34 s3car35 s3car35 s3car36 s3car36 s3car37 s3car37 s3car38 s3car38 s3car39 s3car39 s3car40 s3car40 s3car41 s3car41 s3car42 s3car42 s3car43 s3car43 . . s3car44 s3car44 s3car45 s3car45 . . . . . . ."
+    "s3car46 s3car46 . . . . s3car47 s3car47 s3car48 s3car48 . . . . . . . . . . . . s3car49 s3car49 s3car50 s3car50 s3car51 s3car51 . . . . . s3car52 s3car52 s3car53 s3car53 s3car54 s3car54 . . s3car55 s3car55 s3car56 s3car56 s3car57 s3car57 s3car58 s3car58 s3car59 s3car59 s3car60 s3car60 s3car61 s3car61 s3car62 s3car62 s3car63 s3car63 s3d1 s3car64 s3car64 s3d2 . . s3car65 s3car65 s3car66 s3car66 . . . . . . ."
+    "pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2  pista2 pista2"
+    "s3car67 s3car67 s3car68 s3car68 s3car69 s3car69 s3car70 s3car70 s3car71 s3car71 s3car72 s3car72 s3car73 s3car73 s3car74 s3car74 s3car75 s3car75 s3car76 s3car76 s3car77 s3car77 s3car78 s3car78 s3car79 s3car79 s3car80 s3car80 s3car81 s3car81 s3d3 s3car82 s3car82 . . . . . . s3car83 s3car83 s3car84 s3car84 s3car85 s3car85 s3car86 s3car86 s3car87 s3car87 s3car88 s3car88 s3car89 s3car89 s3car90 s3car90 s3car91 s3car91 . . . . . . s3car92 s3car92 s3car93 s3car93 s3car94 s3car94 s3car95 s3car95 s3car96 s3car96 . . .";
+}
+
+.imagegridsotano4 {
+  grid-template-areas:
+    ". . . . . . s4car1 s4car1 s4car2 s4car2 s4car3 s4car3 s4car4 s4car4 s4car5 s4car5 s4car6 s4car6 s4car7 s4car7 s4car8 s4car8 s4car9 s4car9 s4car10 s4car10 s4car11 s4car11 s4car12 s4car12 . s4car13 s4car13 s4car14 s4car14 s4car15 s4car15 s4car16 s4car16 s4car17 s4car17 s4car18 s4car18 s4car19 s4car19 . . s4car20 s4car20 s4car21 s4car21 s4car22 s4car22 s4car23 s4car23 . . s4car24 s4car24 s4car25 s4car25 s4car26 s4car26 . . . . . . . . . . . ."
+    "pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1 pista1"
+    "s4car27 s4car27 . . . . s4car28 s4car28 s4car29 s4car29 . . . . . . . . . . . .  s4car30 s4car30 s4car31 s4car31 s4car32 s4car32 . . . . . s4car33 s4car33 s4car34 s4car34 s4car35 s4car35 s4car36 s4car36 s4car37 s4car37 s4car38 s4car38 s4car39 s4car39 s4car40 s4car40 s4car41 s4car41 s4car42 s4car42 s4car43 s4car43 s4car44 s4car44 s4car45 s4car45 s4car46 s4car46 s4car47 s4car47 . . s4car48 s4car48 s4car49 s4car49 . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . s4car50 s4car50 s4car51 s4car51 s4car52 s4car52 s4car53 s4car53 s4car54 s4car54 . . s4car55 s4car55 s4car56 s4car56 s4car57 s4car57 s4car58 s4car58 s4car59 s4car59 s4car60 s4car60 s4car61 s4car61 s4car62 s4car62 s4car63 s4car63 s4d1 s4car64 s4car64 s4d2 . . s4car65 s4car65 s4car66 s4car66 . . . . . ."
+    "pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2 pista2  pista2"
+    
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s4car67 s4car67 s4car68 s4car68 . . . . . . . s4car69 s4car69 s4car70 s4car70 s4car71 s4car71 s4car72 s4car72 s4car73 s4car73 s4car74 s4car74 s4car75 s4car75 s4car76 s4car76 s4car77 s4car77 . . . . . . s4car78 s4car78 s4car79 s4car79 s4car80 s4car80 s4car81 s4car81 s4car82 s4car82 . .";
+}
+
+.pista1 {
+  grid-area: pista1;
+
+}
+
+.pista2 {
+  grid-area: pista2;
   
-    .s1d1 { grid-area:s1d1 }
-  
-    .s1d2 { grid-area:s1d2 }
-  
+}
 
-.gridsotano2 {  display: grid;
-    grid-template-areas: 
-      ". . . . s2car1 s2car1 s2car2 s2car2 s2car3 s2car3 s2car4 s2car4 s2car5 s2car5 s2car6 s2car6 s2car7 s2car7 s2car8 s2car8 s2car9 s2car9 s2car10 s2car10 s2car11 s2car11 s2car12 s2car12 s2car13 s2car13 . s2car14 s2car14 s2car15 s2car15 s2car16 s2car16 s2car17 s2car17 s2car18 s2car18 s2car19 s2car19 s2car20 s2car20 s2car21 s2car21 s2car22 s2car22 s2car23 s2car23 s2car24 s2car24 s2car25 s2car25 . . s2car26 s2car26 s2car27 s2car27 s2car28 s2car28 . . . . . . . . . . . ."
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-      "s2car29 s2car29 . . . . s2car30 s2car30 s2car31 s2car31 . . . . . . . . . . . . s2car32 s2car32 s2car33 s2car33 s2car34 s2car34 . . . . . s2car35 s2car35 s2car36 s2car36 s2car37 s2car37 s2car38 s2car38 s2car39 s2car39 s2car40 s2car40 s2car41 s2car41 s2car42 s2car42 s2car43 s2car43 s2car44 s2car44 s2car45 s2car45 s2car46 s2car46 s2car47 s2car47 s2car48 s2car48 s2car49 s2car49 . . s2car50 s2car50 s2car51 s2car51 . . . . . ."
-      "s2car52 s2car52 . . . . s2car53 s2car53 s2car54 s2car54 . . . . . . . . . . . . s2car55 s2car55 s2car56 s2car56 s2car57 s2car57 . . . . . s2car58 s2car58 s2car59 s2car59 s2car60 s2car60 . . s2car61 s2car61 s2car62 s2car62 s2car63 s2car63 s2car64 s2car64 s2car65 s2car65 s2car66 s2car66 s2car67 s2car67 s2car68 s2car68 s2car69 s2car69 s2d1 s2car70 s2car70 s2d2 . . s2car71 s2car71 s2car72 s2car72 . . . . . ."
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-      "s2car73 s2car73 s2car74 s2car74 s2car75 s2car75 s2car76 s2car76 s2car77 s2car77 s2car78 s2car78 s2car79 s2car79 s2car80 s2car80 s2car81 s2car81 s2car82 s2car82 s2car83 s2car83 . . . . . . s2car84 s2car84 s2d3 s2car85 s2car85 . . . . . . s2car86 s2car86 s2car87 s2car87 s2car88 s2car88 s2car89 s2car89 s2car90 s2car90 s2car91 s2car91 s2car92 s2car92 s2car93 s2car93 s2car94 s2car94 . . . . . . s2car95 s2car95 s2car96 s2car96 s2car97 s2car97 s2car98 s2car98 s2car99 s2car99 . ."; 
-  }
-    .s2car1 { grid-area: s2car1; }
-    
-    .s2car2 { grid-area: s2car2; }
-    
-    .s2car3 { grid-area: s2car3; }
-    
-    .s2car4 { grid-area: s2car4; }
-    
-    .s2car5 { grid-area: s2car5; }
-    
-    .s2car6 { grid-area: s2car6; }
-    
-    .s2car7 { grid-area: s2car7; }
-    
-    .s2car8 { grid-area: s2car8; }
-    
-    .s2car9 { grid-area: s2car9; }
-    
-    .s2car10 { grid-area: s2car10; }
-    
-    .s2car11 { grid-area: s2car11; }
-    
-    .s2car12 { grid-area: s2car12; }
-    
-    .s2car13 { grid-area: s2car13; }
-    
-    .s2car14 { grid-area: s2car14; }
-    
-    .s2car15 { grid-area: s2car15; }
-    
-    .s2car16 { grid-area: s2car16; }
-    
-    .s2car17 { grid-area: s2car17; }
-    
-    .s2car18 { grid-area: s2car18; }
-    
-    .s2car19 { grid-area: s2car19; }
-    
-    .s2car20 { grid-area: s2car20; }
-    
-    .s2car21 { grid-area: s2car21; }
-    
-    .s2car22 { grid-area: s2car22; }
-    
-    .s2car23 { grid-area: s2car23; }
-    
-    .s2car24 { grid-area: s2car24; }
-    
-    .s2car25 { grid-area: s2car25; }
-    
-    .s2car26 { grid-area: s2car26; }
-    
-    .s2car27 { grid-area: s2car27; }
-    
-    .s2car28 { grid-area: s2car28; }
-    
-    .s2car29 { grid-area: s2car29; }
-    
-    .s2car30 { grid-area: s2car30; }
-    
-    .s2car31 { grid-area: s2car31; }
-    
-    .s2car34 { grid-area: s2car34; }
-    
-    .s2car33 { grid-area: s2car33; }
-    
-    .s2car32 { grid-area: s2car32; }
-    
-    .s2car35 { grid-area: s2car35; }
-    
-    .s2car36 { grid-area: s2car36; }
-    
-    .s2car37 { grid-area: s2car37; }
-    
-    .s2car38 { grid-area: s2car38; }
-    
-    .s2car39 { grid-area: s2car39; }
-    
-    .s2car40 { grid-area: s2car40; }
-    
-    .s2car41 { grid-area: s2car41; }
-    
-    .s2car42 { grid-area: s2car42; }
-    
-    .s2car43 { grid-area: s2car43; }
-    
-    .s2car44 { grid-area: s2car44; }
-    
-    .s2car45 { grid-area: s2car45; }
-    
-    .s2car46 { grid-area: s2car46; }
-    
-    .s2car47 { grid-area: s2car47; }
-    
-    .s2car48 { grid-area: s2car48; }
-    
-    .s2car49 { grid-area: s2car49; }
-    
-    .s2car50 { grid-area: s2car50; }
-    
-    .s2car51 { grid-area: s2car51; }
-    
-    .s2car52 { grid-area: s2car52; }
-    
-    .s2car53 { grid-area: s2car53; }
-    
-    .s2car54 { grid-area: s2car54; }
-    
-    .s2car55 { grid-area: s2car55; }
-    
-    .s2car56 { grid-area: s2car56; }
-    
-    .s2car57 { grid-area: s2car57; }
-    
-    .s2car58 { grid-area: s2car58; }
-    
-    .s2car59 { grid-area: s2car59; }
-    
-    .s2car60 { grid-area: s2car60; }
-    
-    .s2car61 { grid-area: s2car61; }
-    
-    .s2car62 { grid-area: s2car62; }
-    
-    .s2car63 { grid-area: s2car63; }
-    
-    .s2car64 { grid-area: s2car64; }
-    
-    .s2car65 { grid-area: s2car65; }
-    
-    .s2car66 { grid-area: s2car66; }
-    
-    .s2car67 { grid-area: s2car67; }
-    
-    .s2car68 { grid-area: s2car68; }
-    
-    .s2car69 { grid-area: s2car69; }
-    
-    .s2d1 { grid-area: s2d1; }
-    
-    .s2car70 { grid-area: s2car70; }
-    
-    .s2d2 { grid-area: s2d2; }
-    
-    .s2car71 { grid-area: s2car71; }
-    
-    .s2car72 { grid-area: s2car72; }
-    
-    .s2car73 { grid-area: s2car73; }
-    
-    .s2car74 { grid-area: s2car74; }
-    
-    .s2car75 { grid-area: s2car75; }
-    
-    .s2car76 { grid-area: s2car76; }
-    
-    .s2car77 { grid-area: s2car77; }
-    
-    .s2car78 { grid-area: s2car78; }
-    
-    .s2car79 { grid-area: s2car79; }
-    
-    .s2car80 { grid-area: s2car80; }
-    
-    .s2car81 { grid-area: s2car81; }
-    
-    .s2car82 { grid-area: s2car82; }
-    
-    .s2car83 { grid-area: s2car83; }
-    
-    .s2car84 { grid-area: s2car84; }
-    
-    .s2car85 { grid-area: s2car85; }
-    
-    .s2d3 { grid-area: s2d3; }
-    
-    .s2car86 { grid-area: s2car86; }
-    
-    .s2car87 { grid-area: s2car87; }
-    
-    .s2car88 { grid-area: s2car88; }
-    
-    .s2car89 { grid-area: s2car89; }
-    
-    .s2car90 { grid-area: s2car90; }
-    
-    .s2car91 { grid-area: s2car91; }
-    
-    .s2car92 { grid-area: s2car92; }
-    
-    .s2car93 { grid-area: s2car93; }
-    
-    .s2car94 { grid-area: s2car94; }
-    
-    .s2car95 { grid-area: s2car95; }
-    
-    .s2car96 { grid-area: s2car96; }
-    
-    .s2car97 { grid-area: s2car97; }
-    
-    .s2car98 { grid-area: s2car98; }
-    
-    .s2car99 { grid-area: s2car99; }
-    
-    .s2car100 { grid-area: s2car100; }
+.pista {
+  width: 100%;
+  height: 100%;
+}
 
-    .gridsotano3 {
-      grid-template-areas: 
-      ". . . . . . . . . . . . . . . . s3car1 s3car1 s3car2 s3car2 s3car3 s3car3 s3car4 s3car4 s3car5 s3car5 s3car6 s3car6 s3car7 s3car7 . s3car8 s3car8 s3car9 s3car9 s3car10 s3car10 s3car11 s3car11 s3car12 s3car12 s3car13 s3car13 s3car14 s3car14 s3car15 s3car15 s3car16 s3car16 s3car17 s3car17 s3car18 s3car18 s3car19 s3car19 . . s3car20 s3car20 s3car21 s3car21 s3car22 s3car22 . . . . . . . . . . . . ."
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-      "s3car23 s3car23 . . . . s3car24 s3car24 s3car25 s3car25 . . . . . . . . . . . . s3car26 s3car26 s3car27 s3car27 s3car28 s3car28 . . . . . s3car29 s3car29 s3car30 s3car30 s3car31 s3car31 s3car32 s3car32 s3car33 s3car33 s3car34 s3car34 s3car35 s3car35 s3car36 s3car36 s3car37 s3car37 s3car38 s3car38 s3car39 s3car39 s3car40 s3car40 s3car41 s3car41 s3car42 s3car42 s3car43 s3car43 . . s3car44 s3car44 s3car45 s3car45 . . . . . . ."
-      "s3car46 s3car46 . . . . s3car47 s3car47 s3car48 s3car48 . . . . . . . . . . . . s3car49 s3car49 s3car50 s3car50 s3car51 s3car51 . . . . . s3car52 s3car52 s3car53 s3car53 s3car54 s3car54 . . s3car55 s3car55 s3car56 s3car56 s3car57 s3car57 s3car58 s3car58 s3car59 s3car59 s3car60 s3car60 s3car61 s3car61 s3car62 s3car62 s3car63 s3car63 s3d1 s3car64 s3car64 s3d2 . . s3car65 s3car65 s3car66 s3car66 . . . . . . ."
-      ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-      "s3car67 s3car67 s3car68 s3car68 s3car69 s3car69 s3car70 s3car70 s3car71 s3car71 s3car72 s3car72 s3car73 s3car73 s3car74 s3car74 s3car75 s3car75 s3car76 s3car76 s3car77 s3car77 s3car78 s3car78 s3car79 s3car79 s3car80 s3car80 s3car81 s3car81 s3d3 s3car82 s3car82 . . . . . . s3car83 s3car83 s3car84 s3car84 s3car85 s3car85 s3car86 s3car86 s3car87 s3car87 s3car88 s3car88 s3car89 s3car89 s3car90 s3car90 s3car91 s3car91 . . . . . . s3car92 s3car92 s3car93 s3car93 s3car94 s3car94 s3car95 s3car95 s3car96 s3car96 . . ."; 
-    }
-    
-      .s3car1 { grid-area: s3car1; }
-      
-      .s3car2 { grid-area: s3car2; }
-      
-      .s3car3 { grid-area: s3car3; }
-      
-      .s3car4 { grid-area: s3car4; }
-      
-      .s3car5 { grid-area: s3car5; }
-      
-      .s3car6 { grid-area: s3car6; }
-      
-      .s3car7 { grid-area: s3car7; }
-      
-      .s3car8 { grid-area: s3car8; }
-      
-      .s3car9 { grid-area: s3car9; }
-      
-      .s3car10 { grid-area: s3car10; }
-      
-      .s3car11 { grid-area: s3car11; }
-      
-      .s3car12 { grid-area: s3car12; }
-      
-      .s3car13 { grid-area: s3car13; }
-      
-      .s3car14 { grid-area: s3car14; }
-      
-      .s3car15 { grid-area: s3car15; }
-      
-      .s3car16 { grid-area: s3car16; }
-      
-      .s3car17 { grid-area: s3car17; }
-      
-      .s3car18 { grid-area: s3car18; }
-      
-      .s3car19 { grid-area: s3car19; }
-      
-      .s3car20 { grid-area: s3car20; }
-      
-      .s3car21 { grid-area: s3car21; }
-      
-      .s3car22 { grid-area: s3car22; }
-      
-      .s3car23 { grid-area: s3car23; }
-      
-      .s3car24 { grid-area: s3car24; }
-      
-      .s3car25 { grid-area: s3car25; }
-      
-      .s3car26 { grid-area: s3car26; }
-      
-      .s3car27 { grid-area: s3car27; }
-      
-      .s3car28 { grid-area: s3car28; }
-      
-      .s3car29 { grid-area: s3car29; }
-      
-      .s3car30 { grid-area: s3car30; }
-      
-      .s3car31 { grid-area: s3car31; }
-      
-      .s3car34 { grid-area: s3car34; }
-      
-      .s3car33 { grid-area: s3car33; }
-      
-      .s3car32 { grid-area: s3car32; }
-      
-      .s3car35 { grid-area: s3car35; }
-      
-      .s3car36 { grid-area: s3car36; }
-      
-      .s3car37 { grid-area: s3car37; }
-      
-      .s3car38 { grid-area: s3car38; }
-      
-      .s3car39 { grid-area: s3car39; }
-      
-      .s3car40 { grid-area: s3car40; }
-      
-      .s3car41 { grid-area: s3car41; }
-      
-      .s3car42 { grid-area: s3car42; }
-      
-      .s3car43 { grid-area: s3car43; }
-      
-      .s3car44 { grid-area: s3car44; }
-      
-      .s3car45 { grid-area: s3car45; }
-      
-      .s3car46 { grid-area: s3car46; }
-      
-      .s3car47 { grid-area: s3car47; }
-      
-      .s3car48 { grid-area: s3car48; }
-      
-      .s3car49 { grid-area: s3car49; }
-      
-      .s3car50 { grid-area: s3car50; }
-      
-      .s3car51 { grid-area: s3car51; }
-      
-      .s3car52 { grid-area: s3car52; }
-      
-      .s3car53 { grid-area: s3car53; }
-      
-      .s3car54 { grid-area: s3car54; }
-      
-      .s3car55 { grid-area: s3car55; }
-      
-      .s3car56 { grid-area: s3car56; }
-      
-      .s3car57 { grid-area: s3car57; }
-      
-      .s3car58 { grid-area: s3car58; }
-      
-      .s3car59 { grid-area: s3car59; }
-      
-      .s3car60 { grid-area: s3car60; }
-      
-      .s3car61 { grid-area: s3car61; }
-      
-      .s3car62 { grid-area: s3car62; }
-      
-      .s3car63 { grid-area: s3car63; }
-      
-      .s3car64 { grid-area: s3car64; }
-      
-      .s3car65 { grid-area: s3car65; }
-      
-      .s3car66 { grid-area: s3car66; }
-      
-      .s3car67 { grid-area: s3car67; }
-      
-      .s3car68 { grid-area: s3car68; }
-      
-      .s3car69 { grid-area: s3car69; }
-      
-      .s3d1 { grid-area: s3d1; }
-      
-      .s3car70 { grid-area: s3car70; }
-      
-      .s3d2 { grid-area: s3d2; }
-      
-      .s3car71 { grid-area: s3car71; }
-      
-      .s3car72 { grid-area: s3car72; }
-      
-      .s3car73 { grid-area: s3car73; }
-      
-      .s3car74 { grid-area: s3car74; }
-      
-      .s3car75 { grid-area: s3car75; }
-      
-      .s3car76 { grid-area: s3car76; }
-      
-      .s3car77 { grid-area: s3car77; }
-      
-      .s3car78 { grid-area: s3car78; }
-      
-      .s3car79 { grid-area: s3car79; }
-      
-      .s3car80 { grid-area: s3car80; }
-      
-      .s3car81 { grid-area: s3car81; }
-      
-      .s3car82 { grid-area: s3car82; }
-      
-      .s3car83 { grid-area: s3car83; }
-      
-      .s3car84 { grid-area: s3car84; }
-      
-      .s3car85 { grid-area: s3car85; }
-      
-      .s3d3 { grid-area: s3d3; }
-      
-      .s3car86 { grid-area: s3car86; }
-      
-      .s3car87 { grid-area: s3car87; }
-      
-      .s3car88 { grid-area: s3car88; }
-      
-      .s3car89 { grid-area: s3car89; }
-      
-      .s3car90 { grid-area: s3car90; }
-      
-      .s3car91 { grid-area: s3car91; }
-      
-      .s3car92 { grid-area: s3car92; }
-      
-      .s3car93 { grid-area: s3car93; }
-      
-      .s3car94 { grid-area: s3car94; }
 
-      .s3car95 { grid-area: s3car95; }
+.gridsotano1 {
+  grid-template-areas:
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car1 s1car1 . s1car2 s1car2 s1car3 s1car3 s1car4 s1car4 s1car5 s1car5 s1car6 s1car6 s1car7 s1car7 s1car8 s1car8 s1car9 s1car9 s1car10 s1car10 s1car11 s1car11 s1car12 s1car12 s1car13 s1car13 . . s1car14 s1car14 s1car15 s1car15 s1car16 s1car16 . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car17 s1car17 s1car18 s1car18 s1car19 s1car19 s1car20 s1car20 s1car21 s1car21 s1car22 s1car22 s1car23 s1car23 s1car24 s1car24 s1car25 s1car25 s1car26 s1car26 s1car27 s1car27 s1car28 s1car28 s1car29 s1car29 s1car30 s1car30 s1car31 s1car31 . . s1car32 s1car32 s1car33 s1car33 . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car34 s1car34 s1car35 s1car35 s1car36 s1car36 . . s1car37 s1car37 s1car38 s1car38 s1car39 s1car39 s1car40 s1car40 s1car41 s1car41 s1car42 s1car42 s1car43 s1car43 s1car44 s1car44 s1car45 s1car45 s1d1 s1car46 s1car46 s1d2 . . s1car47 s1car47 s1car48 s1car48 . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s1car49 s1car49 s1car50 s1car50 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .";
+}
 
-      .s3car96 { grid-area: s3car96; }
+.s1car1 {
+  grid-area: s1car1;
+}
 
-      .gridsotano4 {
-        grid-template-areas: 
-            ". . . . . . s4car1 s4car1 s4car2 s4car2 s4car3 s4car3 s4car4 s4car4 s4car5 s4car5 s4car6 s4car6 s4car7 s4car7 s4car8 s4car8 s4car9 s4car9 s4car10 s4car10 s4car11 s4car11 s4car12 s4car12 . s4car13 s4car13 s4car14 s4car14 s4car15 s4car15 s4car16 s4car16 s4car17 s4car17 s4car18 s4car18 s4car19 s4car19 . . s4car20 s4car20 s4car21 s4car21 s4car22 s4car22 s4car23 s4car23 . . s4car24 s4car24 s4car25 s4car25 s4car26 s4car26 . . . . . . . . . . . ."
-            ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-            "s4car27 s4car27 . . . . s4car28 s4car28 s4car29 s4car29 . . . . . . . . . . . .  s4car30 s4car30 s4car31 s4car31 s4car32 s4car32 . . . . . s4car33 s4car33 s4car34 s4car34 s4car35 s4car35 s4car36 s4car36 s4car37 s4car37 s4car38 s4car38 s4car39 s4car39 s4car40 s4car40 s4car41 s4car41 s4car42 s4car42 s4car43 s4car43 s4car44 s4car44 s4car45 s4car45 s4car46 s4car46 s4car47 s4car47 . . s4car48 s4car48 s4car49 s4car49 . . . . . ."
-            ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . s4car50 s4car50 s4car51 s4car51 s4car52 s4car52 s4car53 s4car53 s4car54 s4car54 . . s4car55 s4car55 s4car56 s4car56 s4car57 s4car57 s4car58 s4car58 s4car59 s4car59 s4car60 s4car60 s4car61 s4car61 s4car62 s4car62 s4car63 s4car63 s4d1 s4car64 s4car64 s4d2 . . s4car65 s4car65 s4car66 s4car66 . . . . . ."
-            ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
-            ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s4car67 s4car67 s4car68 s4car68 . . . . . . . s4car69 s4car69 s4car70 s4car70 s4car71 s4car71 s4car72 s4car72 s4car73 s4car73 s4car74 s4car74 s4car75 s4car75 s4car76 s4car76 s4car77 s4car77 . . . . . . s4car78 s4car78 s4car79 s4car79 s4car80 s4car80 s4car81 s4car81 s4car82 s4car82 . ."; 
-        }
-      .s4car1 { grid-area: s4car1; }
-      
-      .s4car2 { grid-area: s4car2; }
-      
-      .s4car3 { grid-area: s4car3; }
-      
-      .s4car4 { grid-area: s4car4; }
-      
-      .s4car5 { grid-area: s4car5; }
-      
-      .s4car6 { grid-area: s4car6; }
-      
-      .s4car7 { grid-area: s4car7; }
-      
-      .s4car8 { grid-area: s4car8; }
-      
-      .s4car9 { grid-area: s4car9; }
-      
-      .s4car10 { grid-area: s4car10; }
-      
-      .s4car11 { grid-area: s4car11; }
-      
-      .s4car12 { grid-area: s4car12; }
-      
-      .s4car13 { grid-area: s4car13; }
-      
-      .s4car14 { grid-area: s4car14; }
-      
-      .s4car15 { grid-area: s4car15; }
-      
-      .s4car16 { grid-area: s4car16; }
-      
-      .s4car17 { grid-area: s4car17; }
-      
-      .s4car18 { grid-area: s4car18; }
-      
-      .s4car19 { grid-area: s4car19; }
-      
-      .s4car20 { grid-area: s4car20; }
-      
-      .s4car21 { grid-area: s4car21; }
-      
-      .s4car22 { grid-area: s4car22; }
-      
-      .s4car23 { grid-area: s4car23; }
-      
-      .s4car24 { grid-area: s4car24; }
-      
-      .s4car25 { grid-area: s4car25; }
-      
-      .s4car26 { grid-area: s4car26; }
-      
-      .s4car27 { grid-area: s4car27; }
-      
-      .s4car28 { grid-area: s4car28; }
-      
-      .s4car29 { grid-area: s4car29; }
-      
-      .s4car30 { grid-area: s4car30; }
-      
-      .s4car31 { grid-area: s4car31; }
-      
-      .s4car34 { grid-area: s4car34; }
-      
-      .s4car33 { grid-area: s4car33; }
-      
-      .s4car32 { grid-area: s4car32; }
-      
-      .s4car35 { grid-area: s4car35; }
-      
-      .s4car36 { grid-area: s4car36; }
-      
-      .s4car37 { grid-area: s4car37; }
-      
-      .s4car38 { grid-area: s4car38; }
-      
-      .s4car39 { grid-area: s4car39; }
-      
-      .s4car40 { grid-area: s4car40; }
-      
-      .s4car41 { grid-area: s4car41; }
-      
-      .s4car42 { grid-area: s4car42; }
-      
-      .s4car43 { grid-area: s4car43; }
-      
-      .s4car44 { grid-area: s4car44; }
-      
-      .s4car45 { grid-area: s4car45; }
-      
-      .s4car46 { grid-area: s4car46; }
-      
-      .s4car47 { grid-area: s4car47; }
-      
-      .s4car48 { grid-area: s4car48; }
-      
-      .s4car49 { grid-area: s4car49; }
-      
-      .s4car50 { grid-area: s4car50; }
-      
-      .s4car51 { grid-area: s4car51; }
-      
-      .s4car52 { grid-area: s4car52; }
-      
-      .s4car53 { grid-area: s4car53; }
-      
-      .s4car54 { grid-area: s4car54; }
-      
-      .s4car55 { grid-area: s4car55; }
-      
-      .s4car56 { grid-area: s4car56; }
-      
-      .s4car57 { grid-area: s4car57; }
-      
-      .s4car58 { grid-area: s4car58; }
-      
-      .s4car59 { grid-area: s4car59; }
-      
-      .s4car60 { grid-area: s4car60; }
-      
-      .s4car61 { grid-area: s4car61; }
-      
-      .s4car62 { grid-area: s4car62; }
-      
-      .s4car63 { grid-area: s4car63; }
-      
-      .s4car64 { grid-area: s4car64; }
-      
-      .s4car65 { grid-area: s4car65; }
-      
-      .s4car66 { grid-area: s4car66; }
-      
-      .s4car67 { grid-area: s4car67; }
-      
-      .s4car68 { grid-area: s4car68; }
-      
-      .s4car69 { grid-area: s4car69; }
-      
-      .s4d1 { grid-area: s4d1; }
-      
-      .s4car70 { grid-area: s4car70; }
-      
-      .s4d2 { grid-area: s4d2; }
-      
-      .s4car71 { grid-area: s4car71; }
-      
-      .s4car72 { grid-area: s4car72; }
-      
-      .s4car73 { grid-area: s4car73; }
-      
-      .s4car74 { grid-area: s4car74; }
-      
-      .s4car75 { grid-area: s4car75; }
-      
-      .s4car76 { grid-area: s4car76; }
-      
-      .s4car77 { grid-area: s4car77; }
-      
-      .s4car78 { grid-area: s4car78; }
-      
-      .s4car79 { grid-area: s4car79; }
-      
-      .s4car80 { grid-area: s4car80; }
-      
-      .s4car81 { grid-area: s4car81; }
-      
-      .s4car82 { grid-area: s4car82; }
-      
-      .s4car83 { grid-area: s4car83; }
-      
-    
-    
-    
-    
+.s1car2 {
+  grid-area: s1car2;
+}
+
+.s1car3 {
+  grid-area: s1car3;
+}
+
+.s1car4 {
+  grid-area: s1car4;
+}
+
+.s1car5 {
+  grid-area: s1car5;
+}
+
+.s1car6 {
+  grid-area: s1car6;
+}
+
+.s1car7 {
+  grid-area: s1car7;
+}
+
+.s1car8 {
+  grid-area: s1car8;
+}
+
+.s1car9 {
+  grid-area: s1car9;
+}
+
+.s1car10 {
+  grid-area: s1car10;
+}
+
+.s1car11 {
+  grid-area: s1car11;
+}
+
+.s1car12 {
+  grid-area: s1car12;
+}
+
+.s1car13 {
+  grid-area: s1car13;
+}
+
+.s1car14 {
+  grid-area: s1car14;
+}
+
+.s1car15 {
+  grid-area: s1car15;
+}
+
+.s1car16 {
+  grid-area: s1car16;
+}
+
+.s1car17 {
+  grid-area: s1car17;
+}
+
+.s1car18 {
+  grid-area: s1car18;
+}
+
+.s1car19 {
+  grid-area: s1car19;
+}
+
+.s1car20 {
+  grid-area: s1car20;
+}
+
+.s1car21 {
+  grid-area: s1car21;
+}
+
+.s1car22 {
+  grid-area: s1car22;
+}
+
+.s1car23 {
+  grid-area: s1car23;
+}
+
+.s1car24 {
+  grid-area: s1car24;
+}
+
+.s1car25 {
+  grid-area: s1car25;
+}
+
+.s1car26 {
+  grid-area: s1car26;
+}
+
+.s1car27 {
+  grid-area: s1car27;
+}
+
+.s1car28 {
+  grid-area: s1car28;
+}
+
+.s1car29 {
+  grid-area: s1car29;
+}
+
+.s1car30 {
+  grid-area: s1car30;
+}
+
+.s1car31 {
+  grid-area: s1car31;
+}
+
+.s1car34 {
+  grid-area: s1car34;
+}
+
+.s1car33 {
+  grid-area: s1car33;
+}
+
+.s1car32 {
+  grid-area: s1car32;
+}
+
+.s1car35 {
+  grid-area: s1car35;
+}
+
+.s1car36 {
+  grid-area: s1car36;
+}
+
+.s1car37 {
+  grid-area: s1car37;
+}
+
+.s1car38 {
+  grid-area: s1car38;
+}
+
+.s1car39 {
+  grid-area: s1car39;
+}
+
+.s1car40 {
+  grid-area: s1car40;
+}
+
+.s1car41 {
+  grid-area: s1car41;
+}
+
+.s1car42 {
+  grid-area: s1car42;
+}
+
+.s1car43 {
+  grid-area: s1car43;
+}
+
+.s1car44 {
+  grid-area: s1car44;
+}
+
+.s1car45 {
+  grid-area: s1car45;
+}
+
+.s1car46 {
+  grid-area: s1car46;
+}
+
+.s1car47 {
+  grid-area: s1car47;
+}
+
+.s1car48 {
+  grid-area: s1car48;
+}
+
+.s1car49 {
+  grid-area: s1car49;
+}
+
+.s1car50 {
+  grid-area: s1car50;
+}
+
+.s1d1 {
+  grid-area: s1d1
+}
+
+.s1d2 {
+  grid-area: s1d2
+}
+
+
+.gridsotano2 {
+  grid-template-areas:
+    ". . . . s2car1 s2car1 s2car2 s2car2 s2car3 s2car3 s2car4 s2car4 s2car5 s2car5 s2car6 s2car6 s2car7 s2car7 s2car8 s2car8 s2car9 s2car9 s2car10 s2car10 s2car11 s2car11 s2car12 s2car12 s2car13 s2car13 . s2car14 s2car14 s2car15 s2car15 s2car16 s2car16 s2car17 s2car17 s2car18 s2car18 s2car19 s2car19 s2car20 s2car20 s2car21 s2car21 s2car22 s2car22 s2car23 s2car23 s2car24 s2car24 s2car25 s2car25 . . s2car26 s2car26 s2car27 s2car27 s2car28 s2car28 . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    "s2car29 s2car29 . . . . s2car30 s2car30 s2car31 s2car31 . . . . . . . . . . . . s2car32 s2car32 s2car33 s2car33 s2car34 s2car34 . . . . . s2car35 s2car35 s2car36 s2car36 s2car37 s2car37 s2car38 s2car38 s2car39 s2car39 s2car40 s2car40 s2car41 s2car41 s2car42 s2car42 s2car43 s2car43 s2car44 s2car44 s2car45 s2car45 s2car46 s2car46 s2car47 s2car47 s2car48 s2car48 s2car49 s2car49 . . s2car50 s2car50 s2car51 s2car51 . . . . . ."
+    "s2car52 s2car52 . . . . s2car53 s2car53 s2car54 s2car54 . . . . . . . . . . . . s2car55 s2car55 s2car56 s2car56 s2car57 s2car57 . . . . . s2car58 s2car58 s2car59 s2car59 s2car60 s2car60 . . s2car61 s2car61 s2car62 s2car62 s2car63 s2car63 s2car64 s2car64 s2car65 s2car65 s2car66 s2car66 s2car67 s2car67 s2car68 s2car68 s2car69 s2car69 s2d1 s2car70 s2car70 s2d2 . . s2car71 s2car71 s2car72 s2car72 . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    "s2car73 s2car73 s2car74 s2car74 s2car75 s2car75 s2car76 s2car76 s2car77 s2car77 s2car78 s2car78 s2car79 s2car79 s2car80 s2car80 s2car81 s2car81 s2car82 s2car82 s2car83 s2car83 . . . . . . s2car84 s2car84 s2d3 s2car85 s2car85 . . . . . . s2car86 s2car86 s2car87 s2car87 s2car88 s2car88 s2car89 s2car89 s2car90 s2car90 s2car91 s2car91 s2car92 s2car92 s2car93 s2car93 s2car94 s2car94 . . . . . . s2car95 s2car95 s2car96 s2car96 s2car97 s2car97 s2car98 s2car98 s2car99 s2car99 . .";
+}
+
+.s2car1 {
+  grid-area: s2car1;
+}
+
+.s2car2 {
+  grid-area: s2car2;
+}
+
+.s2car3 {
+  grid-area: s2car3;
+}
+
+.s2car4 {
+  grid-area: s2car4;
+}
+
+.s2car5 {
+  grid-area: s2car5;
+}
+
+.s2car6 {
+  grid-area: s2car6;
+}
+
+.s2car7 {
+  grid-area: s2car7;
+}
+
+.s2car8 {
+  grid-area: s2car8;
+}
+
+.s2car9 {
+  grid-area: s2car9;
+}
+
+.s2car10 {
+  grid-area: s2car10;
+}
+
+.s2car11 {
+  grid-area: s2car11;
+}
+
+.s2car12 {
+  grid-area: s2car12;
+}
+
+.s2car13 {
+  grid-area: s2car13;
+}
+
+.s2car14 {
+  grid-area: s2car14;
+}
+
+.s2car15 {
+  grid-area: s2car15;
+}
+
+.s2car16 {
+  grid-area: s2car16;
+}
+
+.s2car17 {
+  grid-area: s2car17;
+}
+
+.s2car18 {
+  grid-area: s2car18;
+}
+
+.s2car19 {
+  grid-area: s2car19;
+}
+
+.s2car20 {
+  grid-area: s2car20;
+}
+
+.s2car21 {
+  grid-area: s2car21;
+}
+
+.s2car22 {
+  grid-area: s2car22;
+}
+
+.s2car23 {
+  grid-area: s2car23;
+}
+
+.s2car24 {
+  grid-area: s2car24;
+}
+
+.s2car25 {
+  grid-area: s2car25;
+}
+
+.s2car26 {
+  grid-area: s2car26;
+}
+
+.s2car27 {
+  grid-area: s2car27;
+}
+
+.s2car28 {
+  grid-area: s2car28;
+}
+
+.s2car29 {
+  grid-area: s2car29;
+}
+
+.s2car30 {
+  grid-area: s2car30;
+}
+
+.s2car31 {
+  grid-area: s2car31;
+}
+
+.s2car34 {
+  grid-area: s2car34;
+}
+
+.s2car33 {
+  grid-area: s2car33;
+}
+
+.s2car32 {
+  grid-area: s2car32;
+}
+
+.s2car35 {
+  grid-area: s2car35;
+}
+
+.s2car36 {
+  grid-area: s2car36;
+}
+
+.s2car37 {
+  grid-area: s2car37;
+}
+
+.s2car38 {
+  grid-area: s2car38;
+}
+
+.s2car39 {
+  grid-area: s2car39;
+}
+
+.s2car40 {
+  grid-area: s2car40;
+}
+
+.s2car41 {
+  grid-area: s2car41;
+}
+
+.s2car42 {
+  grid-area: s2car42;
+}
+
+.s2car43 {
+  grid-area: s2car43;
+}
+
+.s2car44 {
+  grid-area: s2car44;
+}
+
+.s2car45 {
+  grid-area: s2car45;
+}
+
+.s2car46 {
+  grid-area: s2car46;
+}
+
+.s2car47 {
+  grid-area: s2car47;
+}
+
+.s2car48 {
+  grid-area: s2car48;
+}
+
+.s2car49 {
+  grid-area: s2car49;
+}
+
+.s2car50 {
+  grid-area: s2car50;
+}
+
+.s2car51 {
+  grid-area: s2car51;
+}
+
+.s2car52 {
+  grid-area: s2car52;
+}
+
+.s2car53 {
+  grid-area: s2car53;
+}
+
+.s2car54 {
+  grid-area: s2car54;
+}
+
+.s2car55 {
+  grid-area: s2car55;
+}
+
+.s2car56 {
+  grid-area: s2car56;
+}
+
+.s2car57 {
+  grid-area: s2car57;
+}
+
+.s2car58 {
+  grid-area: s2car58;
+}
+
+.s2car59 {
+  grid-area: s2car59;
+}
+
+.s2car60 {
+  grid-area: s2car60;
+}
+
+.s2car61 {
+  grid-area: s2car61;
+}
+
+.s2car62 {
+  grid-area: s2car62;
+}
+
+.s2car63 {
+  grid-area: s2car63;
+}
+
+.s2car64 {
+  grid-area: s2car64;
+}
+
+.s2car65 {
+  grid-area: s2car65;
+}
+
+.s2car66 {
+  grid-area: s2car66;
+}
+
+.s2car67 {
+  grid-area: s2car67;
+}
+
+.s2car68 {
+  grid-area: s2car68;
+}
+
+.s2car69 {
+  grid-area: s2car69;
+}
+
+.s2d1 {
+  grid-area: s2d1;
+}
+
+.s2car70 {
+  grid-area: s2car70;
+}
+
+.s2d2 {
+  grid-area: s2d2;
+}
+
+.s2car71 {
+  grid-area: s2car71;
+}
+
+.s2car72 {
+  grid-area: s2car72;
+}
+
+.s2car73 {
+  grid-area: s2car73;
+}
+
+.s2car74 {
+  grid-area: s2car74;
+}
+
+.s2car75 {
+  grid-area: s2car75;
+}
+
+.s2car76 {
+  grid-area: s2car76;
+}
+
+.s2car77 {
+  grid-area: s2car77;
+}
+
+.s2car78 {
+  grid-area: s2car78;
+}
+
+.s2car79 {
+  grid-area: s2car79;
+}
+
+.s2car80 {
+  grid-area: s2car80;
+}
+
+.s2car81 {
+  grid-area: s2car81;
+}
+
+.s2car82 {
+  grid-area: s2car82;
+}
+
+.s2car83 {
+  grid-area: s2car83;
+}
+
+.s2car84 {
+  grid-area: s2car84;
+}
+
+.s2car85 {
+  grid-area: s2car85;
+}
+
+.s2d3 {
+  grid-area: s2d3;
+}
+
+.s2car86 {
+  grid-area: s2car86;
+}
+
+.s2car87 {
+  grid-area: s2car87;
+}
+
+.s2car88 {
+  grid-area: s2car88;
+}
+
+.s2car89 {
+  grid-area: s2car89;
+}
+
+.s2car90 {
+  grid-area: s2car90;
+}
+
+.s2car91 {
+  grid-area: s2car91;
+}
+
+.s2car92 {
+  grid-area: s2car92;
+}
+
+.s2car93 {
+  grid-area: s2car93;
+}
+
+.s2car94 {
+  grid-area: s2car94;
+}
+
+.s2car95 {
+  grid-area: s2car95;
+}
+
+.s2car96 {
+  grid-area: s2car96;
+}
+
+.s2car97 {
+  grid-area: s2car97;
+}
+
+.s2car98 {
+  grid-area: s2car98;
+}
+
+.s2car99 {
+  grid-area: s2car99;
+}
+
+.s2car100 {
+  grid-area: s2car100;
+}
+
+.gridsotano3 {
+  grid-template-areas:
+    ". . . . . . . . . . . . . . . . s3car1 s3car1 s3car2 s3car2 s3car3 s3car3 s3car4 s3car4 s3car5 s3car5 s3car6 s3car6 s3car7 s3car7 . s3car8 s3car8 s3car9 s3car9 s3car10 s3car10 s3car11 s3car11 s3car12 s3car12 s3car13 s3car13 s3car14 s3car14 s3car15 s3car15 s3car16 s3car16 s3car17 s3car17 s3car18 s3car18 s3car19 s3car19 . . s3car20 s3car20 s3car21 s3car21 s3car22 s3car22 . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    "s3car23 s3car23 . . . . s3car24 s3car24 s3car25 s3car25 . . . . . . . . . . . . s3car26 s3car26 s3car27 s3car27 s3car28 s3car28 . . . . . s3car29 s3car29 s3car30 s3car30 s3car31 s3car31 s3car32 s3car32 s3car33 s3car33 s3car34 s3car34 s3car35 s3car35 s3car36 s3car36 s3car37 s3car37 s3car38 s3car38 s3car39 s3car39 s3car40 s3car40 s3car41 s3car41 s3car42 s3car42 s3car43 s3car43 . . s3car44 s3car44 s3car45 s3car45 . . . . . . ."
+    "s3car46 s3car46 . . . . s3car47 s3car47 s3car48 s3car48 . . . . . . . . . . . . s3car49 s3car49 s3car50 s3car50 s3car51 s3car51 . . . . . s3car52 s3car52 s3car53 s3car53 s3car54 s3car54 . . s3car55 s3car55 s3car56 s3car56 s3car57 s3car57 s3car58 s3car58 s3car59 s3car59 s3car60 s3car60 s3car61 s3car61 s3car62 s3car62 s3car63 s3car63 s3d1 s3car64 s3car64 s3d2 . . s3car65 s3car65 s3car66 s3car66 . . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    "s3car67 s3car67 s3car68 s3car68 s3car69 s3car69 s3car70 s3car70 s3car71 s3car71 s3car72 s3car72 s3car73 s3car73 s3car74 s3car74 s3car75 s3car75 s3car76 s3car76 s3car77 s3car77 s3car78 s3car78 s3car79 s3car79 s3car80 s3car80 s3car81 s3car81 s3d3 s3car82 s3car82 . . . . . . s3car83 s3car83 s3car84 s3car84 s3car85 s3car85 s3car86 s3car86 s3car87 s3car87 s3car88 s3car88 s3car89 s3car89 s3car90 s3car90 s3car91 s3car91 . . . . . . s3car92 s3car92 s3car93 s3car93 s3car94 s3car94 s3car95 s3car95 s3car96 s3car96 . . .";
+}
+
+.s3car1 {
+  grid-area: s3car1;
+}
+
+.s3car2 {
+  grid-area: s3car2;
+}
+
+.s3car3 {
+  grid-area: s3car3;
+}
+
+.s3car4 {
+  grid-area: s3car4;
+}
+
+.s3car5 {
+  grid-area: s3car5;
+}
+
+.s3car6 {
+  grid-area: s3car6;
+}
+
+.s3car7 {
+  grid-area: s3car7;
+}
+
+.s3car8 {
+  grid-area: s3car8;
+}
+
+.s3car9 {
+  grid-area: s3car9;
+}
+
+.s3car10 {
+  grid-area: s3car10;
+}
+
+.s3car11 {
+  grid-area: s3car11;
+}
+
+.s3car12 {
+  grid-area: s3car12;
+}
+
+.s3car13 {
+  grid-area: s3car13;
+}
+
+.s3car14 {
+  grid-area: s3car14;
+}
+
+.s3car15 {
+  grid-area: s3car15;
+}
+
+.s3car16 {
+  grid-area: s3car16;
+}
+
+.s3car17 {
+  grid-area: s3car17;
+}
+
+.s3car18 {
+  grid-area: s3car18;
+}
+
+.s3car19 {
+  grid-area: s3car19;
+}
+
+.s3car20 {
+  grid-area: s3car20;
+}
+
+.s3car21 {
+  grid-area: s3car21;
+}
+
+.s3car22 {
+  grid-area: s3car22;
+}
+
+.s3car23 {
+  grid-area: s3car23;
+}
+
+.s3car24 {
+  grid-area: s3car24;
+}
+
+.s3car25 {
+  grid-area: s3car25;
+}
+
+.s3car26 {
+  grid-area: s3car26;
+}
+
+.s3car27 {
+  grid-area: s3car27;
+}
+
+.s3car28 {
+  grid-area: s3car28;
+}
+
+.s3car29 {
+  grid-area: s3car29;
+}
+
+.s3car30 {
+  grid-area: s3car30;
+}
+
+.s3car31 {
+  grid-area: s3car31;
+}
+
+.s3car34 {
+  grid-area: s3car34;
+}
+
+.s3car33 {
+  grid-area: s3car33;
+}
+
+.s3car32 {
+  grid-area: s3car32;
+}
+
+.s3car35 {
+  grid-area: s3car35;
+}
+
+.s3car36 {
+  grid-area: s3car36;
+}
+
+.s3car37 {
+  grid-area: s3car37;
+}
+
+.s3car38 {
+  grid-area: s3car38;
+}
+
+.s3car39 {
+  grid-area: s3car39;
+}
+
+.s3car40 {
+  grid-area: s3car40;
+}
+
+.s3car41 {
+  grid-area: s3car41;
+}
+
+.s3car42 {
+  grid-area: s3car42;
+}
+
+.s3car43 {
+  grid-area: s3car43;
+}
+
+.s3car44 {
+  grid-area: s3car44;
+}
+
+.s3car45 {
+  grid-area: s3car45;
+}
+
+.s3car46 {
+  grid-area: s3car46;
+}
+
+.s3car47 {
+  grid-area: s3car47;
+}
+
+.s3car48 {
+  grid-area: s3car48;
+}
+
+.s3car49 {
+  grid-area: s3car49;
+}
+
+.s3car50 {
+  grid-area: s3car50;
+}
+
+.s3car51 {
+  grid-area: s3car51;
+}
+
+.s3car52 {
+  grid-area: s3car52;
+}
+
+.s3car53 {
+  grid-area: s3car53;
+}
+
+.s3car54 {
+  grid-area: s3car54;
+}
+
+.s3car55 {
+  grid-area: s3car55;
+}
+
+.s3car56 {
+  grid-area: s3car56;
+}
+
+.s3car57 {
+  grid-area: s3car57;
+}
+
+.s3car58 {
+  grid-area: s3car58;
+}
+
+.s3car59 {
+  grid-area: s3car59;
+}
+
+.s3car60 {
+  grid-area: s3car60;
+}
+
+.s3car61 {
+  grid-area: s3car61;
+}
+
+.s3car62 {
+  grid-area: s3car62;
+}
+
+.s3car63 {
+  grid-area: s3car63;
+}
+
+.s3car64 {
+  grid-area: s3car64;
+}
+
+.s3car65 {
+  grid-area: s3car65;
+}
+
+.s3car66 {
+  grid-area: s3car66;
+}
+
+.s3car67 {
+  grid-area: s3car67;
+}
+
+.s3car68 {
+  grid-area: s3car68;
+}
+
+.s3car69 {
+  grid-area: s3car69;
+}
+
+.s3d1 {
+  grid-area: s3d1;
+}
+
+.s3car70 {
+  grid-area: s3car70;
+}
+
+.s3d2 {
+  grid-area: s3d2;
+}
+
+.s3car71 {
+  grid-area: s3car71;
+}
+
+.s3car72 {
+  grid-area: s3car72;
+}
+
+.s3car73 {
+  grid-area: s3car73;
+}
+
+.s3car74 {
+  grid-area: s3car74;
+}
+
+.s3car75 {
+  grid-area: s3car75;
+}
+
+.s3car76 {
+  grid-area: s3car76;
+}
+
+.s3car77 {
+  grid-area: s3car77;
+}
+
+.s3car78 {
+  grid-area: s3car78;
+}
+
+.s3car79 {
+  grid-area: s3car79;
+}
+
+.s3car80 {
+  grid-area: s3car80;
+}
+
+.s3car81 {
+  grid-area: s3car81;
+}
+
+.s3car82 {
+  grid-area: s3car82;
+}
+
+.s3car83 {
+  grid-area: s3car83;
+}
+
+.s3car84 {
+  grid-area: s3car84;
+}
+
+.s3car85 {
+  grid-area: s3car85;
+}
+
+.s3d3 {
+  grid-area: s3d3;
+}
+
+.s3car86 {
+  grid-area: s3car86;
+}
+
+.s3car87 {
+  grid-area: s3car87;
+}
+
+.s3car88 {
+  grid-area: s3car88;
+}
+
+.s3car89 {
+  grid-area: s3car89;
+}
+
+.s3car90 {
+  grid-area: s3car90;
+}
+
+.s3car91 {
+  grid-area: s3car91;
+}
+
+.s3car92 {
+  grid-area: s3car92;
+}
+
+.s3car93 {
+  grid-area: s3car93;
+}
+
+.s3car94 {
+  grid-area: s3car94;
+}
+
+.s3car95 {
+  grid-area: s3car95;
+}
+
+.s3car96 {
+  grid-area: s3car96;
+}
+
+.gridsotano4 {
+  grid-template-areas:
+    ". . . . . . s4car1 s4car1 s4car2 s4car2 s4car3 s4car3 s4car4 s4car4 s4car5 s4car5 s4car6 s4car6 s4car7 s4car7 s4car8 s4car8 s4car9 s4car9 s4car10 s4car10 s4car11 s4car11 s4car12 s4car12 . s4car13 s4car13 s4car14 s4car14 s4car15 s4car15 s4car16 s4car16 s4car17 s4car17 s4car18 s4car18 s4car19 s4car19 . . s4car20 s4car20 s4car21 s4car21 s4car22 s4car22 s4car23 s4car23 . . s4car24 s4car24 s4car25 s4car25 s4car26 s4car26 . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    "s4car27 s4car27 . . . . s4car28 s4car28 s4car29 s4car29 . . . . . . . . . . . .  s4car30 s4car30 s4car31 s4car31 s4car32 s4car32 . . . . . s4car33 s4car33 s4car34 s4car34 s4car35 s4car35 s4car36 s4car36 s4car37 s4car37 s4car38 s4car38 s4car39 s4car39 s4car40 s4car40 s4car41 s4car41 s4car42 s4car42 s4car43 s4car43 s4car44 s4car44 s4car45 s4car45 s4car46 s4car46 s4car47 s4car47 . . s4car48 s4car48 s4car49 s4car49 . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . s4car50 s4car50 s4car51 s4car51 s4car52 s4car52 s4car53 s4car53 s4car54 s4car54 . . s4car55 s4car55 s4car56 s4car56 s4car57 s4car57 s4car58 s4car58 s4car59 s4car59 s4car60 s4car60 s4car61 s4car61 s4car62 s4car62 s4car63 s4car63 s4d1 s4car64 s4car64 s4d2 . . s4car65 s4car65 s4car66 s4car66 . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    ". . . . . . . . . . . . . . . . . . . . . . . . . . . . s4car67 s4car67 s4car68 s4car68 . . . . . . . s4car69 s4car69 s4car70 s4car70 s4car71 s4car71 s4car72 s4car72 s4car73 s4car73 s4car74 s4car74 s4car75 s4car75 s4car76 s4car76 s4car77 s4car77 . . . . . . s4car78 s4car78 s4car79 s4car79 s4car80 s4car80 s4car81 s4car81 s4car82 s4car82 . .";
+}
+
+.s4car1 {
+  grid-area: s4car1;
+}
+
+.s4car2 {
+  grid-area: s4car2;
+}
+
+.s4car3 {
+  grid-area: s4car3;
+}
+
+.s4car4 {
+  grid-area: s4car4;
+}
+
+.s4car5 {
+  grid-area: s4car5;
+}
+
+.s4car6 {
+  grid-area: s4car6;
+}
+
+.s4car7 {
+  grid-area: s4car7;
+}
+
+.s4car8 {
+  grid-area: s4car8;
+}
+
+.s4car9 {
+  grid-area: s4car9;
+}
+
+.s4car10 {
+  grid-area: s4car10;
+}
+
+.s4car11 {
+  grid-area: s4car11;
+}
+
+.s4car12 {
+  grid-area: s4car12;
+}
+
+.s4car13 {
+  grid-area: s4car13;
+}
+
+.s4car14 {
+  grid-area: s4car14;
+}
+
+.s4car15 {
+  grid-area: s4car15;
+}
+
+.s4car16 {
+  grid-area: s4car16;
+}
+
+.s4car17 {
+  grid-area: s4car17;
+}
+
+.s4car18 {
+  grid-area: s4car18;
+}
+
+.s4car19 {
+  grid-area: s4car19;
+}
+
+.s4car20 {
+  grid-area: s4car20;
+}
+
+.s4car21 {
+  grid-area: s4car21;
+}
+
+.s4car22 {
+  grid-area: s4car22;
+}
+
+.s4car23 {
+  grid-area: s4car23;
+}
+
+.s4car24 {
+  grid-area: s4car24;
+}
+
+.s4car25 {
+  grid-area: s4car25;
+}
+
+.s4car26 {
+  grid-area: s4car26;
+}
+
+.s4car27 {
+  grid-area: s4car27;
+}
+
+.s4car28 {
+  grid-area: s4car28;
+}
+
+.s4car29 {
+  grid-area: s4car29;
+}
+
+.s4car30 {
+  grid-area: s4car30;
+}
+
+.s4car31 {
+  grid-area: s4car31;
+}
+
+.s4car34 {
+  grid-area: s4car34;
+}
+
+.s4car33 {
+  grid-area: s4car33;
+}
+
+.s4car32 {
+  grid-area: s4car32;
+}
+
+.s4car35 {
+  grid-area: s4car35;
+}
+
+.s4car36 {
+  grid-area: s4car36;
+}
+
+.s4car37 {
+  grid-area: s4car37;
+}
+
+.s4car38 {
+  grid-area: s4car38;
+}
+
+.s4car39 {
+  grid-area: s4car39;
+}
+
+.s4car40 {
+  grid-area: s4car40;
+}
+
+.s4car41 {
+  grid-area: s4car41;
+}
+
+.s4car42 {
+  grid-area: s4car42;
+}
+
+.s4car43 {
+  grid-area: s4car43;
+}
+
+.s4car44 {
+  grid-area: s4car44;
+}
+
+.s4car45 {
+  grid-area: s4car45;
+}
+
+.s4car46 {
+  grid-area: s4car46;
+}
+
+.s4car47 {
+  grid-area: s4car47;
+}
+
+.s4car48 {
+  grid-area: s4car48;
+}
+
+.s4car49 {
+  grid-area: s4car49;
+}
+
+.s4car50 {
+  grid-area: s4car50;
+}
+
+.s4car51 {
+  grid-area: s4car51;
+}
+
+.s4car52 {
+  grid-area: s4car52;
+}
+
+.s4car53 {
+  grid-area: s4car53;
+}
+
+.s4car54 {
+  grid-area: s4car54;
+}
+
+.s4car55 {
+  grid-area: s4car55;
+}
+
+.s4car56 {
+  grid-area: s4car56;
+}
+
+.s4car57 {
+  grid-area: s4car57;
+}
+
+.s4car58 {
+  grid-area: s4car58;
+}
+
+.s4car59 {
+  grid-area: s4car59;
+}
+
+.s4car60 {
+  grid-area: s4car60;
+}
+
+.s4car61 {
+  grid-area: s4car61;
+}
+
+.s4car62 {
+  grid-area: s4car62;
+}
+
+.s4car63 {
+  grid-area: s4car63;
+}
+
+.s4car64 {
+  grid-area: s4car64;
+}
+
+.s4car65 {
+  grid-area: s4car65;
+}
+
+.s4car66 {
+  grid-area: s4car66;
+}
+
+.s4car67 {
+  grid-area: s4car67;
+}
+
+.s4car68 {
+  grid-area: s4car68;
+}
+
+.s4car69 {
+  grid-area: s4car69;
+}
+
+.s4d1 {
+  grid-area: s4d1;
+}
+
+.s4car70 {
+  grid-area: s4car70;
+}
+
+.s4d2 {
+  grid-area: s4d2;
+}
+
+.s4car71 {
+  grid-area: s4car71;
+}
+
+.s4car72 {
+  grid-area: s4car72;
+}
+
+.s4car73 {
+  grid-area: s4car73;
+}
+
+.s4car74 {
+  grid-area: s4car74;
+}
+
+.s4car75 {
+  grid-area: s4car75;
+}
+
+.s4car76 {
+  grid-area: s4car76;
+}
+
+.s4car77 {
+  grid-area: s4car77;
+}
+
+.s4car78 {
+  grid-area: s4car78;
+}
+
+.s4car79 {
+  grid-area: s4car79;
+}
+
+.s4car80 {
+  grid-area: s4car80;
+}
+
+.s4car81 {
+  grid-area: s4car81;
+}
+
+.s4car82 {
+  grid-area: s4car82;
+}
+
+.s4car83 {
+  grid-area: s4car83;
+}
+
+
+
+
+
+/* Método 1: Gradientes radiales múltiples para crear textura granulada */
+.pista-gradiente {
+  background-color: #2a2a2a;
+  background-image: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 1px, transparent 1px),
+    radial-gradient(circle at 60% 60%, rgba(255, 255, 255, 0.1) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 90% 90%, rgba(120, 119, 198, 0.25) 1px, transparent 1px);
+  background-size: 15px 15px, 20px 20px, 12px 12px, 8px 8px, 25px 25px;
+  background-position: 0 0, 10px 10px, 5px 5px, 15px 15px, 20px 20px;
+}
+
+/* Método 2: Box-shadow múltiples para crear puntos de textura */
+.pista-shadow {
+  background-color: #1a1a1a;
+  position: relative;
+}
+
+.pista-shadow::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  box-shadow:
+    5px 8px 0 0 rgba(255, 255, 255, 0.1),
+    15px 3px 0 0 rgba(255, 255, 255, 0.08),
+    25px 12px 0 0 rgba(255, 255, 255, 0.12),
+    35px 7px 0 0 rgba(255, 255, 255, 0.06),
+    45px 15px 0 0 rgba(255, 255, 255, 0.1),
+    8px 25px 0 0 rgba(255, 255, 255, 0.09),
+    18px 30px 0 0 rgba(255, 255, 255, 0.07),
+    28px 35px 0 0 rgba(255, 255, 255, 0.11),
+    38px 28px 0 0 rgba(255, 255, 255, 0.08),
+    48px 40px 0 0 rgba(255, 255, 255, 0.1),
+    60px 5px 0 0 rgba(255, 255, 255, 0.09),
+    70px 18px 0 0 rgba(255, 255, 255, 0.07),
+    80px 32px 0 0 rgba(255, 255, 255, 0.12),
+    90px 45px 0 0 rgba(255, 255, 255, 0.06),
+    100px 22px 0 0 rgba(255, 255, 255, 0.1);
+  border-radius: inherit;
+}
+
+/* Método 3: Pseudo-elementos con patrón de ruido */
+.pista-pseudo {
+  background-color: #333;
+}
+
+.pista-pseudo::before,
+.pista-pseudo::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+}
+
+.pista-pseudo::before {
+  background-image: repeating-linear-gradient(45deg,
+      transparent,
+      transparent 1px,
+      rgba(255, 255, 255, 0.03) 1px,
+      rgba(255, 255, 255, 0.03) 2px),
+    repeating-linear-gradient(-45deg,
+      transparent,
+      transparent 1px,
+      rgba(255, 255, 255, 0.02) 1px,
+      rgba(255, 255, 255, 0.02) 2px);
+}
+
+.pista-pseudo::after {
+  background-image: radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.08) 0.5px, transparent 0.5px);
+  background-size: 10px 10px, 15px 15px;
+  background-position: 0 0, 5px 5px;
+}
+
+/* Método 4: Filtros CSS para crear textura */
+.pista-filtros {
+  background: linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
+    linear-gradient(-45deg, #2a2a2a 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
+    linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 0 2px, 2px -2px, -2px 0px;
+  background-color: #1a1a1a;
+  filter: contrast(1.2) brightness(0.9);
+}
+
+/* Pista de carretera completa con líneas y textura */
+.carretera {
+  background-color: #2a2a2a;
+  /* Líneas centrales discontinuas */
+  background-image: repeating-linear-gradient(90deg,
+      transparent,
+      transparent 20px,
+      #ffff00 20px,
+      #ffff00 40px,
+      transparent 40px,
+      transparent 80px),
+    /* Textura granulada */
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.08) 0.5px, transparent 0.5px),
+    radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+    radial-gradient(circle at 60% 20%, rgba(255, 255, 255, 0.06) 0.8px, transparent 0.8px);
+  background-size: 100% 4px, 12px 12px, 8px 8px, 15px 15px, 10px 10px;
+  background-position: center center, 0 0, 5px 5px, 10px 10px, 15px 15px;
+  border: 4px solid #444;
+  border-left: 8px solid #666;
+  border-right: 8px solid #666;
+}
+
+.carretera::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(255, 255, 255, 0.02) 3px);
+}
+
+.cemento-variaciones {
+  background-color: #7a7a7a;
+  background-image: radial-gradient(circle at 5% 10%, rgba(255, 255, 255, 0.05) 20px, transparent 20px),
+    radial-gradient(circle at 2% 10%, rgba(0, 0, 0, 0.03) 10px, transparent 10px),
+    radial-gradient(circle at 20% 40%, rgba(255, 255, 255, 0.04) 15px, transparent 15px),
+    linear-gradient(45deg, #787676 0%, #5d5c5c 25%, #6b6a6a 50%, #565656 75%, #2a2a2a 100%);
+  background-size: 10px 80px, 10px 100px, 10px 60px, 20% 100%;
+}
+
+.cemento-industrial {
+  background-color: #202020;
+  background-image: linear-gradient(90deg, #474747 0%, #797878 25%, #646363 50%, #909090 75%, #6b6b6b 100%),
+    linear-gradient(0deg, rgba(58, 58, 58, 0.02) 0%, transparent 50%, rgba(136, 136, 136, 0.02) 100%);
+  box-shadow: inset 0 2px 4px rgba(98, 97, 97, 0.15);
+}

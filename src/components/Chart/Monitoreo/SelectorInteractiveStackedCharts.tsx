@@ -126,13 +126,15 @@ function generateColors(entityNames: string[]): Record<string, string> {
 
 // 🔑 PROPS GENÉRICAS CON TU ChartConfig
 interface GenericSelectorProps {
+  id:string,
   chartData: ChartStakedData
   chartConfig: ChartConfig
   timeRange: number
-  title?: string
+  title?: string,
 }
 
 export function SelectorInteractiveStackedCharts({
+  id,
   chartData,
   chartConfig,
   timeRange,
@@ -143,7 +145,6 @@ export function SelectorInteractiveStackedCharts({
   const availableMetrics = getAvailableMetrics(chartData)
   // 🔑 FILTRAR SOLO MÉTRICAS QUE TIENEN CONFIGURACIÓN EN chartConfig
   const configuredMetrics = availableMetrics.filter((metric) => chartConfig[metric])
-  console.log(configuredMetrics)
   const [activeMetric, setActiveMetric] = useState<string>(configuredMetrics[0])
   const [activeChart, setActiveChart] = useState<keyof typeof chartConfig>(
       Object.keys(chartConfig)[0] as keyof typeof chartConfig,

@@ -5,6 +5,7 @@ import {  type ChartStakedData, ChartStakedDataSchema, ChartStakedDataSimpleSche
 
 
 interface ChartProps {
+    id:string
     chartData: ChartData
     chartConfig: ChartConfig
     plotType?: string
@@ -13,6 +14,7 @@ interface ChartProps {
 }
 
 export function MultipleSingleCharts({
+    id,
     chartData,
     chartConfig,
     plotType,
@@ -32,6 +34,7 @@ export function MultipleSingleCharts({
                             YAxisFormatter={YAxisFormatter}
                             name={fieldName}
                             key={`${sensorKey}_${fieldName}_simple_${index}`}
+                            id={id}
                             chartData={sensorData}
                             chartConfig={chartConfig}
                             plotType={plotType}
@@ -44,6 +47,7 @@ export function MultipleSingleCharts({
                     ? // 🔹 ChartStakedData: field -> array
                     Object.entries(chartData as ChartStakedData).map(([fieldName, series], index) => (
                         <SingleChart
+                            id={id}
                             YAxisFormatter={YAxisFormatter}
                             name={fieldName}
                             key={index + "_stacked"}

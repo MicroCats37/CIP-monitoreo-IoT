@@ -58,7 +58,7 @@ export const getClient = (): MqttClient => {
 const removeAllExceptLastListener = () => {
   if (client) {
     const listeners = client.listeners('message');  // Obtener todos los listeners
-    if (listeners.length > 1) {
+    if (listeners.length > 4) {
       // Eliminar todos los listeners excepto el último
       listeners.slice(0, -1).forEach(listener => {
         client!.removeListener('message', listener);

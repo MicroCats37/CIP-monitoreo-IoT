@@ -67,7 +67,7 @@ const DeviceContentCardRenderer = ({
 
     case 'Estacionamientos':
       return (
-        <div className="flex w-full">
+        <div className="flex w-full h-full">
           {dataMQTT && <EstacionamientosCard dataMQTT={dataMQTT as EstacionamientoType} />}
         </div>
       );

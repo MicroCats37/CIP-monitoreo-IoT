@@ -24,9 +24,3 @@ export function MultipleSelectorInteractiveCharts({ name,chartSimpleData,chartCo
         </div>
     );
 }
-
-/*
-return (
-                    
-                );
-*/

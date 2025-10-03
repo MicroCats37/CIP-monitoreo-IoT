@@ -17,10 +17,10 @@ interface Props {
 }
 
 const ConcentracionCo2Chart: React.FC<Props> = ({ timeRange, dataHistorical }) => {
-  const { data: dato1, chartConfig: chartConfig1 } = formatChartConfigStackedDetailsArrayArray(dataHistorical)
+  const { data: dato1, chartConfig: chartConfig1 } = formatChartConfigStackedDetailsArrayArray(dataHistorical.device.name,dataHistorical)
   return (
     <div className="flex-col w-full gap-4">
-      <MultipleSingleCharts chartData={dato1} chartConfig={chartConfig1} timeRange={timeRange}></MultipleSingleCharts>
+      <MultipleSingleCharts id={dataHistorical.device.name} chartData={dato1} chartConfig={chartConfig1} timeRange={timeRange}></MultipleSingleCharts>
     </div>
 
   )

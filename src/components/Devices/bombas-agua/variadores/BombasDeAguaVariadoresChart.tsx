@@ -12,7 +12,7 @@ interface Props {
 }
 
 const BombasDeAguaVariadoresChart: React.FC<Props> = ({ timeRange, dataHistorical }) => {
-  const { data: dato1, chartConfig: chartConfig1 } = formatChartConfigStackedDetailsArrayArray(dataHistorical)
+  const { data: dato1, chartConfig: chartConfig1 } = formatChartConfigStackedDetailsArrayArray(dataHistorical.device.name,dataHistorical)
   const myIconMap: IconMapping = {
     velocidad_y_direccion: Navigation2,
     frecuencia: Waves,
@@ -26,7 +26,7 @@ const BombasDeAguaVariadoresChart: React.FC<Props> = ({ timeRange, dataHistorica
   //const { data: dato2, chartConfig: chartConfig2 } = formatChartConfigSimpleDetailsArrayArray(dataHistorical)
   return (
     <div className="flex-col w-full space-y-4">
-      <SelectorInteractiveStackedCharts title={dataHistorical.device.name} chartData={dato1} chartConfig={chartConfigWithIcons} timeRange={timeRange}></SelectorInteractiveStackedCharts>
+      <SelectorInteractiveStackedCharts id={dataHistorical.device.name} title={dataHistorical.device.name} chartData={dato1} chartConfig={chartConfigWithIcons} timeRange={timeRange}></SelectorInteractiveStackedCharts>
       <MultipleSelectorInteractiveCharts chartSimpleData={dato1} chartConfig={chartConfigWithIcons} timeRange={timeRange}></MultipleSelectorInteractiveCharts>
     </div>
 

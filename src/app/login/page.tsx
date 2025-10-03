@@ -34,7 +34,7 @@ export default function Page() {
       await new Promise((resolve) => setTimeout(resolve, 1))
 
       if ((data.email === "psotelo@cip.org.pe" || data.email === "gestionsecretaria@cip.org.pe" || data.email === "mantenimiento@ciplima.org.pe") && data.password === "admin") {
-        router.push("/sistema-contra-incendios")
+        router.push("/dashboard-iot/historico")
       } else {
         setError("Credenciales inválidas. Por favor, intente de nuevo.")
       }
@@ -121,8 +121,8 @@ export default function Page() {
           </form>
         </CardContent>
         <CardFooter className="flex justify-center">
-          <a href="#" className="text-sm text-red-700 hover:text-yellow-500 transition-colors duration-300">
-            ¿Olvidaste tu contraseña?
+          <a href="/dashboard-iot/historico" className="text-sm text-red-700 hover:text-yellow-500 transition-colors duration-300">
+            Ingresar como invitado
           </a>
         </CardFooter>
       </Card>

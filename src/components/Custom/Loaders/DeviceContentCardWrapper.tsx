@@ -35,7 +35,7 @@ const DeviceContentCardWrapper = ({
   // Si no hay datos pero está cargando, mostrar loading
   if (isLoading && !dataMQTT) {
     return (
-      <div className="flex h-[50%] w-full border rounded-lg p-4">
+      <div className="flex flex-1 h-full w-full border rounded-lg p-4">
         <LoadingSpinner message="Cargando datos de tarjeta..." size="sm" />
       </div>
     )
@@ -44,7 +44,7 @@ const DeviceContentCardWrapper = ({
   // Si hay error y no hay datos, mostrar error
   if (error && !dataMQTT) {
     return (
-      <div className="border rounded-lg p-4">
+      <div className="flex flex-1 h-full w-full border rounded-lg p-4">
         <ErrorDisplay error={error} onRetry={onRetry} title="Error en datos de tarjeta" />
       </div>
     )
@@ -52,7 +52,7 @@ const DeviceContentCardWrapper = ({
 
   // Fallback: no hay datos
   return (
-    <div className="border rounded-lg p-4 text-center text-muted-foreground">No hay datos de tarjeta disponibles</div>
+    <div className="flex flex-1 h-full w-full border rounded-lg p-4 text-center text-muted-foreground">No hay datos de tarjeta disponibles</div>
   )
 }
 

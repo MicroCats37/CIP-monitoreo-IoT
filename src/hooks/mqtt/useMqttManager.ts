@@ -12,12 +12,8 @@ type Fields = Record<
   string | number | boolean | { value: string | number | boolean; label: string }[] | undefined
 >;
 
-const mergeFields = (oldFields: Fields, newFields: Fields): Fields => {
-  // Mantiene los que no llegan y actualiza/añade los que sí llegan
-  return { ...oldFields, ...newFields };
-};
 const schemas = [generalMQTTObjectSchema];
-
+const topicCallbacks: Record<string, ((msg: GeneralMQTTObjectType) => void)[]> = {};
 export const useMQTTManager = () => {
   // Reactividad
 

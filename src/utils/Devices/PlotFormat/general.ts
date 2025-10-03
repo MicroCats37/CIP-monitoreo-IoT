@@ -20,7 +20,7 @@ import { getLabel, getUnit } from './LabelandUnits';
 Cuando Details es Object y la salida no es stakedt
 */
 export function formatChartConfigSimpleDetailsArray(
-  rawData?: MonitoreoPlotGeneralMessageDetailsObjectType,
+  id:string,rawData?: MonitoreoPlotGeneralMessageDetailsObjectType,
   
 ): { data: ChartStakedData; chartConfig: ChartConfig } {
   const result: ChartStakedData = {};
@@ -67,9 +67,9 @@ export function formatChartConfigSimpleDetailsArray(
   fieldList.forEach((name, index) => {
     chartConfig[name] = {
       field: name,
-      label: getLabel(name), // solo el nombre como pediste
+      label: getLabel(name,id), // solo el nombre como pediste
       color: `hsl(var(--chart-${index + 1}))`,
-      unit: getUnit(name),
+      unit: getUnit(name,id),
     };
   });
   return { data: result, chartConfig };
@@ -77,7 +77,7 @@ export function formatChartConfigSimpleDetailsArray(
 
 
 export function formatChartConfigStackedDetailsArray(
-  rawData?: MonitoreoPlotGeneralMessageDetailsObjectType,
+  id:string,rawData?: MonitoreoPlotGeneralMessageDetailsObjectType,
   
 ): { data: ChartStakedDataSimple; chartConfig: ChartConfig } {
   const result: ChartStakedDataSimple = {};
@@ -124,9 +124,9 @@ export function formatChartConfigStackedDetailsArray(
   Array.from(fieldSet).forEach((name, index) => {
     chartConfig[name] = {
       field: name,
-      label: getLabel(name), // solo el nombre como pediste
+      label: getLabel(name,id), // solo el nombre como pediste
       color: `hsl(var(--chart-${index + 1}))`,
-      unit: getUnit(name),
+      unit: getUnit(name,id),
     };
   });
 
@@ -136,7 +136,7 @@ export function formatChartConfigStackedDetailsArray(
 
 
 export function formatChartConfigSimpleDetailsArrayArray(
-  rawData?: MonitoreoPlotGeneralMessageDetailsArrayType,
+  id:string,rawData?: MonitoreoPlotGeneralMessageDetailsArrayType,
   
 ): { data: ChartStakedDataSimple; chartConfig: ChartConfig } {
   const result: ChartStakedDataSimple = {};
@@ -183,9 +183,9 @@ export function formatChartConfigSimpleDetailsArrayArray(
   Array.from(fieldSet).forEach((name, index) => {
     chartConfig[name] = {
       field: name,
-      label: getLabel(name), // solo el nombre como pediste
+      label: getLabel(name,id), // solo el nombre como pediste
       color: `hsl(var(--chart-${index + 1}))`,
-      unit: getUnit(name),
+      unit: getUnit(name,id),
     };
   });
 
@@ -194,8 +194,7 @@ export function formatChartConfigSimpleDetailsArrayArray(
 
 
 export function formatChartConfigStackedDetailsArrayArray(
-  rawData?: MonitoreoPlotGeneralMessageDetailsArrayType,
-  
+  id:string,rawData?: MonitoreoPlotGeneralMessageDetailsArrayType
 ): { data: ChartStakedData; chartConfig: ChartConfig } {
   const result: ChartStakedData = {};
   const chartConfig: ChartConfig = {};
@@ -236,12 +235,11 @@ export function formatChartConfigStackedDetailsArrayArray(
   Array.from(fieldSet).forEach((name, index) => {
     chartConfig[name] = {
       field: name,
-      label: getLabel(name), // solo el nombre como pediste
+      label: getLabel(name,id), // solo el nombre como pediste
       color: `hsl(var(--chart-${index + 1}))`,
-      unit: getUnit(name),
+      unit: getUnit(name,id),
     };
   });
-  console.log('Formatted Staked Data:', chartConfig);
   return { data: result, chartConfig };
 }
 
@@ -254,7 +252,7 @@ export function formatChartConfigStackedDetailsArrayArray(
 
 
 export default function formatStackedDataArray(
-  data: ChartStakedData,
+  id:string,data: ChartStakedData,
 ): { flatData: ChartSeriesData[]; chartConfig: ChartConfig } {
   const timestampMap: Map<number, ChartSeriesData> = new Map();
   const chartConfig: ChartConfig = {};
@@ -275,7 +273,7 @@ export default function formatStackedDataArray(
       for (const [field, valor] of Object.entries(campos)) {
         if (valor === undefined) continue;
 
-        const fieldName = `${sensorId} ${getLabel(field)}`;//aca porner la fncion 
+        const fieldName = `${sensorId} ${getLabel(field,id)}`;//aca porner la fncion 
         fieldSet.add(fieldName);
 
         entry[fieldName] = valor;
@@ -287,9 +285,9 @@ export default function formatStackedDataArray(
   Array.from(fieldSet).forEach((name,index) => {
     chartConfig[name] = {
       field: name,
-      label: getLabel(name), // solo el nombre como pediste
+      label: getLabel(name,id), // solo el nombre como pediste
       color: `hsl(var(--chart-${index + 1}))`,
-      unit: getUnit(name),
+      unit: getUnit(name,id),
     };
   });
 

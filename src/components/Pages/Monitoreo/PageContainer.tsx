@@ -117,58 +117,54 @@ const PageContainer = ({ data }: PageContainerProps) => {
         useShallow((s) => s.historicalData[topic])
     );
 
-    return (
-        <div className="flex-col p-4 w-screen md:w-full h-full">
-            <div className="flex-col flex-1 w-full h-full">
-                <div className="flex-col  w-full h-full gap-4 space-y-4">
-                    {
-                        data.endpointHistorical ? (
-                            <div className="flex w-full flex-1 flex-col space-y-4">
-                                <div className='w-full flex gap-4 justify-end flex-wrap'>
-                                    <ButtonFechingDate
-                                        timeRange={timeRange}
-                                        setTimeRange={setTimeRange}
-                                        currentInterval={currentInterval}
-                                        setCurrentInterval={setCurrentInterval}
-                                    />
-                                </div>
-                                <div className="flex-col w-full space-y-4">
-                                    <DeviceContentCardWrapper
-                                        data={data}
-                                        dataMQTT={dataMQTT ? dataMQTT : data_l}
-                                        type={type}
-                                        isLoading={isLoading_l}
-                                        error={error_l}
-                                        onRetry={refetch_l}
-                                    />
-                                    <DeviceContentChartWrapper
-                                        timeRange={diffTime}
-                                        dataHistorical={dataHistorical}
-                                        type={type}
-                                        isLoading={isLoading_h}
-                                        error={error_h}
-                                        onRetry={refetch_h}
-
-                                    />
-                                </div>
-                            </div>
-                        ) : (
-                            <DeviceContentCardWrapper
-                                data={data}
-                                dataMQTT={dataMQTT ? dataMQTT : data_l}
-                                type={type}
-                                isLoading={isLoading_l}
-                                error={error_l}
-                                onRetry={refetch_l}
-                            />
-                        )
-                    }
-                </div>
+  return (
+    <div className="flex flex-col p-4 w-full h-full">
+      <div className="flex flex-col w-full h-full">
+        <div className="flex flex-col w-full h-full">
+          {data.endpointHistorical ? (
+            <div className="flex flex-col w-full h-full space-y-4">
+              <div className="w-full flex gap-4 justify-end flex-wrap">
+                <ButtonFechingDate
+                  timeRange={timeRange}
+                  setTimeRange={setTimeRange}
+                  currentInterval={currentInterval}
+                  setCurrentInterval={setCurrentInterval}
+                />
+              </div>
+              <div className="flex flex-col w-full flex-1 space-y-4 min-h-0">
+                <DeviceContentCardWrapper
+                  data={data}
+                  dataMQTT={dataMQTT ? dataMQTT : data_l}
+                  type={type}
+                  isLoading={isLoading_l}
+                  error={error_l}
+                  onRetry={refetch_l}
+                />
+                <DeviceContentChartWrapper
+                  timeRange={diffTime}
+                  dataHistorical={dataHistorical}
+                  type={type}
+                  isLoading={isLoading_h}
+                  error={error_h}
+                  onRetry={refetch_h}
+                />
+              </div>
             </div>
-
+          ) : (
+            <div className="flex flex-col w-full h-full">
+              <DeviceContentCardWrapper
+                data={data}
+                dataMQTT={dataMQTT ? dataMQTT : data_l}
+                type={type}
+                isLoading={isLoading_l}
+                error={error_l}
+                onRetry={refetch_l}
+              />
+            </div>
+          )}
         </div>
-
-    )
+      </div>
+    </div>
+  )
 }
-
 export default PageContainer

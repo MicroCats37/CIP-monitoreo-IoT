@@ -1,7 +1,7 @@
 "use client"
 
 import type { MonitoreoPlotGeneralMessageType } from "@/validators/schemas"
-import LoadingSpinner from "../LoaderSpiner/LoadingSpinner"
+import LoadingSpinner from "./LoadingSpinner"
 import ErrorDisplay from "./ErrorDisplay"
 import DeviceContentChartRenderer from "@/components/Pages/Monitoreo/Device/DeviceContentChartRenderer"
 
@@ -24,7 +24,7 @@ const DeviceContentChartWrapper = ({
 }: DeviceContentChartWrapperProps) => {
   if (isLoading) {
     return (
-      <div className="flex h-[50%] w-full border rounded-lg p-4">
+      <div className="flex flex-1 h-full w-full border rounded-lg p-4">
         <LoadingSpinner message="Cargando datos históricos..." size="sm" />
       </div>
     )
@@ -32,7 +32,7 @@ const DeviceContentChartWrapper = ({
 
   if (error) {
     return (
-      <div className="border rounded-lg p-4">
+      <div className="flex flex-1 h-full w-full border rounded-lg p-4">
         <ErrorDisplay error={error} onRetry={onRetry} title="Error en datos históricos" />
       </div>
     )
@@ -40,7 +40,7 @@ const DeviceContentChartWrapper = ({
 
   if (!dataHistorical) {
     return (
-      <div className="border rounded-lg p-4 text-center text-muted-foreground">No hay datos históricos disponibles</div>
+      <div className="flex flex-1 h-full w-full border rounded-lg p-4 text-center text-muted-foreground">No hay datos históricos disponibles</div>
     )
   }
 

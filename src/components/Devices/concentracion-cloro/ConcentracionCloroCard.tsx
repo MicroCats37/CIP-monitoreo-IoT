@@ -71,7 +71,7 @@ export default function ConcentracionCloroCard({ dataMQTT }: {dataMQTT: Concentr
               <div className="flex items-center justify-between">
                 <div className="space-y-1">
                   <CardTitle className="text-2xl font-bold">
-                    {pool.data.sensor.name}
+                    {pool.data.sensor.name==="Piscina 1"?"Piscina Grande (1)":"Piscina Chica (2)"}
                   </CardTitle>
                   <p className={cn("text-sm font-medium", status.colors.text)}>
                     {status.message}

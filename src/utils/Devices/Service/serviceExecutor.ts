@@ -42,6 +42,7 @@ export async function GeneralService<T>(
       `No se encontraron registros entre ${formatFechaLegible(start)} y ${formatFechaLegible(stop)}`
     );
   }
+
   // 2. Enviamos TODOS los registros al formateador
   const formattedRecord = formatter(rawRecords);
 

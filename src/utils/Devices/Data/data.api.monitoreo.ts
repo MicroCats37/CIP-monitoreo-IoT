@@ -96,7 +96,7 @@ export const apiToIdMap: {
     error400: "Solicitud incorrecta para Concentración de Cloro en Piscinas.",
     error500: "Error interno del servidor de Concentración de Cloro en Piscinas.",
  
-    nombre: "Concentración de Cloro Piscinas",
+    nombre: "Concentración de Cloro",
   },
   "/api/device/concentracion-co2": {
     error404: "Concentración de CO2 no encontrada.",
