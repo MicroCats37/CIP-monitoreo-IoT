@@ -4,13 +4,7 @@ import PageContainer from "@/components/Pages/Monitoreo/PageContainer";
 import { useValidPageData } from "@/hooks/ValidPageData/useValidPageData";
 
 
-interface PageProps {
-  params: {
-    id?: string;
-  };
-}
-
-export default function Page({ params }: PageProps) {
-  const data = useValidPageData(params.id);
+export default function Page() {
+  const data = useValidPageData();
   return <PageContainer data={data} />;
 }

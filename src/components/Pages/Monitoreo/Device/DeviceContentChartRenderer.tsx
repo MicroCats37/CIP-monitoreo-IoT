@@ -1,4 +1,3 @@
-
 import BombasDeAguaChosicaChart from "@/components/Devices/bombas-agua-chosica/BombasDeAguaChosicaChart";
 import BombasDeAguaEstadoChart from "@/components/Devices/bombas-agua/estado/BombasDeAguaEstadoChart";
 import BombasDeAguaVariadoresChart from "@/components/Devices/bombas-agua/variadores/BombasDeAguaVariadoresChart";

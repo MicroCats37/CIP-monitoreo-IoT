@@ -4,9 +4,12 @@ import { BombasDeAguaEstadoLastAction } from "@/influx/devices/bombas-agua/estad
 import { handlerLastValueRequest } from "@/utils/api/actionsRoutes/handlerLastValue";
 
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   request: Request,
-  context: { params: { id?: string } }
+  { params }: { params: Promise<{ id?: string }> }
 ) {
-  return handlerLastValueRequest(request, context.params, BombasDeAguaEstadoLastAction);
+  const unwrappedParams = await params;
+  return handlerLastValueRequest(request, unwrappedParams, BombasDeAguaEstadoLastAction);
 }

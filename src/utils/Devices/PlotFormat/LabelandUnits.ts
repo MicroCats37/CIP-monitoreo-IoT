@@ -179,7 +179,7 @@ const SCILabel: Record<string, string> = {
   na_46: "Reservado 46",
   na_47: "Reservado 47",
   na_48: "Reservado 48",
-  alarms_count:"Contador de Alarmas"
+  alarms_count: "Contador de Alarmas"
 };
 
 const SCIUnit = {
@@ -283,7 +283,7 @@ export const getLabel = (key: string, id: string): string => {
       return (CO2Label as Record<string, string>)[key] ?? key;
 
     default:
-      return "";
+      return key; // <--- Return the raw key instead of an empty string
   }
 };
 

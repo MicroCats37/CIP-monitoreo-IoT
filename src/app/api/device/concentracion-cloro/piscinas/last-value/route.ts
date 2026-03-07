@@ -2,9 +2,10 @@
 import { ConcentracionCloroLastAction } from "@/influx/devices/concentracion-cloro/last-value/actions";
 import { handlerLastValueRequest } from "@/utils/api/actionsRoutes/handlerLastValue";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
-  request: Request,
-  context: { params: { id?: string } }
+  request: Request
 ) {
-  return handlerLastValueRequest(request, context.params, ConcentracionCloroLastAction);
+  return handlerLastValueRequest(request, {}, ConcentracionCloroLastAction);
 }

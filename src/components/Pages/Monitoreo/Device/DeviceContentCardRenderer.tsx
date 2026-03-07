@@ -1,7 +1,6 @@
 
 import AireAcondicionadoContainerCard from "@/components/Devices/aire-acondicionado/AireAcondicionadoContainerCard";
 import BombasDeAguaChosicaCard from "@/components/Devices/bombas-agua-chosica/BombasDeAguaChosicaCard";
-import Prisma3D from "@/components/Devices/bombas-agua-chosica/BombasDeAguaChosicaCard";
 import BombasDeAguaEstadoCard from "@/components/Devices/bombas-agua/estado/BombasDeAguaEstadoCard";
 import BombasDeAguaVariadoresCard from "@/components/Devices/bombas-agua/variadores/BombasDeAguaVariadoresCard";
 import ConcentracionCloroCard from "@/components/Devices/concentracion-cloro/ConcentracionCloroCard";
@@ -81,7 +80,7 @@ const DeviceContentCardRenderer = ({
     case 'Automatizacion de Bombas de Agua Chosica':
       return (
         <div className="flex w-full">
-          {dataMQTT && <BombasDeAguaChosicaCard dataMQTT={dataMQTT as BombasDeAguaChosicaType}/>}
+          {dataMQTT && <BombasDeAguaChosicaCard dataMQTT={dataMQTT as BombasDeAguaChosicaType} />}
         </div>
       );
 

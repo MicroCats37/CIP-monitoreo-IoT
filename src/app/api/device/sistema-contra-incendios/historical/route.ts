@@ -3,9 +3,10 @@ import { SistemaContraIncendiosHistoricalAction } from "@/influx/devices/sistema
 import { handleHistoricalValueRequest } from "@/utils/api/actionsRoutes/handlerHistoricalValue";
 
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
-  request: Request,
-  context: { params: { id?: string } }
+  request: Request
 ) {
-  return handleHistoricalValueRequest(request, context.params, SistemaContraIncendiosHistoricalAction);
+  return handleHistoricalValueRequest(request, {}, SistemaContraIncendiosHistoricalAction);
 }

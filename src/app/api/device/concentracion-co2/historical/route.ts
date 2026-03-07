@@ -2,9 +2,10 @@ import { ConcentracionCo2HistoricalAction } from "@/influx/devices/concentracion
 import { handleHistoricalValueRequest } from "@/utils/api/actionsRoutes/handlerHistoricalValue";
 
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
-  request: Request,
-  context: { params: { id?: string } }
+  request: Request
 ) {
-  return handleHistoricalValueRequest(request, context.params, ConcentracionCo2HistoricalAction);
+  return handleHistoricalValueRequest(request, {}, ConcentracionCo2HistoricalAction);
 }

@@ -4,9 +4,12 @@
 import { TablerosEnergiaLastAction } from "@/influx/devices/tableros-energia/last-value/actions";
 import { handlerLastValueRequest } from "@/utils/api/actionsRoutes/handlerLastValue";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   request: Request,
-  context: { params: { id?: string } }
+  { params }: { params: Promise<{ id?: string }> }
 ) {
-  return handlerLastValueRequest(request, context.params, TablerosEnergiaLastAction);
+  const unwrappedParams = await params;
+  return handlerLastValueRequest(request, unwrappedParams, TablerosEnergiaLastAction);
 }

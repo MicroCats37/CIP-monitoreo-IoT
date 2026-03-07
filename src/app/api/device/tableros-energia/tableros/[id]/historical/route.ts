@@ -2,9 +2,12 @@ import { TablerosEnergiaHistoricalAction } from "@/influx/devices/tableros-energ
 import { handleHistoricalValueRequest } from "@/utils/api/actionsRoutes/handlerHistoricalValue";
 
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   request: Request,
-  context: { params: { id?: string } }
+  { params }: { params: Promise<{ id?: string }> }
 ) {
-  return handleHistoricalValueRequest(request, context.params, TablerosEnergiaHistoricalAction);
+  const unwrappedParams = await params;
+  return handleHistoricalValueRequest(request, unwrappedParams, TablerosEnergiaHistoricalAction);
 }

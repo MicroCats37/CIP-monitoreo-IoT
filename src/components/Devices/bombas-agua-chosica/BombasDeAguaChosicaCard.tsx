@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Droplets, Gauge, Power, Zap } from "lucide-react"
 import { BombasDeAguaChosicaType } from "@/validators/devices/schemas"
-import Tanque3D from "./Tanque3D"
 import ButtonDownLinkMQTT from "@/components/Custom/ButtonDownLinkMQTT/ButtonDownLinkMQTT"
 
 // Componente para card de Estado
@@ -45,7 +44,7 @@ function EstadoCard({
             <div className="space-y-1">
               <p className="text-2xl font-bold">Estado</p>
               <Badge variant={estado ? "default" : "destructive"} className="text-xs">
-                {estado ? "Activo" : "Inactivo"}
+                {estado ? "Tanque Lleno" : "Tanque Vacío"}
               </Badge>
             </div>
             <div className="flex items-center">
@@ -108,7 +107,7 @@ function PresionCard({
         <CardContent>
           <div className="flex items-center justify-between">
             <div className="space-y-1">
-              <p className="text-2xl font-bold">{presion} PSI</p>
+              <p className="text-2xl font-bold">{presion} %</p>
               <Badge variant={presionStatus.color} className="text-xs">
                 {presionStatus.status}
               </Badge>
@@ -125,8 +124,57 @@ function PresionCard({
 
         </CardContent>
       </div>
-      <div className="flex flex-row lg:flex-row gap-4 justify-center items-center h-full w-full flex-1">
-        <div className="flex flex-col gap-4 order-1 md:order-2">
+
+    </Card>
+  )
+}
+
+// Componente principal que decide qué card renderizar
+function BombaCard({
+  detail,
+  deviceName,
+}: {
+  detail: BombasDeAguaChosicaType["details"][0]
+  deviceName: string
+}) {
+  const { data, time } = detail
+  const { sensor, fields } = data
+
+  // Verificar qué tipo de field es
+  if (sensor.name === "Bomba Almacen") {
+    return <EstadoCard sensorName={sensor.name} estado={fields.estado!} time={time} deviceName={deviceName} />
+  }
+
+  if (sensor.name === "Bomba Pozo") {
+    return <PresionCard sensorName={sensor.name} presion={fields.presion!} time={time} deviceName={deviceName} />
+  }
+
+  // Fallback si no se puede determinar el tipo
+  return (
+    <Card className="flex w-full">
+      <CardContent className="pt-6">
+        <p className="text-sm text-muted-foreground">Tipo de dato no reconocido</p>
+      </CardContent>
+    </Card>
+  )
+}
+
+// Componente contenedor que renderiza todas las cards
+export default function BombasDeAguaChosicaCard({ dataMQTT }: { dataMQTT: BombasDeAguaChosicaType }) {
+  return (
+    <div className="w-full flex ">
+      <div className="flex flex-col md:flex-row w-full gap-4">
+        {dataMQTT.details.map((detail, index) => (
+          <BombaCard key={`${detail.data.sensor.name}-${index}`} detail={detail} deviceName={dataMQTT.device.name} />
+        ))}
+      </div>
+
+    </div>
+  )
+}
+
+/*
+<div className="flex flex-col gap-4 order-1 md:order-2">
           <ButtonDownLinkMQTT
             label="Prender"
             topic={`application/1/device/ac1f09fffe06d196/command/down`}
@@ -161,57 +209,4 @@ function PresionCard({
           />
 
         </div>
-        <div className="flex md:h-full order-1 md:order-2">
-            <Tanque3D nivel={presion} maximo={1300}></Tanque3D>
-        </div>
-        
-      </div>
-
-
-    </Card>
-  )
-}
-
-// Componente principal que decide qué card renderizar
-function BombaCard({
-  detail,
-  deviceName,
-}: {
-  detail: BombasDeAguaChosicaType["details"][0]
-  deviceName: string
-}) {
-  const { data, time } = detail
-  const { sensor, fields } = data
-
-  // Verificar qué tipo de field es
-  if ("estado" in fields && fields.estado !== undefined) {
-    return <EstadoCard sensorName={sensor.name} estado={fields.estado} time={time} deviceName={deviceName} />
-  }
-
-  if ("presion" in fields && fields.presion !== undefined) {
-    return <PresionCard sensorName={sensor.name} presion={fields.presion} time={time} deviceName={deviceName} />
-  }
-
-  // Fallback si no se puede determinar el tipo
-  return (
-    <Card className="flex w-full">
-      <CardContent className="pt-6">
-        <p className="text-sm text-muted-foreground">Tipo de dato no reconocido</p>
-      </CardContent>
-    </Card>
-  )
-}
-
-// Componente contenedor que renderiza todas las cards
-export default function BombasDeAguaChosicaCard({ dataMQTT }: { dataMQTT: BombasDeAguaChosicaType }) {
-  return (
-    <div className="w-full flex ">
-      <div className="flex flex-col md:flex-row w-full gap-4">
-        {dataMQTT.details.map((detail, index) => (
-          <BombaCard key={`${detail.data.sensor.name}-${index}`} detail={detail} deviceName={dataMQTT.device.name} />
-        ))}
-
-      </div>
-    </div>
-  )
-}
+*/

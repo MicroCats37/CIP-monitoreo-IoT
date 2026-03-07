@@ -2,9 +2,10 @@
 import { BombasDeAguaChosicaHistoricalAction } from "@/influx/devices/bombas-agua-chosica/historical/actions";
 import { handleHistoricalValueRequest } from "@/utils/api/actionsRoutes/handlerHistoricalValue";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
-  request: Request,
-  context: { params: { id?: string } }
+  request: Request
 ) {
-  return handleHistoricalValueRequest(request, context.params, BombasDeAguaChosicaHistoricalAction);
+  return handleHistoricalValueRequest(request, {}, BombasDeAguaChosicaHistoricalAction);
 }

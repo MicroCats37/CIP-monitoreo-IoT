@@ -1,132 +1,194 @@
+'use client';
 
-'use client'
-import { useForm } from "react-hook-form"
+import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2, Lock, LogIn, User } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
-import { Avatar, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
-type FormData = {
-  email: string
-  password: string
-}
+import { setAuthCookies } from "@/actions/auth";
+import { LoginResponseSchema } from "@/schemas/auth";
 
-export default function Page() {
+// Schema for form validation
+const loginSchema = z.object({
+  username: z.string().min(1, "El usuario es requerido"),
+  password: z.string().min(1, "La contraseña es requerida"),
+});
+
+type LoginFields = z.infer<typeof loginSchema>;
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [error, setError] = useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>()
-  const [error, setError] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
-  const router = useRouter()
+  } = useForm<LoginFields>({
+    resolver: zodResolver(loginSchema),
+  });
 
-  const onSubmit = async (data: FormData) => {
-    setIsLoading(true)
-    setError("")
+  const mutation = useMutation({
+    mutationFn: async (data: LoginFields) => {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL_USERS?.replace(/\/$/, '') || process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') || 'http://localhost:8000';
+      const response = await fetch(`${baseUrl}/api/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1))
-
-      if ((data.email === "psotelo@cip.org.pe" || data.email === "gestionsecretaria@cip.org.pe" || data.email === "mantenimiento@ciplima.org.pe") && data.password === "admin") {
-        router.push("/dashboard-iot/historico")
-      } else {
-        setError("Credenciales inválidas. Por favor, intente de nuevo.")
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ detail: 'Error en la autenticación' }));
+        throw new Error(errorData.detail || 'Credenciales inválidas');
       }
 
-      // Aquí iría la llamada real a tu API de backend
-      // const response = await fetch('/api/login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(data),
-      // })
-      // const responseData = await response.json()
-      // if (responseData.success) {
-      //   router.push('/dashboard')
-      // } else {
-      //   setError(responseData.message || 'Error de autenticación')
-      // }
-    } catch (err) {
-      setError("Ocurrió un error al intentar iniciar sesión. Por favor, intente más tarde.")
-    } finally {
-      setIsLoading(false)
-    }
-  }
+      const responseData = await response.json();
+      return LoginResponseSchema.parse(responseData);
+    },
+    onSuccess: async (data) => {
+      await setAuthCookies(data.access, data.refresh, data.user);
+      router.push("/dashboard-iot/historico");
+    },
+    onError: (err: any) => {
+      setError(err.message || "Ocurrió un error al intentar iniciar sesión.");
+    },
+  });
+
+  const onSubmit = (data: LoginFields) => {
+    setError("");
+    mutation.mutate(data);
+  };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-red-900 via-red-600 to-yellow-500 p-4 relative overflow-hidden">
-      {/* Círculo decorativo */}
-      <div className="absolute top-[-50%] left-[-25%] w-[150%] h-[150%] bg-yellow-400 rounded-full opacity-20 z-0"></div>
+    <div className="relative min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-red-900 via-red-600 to-yellow-500 p-4 overflow-hidden selection:bg-red-500/30">
 
-      <Card className="w-full max-w-md bg-white shadow-2xl relative z-10">
-        <CardHeader className="pb-8 pt-6">
-          <div className="flex justify-center mb-4">
-            <Avatar>
+      {/* Background Decorator Circle */}
+      <div className="absolute top-[-50%] left-[-25%] w-[150%] h-[150%] bg-yellow-400 rounded-full opacity-20 z-0 blur-3xl mix-blend-overlay pointer-events-none"></div>
+
+      {/* Login Card */}
+      <Card className="w-full max-w-md bg-white border-0 shadow-2xl relative z-10 transition-all duration-300">
+        <CardHeader className="pb-8 pt-8 px-8 flex flex-col items-center space-y-6">
+          <div className="relative group">
+            <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-red-600 to-yellow-500 opacity-60 blur-md transition duration-500 group-hover:opacity-100" />
+            <Avatar className="relative h-28 w-28 border-[3px] border-white shadow-xl">
               <AvatarImage
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtlBG0gTCz0ut6KaTl1E6aKFoVRXGkvW173A&s"
-                alt="Colegio de Ingenieros del Perú Logo"
-                className="rounded-full border-4 border-red-700 w-[200px]"
+                alt="Logo CIP"
+                className="object-contain bg-white"
               />
+              <AvatarFallback className="bg-red-50 text-red-700 font-bold text-xl">CIP</AvatarFallback>
             </Avatar>
           </div>
-          <CardTitle className="text-2xl font-bold text-center text-red-700">Colegio de Ingenieros del Perú</CardTitle>
+          <div className="space-y-2 text-center">
+            <CardTitle className="text-3xl font-extrabold tracking-tight text-gray-900">
+              Bienvenido
+            </CardTitle>
+            <p className="text-sm font-medium text-gray-500">
+              Colegio de Ingenieros del Perú
+            </p>
+          </div>
         </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className="space-y-4">
+
+        <CardContent className="px-8 pb-8">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <div className="space-y-5">
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-sm font-medium text-gray-700">
-                  Correo Electrónico
+                <Label htmlFor="username" className="text-sm font-semibold text-gray-700">
+                  Usuario
                 </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder=".....@cip.com.pe"
-                  {...register("email", { required: "El correo electrónico es requerido" })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-                />
-                {errors.email && <p className="text-red-500 text-xs italic">{errors.email.message}</p>}
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-red-600 transition-colors">
+                    <User className="h-5 w-5" />
+                  </div>
+                  <Input
+                    id="username"
+                    type="text"
+                    placeholder="Escribe tu usuario"
+                    {...register("username")}
+                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 text-gray-900 border-gray-200 focus-visible:ring-red-500/30 focus-visible:border-red-500 transition-all placeholder:text-gray-400 rounded-lg shadow-sm"
+                  />
+                </div>
+                {errors.username && (
+                  <p className="text-red-500 text-xs font-semibold animate-in slide-in-from-top-1">
+                    {errors.username.message}
+                  </p>
+                )}
               </div>
+
               <div className="space-y-2">
-                <Label htmlFor="password" className="text-sm font-medium text-gray-700">
+                <Label htmlFor="password" className="text-sm font-semibold text-gray-700">
                   Contraseña
                 </Label>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="••••••••"
-                  {...register("password", { required: "La contraseña es requerida" })}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
-                />
-                {errors.password && <p className="text-red-500 text-xs italic">{errors.password.message}</p>}
+                <div className="relative group">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400 group-focus-within:text-red-600 transition-colors">
+                    <Lock className="h-5 w-5" />
+                  </div>
+                  <Input
+                    id="password"
+                    type="password"
+                    placeholder="••••••••"
+                    {...register("password")}
+                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 text-gray-900 border-gray-200 focus-visible:ring-red-500/30 focus-visible:border-red-500 transition-all placeholder:text-gray-400 rounded-lg shadow-sm"
+                  />
+                </div>
+                {errors.password && (
+                  <p className="text-red-500 text-xs font-semibold animate-in slide-in-from-top-1">
+                    {errors.password.message}
+                  </p>
+                )}
               </div>
             </div>
+
             {error && (
-              <Alert variant="destructive" className="mt-4">
-                <AlertDescription>{error}</AlertDescription>
+              <Alert variant="destructive" className="animate-in fade-in-0 slide-in-from-top-2 border-red-200 bg-red-50 text-red-700">
+                <AlertDescription className="font-semibold flex items-center gap-2 text-sm">
+                  <div className="h-1.5 w-1.5 rounded-full bg-red-600 animate-pulse" />
+                  {error}
+                </AlertDescription>
               </Alert>
             )}
+
             <Button
               type="submit"
-              className="w-full mt-6 bg-gradient-to-r from-red-900 via-red-600 to-yellow-500 hover:from-red-800 hover:via-red-700 hover:to-yellow-600 text-white transition-all duration-300"
-              disabled={isLoading}
+              size="lg"
+              className="w-full font-semibold bg-gradient-to-r from-red-700 to-red-600 hover:from-red-800 hover:to-red-700 text-white shadow-xl shadow-red-900/10 transition-all duration-300 ease-out hover:-translate-y-0.5"
+              disabled={mutation.isPending}
             >
-              {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
+              {mutation.isPending ? (
+                <>
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                  Verificando...
+                </>
+              ) : (
+                <>
+                  <LogIn className="mr-2 h-5 w-5" />
+                  Iniciar Sesión
+                </>
+              )}
             </Button>
           </form>
         </CardContent>
-        <CardFooter className="flex justify-center">
-          <a href="/dashboard-iot/historico" className="text-sm text-red-700 hover:text-yellow-500 transition-colors duration-300">
-            Ingresar como invitado
-          </a>
+
+        <CardFooter className="px-8 pb-8 flex justify-center border-t border-gray-100 pt-6">
+          <Button
+            variant="link"
+            className="text-sm font-semibold text-gray-500 hover:text-red-600 transition-colors px-0 h-auto"
+            onClick={() => router.push("/dashboard-iot/historico")}
+          >
+            Continuar como invitado &rarr;
+          </Button>
         </CardFooter>
       </Card>
     </div>
-  )
+  );
 }
-

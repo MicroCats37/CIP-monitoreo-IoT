@@ -4,11 +4,13 @@ import { AireAcondicionadoUnitHistoricalAction } from "@/influx/devices/aire-aco
 import { MonitoreoPlotGeneralSchema } from "@/validators/schemas";
 import { apiToIdMap } from "@/utils/Devices/Data/data.api.monitoreo";
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(
   request: Request,
-  context: { params: { unitId: string; id: string } }
+  { params }: { params: Promise<{ unitId: string; id: string }> }
 ) {
-  const { unitId, id } = context.params;
+  const { unitId, id } = await params;
   const url = new URL(request.url);
   const config = apiToIdMap["/api/device/aire-acondicionado/"];
 
