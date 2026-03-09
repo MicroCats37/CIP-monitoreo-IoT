@@ -40,7 +40,7 @@ export default function LoginPage() {
 
   const mutation = useMutation({
     mutationFn: async (data: LoginFields) => {
-      const baseUrl = process.env.NEXT_PUBLIC_API_URL_USERS?.replace(/\/$/, '') || process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') || 'http://localhost:8000';
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL_USERS
       const response = await fetch(`${baseUrl}/api/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

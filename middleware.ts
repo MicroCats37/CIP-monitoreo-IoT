@@ -58,7 +58,7 @@ export async function middleware(request: NextRequest) {
       if (refreshToken) {
         // Llamada al backend de Django para refrescar
         // OJO: Usamos fetch directo porque axios no corre en Edge Runtime (middleware)
-        const refreshRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/auth/refresh/`, {
+        const refreshRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/refresh/`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ refresh: refreshToken }),

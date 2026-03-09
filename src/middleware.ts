@@ -51,7 +51,7 @@ export async function middleware(request: NextRequest) {
             const refreshToken = request.cookies.get("jwt-refresh")?.value;
 
             if (refreshToken) {
-                const baseUrl = process.env.NEXT_PUBLIC_API_URL_USERS?.replace(/\/$/, '') || process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') || 'http://localhost:8000';
+                const baseUrl = process.env.NEXT_PUBLIC_API_URL_USERS;
                 const refreshRes = await fetch(`${baseUrl}/api/auth/refresh/`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
