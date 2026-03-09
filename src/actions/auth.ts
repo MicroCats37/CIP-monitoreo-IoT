@@ -53,8 +53,8 @@ export async function setAuthCookies(
 
     // 1. Access Token (Vida corta: 5-15 min)
     cookieStore.set(COOKIE_ACCESS, accessToken, {
-        httpOnly: true,  // 🔒 Security: No accesible por JS del cliente (XSS safe)
-        secure: process.env.NODE_ENV === "production",
+        httpOnly: false,  // 🔒 Security: No accesible por JS del cliente (XSS safe)
+        secure: false,
         sameSite: "lax",
         path: "/",
         maxAge: 60*60 * 2,
@@ -62,8 +62,8 @@ export async function setAuthCookies(
 
     // 2. Refresh Token (Vida larga: 7 días)
     cookieStore.set(COOKIE_REFRESH, refreshToken, {
-        httpOnly: true,  // 🔒 Security Critical
-        secure: process.env.NODE_ENV === "production",
+        httpOnly: false,  // 🔒 Security Critical
+        secure: false,
         sameSite: "lax",
         path: "/",
         maxAge: 60 * 60 * 24 * 7, // 7 días
@@ -74,7 +74,7 @@ export async function setAuthCookies(
     // O podemos mantenerlo true y hidratar via Server Component
     cookieStore.set(COOKIE_USER, JSON.stringify(user), {
         httpOnly: false, // 🔓 Accedible por JS
-        secure: process.env.NODE_ENV === "production",
+        secure: false,
         sameSite: "lax",
         path: "/",
         maxAge: 60 * 60 * 24 * 7,

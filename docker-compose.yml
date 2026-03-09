@@ -1,13 +1,20 @@
-version: '3.8'
-
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        - NEXT_PUBLIC_MQTT_WEBSOCKET_URL=${NEXT_PUBLIC_MQTT_WEBSOCKET_URL}
+        - NEXT_PUBLIC_INFLUXDB_URL=${NEXT_PUBLIC_INFLUXDB_URL}
+        - NEXT_PUBLIC_INFLUXDB_ORG=${NEXT_PUBLIC_INFLUXDB_ORG}
+        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+        - NEXT_PUBLIC_API_URL_USERS=${NEXT_PUBLIC_API_URL_USERS}
+        - NEXT_PUBLIC_INFLUXDB_TOKEN=${NEXT_PUBLIC_INFLUXDB_TOKEN}
     restart: always
     ports:
       - "3000:3000"
+    # Aquí es donde el contenedor las lee al CORRER
     env_file:
-      - .env.local
+      - .env.
     environment:
       - NODE_ENV=production
       - NEXT_TELEMETRY_DISABLED=1

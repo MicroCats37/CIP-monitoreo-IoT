@@ -1,62 +1,69 @@
+# 1. Base image
 FROM node:20.15.0-alpine AS base
 
-# Install dependencies only when needed
+# 2. Instalación de dependencias
 FROM base AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+# libc6-compat es necesaria para algunas dependencias de Node en Alpine
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install dependencies based on the preferred package manager
 COPY package.json package-lock.json* ./
 RUN npm ci
 
-# Rebuild the source code only when needed
+# 3. Constructor (Builder)
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Next.js collects completely anonymous telemetry data about general usage.
-# Learn more here: https://nextjs.org/telemetry
+# --- ARGUMENTOS DE CONSTRUCCIÓN (De tu .env.local) ---
+# Next.js necesita estos valores durante el 'npm run build' 
+# para inyectarlos en el JS que va al navegador.
+ARG NEXT_PUBLIC_MQTT_WEBSOCKET_URL
+ARG NEXT_PUBLIC_INFLUXDB_URL
+ARG NEXT_PUBLIC_INFLUXDB_ORG
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_API_URL_USERS
+ARG NEXT_PUBLIC_INFLUXDB_TOKEN
+
+# --- CONVERTIR ARGs EN ENVs PARA EL PROCESO DE BUILD ---
+ENV NEXT_PUBLIC_MQTT_WEBSOCKET_URL=$NEXT_PUBLIC_MQTT_WEBSOCKET_URL
+ENV NEXT_PUBLIC_INFLUXDB_URL=$NEXT_PUBLIC_INFLUXDB_URL
+ENV NEXT_PUBLIC_INFLUXDB_ORG=$NEXT_PUBLIC_INFLUXDB_ORG
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL_USERS=$NEXT_PUBLIC_API_URL_USERS
+ENV NEXT_PUBLIC_INFLUXDB_TOKEN=$NEXT_PUBLIC_INFLUXDB_TOKEN
+
 ENV NEXT_TELEMETRY_DISABLED 1
 
-# Set dummy environment variables for build time to avoid library initialization errors
-ENV NEXT_PUBLIC_INFLUXDB_URL=http://localhost:8086
-ENV NEXT_PUBLIC_INFLUXDB_TOKEN=dummy
-ENV NEXT_PUBLIC_INFLUXDB_ORG=dummy
-ENV NEXT_PUBLIC_API_URL=http://localhost:8000
-
-# If using npm comment out above and use below instead
+# Ejecutar el build de Next.js
 RUN npm run build
 
-# Production image, copy all the files and run next
+# 4. Imagen de Producción (Runner)
 FROM base AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-# Uncomment the following line in case you want to disable telemetry during runtime.
 ENV NEXT_TELEMETRY_DISABLED 1
 
+# Seguridad: No ejecutar como root
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 
-# Set the correct permission for prerender cache
+# Configurar permisos para la caché de Next.js
 RUN mkdir .next
 RUN chown nextjs:nodejs .next
 
-# Automatically leverage output traces to reduce image size
-# https://nextjs.org/docs/advanced-features/output-file-tracing
+# Copiar el output del modo standalone (reduce mucho el tamaño de la imagen)
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
 EXPOSE 3000
-
 ENV PORT 3000
 
-# server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD HOSTNAME="0.0.0.0" node server.js
+# El comando para arrancar la app usando el server.js generado por standalone
+CMD ["node", "server.js"]

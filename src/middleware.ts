@@ -1,7 +1,7 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-const PUBLIC_PATHS = ["/login", "/registro", "/"];
+const PUBLIC_PATHS = ["/login", "/"];
 
 function decodeJWT(token: string) {
     try {
@@ -64,11 +64,11 @@ export async function middleware(request: NextRequest) {
 
                     // Clonamos la respuesta para poder setear la cookie nueva
                     const response = NextResponse.next();
-                    const isDeployment = process.env.NODE_ENV === "production";
+                    
 
                     response.cookies.set("jwt-access", newAccessToken, {
-                        httpOnly: isDeployment,
-                        secure: isDeployment,
+                        httpOnly: false,
+                        secure: false,
                         sameSite: "lax",
                         path: "/",
                         maxAge: 60 * 60 * 2, // 2 horas de vida de cookie para asegurar retención hasta la prox expiración
@@ -83,7 +83,7 @@ export async function middleware(request: NextRequest) {
     }
 
     // Si el token existe y es válido → no dejar entrar al login ni registro
-    if (path === "/login" || path === "/registro") {
+    if (path === "/login") {
         return NextResponse.redirect(new URL("/dashboard-iot", request.url));
     }
 
